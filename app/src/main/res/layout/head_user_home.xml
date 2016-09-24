@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#26a33b"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/iv_userhome_portrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:src="@mipmap/widget_dface" />
+
+        <TextView
+            android:id="@+id/tv_userhome_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="钢铁侠"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_userhome_score"
+                style="@style/text_userhome_head"
+                android:text="100" />
+
+            <TextView
+                android:id="@+id/tv_userhome_follow"
+                style="@style/text_userhome_head"
+                android:text="99" />
+
+            <TextView
+                android:id="@+id/tv_userhome_fans"
+                style="@style/text_userhome_head"
+                android:text="88" />
+        </LinearLayout >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/text_userhome_head"
+                android:text="积分" />
+
+            <TextView
+                style="@style/text_userhome_head"
+                android:text="关注" />
+
+            <TextView
+                style="@style/text_userhome_head"
+                android:text="粉丝" />
+        </LinearLayout >
+    </LinearLayout >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最近登录" />
+        <TextView
+            android:id="@+id/tv_userhome_latesttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="0分钟前" />
+    </LinearLayout >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg"
+            android:text="留言"
+            android:textColor="#000"
+            android:paddingLeft="30dp"
+            android:drawableLeft="@mipmap/ic_private_message"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_green_selector"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="30dp"
+            android:text="关注"
+            android:drawableLeft="@mipmap/ic_add_follow"/>
+    </LinearLayout >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_userhome_blog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg"
+            android:textColor="#000"
+            android:text="博客"/>
+
+        <Button
+            android:id="@+id/btn_userhome_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg"
+            android:textColor="#000"
+            android:text="资料"/>
+    </LinearLayout >
+</LinearLayout >

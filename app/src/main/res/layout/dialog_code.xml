@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+              android:layout_width="100dp"
+              android:gravity="center"
+android:background="@color/actionbar_item_background_normal"
+              android:layout_height="100dp">
+<ImageView
+    android:layout_width="match_parent"
+    android:id="@+id/iv_code"
+    android:src="@mipmap/baby"
+    android:layout_height="match_parent"
+
+    />
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="14sp"
+        android:textColor="#5000"
+        android:gravity="center_vertical"
+        android:text="扫一扫下面的二维码图案~长按保存到本地~"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

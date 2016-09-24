@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res/org.lion.oschina"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/ptr_tweet_refresh"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="#19000000"
+        android:dividerHeight="1dp"
+        android:fadingEdge="none"
+        android:scrollbars="none"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:smoothScrollbar="true"
+        ptr:ptrDrawableTop="@mipmap/bga_refresh_mt_change_to_release_refresh_05"
+        ptr:ptrDrawableBottom="@mipmap/muscle"
+        ptr:ptrHeaderTextColor="#2da9b6"
+        ptr:ptrHeaderBackground="#E5FCE8"
+        >
+    </com.handmark.pulltorefresh.library.PullToRefreshListView >
+
+</FrameLayout >

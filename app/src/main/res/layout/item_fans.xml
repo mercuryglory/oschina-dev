@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_margin="5dp"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/ll_fans_items"
+        android:layout_width="match_parent"
+android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_portrait"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/baby_chick"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_fans_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="火蚁"
+                    android:textColor="#0083FF"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_fans_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/userinfo_icon_female"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_fans_from"
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="四川 成都"
+                android:textColor="#B2B2B2"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/tv_fans_expertise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手机软件开发，桌面软件开发"
+                android:textColor="#B2B2B2"
+                android:layout_marginBottom="5dp"
+                android:textSize="13sp"/>
+        </LinearLayout>
+        <!--<TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E1E1E1"/>-->
+    </LinearLayout>
+</RelativeLayout>

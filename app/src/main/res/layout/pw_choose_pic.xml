@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:background="@mipmap/user_center_bg"
+    android:layout_height="60dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="选择图片"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"/>
+</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E1E1E1"/>
+    <RelativeLayout
+        android:id="@+id/tv_popup_choose_1"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="相机"
+        android:textColor="#909090"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E1E1E1"/>
+    <RelativeLayout
+        android:id="@+id/tv_popup_choose_2"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="相册"
+        android:textColor="#909090"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E1E1E1"/>
+    <RelativeLayout
+        android:id="@+id/tv_popup_choose_cancel"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="50dp">
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="取消"
+        android:textColor="#909090"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+    </RelativeLayout>
+</LinearLayout>

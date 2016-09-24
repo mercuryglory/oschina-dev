@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+              android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/tv_popup_copy"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:id="@+id/tv_dialog_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="复制33333333333333333"
+            android:textColor="#909090"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E1E1E1"/>
+
+
+    <LinearLayout
+        android:id="@+id/tv_popup_long_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_dialog_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_user_item"
+            android:text="确定"
+            android:textColor="@color/dialog_btn_text_bg"/>
+
+        <Button
+            android:id="@+id/bt_dialog_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:background="@drawable/selector_user_item"
+            android:text="取消"/>
+    </LinearLayout>
+</LinearLayout>
