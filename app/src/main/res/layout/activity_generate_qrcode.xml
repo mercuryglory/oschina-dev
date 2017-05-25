@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.lion.oschina.explorer.ui.activity.GenerateQRCodeActivity">
+    tools:context="org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity">
 
     <ImageView
         android:id="@+id/iv_generate_qrcode"

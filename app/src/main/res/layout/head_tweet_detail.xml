@@ -103,7 +103,7 @@
             android:text="5" />
     </LinearLayout >
 
-    <org.lion.oschina.tweet.widget.TweetTextView
+    <org.mercury.oschina.tweet.widget.TweetTextView
         android:id="@+id/tv_tweet_like"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

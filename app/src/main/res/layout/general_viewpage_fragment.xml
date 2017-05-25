@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <!-- 导航标题栏 -->
-    <org.lion.oschina.tweet.widget.PagerSlidingTabStrip
+    <org.mercury.oschina.tweet.widget.PagerSlidingTabStrip
         android:id="@+id/slidingTab"
         android:layout_width="match_parent"
         android:layout_height="45dp"

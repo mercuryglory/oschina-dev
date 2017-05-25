@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <org.lion.oschina.explorer.ui.view.PagerSlidingTab
+    <org.mercury.oschina.explorer.ui.view.PagerSlidingTab
         android:id="@+id/pst"
         android:layout_width="match_parent"
         android:layout_height="50dp" />

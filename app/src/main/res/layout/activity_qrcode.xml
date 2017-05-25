@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.lion.oschina.explorer.ui.activity.QRCodeActivity">
+    tools:context="org.mercury.oschina.explorer.ui.activity.QRCodeActivity">
 
     <cn.bingoogolapple.qrcode.zbar.ZBarView
         android:id="@+id/zbarview"

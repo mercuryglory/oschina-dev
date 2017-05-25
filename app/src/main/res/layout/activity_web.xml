@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.lion.oschina.tweet.activity.WebActivity" >
+    tools:context="org.mercury.oschina.tweet.activity.WebActivity" >
 
     <WebView
         android:id="@+id/wv"

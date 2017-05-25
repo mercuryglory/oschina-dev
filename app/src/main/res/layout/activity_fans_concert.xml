@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:itheima="http://schemas.android.com/apk/res-auto"
-
+    xmlns:wzh="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dl_main_root_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent" >
 
     <!--主界面-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
-        <org.lion.oschina.ui.view.PagerSlidingTab
-            itheima:shouldExpand="true"
+        <org.mercury.oschina.tweet.widget.PagerSlidingTabStrip
             android:id="@+id/pst_main_title_layout"
-
             android:layout_width="match_parent"
-            android:layout_height="45dp">
-        </org.lion.oschina.ui.view.PagerSlidingTab>
+            android:layout_height="45dp"
+            wzh:shouldExpand="true" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_main_show_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" >
 
-        </android.support.v4.view.ViewPager>
-    </LinearLayout>
+        </android.support.v4.view.ViewPager >
+    </LinearLayout >
 
 
-</android.support.v4.widget.DrawerLayout>
+</android.support.v4.widget.DrawerLayout >

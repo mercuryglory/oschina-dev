@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <issue id="NewApi">
+        <ignore path="src\com\handmark\pulltorefresh\library\PullToRefreshListView.java" />
+        <ignore path="src\com\handmark\pulltorefresh\library\internal\RotateLoadingLayout.java" />
+    </issue>
+</lint>

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp" >
 
-    <org.lion.oschina.tweet.widget.RefreshLayout
+    <org.mercury.oschina.tweet.widget.RefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -15,6 +15,6 @@
             android:id="@+id/lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </org.lion.oschina.tweet.widget.RefreshLayout >
+    </org.mercury.oschina.tweet.widget.RefreshLayout >
 
 </FrameLayout >

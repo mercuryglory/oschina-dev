@@ -36,7 +36,7 @@
                 android:textSize="16sp"
                 android:text="Author Name" />
 
-            <org.lion.oschina.tweet.widget.TweetTextView
+            <org.mercury.oschina.tweet.widget.TweetTextView
                 android:id="@+id/tv_tweet_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/pic_bg"
                 />
-            <org.lion.oschina.tweet.widget.TweetTextView
+            <org.mercury.oschina.tweet.widget.TweetTextView
                 android:id="@+id/tv_tweet_like"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <org.lion.oschina.tweet.widget.PagerSlidingTabStrip
+    <org.mercury.oschina.tweet.widget.PagerSlidingTabStrip
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:pstsShouldExpand="true"
