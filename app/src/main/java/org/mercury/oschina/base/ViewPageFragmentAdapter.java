@@ -1,7 +1,9 @@
 package org.mercury.oschina.base;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +23,7 @@ import org.mercury.oschina.widget.PagerSlidingTabStrip;
 import java.util.ArrayList;
 import java.util.Map;
 
+@TargetApi(Build.VERSION_CODES.KITKAT)
 @SuppressLint("Recycle")
 public class ViewPageFragmentAdapter extends FragmentStatePagerAdapter {
 
