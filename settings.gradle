@@ -1,1 +1,1 @@
-include ':app', ':pullToRefresh', ':photoViewlibrary', ':emojicon'
+include ':app', ':pullToRefresh', ':emojicon'
