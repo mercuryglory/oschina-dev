@@ -13,12 +13,11 @@ import android.widget.ImageView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.rockerhieu.emojicon.EmojiconTextView;
-import com.rockerhieu.emojicon.EmojiconsFragment;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
+import org.mercury.oschina.emoji.EmojiView;
 import org.mercury.oschina.tweet.adapter.CommentTweetAdapter;
 import org.mercury.oschina.tweet.bean.Comment;
 import org.mercury.oschina.tweet.bean.CommentList;
@@ -31,6 +30,7 @@ import org.mercury.oschina.tweet.util.Constant;
 import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.tweet.util.Utils;
 import org.mercury.oschina.tweet.util.XmlUtils;
+import org.mercury.oschina.utils.TDevice;
 
 import java.util.List;
 
@@ -57,7 +57,7 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
     private boolean isShowEmoji = false;
     private TweetHeadHolder mTweetHeadHolder;
 
-    private EmojiconTextView mEmojiconTextView;
+    private EmojiView mEmojiView;
 
 
     @Override
@@ -67,7 +67,9 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
 
 
         mEtContent =(EditText)findViewById(R.id.et_content);
-        mIvTweetEmoji =(ImageView)findViewById(R.id.iv_tweet_emoji);
+        mIvTweetEmoji = (ImageView) findViewById(R.id.iv_tweet_emoji);
+
+        //占位弹出选择框
         mEmojiKeyboardFragment =(FrameLayout)findViewById(R.id.emoji_keyboard_fragment);
 
         initActionBar();
@@ -81,7 +83,7 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void initEmoji() {
-        EmojiconsFragment fragment = new EmojiconsFragment();
+//        EmojiconsFragment fragment = new EmojiconsFragment();
         //从sp中拿到数据，填充
         initEmoticonsEditText();
 
@@ -103,17 +105,27 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
         mEtContent.setFocusable(true);
         mEtContent.setFocusableInTouchMode(true);
         mEtContent.requestFocus();
+
+        //弹出表情选择框
         mIvTweetEmoji.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                if (!isShowEmoji) {
-                    mEmojiKeyboardFragment.setVisibility(View.VISIBLE);
-                } else {
-                    mEmojiKeyboardFragment.setVisibility(View.GONE);
-                }
 
-                isShowEmoji = !isShowEmoji;
+                if (mEmojiView == null) {
+                    mEmojiView = new EmojiView(TweetDetailActivity.this, mEtContent);
+                    mEmojiKeyboardFragment.addView(mEmojiView);
+                }
+                mEmojiView.openPanel();
+                TDevice.closeKeyboard(mEtContent);
+
+//                if (!isShowEmoji) {
+//                    mEmojiKeyboardFragment.setVisibility(View.VISIBLE);
+//                } else {
+//                    mEmojiKeyboardFragment.setVisibility(View.GONE);
+//                }
+//
+//                isShowEmoji = !isShowEmoji;
 
             }
         });

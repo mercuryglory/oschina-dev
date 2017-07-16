@@ -338,6 +338,12 @@ public class TDevice {
         }
     }
 
+    public static void closeKeyboard(EditText view) {
+        view.clearFocus();
+        InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+    }
+
     public static void showSoftKeyboard(Dialog dialog) {
         dialog.getWindow().setSoftInputMode(4);
     }
@@ -716,6 +722,15 @@ public class TDevice {
         } else {
             return true;
         }
+    }
+
+    public static float dp2px(float dp) {
+        return dp * getDisplayMetrics().density;
+    }
+
+    public static float spToPx(Resources resources, float sp) {
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, metrics);
     }
 
     /**

@@ -15,7 +15,7 @@
         android:gravity="center"
         android:padding="@dimen/lay_8"
         android:text="QQ表情"
-        android:textColor="?attr/infoTextColor"
+        android:textColor="@color/black"
         android:textSize="@dimen/font_14" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:gravity="center"
         android:padding="@dimen/lay_8"
         android:text="Emoji表情"
-        android:textColor="?attr/infoTextColor"
+        android:textColor="@color/black"
         android:textSize="@dimen/font_14" />
 
     <ImageView
