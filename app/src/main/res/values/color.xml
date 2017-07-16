@@ -111,4 +111,7 @@
     <color name="tweet_indicator_text_color_error">#e35050</color>
 
     <color name="item_clicked">#770000</color>
+
+    <color name="bg_press">#ebebeb</color>
+    <color name="bg_press_material">#d4d4d4</color>
 </resources>

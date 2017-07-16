@@ -7,14 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.rockerhieu.emojicon.EmojiconGridFragment;
+import com.rockerhieu.emojicon.EmojiconTextView;
 import com.rockerhieu.emojicon.EmojiconsFragment;
-import com.rockerhieu.emojicon.emoji.Emojicon;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -41,12 +41,9 @@ import okhttp3.Call;
  * descript:  动弹详情
  */
 public class TweetDetailActivity extends AppCompatActivity implements AdapterView
-        .OnItemClickListener, PullToRefreshBase.OnRefreshListener
-        , EmojiconGridFragment.OnEmojiconClickedListener
-        , EmojiconsFragment.OnEmojiconBackspaceClickedListener {
+        .OnItemClickListener, PullToRefreshBase.OnRefreshListener {
 
-
-    private com.rockerhieu.emojicon.EmojiconEditText mEtContent;
+    private EditText mEtContent;
     private ImageView mIvTweetEmoji;
     private FrameLayout mEmojiKeyboardFragment;
 
@@ -60,13 +57,16 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
     private boolean isShowEmoji = false;
     private TweetHeadHolder mTweetHeadHolder;
 
+    private EmojiconTextView mEmojiconTextView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet_detail);
 
 
-        mEtContent =(com.rockerhieu.emojicon.EmojiconEditText)findViewById(R.id.et_content);
+        mEtContent =(EditText)findViewById(R.id.et_content);
         mIvTweetEmoji =(ImageView)findViewById(R.id.iv_tweet_emoji);
         mEmojiKeyboardFragment =(FrameLayout)findViewById(R.id.emoji_keyboard_fragment);
 
@@ -87,15 +87,15 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
 
     }
 
-    @Override
-    public void onEmojiconClicked(Emojicon emojicon) {
-        EmojiconsFragment.input(mEtContent, emojicon);
-    }
-
-    @Override
-    public void onEmojiconBackspaceClicked(View v) {
-        EmojiconsFragment.backspace(mEtContent);
-    }
+//    @Override
+//    public void onEmojiconClicked(Emojicon emojicon) {
+//        EmojiconsFragment.input(mEtContent, emojicon);
+//    }
+//
+//    @Override
+//    public void onEmojiconBackspaceClicked(View v) {
+//        EmojiconsFragment.backspace(mEtContent);
+//    }
 
 
     private void initEmoticonsEditText() {

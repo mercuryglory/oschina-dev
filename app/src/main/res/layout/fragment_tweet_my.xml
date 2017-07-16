@@ -6,12 +6,12 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <com.cunoraz.gifview.library.GifView
+   <!-- <com.cunoraz.gifview.library.GifView
         android:id="@+id/iv_gif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         custom:gif="@mipmap/littlegirl"
-        />
+        />-->
 
     <TextView
         android:layout_width="match_parent"

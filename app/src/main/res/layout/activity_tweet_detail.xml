@@ -25,12 +25,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.rockerhieu.emojicon.EmojiconEditText
+        <EditText
             android:id="@+id/et_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="动弹一下"/>
+            android:hint="发表评论"/>
 
         <ImageView
             android:id="@+id/iv_tweet_emoji"
@@ -46,18 +46,21 @@
             android:layout_gravity="center_vertical"
             android:src="@mipmap/biz_chat_comment_send"/>
     </LinearLayout>
+
     <FrameLayout
         android:id="@+id/emoji_keyboard_fragment"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:visibility="gone">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="visible">
 
+<!--
         <fragment
             android:id="@+id/emojicons"
             class="com.rockerhieu.emojicon.EmojiconsFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            />-->
 
     </FrameLayout>
 </LinearLayout>
