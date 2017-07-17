@@ -22,8 +22,6 @@ public class MyTweetFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = View.inflate(AppContext.context(), R.layout.fragment_tweet_my, null);
-//        GifView iv_gif = (GifView) view.findViewById(R.id.iv_gif);
-//        iv_gif.play();
         return view;
     }
 

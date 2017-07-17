@@ -4,11 +4,11 @@ import android.app.ProgressDialog;
 
 public interface DialogControl {
 
-	public abstract void hideWaitDialog();
+	void hideWaitDialog();
 
-	public abstract ProgressDialog showWaitDialog();
+	ProgressDialog showWaitDialog();
 
-	public abstract ProgressDialog showWaitDialog(int resid);
+	ProgressDialog showWaitDialog(int resid);
 
-	public abstract ProgressDialog showWaitDialog(String text);
+	ProgressDialog showWaitDialog(String text);
 }

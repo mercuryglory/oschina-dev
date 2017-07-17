@@ -7,8 +7,8 @@ package org.mercury.oschina.base;
  */
 public interface BaseViewInterface {
 	
-	public void initView();
+	void initView();
 	
-	public void initData();
+	void initData();
 	
 }

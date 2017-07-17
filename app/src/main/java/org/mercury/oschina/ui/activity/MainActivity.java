@@ -104,7 +104,8 @@ public class MainActivity extends AppCompatActivity implements
         View view = View.inflate(getApplicationContext(), R.layout.dialog_quick_option, null);
         builder.setView(view);
         final AlertDialog dialog = builder.show();
-        mLy_quick_option_text = (LinearLayout) view.findViewById(R.id.ly_quick_option_text);//文字
+        //文字
+        mLy_quick_option_text = (LinearLayout) view.findViewById(R.id.ly_quick_option_text);
         //语音
         mLy_quick_option_voice2 = (LinearLayout) view.findViewById(R.id.ly_quick_option_voice2);
         //拍照

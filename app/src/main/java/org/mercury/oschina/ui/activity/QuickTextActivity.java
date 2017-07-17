@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,24 +14,21 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.rockerhieu.emojicon.EmojiconGridFragment;
-import com.rockerhieu.emojicon.EmojiconsFragment;
-import com.rockerhieu.emojicon.emoji.Emojicon;
 
 import org.mercury.oschina.R;
+import org.mercury.oschina.emoji.EmojiView;
+import org.mercury.oschina.utils.TDevice;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by Administrator on 2016/8/15.
+ * Created by Mercury on 2016/8/15.
+ * 弹一弹
  */
 public class QuickTextActivity extends AppCompatActivity
-        implements EmojiconGridFragment.OnEmojiconClickedListener
-        , EmojiconsFragment.OnEmojiconBackspaceClickedListener, View.OnClickListener {
+        implements View.OnClickListener {
 
 
     @Bind(R.id.iv_back)
@@ -64,16 +59,16 @@ public class QuickTextActivity extends AppCompatActivity
     ImageButton mIbEmojiKeyboard;
     @Bind(R.id.iv_show)
     ImageView mIvShow;
-
-    @Bind(R.id.emoji_keyboard_fragment)
-    FrameLayout mEmojiKeyboardFragment;
+    @Bind(R.id.fl_emoji)
+    FrameLayout flEmoji;
 
     private EditText mEt_album;
     private EditText mEt_viode;
     private Button mBt_dismiss;
     private AlertDialog mAlertDialog;
     private View mView1;
-    private boolean isShowEmoji = false;
+
+    private EmojiView mEmojiView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,55 +79,15 @@ public class QuickTextActivity extends AppCompatActivity
     }
 
     private void initEmoji() {
-        EmojiconsFragment fragment = new EmojiconsFragment();
-        //从sp中拿到数据，填充
-        // init();
-        initEmoticonsEditText();
-        mEtContent.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String text = mEtContent.getText().toString();
-                text = (160 - text.length()) + "";
-                mTvClear.setText(text);
-            }
-        });
-    }
-
-    private void initEmoticonsEditText() {
-        //  SimpleCommonUtils.initEmoticonsEditText(mEtContent);
-
         mEtContent.setFocusable(true);
         mEtContent.setFocusableInTouchMode(true);
         mEtContent.requestFocus();
-        mIbEmojiKeyboard.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                if (!isShowEmoji) {
-                    mEmojiKeyboardFragment.setVisibility(View.VISIBLE);
-                } else {
-                    mEmojiKeyboardFragment.setVisibility(View.GONE);
-                }
-
-                isShowEmoji = !isShowEmoji;
-
-            }
-        });
     }
+
 
     private void init() {
         //接收从点击相册传过来的photo然后设置到本页面的imageview中
-        Bitmap receive = (Bitmap) (getIntent().getParcelableExtra("img_bitmap"));
+        Bitmap receive =(getIntent().getParcelableExtra("img_bitmap"));
         mIvShow.setImageBitmap(receive);
 
         mIvBack.setOnClickListener(this);
@@ -167,7 +122,13 @@ public class QuickTextActivity extends AppCompatActivity
                 mEtContent.setSelection(text.length() + 1, text.length() + str.length() - 1);
                 break;
             case R.id.ib_emoji_keyboard:
-                Toast.makeText(getApplicationContext(), "做不来，不服SLOL", Toast.LENGTH_SHORT).show();
+                if (mEmojiView == null) {
+                    mEmojiView = new EmojiView(this, mEtContent);
+                    flEmoji.addView(mEmojiView);
+                }
+                mEmojiView.openPanel();
+                TDevice.closeKeyboard(mEtContent);
+
                 break;
         }
     }
@@ -197,23 +158,6 @@ public class QuickTextActivity extends AppCompatActivity
             }
         });
     }
-
-    @OnClick(R.id.iv_show)
-    public void onClick() {
-
-    }
-
-    @Override
-    public void onEmojiconClicked(Emojicon emojicon) {
-        EmojiconsFragment.input(mEtContent, emojicon);
-    }
-
-    @Override
-    public void onEmojiconBackspaceClicked(View v) {
-        EmojiconsFragment.backspace(mEtContent);
-    }
-
-
 
 
 

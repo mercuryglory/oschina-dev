@@ -54,9 +54,8 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
     private int pageIndex = 0;
     private List<Comment> mList;
     private int mId;
-    private boolean isShowEmoji = false;
-    private TweetHeadHolder mTweetHeadHolder;
 
+    private TweetHeadHolder mTweetHeadHolder;
     private EmojiView mEmojiView;
 
 
@@ -82,25 +81,8 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
         initData();
     }
 
+
     private void initEmoji() {
-//        EmojiconsFragment fragment = new EmojiconsFragment();
-        //从sp中拿到数据，填充
-        initEmoticonsEditText();
-
-    }
-
-//    @Override
-//    public void onEmojiconClicked(Emojicon emojicon) {
-//        EmojiconsFragment.input(mEtContent, emojicon);
-//    }
-//
-//    @Override
-//    public void onEmojiconBackspaceClicked(View v) {
-//        EmojiconsFragment.backspace(mEtContent);
-//    }
-
-
-    private void initEmoticonsEditText() {
 
         mEtContent.setFocusable(true);
         mEtContent.setFocusableInTouchMode(true);
@@ -119,14 +101,6 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
                 mEmojiView.openPanel();
                 TDevice.closeKeyboard(mEtContent);
 
-//                if (!isShowEmoji) {
-//                    mEmojiKeyboardFragment.setVisibility(View.VISIBLE);
-//                } else {
-//                    mEmojiKeyboardFragment.setVisibility(View.GONE);
-//                }
-//
-//                isShowEmoji = !isShowEmoji;
-
             }
         });
     }
@@ -142,7 +116,7 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
         //设置标题
         actionBar.setTitle("动弹详情");
 
-        //        设置箭头,固定写法,一起出现
+        //设置箭头,固定写法,一起出现
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
