@@ -34,6 +34,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements
         TabHost.OnTabChangeListener, View.OnClickListener,
         View.OnTouchListener {
+
     private static final String TAG = "====_MainActivity";
 
     public static Activity mMainActivity;
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Bind(android.R.id.tabhost)
     FragmentTabHost mTabHost;
+    @Bind(R.id.quick_option_iv)
+    View mAddBt;
 
     private BadgeView mBvNotice;
 
@@ -49,15 +52,13 @@ public class MainActivity extends AppCompatActivity implements
 
     private String[] mTitles;
 
-
     /**
      * Used to store the last screen title. For use in
      * {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
 
-    @Bind(R.id.quick_option_iv)
-    View mAddBt;
+
     private LinearLayout mLy_quick_option_text;
     private LinearLayout mLy_quick_option_voice2;
     private LinearLayout mLy_quick_option_photo;

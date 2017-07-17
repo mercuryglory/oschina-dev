@@ -12,6 +12,7 @@
     <string name="main_tab_name_question">问答</string>
     <string name="main_tab_name_my">我的</string>
     <string name="main_tab_name_explore">发现</string>
+    <string name="main_tab_add"></string>
 
     <string name="event_status_end">活动结束</string>
     <string name="event_status_ing">正在报名</string>

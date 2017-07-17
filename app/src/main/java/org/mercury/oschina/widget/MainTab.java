@@ -13,7 +13,7 @@ import org.mercury.oschina.ui.fragment.TweetViewPagerFragment;
 public enum MainTab {
 
 	/*
-	NEWS(0, R.string.main_tab_name_news, R.drawable.tab_icon_new,
+    NEWS(0, R.string.main_tab_name_news, R.drawable.tab_icon_new,
 			NewsViewPagerFragment.class),
 			*/
 
@@ -23,7 +23,7 @@ public enum MainTab {
     TWEET(1, R.string.main_tab_name_tweet, R.drawable.tab_icon_tweet,
             TweetViewPagerFragment.class),
 
-    QUICK(2, R.string.main_tab_name_quick, R.drawable.tab_icon_new,
+    QUICK(2, R.string.main_tab_add, R.color.transparent,
             null),
 
     EXPLORE(3, R.string.main_tab_name_explore, R.drawable.tab_icon_explore,
@@ -32,12 +32,12 @@ public enum MainTab {
     ME(4, R.string.main_tab_name_my, R.drawable.tab_icon_me,
             MyInformationFragment.class);
 
-    private int idx;
-    private int resName;
-    private int resIcon;
+    private int      idx;
+    private int      resName;
+    private int      resIcon;
     private Class<?> clz;
 
-    private MainTab(int idx, int resName, int resIcon, Class<?> clz) {
+    MainTab(int idx, int resName, int resIcon, Class<?> clz) {
         this.idx = idx;
         this.resName = resName;
         this.resIcon = resIcon;
