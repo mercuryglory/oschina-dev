@@ -39,12 +39,6 @@ public class TweetViewPagerFragment extends Fragment {
 
     public List<FragmentInfo> mShowItems = new ArrayList<>();
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        System.out.println("onCreate");
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
@@ -80,6 +74,5 @@ public class TweetViewPagerFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-//        mShowItems.clear();
     }
 }

@@ -18,7 +18,6 @@ import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetsList;
 import org.mercury.oschina.tweet.net.HttpApi;
 import org.mercury.oschina.tweet.util.Constant;
-import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.tweet.util.Utils;
 import org.mercury.oschina.tweet.util.XmlUtils;
 
@@ -31,7 +30,7 @@ import okhttp3.Call;
 /**
  * 创建者:    Mercury
  * 创建时间:  2016/8/14
- * 描述:      ${TODO}
+ * 描述:      最新动弹
  */
 public class NewTweetFragment extends BaseFragment implements AdapterView.OnItemClickListener,PullToRefreshBase.OnRefreshListener {
 
@@ -60,7 +59,6 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
             mCallback = new StringCallback() {
                 @Override
                 public void onError(Call call, Exception e, int i) {
-                    ToastUtil.showToast("请求失败");
                     if (mPtrListView != null) {
 
                         mPtrListView.onRefreshComplete();
@@ -71,7 +69,6 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
                 public void onResponse(String response, int i) {
 
                     if (mLoadPager != null) {
-                        ToastUtil.showToast("请求成功");
                         TweetsList tweetsList = XmlUtils.toBean(TweetsList.class, response);
                         mList = tweetsList.getList();
 
@@ -163,14 +160,12 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
         switch (refreshView.getCurrentMode()) {
 
             case PULL_FROM_START:
-                System.out.println("refresh");
                 isLoadMore = false;
                 pageIndex = 0;
                 loadData();
                 break;
 
             case PULL_FROM_END:
-                System.out.println("more");
                 isLoadMore = true;
                 pageIndex++;
                 loadData();
