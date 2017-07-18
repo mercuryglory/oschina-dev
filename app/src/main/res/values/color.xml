@@ -117,7 +117,7 @@
 
     <color name="colorPrimary">#40AA53</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#40AA53</color>
     <color name="background_tab_pressed">@color/colorPrimary</color>
 
     <color name="bg_window">#ffe5e5e5</color>

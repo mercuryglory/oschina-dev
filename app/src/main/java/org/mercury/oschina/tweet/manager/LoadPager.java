@@ -3,10 +3,7 @@ package org.mercury.oschina.tweet.manager;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
@@ -41,11 +38,11 @@ public abstract class LoadPager extends FrameLayout {
     private void initLoadPager() {
         if (mLoadingView == null) {
             mLoadingView = View.inflate(AppContext.context, R.layout.page_loading, null);
-            ImageView iv = (ImageView) mLoadingView.findViewById(R.id.iv);
-            Animation animation = AnimationUtils.loadAnimation(AppContext.context, R.anim
-                    .anim_alpha_to_hide);
-            iv.setAnimation(animation);
-            animation.start();
+//            ImageView iv = (ImageView) mLoadingView.findViewById(R.id.iv);
+//            Animation animation = AnimationUtils.loadAnimation(AppContext.context, R.anim
+//                    .anim_alpha_to_hide);
+//            iv.setAnimation(animation);
+//            animation.start();
 
         }
         addView(mLoadingView);
