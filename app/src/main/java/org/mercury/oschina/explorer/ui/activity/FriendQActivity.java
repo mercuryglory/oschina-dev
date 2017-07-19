@@ -19,7 +19,7 @@ import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.explorer.adapter.FriendAdapter;
 import org.mercury.oschina.explorer.bean.Active;
 import org.mercury.oschina.explorer.bean.ActiveList;
-import org.mercury.oschina.explorer.bean.XmlUtils;
+import org.mercury.oschina.explorer.util.XmlUtils;
 import org.mercury.oschina.explorer.util.ApiHttp;
 import org.mercury.oschina.explorer.util.Fileds;
 import org.mercury.oschina.tweet.activity.TweetDetailActivity;

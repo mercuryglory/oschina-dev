@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
-import org.mercury.oschina.explorer.adapter.Basic1Holder;
+import org.mercury.oschina.explorer.adapter.BasicHolder;
 import org.mercury.oschina.explorer.bean.Event;
 import org.mercury.oschina.explorer.util.SPUtils;
 import org.mercury.oschina.explorer.util.Utils;
@@ -15,11 +15,11 @@ import org.mercury.oschina.explorer.util.Utils;
 import butterknife.Bind;
 
 /**
- * @创建者 LY
+ * @创建者 Mercury
  * @创建时间 2016/8/16 17:21
  * @描述 ${TODO}
  */
-public class AllActivityHolder extends Basic1Holder<Event> {
+public class AllActivityHolder extends BasicHolder<Event> {
     @Bind(R.id.ic_all_icon)
     ImageView mIcAllIcon;
     @Bind(R.id.tv_all_title)

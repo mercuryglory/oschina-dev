@@ -6,7 +6,7 @@ import org.mercury.oschina.general.adapter.BasicAdapter;
 import org.mercury.oschina.general.holder.BasicHolder;
 
 /**
- * Created by more on 2016-08-19 12:55:43.
+ * Created by Mercury on 2016-08-19 12:55:43.
  */
 public class FindUserAdapter extends BasicAdapter<FindUserBean.ObjListBean> {
     @Override

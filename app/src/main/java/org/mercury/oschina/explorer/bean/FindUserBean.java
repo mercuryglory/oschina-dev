@@ -3,7 +3,7 @@ package org.mercury.oschina.explorer.bean;
 import java.util.List;
 
 /**
- * Created by more on 2016-08-19 12:57:58.
+ * Created by Mercury on 2016-08-19 12:57:58.
  */
 public class FindUserBean {
 

@@ -7,7 +7,7 @@ import android.content.SharedPreferences.Editor;
 /**
  * sp的工具类
  * @Description: TODO
- * @author mercury
+ * @author Mercury
  * @date 2016-6-21 下午4:04:22
  */
 public class SPUtils {

@@ -23,7 +23,7 @@ import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.explorer.adapter.AllActivityAdapter;
 import org.mercury.oschina.explorer.bean.Event;
 import org.mercury.oschina.explorer.bean.EventList;
-import org.mercury.oschina.explorer.bean.XmlUtils;
+import org.mercury.oschina.explorer.util.XmlUtils;
 import org.mercury.oschina.explorer.ui.view.LoadingPager;
 import org.mercury.oschina.explorer.util.Fileds;
 import org.mercury.oschina.explorer.util.SPUtils;

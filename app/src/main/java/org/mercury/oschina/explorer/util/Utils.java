@@ -12,7 +12,7 @@ import org.mercury.oschina.base.AppContext;
 import java.util.Random;
 
 /**
- * Created by lxj on 2016/5/19.
+ * Created by Mercury on 2016/5/19.
  */
 public class Utils {
     public static void setImage(String url, ImageView iv){

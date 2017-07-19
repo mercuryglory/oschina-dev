@@ -6,11 +6,11 @@ import android.view.View;
 import butterknife.ButterKnife;
 
 /**
- * @创建者 LY
+ * @创建者 Mercury
  * @创建时间 2016/8/16 16:43
  * @描述 ${TODO}
  */
-public abstract class Basic1Holder<T>{
+public abstract class BasicHolder<T>{
 
     View view;
 
@@ -18,7 +18,7 @@ public abstract class Basic1Holder<T>{
         return view;
     }
 
-    public Basic1Holder() {
+    public BasicHolder() {
         view = createView();
 
         ButterKnife.bind(this,view);

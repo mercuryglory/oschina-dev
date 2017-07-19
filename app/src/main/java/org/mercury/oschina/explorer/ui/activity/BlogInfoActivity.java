@@ -15,7 +15,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import org.mercury.oschina.R;
 import org.mercury.oschina.explorer.bean.Blog;
 import org.mercury.oschina.explorer.bean.BlogDetail;
-import org.mercury.oschina.explorer.bean.XmlUtils;
+import org.mercury.oschina.explorer.util.XmlUtils;
 import org.mercury.oschina.explorer.util.Fileds;
 
 import butterknife.Bind;

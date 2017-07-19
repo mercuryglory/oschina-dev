@@ -6,7 +6,6 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.base.AppContext;
-import org.mercury.oschina.explorer.bean.XmlUtils;
 
 import okhttp3.Call;
 

@@ -1,4 +1,4 @@
-package org.mercury.oschina.explorer.adapter;
+package org.mercury.oschina.explorer.ui.activity;
 
 import android.content.Intent;
 import android.net.Uri;

@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * 活动备注选择
- * Created by zhangdeyi on 15/8/19.
+ * Created by Mercury on 15/8/19.
  */
 @XStreamAlias("remark")
 public class EventRemark implements Serializable {

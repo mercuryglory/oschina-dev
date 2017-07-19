@@ -11,13 +11,13 @@ import java.util.List;
  * @创建时间 2016/8/15 21:49
  * @描述 ${TODO}
  */
-public class AllActivityAdapter extends Basic1Adapter<Event> {
+public class AllActivityAdapter extends BasicAdapter<Event> {
     public AllActivityAdapter(List<Event> list) {
         super(list);
     }
 
     @Override
-    public Basic1Holder createHolder(int position) {
+    public BasicHolder createHolder(int position) {
         return new AllActivityHolder();
     }
    /* List<Event> mEvents = new ArrayList<>();

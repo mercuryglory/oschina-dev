@@ -6,18 +6,18 @@ import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
-import org.mercury.oschina.explorer.adapter.Basic1Holder;
+import org.mercury.oschina.explorer.adapter.BasicHolder;
 import org.mercury.oschina.explorer.bean.Event;
 import org.mercury.oschina.explorer.util.Utils;
 
 import butterknife.Bind;
 
 /**
- * @创建者 LY
+ * @创建者 Mercury
  * @创建时间 2016/8/16 18:46
  * @描述 ${TODO}
  */
-public class MyActivityHolder extends Basic1Holder<Event> {
+public class MyActivityHolder extends BasicHolder<Event> {
     @Bind(R.id.iv_my_icon)
     ImageView mIvMyIcon;
     @Bind(R.id.tv_my_title)

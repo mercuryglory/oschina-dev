@@ -70,7 +70,7 @@
         <activity android:name="org.mercury.oschina.ui.activity.NoteDetailActivity">
         </activity>
         <activity android:name="org.mercury.oschina.explorer.ui.activity.BlogInfoActivity"/>
-        <activity android:name="org.mercury.oschina.explorer.adapter.ImageBigActivity" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.ImageBigActivity" />
 
     </application>
 

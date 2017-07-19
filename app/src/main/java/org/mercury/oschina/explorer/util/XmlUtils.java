@@ -1,4 +1,4 @@
-package org.mercury.oschina.explorer.bean;
+package org.mercury.oschina.explorer.util;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.basic.DoubleConverter;

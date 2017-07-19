@@ -15,7 +15,7 @@ import org.mercury.oschina.general.holder.BasicHolder;
 import butterknife.Bind;
 
 /**
- * Created by more on 2016-08-19 12:59:24.
+ * Created by Mercury on 2016-08-19 12:59:24.
  */
 public class FindUserHolder extends BasicHolder<FindUserBean.ObjListBean> {
 

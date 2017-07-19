@@ -23,7 +23,7 @@ import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.explorer.bean.Event;
 import org.mercury.oschina.explorer.bean.Post;
 import org.mercury.oschina.explorer.bean.PostDetail;
-import org.mercury.oschina.explorer.bean.XmlUtils;
+import org.mercury.oschina.explorer.util.XmlUtils;
 import org.mercury.oschina.explorer.util.Fileds;
 
 import butterknife.Bind;

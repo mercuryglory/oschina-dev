@@ -1,7 +1,7 @@
 package org.mercury.oschina.explorer.util;
 
 /**
- * @创建者 LY
+ * @创建者 Mercury
  * @创建时间 2016/8/16 12:51
  * @描述 ${TODO}
  */

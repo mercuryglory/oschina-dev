@@ -1,4 +1,4 @@
-package org.mercury.oschina.explorer.bean;
+package org.mercury.oschina.explorer.util;
 
 import android.util.Log;
 
