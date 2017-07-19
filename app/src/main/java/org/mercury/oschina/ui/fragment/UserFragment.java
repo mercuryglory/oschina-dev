@@ -54,7 +54,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
 
     private static final int QR_WIDTH  = 100;
-    private static final int QR_HEIGHT =100 ;
+    private static final int QR_HEIGHT = 100;
     @Bind(R.id.iv_user_pic)
     ImageView      mIvUserPic;
     @Bind(R.id.iv_user_gender)
@@ -63,8 +63,6 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     ImageView      mIvUserQrCode;
     @Bind(R.id.tv_user_name)
     TextView       mTvUserName;
-    @Bind(R.id.textView)
-    TextView       mTextView;
     @Bind(R.id.tv_user_score)
     TextView       mTvUserScore;
     @Bind(R.id.ll_user_score)
@@ -93,14 +91,14 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     LinearLayout   mLlUserTeam;
 
     public  DisplayImageOptions mOptions;
-    private User mUser;
+    private User                mUser;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
 
         View view = View.inflate(AppContext.context, R.layout.fragment_user, null);
-
         ButterKnife.bind(this, view);
         return view;
     }
@@ -115,10 +113,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .considerExifParams(true)// 会识别图片的方向信息
-                // .displayer(new FadeInBitmapDisplayer(220))
                 .build();
-        //.displayer(new RoundedBitmapDisplayer(36)).build();
 
+        mLlUserScore.setOnClickListener(this);
         mLlUserCollect.setOnClickListener(this);
         mLlUserFans.setOnClickListener(this);
         mIvUserPic.setOnClickListener(this);
@@ -137,7 +134,6 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         StringCallback callback = new StringCallback() {
 
 
-
             @Override
             public void onError(Call call, Exception e, int i) {
 
@@ -146,7 +142,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onResponse(String s, int i) {
-          //      Toast.makeText(getActivity(), "请求成功!", Toast.LENGTH_SHORT).show();
+                //      Toast.makeText(getActivity(), "请求成功!", Toast.LENGTH_SHORT).show();
                 MyInformation myInformation = XmlUtils.toBean(MyInformation.class, s.getBytes());
                 mUser = myInformation.getUser();
 
@@ -154,8 +150,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 Utils.runOnUIThread(new Runnable() {
                     @Override
                     public void run() {
-                        ImageLoader.getInstance().displayImage(mUser.getPortrait(), mIvUserPic, mOptions);
-                        mIvUserGender.setImageResource(mUser.getGender().equals(1) ? R.mipmap.userinfo_icon_male : R.mipmap.userinfo_icon_female);
+                        ImageLoader.getInstance().displayImage(mUser.getPortrait(), mIvUserPic,
+                                mOptions);
+                        mIvUserGender.setImageResource(mUser.getGender().equals(1) ? R.mipmap
+                                .userinfo_icon_male : R.mipmap.userinfo_icon_female);
                         mTvUserName.setText(mUser.getName());
                         mTvUserScore.setText(mUser.getScore() + "");
                         mTvUserCollect.setText(mUser.getFavoritecount() + "");
@@ -181,36 +179,38 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()) {
-        case R.id.ll_user_fans:
-            Intent intent = new Intent(getActivity(), ThierActivity.class);
-            intent.putExtra(Fields.FANS, "fans");
-            startActivity(intent);
-            break;
-        case R.id.ll_user_care:
-            Intent intent1 = new Intent(getActivity(), ThierActivity.class);
-            intent1.putExtra(Fields.CARE, "care");
-            startActivity(intent1);
+            case R.id.ll_user_score:
+                break;
+            case R.id.ll_user_fans:
+                Intent intent = new Intent(getActivity(), ThierActivity.class);
+                intent.putExtra(Fields.FANS, "fans");
+                startActivity(intent);
+                break;
+            case R.id.ll_user_care:
+                Intent intent1 = new Intent(getActivity(), ThierActivity.class);
+                intent1.putExtra(Fields.CARE, "care");
+                startActivity(intent1);
 
-            break;
-        case R.id.ll_user_collect:
+                break;
+            case R.id.ll_user_collect:
 
-            startActivity(new Intent(getActivity(), CollectionActivity.class));
-            break;
-        case R.id.iv_user_pic:
+                startActivity(new Intent(getActivity(), CollectionActivity.class));
+                break;
+            case R.id.iv_user_pic:
 
-            startActivity(new Intent(getActivity(), UserDetailsActivity.class));
-            break;
+                startActivity(new Intent(getActivity(), UserDetailsActivity.class));
+                break;
 
-        case R.id.ll_user_msg:
-            startActivity(new Intent(getActivity(), MsgActivity.class));
-            break;
-        case R.id.ll_user_blog:
-            startActivity(new Intent(getActivity(), BlogActivity.class));
-            break;
-        case R.id.iv_user_qr_code:
-            showqr_codeDialog();
+            case R.id.ll_user_msg:
+                startActivity(new Intent(getActivity(), MsgActivity.class));
+                break;
+            case R.id.ll_user_blog:
+                startActivity(new Intent(getActivity(), BlogActivity.class));
+                break;
+            case R.id.iv_user_qr_code:
+                showqr_codeDialog();
 
-            break;
+                break;
         }
     }
 
@@ -220,6 +220,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
     private void showqr_codeDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -232,7 +233,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
         // 查找控件
         ImageView iv_code = (ImageView) view.findViewById(R.id.iv_code);
-        createQRImage("http://www.cnblogs.com/mythou/p/3280023.html",iv_code);
+        createQRImage("http://www.cnblogs.com/mythou/p/3280023.html", iv_code);
         iv_code.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -244,32 +245,25 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    public void createQRImage(String url,ImageView iv_code)
-    {
-        try
-        {
+    public void createQRImage(String url, ImageView iv_code) {
+        try {
             //判断URL合法性
-            if (url == null || "".equals(url) || url.length() < 1)
-            {
+            if (url == null || "".equals(url) || url.length() < 1) {
                 return;
             }
             Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
             //图像数据转换，使用了矩阵转换
-            BitMatrix bitMatrix = new QRCodeWriter().encode(url, BarcodeFormat.QR_CODE, QR_WIDTH, QR_HEIGHT, hints);
+            BitMatrix bitMatrix = new QRCodeWriter().encode(url, BarcodeFormat.QR_CODE, QR_WIDTH,
+                    QR_HEIGHT, hints);
             int[] pixels = new int[QR_WIDTH * QR_HEIGHT];
             //下面这里按照二维码的算法，逐个生成二维码的图片，
             //两个for循环是图片横列扫描的结果
-            for (int y = 0; y < QR_HEIGHT; y++)
-            {
-                for (int x = 0; x < QR_WIDTH; x++)
-                {
-                    if (bitMatrix.get(x, y))
-                    {
+            for (int y = 0; y < QR_HEIGHT; y++) {
+                for (int x = 0; x < QR_WIDTH; x++) {
+                    if (bitMatrix.get(x, y)) {
                         pixels[y * QR_WIDTH + x] = 0xff000000;
-                    }
-                    else
-                    {
+                    } else {
                         pixels[y * QR_WIDTH + x] = 0xffffffff;
                     }
                 }
@@ -279,9 +273,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             bitmap.setPixels(pixels, 0, QR_WIDTH, 0, 0, QR_WIDTH, QR_HEIGHT);
             //显示到一个ImageView上面
             iv_code.setImageBitmap(bitmap);
-        }
-        catch (WriterException e)
-        {
+        } catch (WriterException e) {
             e.printStackTrace();
         }
     }

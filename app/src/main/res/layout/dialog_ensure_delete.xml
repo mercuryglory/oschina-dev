@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/selector_user_item"
+            android:background="@drawable/selector_material"
             android:text="确定"
             android:textColor="@color/dialog_btn_text_bg"/>
 
@@ -55,7 +55,7 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:textColor="#000"
-            android:background="@drawable/selector_user_item"
+            android:background="@drawable/selector_material"
             android:text="取消"/>
     </LinearLayout>
 </LinearLayout>
