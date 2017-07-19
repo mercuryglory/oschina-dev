@@ -47,9 +47,10 @@ import butterknife.ButterKnife;
 import okhttp3.Call;
 
 /**
- * Created by more on 2016-08-14 19:33:46.
+ * Created by Mercury on 2016-08-14 19:33:46.
+ * 个人中心
  */
-public class MyInformationFragment extends Fragment implements View.OnClickListener {
+public class UserFragment extends Fragment implements View.OnClickListener {
 
 
     private static final int QR_WIDTH  = 100;
@@ -91,9 +92,6 @@ public class MyInformationFragment extends Fragment implements View.OnClickListe
     @Bind(R.id.ll_user_team)
     LinearLayout   mLlUserTeam;
 
-    private LinearLayout        mLl_user_collect;
-    private LinearLayout        mLl_user_fans;
-    private View                mView1;
     public  DisplayImageOptions mOptions;
     private User mUser;
 
@@ -101,7 +99,7 @@ public class MyInformationFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = View.inflate(AppContext.context, R.layout.activity_user, null);
+        View view = View.inflate(AppContext.context, R.layout.fragment_user, null);
 
         ButterKnife.bind(this, view);
         return view;

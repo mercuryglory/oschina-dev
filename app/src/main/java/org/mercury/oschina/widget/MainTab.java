@@ -3,12 +3,12 @@ package org.mercury.oschina.widget;
 import org.mercury.oschina.R;
 import org.mercury.oschina.ui.fragment.ExploreFragment;
 import org.mercury.oschina.ui.fragment.GeneralViewPagerFragment;
-import org.mercury.oschina.ui.fragment.MyInformationFragment;
+import org.mercury.oschina.ui.fragment.UserFragment;
 import org.mercury.oschina.ui.fragment.TweetViewPagerFragment;
 
 /**
  * Created by wang.zhonghao on 2017/5/25
- * descript:  首页的底部导航栏信息 枚举
+ * descript:  首页的底部导航栏信息 枚举类
  */
 public enum MainTab {
 
@@ -30,7 +30,7 @@ public enum MainTab {
             ExploreFragment.class),
 
     ME(4, R.string.main_tab_name_my, R.drawable.tab_icon_me,
-            MyInformationFragment.class);
+            UserFragment.class);
 
     private int      idx;
     private int      resName;

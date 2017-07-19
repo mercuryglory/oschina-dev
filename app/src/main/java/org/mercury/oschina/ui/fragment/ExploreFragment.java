@@ -19,9 +19,9 @@ import org.mercury.oschina.explorer.ui.activity.ShakeActivity;
 
 
 /**
- * @创建者 LY
+ * @创建者 Mercury
  * @创建时间 2016/8/14 19:19
- * @描述 ${TODO}
+ * @描述 发现模块
  */
 public class ExploreFragment extends Fragment implements View.OnClickListener {
 
@@ -35,7 +35,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.more_fregment, null);
+        View view = inflater.inflate(R.layout.fragment_explore, null);
         mLl_more_friend = (LinearLayout) view.findViewById(R.id.ll_more_friend);
         ll_activity = (LinearLayout) view.findViewById(R.id.ll_activity);
         ll_qr_code = (LinearLayout) view.findViewById(R.id.ll_qr_code);

@@ -18,7 +18,7 @@ public enum SimpleBackPage {
 //    USER_BLOG(6, R.string.actionbar_title_user_blog, UserBlogFragment.class),
 //
 //    MY_INFORMATION(7, R.string.actionbar_title_my_information,
-//            MyInformationFragment.class),
+//            UserFragment.class),
 
 //    MY_ACTIVE(8, R.string.actionbar_title_active, ActiveFragment.class),
 
