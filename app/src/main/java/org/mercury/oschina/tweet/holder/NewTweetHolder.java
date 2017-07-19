@@ -96,7 +96,6 @@ public class NewTweetHolder extends BasicHolder<Tweet> {
         Spanned span = Html.fromHtml(TweetTextView.modifyPath(tweet.getBody()));
         span = InputHelper.displayEmoji(AppContext.context().getResources(), span);
         mTvTweetBody.setText(span);
-        System.out.println("span:" + span);
         MyURLSpan.parseLinkText(mTvTweetBody, span);
 
         //赞.直接调用bean里面已经封装好的方法

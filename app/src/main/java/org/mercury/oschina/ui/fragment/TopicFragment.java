@@ -16,7 +16,7 @@ import org.mercury.oschina.adapter.CollectAdapter;
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.bean.Favorite;
 import org.mercury.oschina.bean.FavoriteList;
-import org.mercury.oschina.ui.activity.TianZiDetailesActivity;
+import org.mercury.oschina.ui.activity.NoteDetailActivity;
 import org.mercury.oschina.utils.OschinaUri;
 import org.mercury.oschina.utils.Utils;
 import org.mercury.oschina.utils.XmlUtils;
@@ -54,7 +54,6 @@ public class TopicFragment extends BasicFragment implements AdapterView.OnItemCl
         mPtrlistView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                System.out.println("当前监听");
 
                 // 网络操作
                 mMLoadPager.loadData();
@@ -109,11 +108,10 @@ public class TopicFragment extends BasicFragment implements AdapterView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Intent intent = new Intent(getContext(), TianZiDetailesActivity.class);
+        Intent intent = new Intent(getContext(), NoteDetailActivity.class);
         if (list != null) {
             intent.putExtra("TianZi", mFavorites.get((int) id).getUrl());
               //intent.putExtra("TianZi", "http://www.oschina.net/question/2005680_243669");
-            System.out.println("zhelizoul");
             startActivity(intent);
 
         }

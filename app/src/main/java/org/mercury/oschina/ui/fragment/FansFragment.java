@@ -49,7 +49,6 @@ public class FansFragment extends BasicFragment implements AdapterView.OnItemCli
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView)
             {
-                System.out.println("当前监听");
 
                 // 网络操作
                 mMLoadPager.loadData();

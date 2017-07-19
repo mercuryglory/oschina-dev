@@ -73,7 +73,6 @@ public class MyActivityFragment extends Fragment {
                         if (onDataComplete(mList)) {
                             showView();
                         }
-                        System.out.println("我的活动" + list);
                     }
                 };
                 //跟新ui界面

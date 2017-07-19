@@ -116,7 +116,6 @@ public class AllActivityFragment extends Fragment {
                             //ActiveList list = XmlUtils.toBean(ActiveList.class, response.getBytes());
                             EventList eventList = XmlUtils.toBean(EventList.class, response.getBytes());
                             List<Event> mContent = eventList.getList();
-                            System.out.println("content" + mContent);
                             if (mContent == null) {
                                 return;
                             }

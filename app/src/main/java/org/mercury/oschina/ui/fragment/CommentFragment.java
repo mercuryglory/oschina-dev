@@ -49,7 +49,6 @@ public class CommentFragment extends BasicFragment implements AdapterView.OnItem
         mPtrlistView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                System.out.println("当前监听");
 
                 // 网络操作
                 mMLoadPager.loadData();

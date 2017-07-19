@@ -7,7 +7,7 @@ import org.mercury.oschina.explorer.holder.AllActivityHolder;
 import java.util.List;
 
 /**
- * @创建者 LY
+ * @创建者 Mercury
  * @创建时间 2016/8/15 21:49
  * @描述 ${TODO}
  */

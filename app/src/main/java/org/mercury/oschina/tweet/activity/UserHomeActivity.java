@@ -141,7 +141,6 @@ public class UserHomeActivity extends AppCompatActivity implements AdapterView
             case 101:
                 intent = new Intent(this, TweetDetailActivity.class);
                 intent.putExtra(Constant.TWEET_DETAIL, active.getId());
-                System.out.println("100activeId:" + active.getId());
                 break;
 
             //TODO
@@ -149,21 +148,18 @@ public class UserHomeActivity extends AppCompatActivity implements AdapterView
             case 18:
                 intent = new Intent(this, NewsDetailActivity.class);
                 intent.putExtra("href", active.getId());
-                System.out.println("18activeId:" + active.getId());
                 break;
 
             //帖子详情
             case 17:
                 intent = new Intent(this, NewsDetailActivity.class);
                 intent.putExtra("href", active.getId());
-                System.out.println("17activeId:" + active.getId());
                 break;
 
             //资讯详情
             case 16:
                 intent = new Intent(this, NewsDetailActivity.class);
                 intent.putExtra(Constant.TO_NEWS, active.getId());
-                System.out.println("16activeId:" + active.getId());
                 break;
 
             default:

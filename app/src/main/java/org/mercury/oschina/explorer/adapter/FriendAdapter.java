@@ -36,7 +36,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * @创建者 LY
+ * @创建者 Mercury
  * @创建时间 2016/8/14 22:00
  * @描述 ${TODO}
  */
@@ -245,7 +245,6 @@ public class FriendAdapter extends BaseAdapter {
                 Drawable drawable = AppContext.context().getResources().getDrawable(resId);
                 drawable.setBounds(0, 0, 20, 20);
                 ImageSpan span = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);
-                System.out.println(first.get(i));
                 spannableString.setSpan(span, first.get(i), last.get(i) + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 
             }

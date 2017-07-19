@@ -49,7 +49,6 @@ public class MsgFragment extends BasicFragment implements AdapterView.OnItemClic
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView)
             {
-                System.out.println("当前监听");
 
                 // 网络操作
                 mMLoadPager.loadData();

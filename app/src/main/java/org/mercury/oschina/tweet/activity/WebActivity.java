@@ -40,7 +40,6 @@ public class WebActivity extends AppCompatActivity {
     private void initData() {
         Intent intent = getIntent();
         String url = intent.getStringExtra(Constant.URL);
-        System.out.println(url);
         mWv.loadUrl(url);
     }
 

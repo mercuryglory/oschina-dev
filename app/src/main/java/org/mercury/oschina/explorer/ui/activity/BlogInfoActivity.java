@@ -67,7 +67,6 @@ public class BlogInfoActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
         mExtra = intent.getIntExtra(Fileds.BLOG_ID, 0);
-        System.out.println("mextra" + mExtra);
         init();
     }
 
@@ -78,7 +77,7 @@ public class BlogInfoActivity extends AppCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int i) {
-                        System.out.println("获取数据失败");
+
                     }
 
                     @Override

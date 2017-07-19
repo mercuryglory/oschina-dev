@@ -47,7 +47,6 @@ public class ConcertFragment extends BasicFragment implements View.OnClickListen
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView)
             {
-                System.out.println("当前监听");
 
                 // 网络操作
                 mMLoadPager.loadData();

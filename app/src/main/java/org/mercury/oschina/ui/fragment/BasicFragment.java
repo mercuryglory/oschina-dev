@@ -18,8 +18,6 @@ public abstract class BasicFragment extends Fragment
     protected LoadPager mMLoadPager;
 
 
-    //    public LoadPager mLoadPager;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

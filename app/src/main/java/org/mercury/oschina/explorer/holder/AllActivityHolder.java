@@ -37,12 +37,9 @@ public class AllActivityHolder extends Basic1Holder<Event> {
     @Override
     public void bindView(Event appInfo) {
         boolean aFalse = SPUtils.getBoolean_false(AppContext.getContext(), appInfo.getId()+"");
-        System.out.println("afalse" + aFalse);
         if(aFalse){
-            System.out.println("true");
             mTvAllTitle.setTextColor(Color.RED);
         }else{
-            System.out.println("False");
             mTvAllTitle.setTextColor(Color.BLACK);
         }
         mTvAllTitle.setText(appInfo.getTitle());

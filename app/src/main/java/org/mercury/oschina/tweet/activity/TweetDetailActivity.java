@@ -236,14 +236,12 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
         switch (refreshView.getCurrentMode()) {
 
             case PULL_FROM_START:
-                System.out.println("refresh");
                 isLoadMore = false;
                 pageIndex = 0;
                 getCommentData(mId);
                 break;
 
             case PULL_FROM_END:
-                System.out.println("more");
                 isLoadMore = true;
                 pageIndex++;
                 getCommentData(mId);

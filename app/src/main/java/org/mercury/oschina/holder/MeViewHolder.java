@@ -52,7 +52,6 @@ public class MeViewHolder extends BasicHolder<Active> {
 
     @Override
     protected View createView() {
-        System.out.println("zjhelizoulllllll");
 
         return View.inflate(mActivity, R.layout.item_me, null);
     }
@@ -102,7 +101,6 @@ public class MeViewHolder extends BasicHolder<Active> {
             Drawable drawable = AppContext.context().getResources().getDrawable(resId);
             drawable.setBounds(0, 0, 20, 20);
             ImageSpan span = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);
-            System.out.println(first.get(i));
             spannableString.setSpan(span, first.get(i), last.get(i)+1 , Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 
         }

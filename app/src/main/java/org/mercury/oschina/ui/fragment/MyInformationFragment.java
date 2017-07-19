@@ -164,7 +164,6 @@ public class MyInformationFragment extends Fragment implements View.OnClickListe
                         mTvUserStare.setText(mUser.getFollowers() + "");
                         mTvUserFollower.setText(mUser.getFans() + "");
 
-                        System.out.println(mUser.getPortrait());
                     }
                 });
 

@@ -62,7 +62,6 @@ public class FriendQActivity extends AppCompatActivity implements AdapterView.On
       /*  String info = "page0.xml";*/
         switch (mLv_show.getCurrentMode()) {
             case PULL_FROM_START:
-                System.out.println("上拉");
                 mList.clear();
                 i = 0;
                 break;
@@ -83,7 +82,6 @@ public class FriendQActivity extends AppCompatActivity implements AdapterView.On
                 Toast.makeText(getApplicationContext(), "亲!已经没有数据了", Toast.LENGTH_SHORT).show();
                 View view = View.inflate(AppContext.context(), R.layout.item_textview, null);
                 mLv_show.onRefreshComplete();//停止刷新
-                System.out.println(mView.getFooterViewsCount());
                 if(mView.getFooterViewsCount() <= 1){
 
                 mView.addFooterView(view);
@@ -98,7 +96,6 @@ public class FriendQActivity extends AppCompatActivity implements AdapterView.On
                 ActiveList list = XmlUtils.toBean(ActiveList.class, response.getBytes());
                 List<Active> list1 = list.getList();
 
-                System.out.println("list" + list1);
                 if (list1 != null) {
                     mList.addAll(list1);
                 } else {

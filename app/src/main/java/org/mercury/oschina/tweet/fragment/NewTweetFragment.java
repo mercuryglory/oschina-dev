@@ -93,7 +93,6 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
                 }
             };
         }
-        System.out.println(pageIndex);
         HttpApi.getTweetList(pageIndex, uid, mCallback);
     }
 

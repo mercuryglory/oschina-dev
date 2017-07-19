@@ -11,7 +11,11 @@ import org.mercury.oschina.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class TianZiDetailesActivity extends AppCompatActivity {
+/**
+ * created by Mercury at 2017/7/19
+ * descript: 帖子详情
+ */
+public class NoteDetailActivity extends AppCompatActivity {
 
 
     @Bind(R.id.wv_webview2)
@@ -26,7 +30,6 @@ public class TianZiDetailesActivity extends AppCompatActivity {
 
         initActionbar();
         final String appurl = getIntent().getStringExtra("TianZi");
-        System.out.println("-----------" + appurl);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

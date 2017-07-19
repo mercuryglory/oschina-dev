@@ -43,7 +43,6 @@ public class AppFragment extends BasicFragment implements AdapterView.OnItemClic
     private List<Favorite> mFavorites;
     @Override
     public View createView() {
-        System.out.println("这个方法走了");
         mPtrlistView =
                 (PullToRefreshListView) View.inflate(AppContext.context, R.layout.refresh_list_view_layout, null);
         // 设置模式
@@ -52,7 +51,6 @@ public class AppFragment extends BasicFragment implements AdapterView.OnItemClic
         mPtrlistView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                System.out.println("当前监听");
                 // 网络操作
                 mMLoadPager.loadData();
             }
@@ -63,12 +61,6 @@ public class AppFragment extends BasicFragment implements AdapterView.OnItemClic
 
     @Override
     public Object loadDataThread() {
-       /* GetDatasForCollectActivity gdf = new GetDatasForCollectActivity(OschinaUri.COLLECT_1, mPtrlistView);
-        List<Favorite> favorites = gdf.sendRequestData();
-        if (favorites != null) {
-            list.addAll(favorites);
-        }
-        System.out.println("这个方法走了");*/
         OkHttpUtils
                 .get()
                 .url(OschinaUri.COLLECT_1)

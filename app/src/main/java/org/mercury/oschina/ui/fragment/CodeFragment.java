@@ -53,7 +53,6 @@ public class CodeFragment extends BasicFragment implements AdapterView.OnItemCli
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView)
             {
-                System.out.println("当前监听");
 
                 // 网络操作
                 mMLoadPager.loadData();
@@ -115,7 +114,6 @@ public class CodeFragment extends BasicFragment implements AdapterView.OnItemCli
             intent.putExtra("href", url);
             startActivity(intent);
         }else{
-            System.out.println("blog集合为空");
 
         }
     }
