@@ -28,7 +28,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
 
-        <activity android:name="org.mercury.oschina.ui.activity.MainActivity">
+        <activity android:name="org.mercury.oschina.main.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -40,19 +40,19 @@
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FriendQActivity"/>
         <activity android:name="org.mercury.oschina.explorer.ui.activity.Activitys"/>
         <activity android:name="org.mercury.oschina.explorer.ui.fragment.AllActivityWebView"/>
-        <activity android:name="org.mercury.oschina.ui.activity.ThierActivity"/>
-        <activity android:name="org.mercury.oschina.ui.activity.CollectionActivity"/>
-        <activity android:name="org.mercury.oschina.ui.activity.UserDetailsActivity"/>
-        <activity android:name="org.mercury.oschina.ui.activity.AppScreenActivity"/>
-        <activity android:name="org.mercury.oschina.ui.activity.MsgActivity"/>
+        <activity android:name="org.mercury.oschina.main.activity.ThierActivity"/>
+        <activity android:name="org.mercury.oschina.main.activity.CollectionActivity"/>
+        <activity android:name="org.mercury.oschina.main.activity.UserDetailsActivity"/>
+        <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity"/>
+        <activity android:name="org.mercury.oschina.main.activity.MsgActivity"/>
         <activity android:name="org.mercury.oschina.explorer.ui.activity.QRCodeActivity"/>
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ShakeActivity"/>
         <activity
-            android:name="org.mercury.oschina.ui.activity.QuickTextActivity"
+            android:name="org.mercury.oschina.main.activity.QuickTextActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name="org.mercury.oschina.ui.activity.LoginActivity"/>
-        <activity android:name="org.mercury.oschina.ui.activity.QuickViodeActivity"/>
-        <activity android:name="org.mercury.oschina.ui.activity.TextDialogActivity"/>
+        <activity android:name="org.mercury.oschina.main.activity.LoginActivity"/>
+        <activity android:name="org.mercury.oschina.main.activity.QuickViodeActivity"/>
+        <activity android:name="org.mercury.oschina.main.activity.TextDialogActivity"/>
         <activity android:name="org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity">
         </activity>
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity">
@@ -63,11 +63,11 @@
         <activity android:name="org.mercury.oschina.tweet.activity.WebActivity" />
         <activity android:name="org.mercury.oschina.tweet.activity.TweetDetailActivity" />
 
-        <activity android:name="org.mercury.oschina.ui.activity.BlogActivity" >
+        <activity android:name="org.mercury.oschina.main.activity.BlogActivity" >
         </activity>
-        <activity android:name="org.mercury.oschina.ui.activity.AppDetailsActivity">
+        <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity">
         </activity>
-        <activity android:name="org.mercury.oschina.ui.activity.NoteDetailActivity">
+        <activity android:name="org.mercury.oschina.main.activity.NoteDetailActivity">
         </activity>
         <activity android:name="org.mercury.oschina.explorer.ui.activity.BlogInfoActivity"/>
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ImageBigActivity" />

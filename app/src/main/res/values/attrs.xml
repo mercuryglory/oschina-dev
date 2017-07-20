@@ -75,4 +75,8 @@
         <attr name="flow_horizontal_space" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="TitleBar">
+        <attr name="aTitle" format="string" />
+        <attr name="aIcon" format="reference" />
+    </declare-styleable>
 </resources>

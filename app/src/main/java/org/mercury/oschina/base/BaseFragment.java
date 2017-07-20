@@ -1,5 +1,6 @@
 package org.mercury.oschina.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,11 +25,24 @@ import butterknife.ButterKnife;
  */
 
 @SuppressWarnings("WeakerAccess")
-public abstract class BaseFragment<T> extends Fragment {
+public abstract class BaseFragment extends Fragment {
+    protected Context mContext;
     protected View mRoot;
     protected Bundle mBundle;
     private RequestManager mImgLoader;
+    protected LayoutInflater mInflater;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mContext = null;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,28 +61,30 @@ public abstract class BaseFragment<T> extends Fragment {
                 parent.removeView(mRoot);
         } else {
             mRoot = inflater.inflate(getLayoutId(), container, false);
+            mInflater = inflater;
+            // Do something
+            onBindViewBefore(mRoot);
+            // Bind view
             ButterKnife.bind(this, mRoot);
+            // Get savedInstanceState
             if (savedInstanceState != null)
                 onRestartInstance(savedInstanceState);
+            // Init
             initWidget(mRoot);
             initData();
         }
         return mRoot;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+    protected void onBindViewBefore(View root) {
+        // ...
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        RequestManager manager = mImgLoader;
-        if (manager != null)
-            manager.onDestroy();
-        mRoot = null;
+        ButterKnife.unbind(this);
+        mImgLoader = null;
         mBundle = null;
     }
 
@@ -178,12 +194,16 @@ public abstract class BaseFragment<T> extends Fragment {
         textView.setText(text);
     }
 
-    protected void setGone(int id) {
-        findView(id).setVisibility(View.GONE);
+    protected <T extends View> T setGone(int id) {
+        T view = findView(id);
+        view.setVisibility(View.GONE);
+        return view;
     }
 
-    protected void setVisibility(int id) {
-        findView(id).setVisibility(View.VISIBLE);
+    protected <T extends View> T setVisibility(int id) {
+        T view = findView(id);
+        view.setVisibility(View.VISIBLE);
+        return view;
     }
 
     protected void setInVisibility(int id) {

@@ -1,10 +1,10 @@
 package org.mercury.oschina.widget;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.ui.fragment.ExploreFragment;
-import org.mercury.oschina.ui.fragment.SynthesisFragment;
-import org.mercury.oschina.ui.fragment.TweetFragment;
-import org.mercury.oschina.ui.fragment.UserFragment;
+import org.mercury.oschina.main.fragment.ExploreFragment;
+import org.mercury.oschina.main.fragment.SynthesisFragment;
+import org.mercury.oschina.main.fragment.TweetFragment;
+import org.mercury.oschina.main.fragment.UserFragment;
 
 /**
  * Created by wang.zhonghao on 2017/5/25

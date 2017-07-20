@@ -63,5 +63,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
 
     compile project(':pullToRefresh')
-//    compile project(':emojicon')
 }

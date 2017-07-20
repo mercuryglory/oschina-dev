@@ -24,7 +24,7 @@ import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.tweet.widget.MyLinkMovementMethod;
 import org.mercury.oschina.tweet.widget.TweetTextView;
-import org.mercury.oschina.ui.activity.MainActivity;
+import org.mercury.oschina.main.activity.MainActivity;
 import org.mercury.oschina.utils.StringUtils;
 
 import butterknife.Bind;

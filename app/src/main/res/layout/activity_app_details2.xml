@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.mercury.oschina.ui.activity.AppDetailsActivity">
+    tools:context="org.mercury.oschina.main.activity.AppDetailsActivity">
 
     <WebView
         android:id="@+id/wv_webview2"

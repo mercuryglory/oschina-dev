@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_title_bar" />
-
     <!-- 导航标题栏 -->
     <org.mercury.oschina.tweet.widget.PagerSlidingTabStrip
         android:id="@+id/slidingTab"

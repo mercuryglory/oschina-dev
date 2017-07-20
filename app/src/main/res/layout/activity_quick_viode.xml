@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.QuickViodeActivity">
+    tools:context=".main.activity.QuickViodeActivity">
     <ImageView
         android:id="@+id/recordview_start"
         android:layout_width="wrap_content"

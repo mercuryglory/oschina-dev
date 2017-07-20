@@ -1,4 +1,4 @@
-package org.mercury.oschina.explorer.ui.activity;
+package org.mercury.oschina.main.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,8 +21,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.main.activity.QuickTextActivity;
-import org.mercury.oschina.main.activity.QuickViodeActivity;
+import org.mercury.oschina.explorer.ui.activity.QRCodeActivity;
 import org.mercury.oschina.utils.Constants;
 import org.mercury.oschina.utils.Notice;
 import org.mercury.oschina.widget.BadgeView;
@@ -35,6 +34,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements
         TabHost.OnTabChangeListener, View.OnClickListener,
         View.OnTouchListener {
+
     private static final String TAG = "====_MainActivity";
 
     public static Activity mMainActivity;
@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Bind(android.R.id.tabhost)
     FragmentTabHost mTabHost;
+    @Bind(R.id.quick_option_iv)
+    View mAddBt;
 
     private BadgeView mBvNotice;
 
@@ -50,15 +52,13 @@ public class MainActivity extends AppCompatActivity implements
 
     private String[] mTitles;
 
-
     /**
      * Used to store the last screen title. For use in
      * {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
 
-    @Bind(R.id.quick_option_iv)
-    View mAddBt;
+
     private LinearLayout mLy_quick_option_text;
     private LinearLayout mLy_quick_option_voice2;
     private LinearLayout mLy_quick_option_photo;
@@ -105,7 +105,8 @@ public class MainActivity extends AppCompatActivity implements
         View view = View.inflate(getApplicationContext(), R.layout.dialog_quick_option, null);
         builder.setView(view);
         final AlertDialog dialog = builder.show();
-        mLy_quick_option_text = (LinearLayout) view.findViewById(R.id.ly_quick_option_text);//文字
+        //文字
+        mLy_quick_option_text = (LinearLayout) view.findViewById(R.id.ly_quick_option_text);
         //语音
         mLy_quick_option_voice2 = (LinearLayout) view.findViewById(R.id.ly_quick_option_voice2);
         //拍照
