@@ -19,7 +19,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.bean.ShakeObject;
-import org.mercury.oschina.general.ui.NewsDetailActivity;
+import org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity;
 import org.mercury.oschina.utils.Constants;
 import org.mercury.oschina.utils.XmlUtils;
 

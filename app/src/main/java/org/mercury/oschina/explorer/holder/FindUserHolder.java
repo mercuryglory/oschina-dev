@@ -10,7 +10,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.explorer.bean.FindUserBean;
-import org.mercury.oschina.general.holder.BasicHolder;
+import org.mercury.oschina.synthesis.holder.BasicHolder;
 
 import butterknife.Bind;
 

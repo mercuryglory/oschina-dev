@@ -15,7 +15,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.bean.Active;
-import org.mercury.oschina.general.ui.NewsDetailActivity;
+import org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity;
 import org.mercury.oschina.tweet.adapter.UserHomeAdapter;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.bean.UserInformation;

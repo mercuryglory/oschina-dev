@@ -18,7 +18,7 @@ import com.orhanobut.logger.Logger;
 import org.mercury.oschina.R;
 import org.mercury.oschina.explorer.adapter.FindUserAdapter;
 import org.mercury.oschina.explorer.bean.FindUserBean;
-import org.mercury.oschina.general.api.HttpApi;
+import org.mercury.oschina.synthesis.api.HttpApi;
 
 import java.util.List;
 

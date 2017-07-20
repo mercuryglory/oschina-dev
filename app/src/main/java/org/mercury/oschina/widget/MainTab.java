@@ -2,9 +2,9 @@ package org.mercury.oschina.widget;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.ui.fragment.ExploreFragment;
-import org.mercury.oschina.ui.fragment.GeneralViewPagerFragment;
+import org.mercury.oschina.ui.fragment.SynthesisFragment;
+import org.mercury.oschina.ui.fragment.TweetFragment;
 import org.mercury.oschina.ui.fragment.UserFragment;
-import org.mercury.oschina.ui.fragment.TweetViewPagerFragment;
 
 /**
  * Created by wang.zhonghao on 2017/5/25
@@ -18,10 +18,10 @@ public enum MainTab {
 			*/
 
     NEWS(0, R.string.main_tab_name_news, R.drawable.tab_icon_new,
-            GeneralViewPagerFragment.class),
+            SynthesisFragment.class),
 
     TWEET(1, R.string.main_tab_name_tweet, R.drawable.tab_icon_tweet,
-            TweetViewPagerFragment.class),
+            TweetFragment.class),
 
     QUICK(2, R.string.main_tab_add, R.color.transparent,
             null),

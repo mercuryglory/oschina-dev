@@ -9,7 +9,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.orhanobut.logger.Logger;
 
-import org.mercury.oschina.general.utils.GeneralUtils;
+import org.mercury.oschina.synthesis.utils.GeneralUtils;
 
 import java.util.Map;
 
