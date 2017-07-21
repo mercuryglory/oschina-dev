@@ -28,7 +28,8 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
 
-        <activity android:name="org.mercury.oschina.main.activity.MainActivity">
+        <activity android:name="org.mercury.oschina.main.activity.MainActivity"
+            android:theme="@style/App.Theme.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

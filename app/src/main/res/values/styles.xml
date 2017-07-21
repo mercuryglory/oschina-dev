@@ -13,7 +13,12 @@
         <item name="android:background" >#EBEBEB</item >
     </style >
 
-    <style name="Widget" />
+    <style name="App.Theme.Main" parent="Base.App.Theme.NoTitle" />
+
+    <style name="Widget">
+
+    </style>
+
 
     <style name="AppTheme" parent="Theme.AppCompat.Light" >
         <!-- Customize your theme here. -->
@@ -651,4 +656,5 @@
         <item name="android:textColor" >#fff</item >
         <item name="android:padding" >5dp</item >
     </style >
+
 </resources >

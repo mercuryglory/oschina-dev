@@ -47,4 +47,5 @@ public class SynthesisFragment extends BaseTitleFragment {
         return R.layout.fragment_synthesis;
     }
 
+
 }

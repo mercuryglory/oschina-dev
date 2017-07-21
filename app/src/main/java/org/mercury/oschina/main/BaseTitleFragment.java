@@ -47,7 +47,7 @@ public abstract class BaseTitleFragment extends BaseFragment {
     protected
     @DrawableRes
     int getIconRes() {
-        return 0;
+        return R.mipmap.btn_search_normal;
     }
 
     protected View.OnClickListener getIconClickListener() {
