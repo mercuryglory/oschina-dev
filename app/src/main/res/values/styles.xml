@@ -15,6 +15,13 @@
 
     <style name="App.Theme.Main" parent="Base.App.Theme.NoTitle" />
 
+    <style name="Test" parent="Theme.AppCompat.Light" >
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="Widget">
 
     </style>

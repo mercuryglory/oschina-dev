@@ -1,4 +1,4 @@
-package org.mercury.oschina.main.fragment;
+package org.mercury.oschina.synthesis.ui.fragment;
 
 import android.support.v4.view.ViewPager;
 

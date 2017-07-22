@@ -26,7 +26,7 @@ import org.mercury.oschina.main.activity.QuickViodeActivity;
 import org.mercury.oschina.utils.Constants;
 import org.mercury.oschina.utils.Notice;
 import org.mercury.oschina.widget.BadgeView;
-import org.mercury.oschina.widget.MainTab;
+import org.mercury.oschina.main.MainTab;
 import org.mercury.oschina.widget.OnTabReselectListener;
 
 import butterknife.Bind;

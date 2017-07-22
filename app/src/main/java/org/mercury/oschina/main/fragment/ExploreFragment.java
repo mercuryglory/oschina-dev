@@ -1,12 +1,7 @@
 package org.mercury.oschina.main.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import org.mercury.oschina.R;
@@ -16,63 +11,61 @@ import org.mercury.oschina.explorer.ui.activity.FriendQActivity;
 import org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity;
 import org.mercury.oschina.explorer.ui.activity.QRCodeActivity;
 import org.mercury.oschina.explorer.ui.activity.ShakeActivity;
+import org.mercury.oschina.main.BaseTitleFragment;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+import static org.mercury.oschina.R.id.ll_activity;
+import static org.mercury.oschina.R.id.ll_create_code;
+import static org.mercury.oschina.R.id.ll_qr_code;
+import static org.mercury.oschina.R.id.ll_shake;
 
 
 /**
  * @创建者 Mercury
  * @创建时间 2016/8/14 19:19
- * @描述 发现模块
+ * @描述 发现模块 （朋友圈 找人 扫一扫 etc）
  */
-public class ExploreFragment extends Fragment implements View.OnClickListener {
+public class ExploreFragment extends BaseTitleFragment implements View.OnClickListener {
 
-    private LinearLayout mLl_more_friend;
-    private LinearLayout ll_activity;
-    private LinearLayout ll_qr_code;
-    private LinearLayout ll_shake;
-    private LinearLayout ll_create_code;
-    private LinearLayout ll_find_user;
+    @Bind(R.id.ll_friend_circle)
+    LinearLayout llFriendCircle;
+    @Bind(R.id.ll_find_user)
+    LinearLayout llFindUser;
+    @Bind(ll_activity)
+    LinearLayout llActivity;
+    @Bind(ll_qr_code)
+    LinearLayout llQrCode;
+    @Bind(ll_create_code)
+    LinearLayout llCreateCode;
+    @Bind(ll_shake)
+    LinearLayout llShake;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_explore, null);
-        mLl_more_friend = (LinearLayout) view.findViewById(R.id.ll_more_friend);
-        ll_activity = (LinearLayout) view.findViewById(R.id.ll_activity);
-        ll_qr_code = (LinearLayout) view.findViewById(R.id.ll_qr_code);
-        ll_shake = (LinearLayout) view.findViewById(R.id.ll_shake);
-        ll_create_code = (LinearLayout) view.findViewById(R.id.ll_create_code);
-        ll_find_user = (LinearLayout) view.findViewById(R.id.ll_find_user);
-        init();
-        return view;
+    protected void onBindViewBefore(View root) {
+        super.onBindViewBefore(root);
+        LinearLayout llFriendCircle = (LinearLayout) root.findViewById(R.id.ll_friend_circle);
     }
 
-    public void init() {
-        mLl_more_friend.setOnClickListener(this);
-        ll_activity.setOnClickListener(this);
-        ll_qr_code.setOnClickListener(this);
-        ll_shake.setOnClickListener(this);
-        ll_create_code.setOnClickListener(this);
-        ll_find_user.setOnClickListener(this);
-
-    }
-
-
+    @OnClick({R.id.ll_friend_circle, R.id.ll_find_user, ll_activity, ll_qr_code,
+            ll_create_code, ll_shake})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_more_friend:
+            case R.id.ll_friend_circle:
                 startActivity(new Intent(getContext(), FriendQActivity.class));
                 break;
-            case R.id.ll_activity:
+            case ll_activity:
                 startActivity(new Intent(getContext(), Activitys.class));
                 break;
-            case R.id.ll_qr_code:
+            case ll_qr_code:
                 startActivity(new Intent(getContext(), QRCodeActivity.class));
                 break;
-            case R.id.ll_shake:
+            case ll_shake:
                 startActivity(new Intent(getContext(), ShakeActivity.class));
                 break;
-            case R.id.ll_create_code:
+            case ll_create_code:
                 startActivity(new Intent(getContext(), GenerateQRCodeActivity.class));
                 break;
             case R.id.ll_find_user:
@@ -80,4 +73,15 @@ public class ExploreFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+    @Override
+    protected int getTitleRes() {
+        return R.string.main_tab_name_explore;
+    }
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.fragment_explore;
+    }
+
 }

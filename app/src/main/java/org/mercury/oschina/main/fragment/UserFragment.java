@@ -3,12 +3,7 @@ package org.mercury.oschina.main.fragment;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,14 +22,15 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.base.BaseFragment;
 import org.mercury.oschina.bean.MyInformation;
 import org.mercury.oschina.bean.User;
-import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.main.activity.BlogActivity;
 import org.mercury.oschina.main.activity.CollectionActivity;
 import org.mercury.oschina.main.activity.MsgActivity;
 import org.mercury.oschina.main.activity.ThierActivity;
 import org.mercury.oschina.main.activity.UserDetailsActivity;
+import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.utils.Fields;
 import org.mercury.oschina.utils.OschinaUri;
 import org.mercury.oschina.utils.Utils;
@@ -43,23 +39,30 @@ import org.mercury.oschina.utils.XmlUtils;
 import java.util.Hashtable;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Call;
+
+import static org.mercury.oschina.R.id.iv_user_pic;
+import static org.mercury.oschina.R.id.iv_user_qr_code;
+import static org.mercury.oschina.R.id.ll_user_blog;
+import static org.mercury.oschina.R.id.ll_user_care;
+import static org.mercury.oschina.R.id.ll_user_collect;
+import static org.mercury.oschina.R.id.ll_user_msg;
 
 /**
  * Created by Mercury on 2016-08-14 19:33:46.
  * 个人中心
  */
-public class UserFragment extends Fragment implements View.OnClickListener {
-
+public class UserFragment extends BaseFragment implements View.OnClickListener {
 
     private static final int QR_WIDTH  = 100;
     private static final int QR_HEIGHT = 100;
-    @Bind(R.id.iv_user_pic)
+
+    @Bind(iv_user_pic)
     ImageView      mIvUserPic;
     @Bind(R.id.iv_user_gender)
     ImageView      mIvUserGender;
-    @Bind(R.id.iv_user_qr_code)
+    @Bind(iv_user_qr_code)
     ImageView      mIvUserQrCode;
     @Bind(R.id.tv_user_name)
     TextView       mTvUserName;
@@ -69,11 +72,11 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     LinearLayout   mLlUserScore;
     @Bind(R.id.tv_user_collect)
     TextView       mTvUserCollect;
-    @Bind(R.id.ll_user_collect)
+    @Bind(ll_user_collect)
     LinearLayout   mLlUserCollect;
     @Bind(R.id.tv_user_stare)
     TextView       mTvUserStare;
-    @Bind(R.id.ll_user_care)
+    @Bind(ll_user_care)
     LinearLayout   mLlUserCare;
     @Bind(R.id.tv_user_follower)
     TextView       mTvUserFollower;
@@ -81,9 +84,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     LinearLayout   mLlUserFans;
     @Bind(R.id.rl_user)
     RelativeLayout mRlUser;
-    @Bind(R.id.ll_user_msg)
+    @Bind(ll_user_msg)
     LinearLayout   mLlUserMsg;
-    @Bind(R.id.ll_user_blog)
+    @Bind(ll_user_blog)
     LinearLayout   mLlUserBlog;
     @Bind(R.id.ll_user_note)
     LinearLayout   mLlUserNote;
@@ -93,20 +96,14 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     public  DisplayImageOptions mOptions;
     private User                mUser;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
-            savedInstanceState) {
-
-        View view = View.inflate(AppContext.context, R.layout.fragment_user, null);
-        ButterKnife.bind(this, view);
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_user;
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
+    protected void initData() {
+        super.initData();
         mOptions = new DisplayImageOptions.Builder().showImageOnLoading(R.mipmap.ic_launcher)
                 .showImageForEmptyUri(R.mipmap.ic_launcher)
                 .showImageOnFail(R.mipmap.ic_launcher)
@@ -114,70 +111,57 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 .cacheOnDisk(true)
                 .considerExifParams(true)// 会识别图片的方向信息
                 .build();
-
-        mLlUserScore.setOnClickListener(this);
-        mLlUserCollect.setOnClickListener(this);
-        mLlUserFans.setOnClickListener(this);
-        mIvUserPic.setOnClickListener(this);
-        mLlUserMsg.setOnClickListener(this);
-        mLlUserBlog.setOnClickListener(this);
-        mLlUserNote.setOnClickListener(this);
-        mLlUserTeam.setOnClickListener(this);
-        mLlUserCare.setOnClickListener(this);
-        mIvUserQrCode.setOnClickListener(this);
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        OkHttpUtils.get().url(OschinaUri.ME_URL)
+                .build()
+                .execute(new StringCallback() {
 
-        StringCallback callback = new StringCallback() {
-
-
-            @Override
-            public void onError(Call call, Exception e, int i) {
-
-                Toast.makeText(getActivity(), "请求失败!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onResponse(String s, int i) {
-                //      Toast.makeText(getActivity(), "请求成功!", Toast.LENGTH_SHORT).show();
-                MyInformation myInformation = XmlUtils.toBean(MyInformation.class, s.getBytes());
-                mUser = myInformation.getUser();
-
-
-                Utils.runOnUIThread(new Runnable() {
                     @Override
-                    public void run() {
-                        ImageLoader.getInstance().displayImage(mUser.getPortrait(), mIvUserPic,
-                                mOptions);
-                        mIvUserGender.setImageResource(mUser.getGender().equals(1) ? R.mipmap
-                                .userinfo_icon_male : R.mipmap.userinfo_icon_female);
-                        mTvUserName.setText(mUser.getName());
-                        mTvUserScore.setText(mUser.getScore() + "");
-                        mTvUserCollect.setText(mUser.getFavoritecount() + "");
-                        mTvUserStare.setText(mUser.getFollowers() + "");
-                        mTvUserFollower.setText(mUser.getFans() + "");
+                    public void onError(Call call, Exception e, int i) {
+
+                        Toast.makeText(getActivity(), "请求失败!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(String s, int i) {
+                        //      Toast.makeText(getActivity(), "请求成功!", Toast.LENGTH_SHORT).show();
+                        MyInformation myInformation = XmlUtils.toBean(MyInformation.class, s
+                                .getBytes());
+                        mUser = myInformation.getUser();
+
+
+                        Utils.runOnUIThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ImageLoader.getInstance().displayImage(mUser.getPortrait(),
+                                        mIvUserPic,
+                                        mOptions);
+                                mIvUserGender.setImageResource(mUser.getGender().equals(1) ? R
+                                        .mipmap
+                                        .userinfo_icon_male : R.mipmap.userinfo_icon_female);
+                                mTvUserName.setText(mUser.getName());
+                                mTvUserScore.setText(mUser.getScore() + "");
+                                mTvUserCollect.setText(mUser.getFavoritecount() + "");
+                                mTvUserStare.setText(mUser.getFollowers() + "");
+                                mTvUserFollower.setText(mUser.getFans() + "");
+
+                            }
+                        });
 
                     }
                 });
 
-            }
-        };
-        OkHttpUtils
-                .get()
-                .url(OschinaUri.ME_URL)
-
-                .build()
-                .execute(callback);
-
-
     }
 
+
+    @OnClick({R.id.ll_user_score, R.id.ll_user_fans, ll_user_care, ll_user_collect,
+            iv_user_pic, ll_user_msg,ll_user_blog,iv_user_qr_code})
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.ll_user_score:
                 break;
@@ -186,40 +170,34 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra(Fields.FANS, "fans");
                 startActivity(intent);
                 break;
-            case R.id.ll_user_care:
+            case ll_user_care:
                 Intent intent1 = new Intent(getActivity(), ThierActivity.class);
                 intent1.putExtra(Fields.CARE, "care");
                 startActivity(intent1);
 
                 break;
-            case R.id.ll_user_collect:
+            case ll_user_collect:
 
                 startActivity(new Intent(getActivity(), CollectionActivity.class));
                 break;
-            case R.id.iv_user_pic:
+            case iv_user_pic:
 
                 startActivity(new Intent(getActivity(), UserDetailsActivity.class));
                 break;
 
-            case R.id.ll_user_msg:
+            case ll_user_msg:
                 startActivity(new Intent(getActivity(), MsgActivity.class));
                 break;
-            case R.id.ll_user_blog:
+            case ll_user_blog:
                 startActivity(new Intent(getActivity(), BlogActivity.class));
                 break;
-            case R.id.iv_user_qr_code:
+            case iv_user_qr_code:
                 showqr_codeDialog();
 
                 break;
         }
     }
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
     private void showqr_codeDialog() {
 

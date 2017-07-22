@@ -1,17 +1,12 @@
 package org.mercury.oschina.main.fragment;
 
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
 
 import org.mercury.oschina.R;
+import org.mercury.oschina.main.BaseTitleFragment;
 import org.mercury.oschina.tweet.adapter.TweetPagerAdapter;
 import org.mercury.oschina.tweet.bean.FragmentInfo;
 import org.mercury.oschina.tweet.fragment.HotTweetFragment;
@@ -24,14 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by mercury on 2016-08-14 19:33:46.
  * 动弹 模块
  * 子模块：最新动弹  热门动弹  我的动弹
  */
-public class TweetFragment extends Fragment {
+public class TweetFragment extends BaseTitleFragment {
     @Bind(R.id.pst_title_layout)
     PagerSlidingTabStrip mPstTitleLayout;
     @Bind(R.id.vp_show_layout)
@@ -39,23 +33,8 @@ public class TweetFragment extends Fragment {
 
     public List<FragmentInfo> mShowItems = new ArrayList<>();
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
-    Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tweet_list, null);
-        ButterKnife.bind(this, view);
-        mVpShowLayout.setPageTransformer(true,new ZoomInTransformer());
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initData();
-    }
-
-    private void initData() {
+    protected  void initData() {
         String[] titles = Utils.getStringArray(R.array.tweets_viewpage_arrays);
 
         if (mShowItems.size() > 0) {
@@ -66,13 +45,18 @@ public class TweetFragment extends Fragment {
         mShowItems.add(new FragmentInfo(titles[1], new HotTweetFragment()));
         mShowItems.add(new FragmentInfo(titles[2], new MyTweetFragment()));
 
+        mVpShowLayout.setPageTransformer(true,new ZoomInTransformer());
         mVpShowLayout.setAdapter(new TweetPagerAdapter(getChildFragmentManager(), mShowItems));
         mPstTitleLayout.setViewPager(mVpShowLayout);
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+    protected int getTitleRes() {
+        return R.string.main_tab_name_tweet;
+    }
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.fragment_tweet_list;
     }
 }

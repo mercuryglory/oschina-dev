@@ -1,8 +1,8 @@
-package org.mercury.oschina.widget;
+package org.mercury.oschina.main;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.main.fragment.ExploreFragment;
-import org.mercury.oschina.main.fragment.SynthesisFragment;
+import org.mercury.oschina.synthesis.ui.fragment.SynthesisFragment;
 import org.mercury.oschina.main.fragment.TweetFragment;
 import org.mercury.oschina.main.fragment.UserFragment;
 
