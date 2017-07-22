@@ -62,7 +62,12 @@
         <activity android:name="org.mercury.oschina.tweet.activity.UserHomeActivity"/>
         <activity android:name="org.mercury.oschina.tweet.activity.PhotoActivity" />
         <activity android:name="org.mercury.oschina.tweet.activity.WebActivity" />
-        <activity android:name="org.mercury.oschina.tweet.activity.TweetDetailActivity" />
+
+        <activity android:name="org.mercury.oschina.tweet.activity.TweetDetailActivity"
+            android:label="动弹详情"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.App.Theme.NoTitle"
+            />
 
         <activity android:name="org.mercury.oschina.main.activity.BlogActivity" >
         </activity>

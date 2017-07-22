@@ -2,8 +2,8 @@ package org.mercury.oschina.tweet.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,6 +34,8 @@ import org.mercury.oschina.utils.TDevice;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import okhttp3.Call;
 
 /**
@@ -43,35 +45,45 @@ import okhttp3.Call;
 public class TweetDetailActivity extends AppCompatActivity implements AdapterView
         .OnItemClickListener, PullToRefreshBase.OnRefreshListener {
 
-    private EditText mEtContent;
-    private ImageView mIvTweetEmoji;
+    @Bind(R.id.toolbar)
+    Toolbar               toolbar;
+    @Bind(R.id.ptr_tweet_refresh)
+    PullToRefreshListView ptrTweetRefresh;
+    @Bind(R.id.et_content)
+    EditText              etContent;
+    @Bind(R.id.iv_tweet_emoji)
+    ImageView             ivTweetEmoji;
+    @Bind(R.id.emoji_keyboard_fragment)
+    FrameLayout           emojiKeyboardFragment;
+    private EditText    mEtContent;
+    private ImageView   mIvTweetEmoji;
     private FrameLayout mEmojiKeyboardFragment;
 
-    private CommentTweetAdapter mAdapter;
+    private CommentTweetAdapter   mAdapter;
     private PullToRefreshListView mPtrListView;
 
     private boolean isLoadMore = false;
-    private int pageIndex = 0;
+    private int     pageIndex  = 0;
     private List<Comment> mList;
-    private int mId;
+    private int           mId;
 
     private TweetHeadHolder mTweetHeadHolder;
-    private EmojiView mEmojiView;
+    private EmojiView       mEmojiView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet_detail);
+        ButterKnife.bind(this);
 
 
-        mEtContent =(EditText)findViewById(R.id.et_content);
+        mEtContent = (EditText) findViewById(R.id.et_content);
         mIvTweetEmoji = (ImageView) findViewById(R.id.iv_tweet_emoji);
 
         //占位弹出选择框
-        mEmojiKeyboardFragment =(FrameLayout)findViewById(R.id.emoji_keyboard_fragment);
+        mEmojiKeyboardFragment = (FrameLayout) findViewById(R.id.emoji_keyboard_fragment);
 
-        initActionBar();
 
         mPtrListView = (PullToRefreshListView) findViewById(R.id.ptr_tweet_refresh);
         mTweetHeadHolder = new TweetHeadHolder();
@@ -111,17 +123,6 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
         mPtrListView.setOnItemClickListener(this);
     }
 
-    private void initActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        //设置标题
-        actionBar.setTitle("动弹详情");
-
-        //设置箭头,固定写法,一起出现
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
-
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -141,6 +142,16 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
         mId = intent.getIntExtra(Constant.TWEET_DETAIL, 0);
         getHttpData(mId);
         getCommentData(mId);
+
+        toolbar.setTitle("动弹详情");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                supportFinishAfterTransition();
+            }
+        });
+
     }
 
     private void getCommentData(int id) {
@@ -214,7 +225,7 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
                 Utils.runOnUIThread(new Runnable() {
                     @Override
                     public void run() {
-                        mTweetHeadHolder.bindView(mPtrListView,tweet);
+                        mTweetHeadHolder.bindView(mPtrListView, tweet);
                     }
                 });
 

@@ -7,7 +7,9 @@
         <item name="colorPrimaryDark">@color/day_colorPrimaryDark</item>
         <item name="colorAccent">@color/day_colorPrimary</item>
 
-
+        <!--toolbar-->
+        <item name="actionBarSize">48dp</item>
+        <item name="toolbarStyle">@style/App.Widget.Light.Toolbar</item>
     </style>
 
 
@@ -19,5 +21,22 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="App.Widget.Light.Toolbar" parent="Base.App.Widget.Toolbar">
+        <item name="navigationIcon">@drawable/selector_nav_back_light</item>
+    </style >
+
+    <style name="Base.App.Widget.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextAppearance">@style/App.TextAppearance.Widget.Toolbar.Title</item>
+        <item name="titleMargin">0dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+
+    </style >
+
+    <style name="App.TextAppearance.Widget.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style >
 
 </resources>

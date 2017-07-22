@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:layout_margin="10dp"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="?colorPrimary" >
+
+    </android.support.v7.widget.Toolbar >
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/ptr_tweet_refresh"
@@ -18,40 +25,41 @@
         android:footerDividersEnabled="true"
         android:headerDividersEnabled="false"
         android:scrollbars="none"
-        android:smoothScrollbar="true"/>
+        android:smoothScrollbar="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal" >
 
         <EditText
             android:id="@+id/et_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="发表评论"/>
+            android:hint="发表评论" />
 
         <ImageView
             android:id="@+id/iv_tweet_emoji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@mipmap/btn_emoji_normal"
-            />
+            android:src="@mipmap/btn_emoji_normal" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@mipmap/biz_chat_comment_send"/>
-    </LinearLayout>
+            android:src="@mipmap/biz_chat_comment_send" />
+    </LinearLayout >
 
     <FrameLayout
         android:id="@+id/emoji_keyboard_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:visibility="visible">
-    </FrameLayout>
-</LinearLayout>
+        android:visibility="visible" />
+
+</LinearLayout >
