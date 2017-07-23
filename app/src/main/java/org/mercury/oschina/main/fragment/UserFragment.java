@@ -25,6 +25,7 @@ import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.base.BaseFragment;
 import org.mercury.oschina.bean.MyInformation;
 import org.mercury.oschina.bean.User;
+import org.mercury.oschina.emoji.UiUtil;
 import org.mercury.oschina.main.activity.BlogActivity;
 import org.mercury.oschina.main.activity.CollectionActivity;
 import org.mercury.oschina.main.activity.MsgActivity;
@@ -99,6 +100,15 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_user;
+    }
+
+    @Override
+    protected void initWidget(View root) {
+        super.initWidget(root);
+        //由于采用了沉浸式标题栏（其实相当于将整个布局向上填充遮盖了系统标题栏的高度，导致图标部分被遮挡
+        // 在系统标题栏之内），所以人为代码设置paddinttop，和屏幕顶部拉开距离
+        mRlUser.setPadding(mRlUser.getLeft(), UiUtil.getStatusBarHeight(getActivity()), mRlUser
+                .getRight(), mRlUser.getBottom());
     }
 
     @Override

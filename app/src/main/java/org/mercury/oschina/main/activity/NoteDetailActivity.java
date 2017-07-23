@@ -18,25 +18,18 @@ import butterknife.ButterKnife;
 public class NoteDetailActivity extends AppCompatActivity {
 
 
-    @Bind(R.id.wv_webview2)
-    WebView mWvWebview2;
+    @Bind(R.id.wv_webview)
+    WebView mWvWebview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_app_details2);
+        setContentView(R.layout.activity_app_details);
         ButterKnife.bind(this);
-
-
         initActionbar();
-        final String appurl = getIntent().getStringExtra("TianZi");
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
 
-        mWvWebview2.loadUrl(appurl);
-            }
-        });
+        final String appurl = getIntent().getStringExtra("TianZi");
+        mWvWebview.loadUrl(appurl);
     }
 
     private void initActionbar() {
@@ -55,9 +48,9 @@ public class NoteDetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            finish();
-            break;
+            case android.R.id.home:
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

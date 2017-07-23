@@ -11,6 +11,10 @@ import org.mercury.oschina.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * created by Mercury at 2017/7/19
+ * descript: 软件详情
+ */
 public class AppDetailsActivity extends AppCompatActivity {
 
     @Bind(R.id.wv_webview)
@@ -22,6 +26,7 @@ public class AppDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_app_details);
         ButterKnife.bind(this);
         initActionbar();
+
         String appurl = getIntent().getStringExtra("APPURL");
         mWvWebview.loadUrl(appurl);
     }
@@ -42,9 +47,9 @@ public class AppDetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            finish();
-            break;
+            case android.R.id.home:
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

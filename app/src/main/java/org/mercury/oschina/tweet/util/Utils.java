@@ -23,7 +23,6 @@ public class Utils {
     }
 
     public static Resources getResources(){
-//        System.out.println("error");
         return AppContext.context.getResources();
     }
 

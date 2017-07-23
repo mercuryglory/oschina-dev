@@ -4,7 +4,7 @@
         <item >近期活动</item >
         <item >我的活动</item >
     </string-array >
-    <string name="app_name" >开源中国交流版</string >
+    <string name="app_name" >开源中国开发版</string >
 
     <string name="main_tab_name_news">综合</string>
     <string name="main_tab_name_tweet">动弹</string>

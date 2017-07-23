@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <RelativeLayout
                 android:id="@+id/rl_user"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:background="@mipmap/user_center_bg">
+                android:background="@mipmap/user_center_bg" >
 
                 <ImageView
                     android:id="@+id/iv_user_pic"
@@ -27,7 +27,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
-                    android:src="@mipmap/widget_dface"/>
+                    android:src="@mipmap/widget_dface" />
 
                 <TextView
                     android:id="@+id/tv_user_name"
@@ -38,17 +38,17 @@
                     android:layout_marginTop="80dp"
                     android:text="未登录"
                     android:textColor="#fff"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
 
-            </RelativeLayout>
+            </RelativeLayout >
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal" >
 
                 <TextView
 
@@ -57,7 +57,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="加入时间:"
                     android:textColor="#BEBEBE"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tv_user_time_join"
@@ -66,19 +66,19 @@
                     android:layout_marginLeft="10dp"
                     android:text="2016-08-14"
                     android:textColor="#686868"
-                    android:textSize="20sp"/>
-            </LinearLayout>
+                    android:textSize="20sp" />
+            </LinearLayout >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E1E1E1"/>
+                android:background="#E1E1E1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="所在地区:"
                     android:textColor="#BEBEBE"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tv_user_area"
@@ -95,19 +95,19 @@
                     android:layout_marginLeft="10dp"
                     android:text="上海-松江"
                     android:textColor="#686868"
-                    android:textSize="20sp"/>
-            </LinearLayout>
+                    android:textSize="20sp" />
+            </LinearLayout >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E1E1E1"/>
+                android:background="#E1E1E1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="开发平台:"
                     android:textColor="#BEBEBE"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tv_user_platform"
@@ -124,19 +124,19 @@
                     android:layout_marginLeft="10dp"
                     android:text="无"
                     android:textColor="#686868"
-                    android:textSize="20sp"/>
-            </LinearLayout>
+                    android:textSize="20sp" />
+            </LinearLayout >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E1E1E1"/>
+                android:background="#E1E1E1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="专长领域:"
                     android:textColor="#BEBEBE"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tv_user_super"
@@ -153,15 +153,15 @@
                     android:layout_marginLeft="10dp"
                     android:text="无"
                     android:textColor="#686868"
-                    android:textSize="20sp"/>
-            </LinearLayout>
+                    android:textSize="20sp" />
+            </LinearLayout >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E1E1E1"/>
+                android:background="#E1E1E1" />
 
 
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+        </LinearLayout >
+    </ScrollView >
+</LinearLayout >
