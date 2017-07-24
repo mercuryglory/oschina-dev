@@ -100,28 +100,6 @@ public class NewTweetHolder extends BasicHolder<Tweet> {
 
         //赞.直接调用bean里面已经封装好的方法
         tweet.setLikeUsers(parent.getContext(), mTvTweetLike, true);
-        //        List<User> likeUser = tweet.getLikeUser();
-        //        String str = "";
-        //        if (likeUser != null && likeUser.size() > 0) {
-        //            vh.mTvTweetLike.setVisibility(View.VISIBLE);
-        //            for (int i = 0; i < likeUser.size(); i++) {
-        //                if (i == 4) {
-        //                    break;
-        //                }
-        //                str = str + g(likeUser.get(i).getName()) + ("、");
-        //            }
-        //            str = str.substring(0, str.length() - 1);
-        //            if (likeUser.size() > 4) {
-        //                str = str + "等" + g(tweet.getLikeCount() + "人")+"觉得很赞";
-        //            } else {
-        //                str = str + "觉得很赞";
-        //            }
-        //
-        //            Spanned spanned = Html.fromHtml(str);
-        //            vh.mTvTweetLike.setText(spanned);
-        //        } else {
-        //            vh.mTvTweetLike.setVisibility(View.GONE);
-        //        }
 
         if (tweet.getImgBig().equals("") && tweet.getImgSmall().equals("")) {
             mIvTweetImage.setVisibility(View.GONE);

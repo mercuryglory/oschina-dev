@@ -28,9 +28,9 @@ import org.mercury.oschina.bean.User;
 import org.mercury.oschina.emoji.UiUtil;
 import org.mercury.oschina.main.activity.BlogActivity;
 import org.mercury.oschina.main.activity.CollectionActivity;
+import org.mercury.oschina.main.activity.LoginActivity;
 import org.mercury.oschina.main.activity.MsgActivity;
 import org.mercury.oschina.main.activity.ThierActivity;
-import org.mercury.oschina.main.activity.UserDetailsActivity;
 import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.utils.Fields;
 import org.mercury.oschina.utils.OschinaUri;
@@ -190,9 +190,10 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
 
                 startActivity(new Intent(getActivity(), CollectionActivity.class));
                 break;
+            //点击头像登录
             case iv_user_pic:
 
-                startActivity(new Intent(getActivity(), UserDetailsActivity.class));
+                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
 
             case ll_user_msg:

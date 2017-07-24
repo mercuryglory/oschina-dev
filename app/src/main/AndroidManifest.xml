@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="org.mercury.oschina">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.mercury.oschina" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS."/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS." />
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name="org.mercury.oschina.base.AppContext"
@@ -26,58 +26,63 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon">
+        tools:replace="android:icon" >
 
-        <activity android:name="org.mercury.oschina.main.activity.MainActivity"
-            android:theme="@style/App.Theme.Main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+        <activity
+            android:name="org.mercury.oschina.main.activity.MainActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/App.Theme.Main" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter >
+        </activity >
 
-        <activity android:name="org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity"/>
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.FriendQActivity"/>
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.Activitys"/>
-        <activity android:name="org.mercury.oschina.explorer.ui.fragment.AllActivityWebView"/>
-        <activity android:name="org.mercury.oschina.main.activity.ThierActivity"/>
-        <activity android:name="org.mercury.oschina.main.activity.CollectionActivity"/>
-        <activity android:name="org.mercury.oschina.main.activity.UserDetailsActivity"/>
-        <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity"/>
-        <activity android:name="org.mercury.oschina.main.activity.MsgActivity"/>
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.QRCodeActivity"/>
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.ShakeActivity"/>
+        <activity android:name="org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.FriendQActivity" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.Activitys" />
+        <activity android:name="org.mercury.oschina.explorer.ui.fragment.AllActivityWebView" />
+        <activity android:name="org.mercury.oschina.main.activity.ThierActivity" />
+        <activity android:name="org.mercury.oschina.main.activity.CollectionActivity" />
+        <activity android:name="org.mercury.oschina.main.activity.UserDetailsActivity" />
+        <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity" />
+        <activity android:name="org.mercury.oschina.main.activity.MsgActivity" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.QRCodeActivity" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.ShakeActivity" />
         <activity
             android:name="org.mercury.oschina.main.activity.QuickTextActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name="org.mercury.oschina.main.activity.LoginActivity"/>
-        <activity android:name="org.mercury.oschina.main.activity.QuickViodeActivity"/>
-        <activity android:name="org.mercury.oschina.main.activity.TextDialogActivity"/>
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity">
-        </activity>
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity android:name="org.mercury.oschina.tweet.activity.UserHomeActivity"/>
+        <activity
+            android:name="org.mercury.oschina.main.activity.LoginActivity"
+            android:label="登录中心"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/Account_Base.App.Theme.NoTitle"
+            />
+        <activity android:name="org.mercury.oschina.main.activity.QuickViodeActivity" />
+        <activity android:name="org.mercury.oschina.main.activity.TextDialogActivity" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity" ></activity >
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" ></activity >
+
+        <activity android:name="org.mercury.oschina.tweet.activity.UserHomeActivity" />
         <activity android:name="org.mercury.oschina.tweet.activity.PhotoActivity" />
         <activity android:name="org.mercury.oschina.tweet.activity.WebActivity" />
 
-        <activity android:name="org.mercury.oschina.tweet.activity.TweetDetailActivity"
+        <activity
+            android:name="org.mercury.oschina.tweet.activity.TweetDetailActivity"
             android:label="动弹详情"
             android:screenOrientation="portrait"
-            android:theme="@style/Base.App.Theme.NoTitle"
-            />
+            android:theme="@style/Base.App.Theme.NoTitle" />
 
-        <activity android:name="org.mercury.oschina.main.activity.BlogActivity" >
-        </activity>
-        <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity">
-        </activity>
-        <activity android:name="org.mercury.oschina.main.activity.NoteDetailActivity">
-        </activity>
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.BlogInfoActivity"/>
+        <activity android:name="org.mercury.oschina.main.activity.BlogActivity" ></activity >
+        <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity" ></activity >
+        <activity android:name="org.mercury.oschina.main.activity.NoteDetailActivity" ></activity >
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.BlogInfoActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ImageBigActivity" />
 
-    </application>
+    </application >
 
-</manifest>
+</manifest >

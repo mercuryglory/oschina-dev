@@ -22,6 +22,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Account_Base.App.Theme.NoTitle" parent="Base.App.Theme.NoTitle">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="App.Widget.Light.Toolbar" parent="Base.App.Widget.Toolbar">
         <item name="navigationIcon">@drawable/selector_nav_back_light</item>
     </style >
