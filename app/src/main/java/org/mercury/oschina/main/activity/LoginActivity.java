@@ -1,9 +1,9 @@
 package org.mercury.oschina.main.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +17,8 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
 
+    @Bind(R.id.toolbar)
+    Toolbar          toolbar;
     @Bind(R.id.et_username)
     AppCompatEditText mEtUsername;
     @Bind(R.id.et_password)
@@ -34,8 +36,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        initActionbar();
         ButterKnife.bind(this);
+        initActionbar();
     }
 
     @OnClick({R.id.btn_login, R.id.iv_qq_login, R.id.iv_wx_login, R.id.iv_sina_login})
@@ -54,11 +56,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void initActionbar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("登陆");
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("登陆");
+//        actionBar.setDisplayShowHomeEnabled(true);
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle("登录");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
