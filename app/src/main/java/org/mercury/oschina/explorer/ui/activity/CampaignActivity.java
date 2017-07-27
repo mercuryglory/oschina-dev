@@ -10,10 +10,10 @@ import com.ToxicBakery.viewpager.transforms.RotateDownTransformer;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.explorer.adapter.ActivityViewPagerAdapter;
-import org.mercury.oschina.explorer.bean.ActivitysBean;
 import org.mercury.oschina.explorer.ui.fragment.AllActivityFragment;
 import org.mercury.oschina.explorer.ui.fragment.MyActivityFragment;
-import org.mercury.oschina.explorer.ui.view.PagerSlidingTab;
+import org.mercury.oschina.tweet.bean.FragmentInfo;
+import org.mercury.oschina.tweet.widget.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +21,25 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class Activitys extends AppCompatActivity {
+/**
+ * created by Mercury at 2017/7/27
+ * descript: 活动页面
+ */
+public class CampaignActivity extends AppCompatActivity {
 
     @Bind(R.id.pst)
-    PagerSlidingTab mPst;
+    PagerSlidingTabStrip mPst;
     @Bind(R.id.vp)
-    ViewPager mVp;
-    private List<ActivitysBean> mBeanList = new ArrayList<>();
+    ViewPager            mVp;
+
+    private List<FragmentInfo> mBeanList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activitys);
+        setContentView(R.layout.activity_campaign);
         ButterKnife.bind(this);
-        mVp.setPageTransformer(true,new RotateDownTransformer());
+        mVp.setPageTransformer(true, new RotateDownTransformer());
         inteTitltBar();
         init();
     }
@@ -45,11 +51,12 @@ public class Activitys extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
+
     //处理箭头点击事件
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home :
+        switch (item.getItemId()) {
+            case android.R.id.home:
                 finish();
                 break;
         }
@@ -58,9 +65,9 @@ public class Activitys extends AppCompatActivity {
 
     private void init() {
         String[] title = getResources().getStringArray(R.array.tab2_names);
-        mBeanList.add(new ActivitysBean(title[0],new AllActivityFragment()));
-        mBeanList.add(new ActivitysBean(title[1],new MyActivityFragment()));
-        mVp.setAdapter(new ActivityViewPagerAdapter(getSupportFragmentManager(),mBeanList));
+        mBeanList.add(new FragmentInfo(title[0], new AllActivityFragment()));
+        mBeanList.add(new FragmentInfo(title[1], new MyActivityFragment()));
+        mVp.setAdapter(new ActivityViewPagerAdapter(getSupportFragmentManager(), mBeanList));
         mPst.setViewPager(mVp);
     }
 }

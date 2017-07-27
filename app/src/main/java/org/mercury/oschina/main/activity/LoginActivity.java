@@ -15,6 +15,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * created by Mercury at 2017/7/27
+ * descript: 登录
+ */
 public class LoginActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar)
@@ -56,10 +60,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void initActionbar() {
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setTitle("登陆");
-//        actionBar.setDisplayShowHomeEnabled(true);
-//        actionBar.setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("登录");
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

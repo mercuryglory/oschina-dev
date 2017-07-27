@@ -27,7 +27,7 @@ public class TweetPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return mShowItems.get(position).fragment;
+        return mShowItems.get(position).getFragment();
     }
 
     @Override
@@ -37,6 +37,6 @@ public class TweetPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return mShowItems.get(position).title;
+        return mShowItems.get(position).getTitle();
     }
 }

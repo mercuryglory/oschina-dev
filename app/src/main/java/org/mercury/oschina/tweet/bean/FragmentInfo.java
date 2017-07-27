@@ -4,17 +4,32 @@ package org.mercury.oschina.tweet.bean;
 import android.support.v4.app.Fragment;
 
 /**
- * 类名:      FragmentInfo
  * 创建者:    Mercury
  * 创建时间:  2016/8/14
- * 描述:      ${TODO}
+ * 描述:      初始化Fragment
  */
 public class FragmentInfo {
-    public String   title;
-    public Fragment fragment;
+    private String   title;
+    private Fragment fragment;
 
     public FragmentInfo(String title, Fragment fragment) {
         this.title = title;
+        this.fragment = fragment;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Fragment getFragment() {
+        return fragment;
+    }
+
+    public void setFragment(Fragment fragment) {
         this.fragment = fragment;
     }
 }

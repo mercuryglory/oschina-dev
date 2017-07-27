@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import org.mercury.oschina.explorer.bean.ActivitysBean;
+import org.mercury.oschina.tweet.bean.FragmentInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,20 +15,21 @@ import java.util.List;
  * @描述 ${TODO}
  */
 public class ActivityViewPagerAdapter extends FragmentPagerAdapter {
-    List<ActivitysBean> mBeanList = new ArrayList<>();
-    public ActivityViewPagerAdapter(FragmentManager fm , List<ActivitysBean> list) {
+    List<FragmentInfo> mBeanList = new ArrayList<>();
+
+    public ActivityViewPagerAdapter(FragmentManager fm, List<FragmentInfo> list) {
         super(fm);
         this.mBeanList = list;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return mBeanList.get(position).mFragment;
+        return mBeanList.get(position).getFragment();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return mBeanList.get(position).title;
+        return mBeanList.get(position).getTitle();
     }
 
     @Override

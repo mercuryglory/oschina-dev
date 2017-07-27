@@ -5,9 +5,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.explorer.ui.activity.Activitys;
+import org.mercury.oschina.explorer.ui.activity.CampaignActivity;
 import org.mercury.oschina.explorer.ui.activity.FindUserActivity;
-import org.mercury.oschina.explorer.ui.activity.FriendQActivity;
+import org.mercury.oschina.explorer.ui.activity.FriendCircleActivity;
 import org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity;
 import org.mercury.oschina.explorer.ui.activity.QRCodeActivity;
 import org.mercury.oschina.explorer.ui.activity.ShakeActivity;
@@ -16,7 +16,6 @@ import org.mercury.oschina.main.BaseTitleFragment;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-import static org.mercury.oschina.R.id.ll_activity;
 import static org.mercury.oschina.R.id.ll_create_code;
 import static org.mercury.oschina.R.id.ll_qr_code;
 import static org.mercury.oschina.R.id.ll_shake;
@@ -33,7 +32,7 @@ public class ExploreFragment extends BaseTitleFragment implements View.OnClickLi
     LinearLayout llFriendCircle;
     @Bind(R.id.ll_find_user)
     LinearLayout llFindUser;
-    @Bind(ll_activity)
+    @Bind(R.id.ll_activity)
     LinearLayout llActivity;
     @Bind(ll_qr_code)
     LinearLayout llQrCode;
@@ -48,16 +47,16 @@ public class ExploreFragment extends BaseTitleFragment implements View.OnClickLi
         LinearLayout llFriendCircle = (LinearLayout) root.findViewById(R.id.ll_friend_circle);
     }
 
-    @OnClick({R.id.ll_friend_circle, R.id.ll_find_user, ll_activity, ll_qr_code,
+    @OnClick({R.id.ll_friend_circle, R.id.ll_find_user, R.id.ll_activity, ll_qr_code,
             ll_create_code, ll_shake})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_friend_circle:
-                startActivity(new Intent(getContext(), FriendQActivity.class));
+                startActivity(new Intent(getContext(), FriendCircleActivity.class));
                 break;
-            case ll_activity:
-                startActivity(new Intent(getContext(), Activitys.class));
+            case R.id.ll_activity:
+                startActivity(new Intent(getContext(), CampaignActivity.class));
                 break;
             case ll_qr_code:
                 startActivity(new Intent(getContext(), QRCodeActivity.class));

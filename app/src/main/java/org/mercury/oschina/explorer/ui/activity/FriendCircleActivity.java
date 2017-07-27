@@ -31,7 +31,11 @@ import java.util.List;
 import butterknife.ButterKnife;
 import okhttp3.Call;
 
-public class FriendQActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+/**
+ * created by Mercury at 2017/7/27
+ * descript: 朋友圈
+ */
+public class FriendCircleActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private PullToRefreshListView mLv_show;
     private List<Active> mList = new ArrayList<>();
@@ -41,7 +45,7 @@ public class FriendQActivity extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend_q);
+        setContentView(R.layout.activity_friend_circle);
         ButterKnife.bind(this);
         init();
 
@@ -52,7 +56,6 @@ public class FriendQActivity extends AppCompatActivity implements AdapterView.On
         initActionbar();
 
         initData();
-        initUi();
     }
 
     private int i = 0;
@@ -128,7 +131,7 @@ public class FriendQActivity extends AppCompatActivity implements AdapterView.On
             }
         });
         mQActivity = new FriendAdapter(mList);
-        mQActivity.setContext(FriendQActivity.this);
+        mQActivity.setContext(FriendCircleActivity.this);
         mView = mLv_show.getRefreshableView();
         mView.setAdapter(mQActivity);
 
@@ -141,11 +144,6 @@ public class FriendQActivity extends AppCompatActivity implements AdapterView.On
         //mLv_show.setOnItemClickListener(this);
     }
 
-    private void initUi() {
-
-
-        //mLv_show.setAdapter(mQActivity);
-    }
 
     private void initActionbar() {
         ActionBar actionBar = getSupportActionBar();
@@ -170,7 +168,7 @@ public class FriendQActivity extends AppCompatActivity implements AdapterView.On
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(mList.get(position-1).getObjectType() == 3){
             //跳转到到博客详情页面
-            Intent intent = new Intent(FriendQActivity.this,BlogInfoActivity.class);
+            Intent intent = new Intent(FriendCircleActivity.this,BlogInfoActivity.class);
             intent.putExtra(Fileds.BLOG_ID,mList.get(position -1).getObjectId());
             startActivity(intent);
         }else{
@@ -181,19 +179,5 @@ public class FriendQActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
-  /*  @Override
-    public void onRefresh() {
-        //下拉刷新  网络请求数据
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mSwipwrefreshlayout.setRefreshing(false);
-            }
-        },2000);
-    }*/
-   /* //长按条目监听
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-    }*/
 }

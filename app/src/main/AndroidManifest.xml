@@ -40,8 +40,8 @@
         </activity >
 
         <activity android:name="org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.FriendQActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.Activitys" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.FriendCircleActivity" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.CampaignActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.fragment.AllActivityWebView" />
         <activity android:name="org.mercury.oschina.main.activity.ThierActivity" />
         <activity android:name="org.mercury.oschina.main.activity.CollectionActivity" />
