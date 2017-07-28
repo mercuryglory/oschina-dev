@@ -84,8 +84,7 @@ public class BlogInfoActivity extends AppCompatActivity {
                     public void onResponse(String s, int i) {
                         BlogDetail blogDetail = XmlUtils.toBean(BlogDetail.class, s.getBytes());
                         Blog blog = blogDetail.getBlog();
-                      // mWv2.loadData(blog.getBody(),"text/html","utf-8");
-                        mWv2.loadDataWithBaseURL(null,blog.getBody(),"text/html","utf-8",null);
+                        mWv2.loadDataWithBaseURL(null, blog.getBody(), "text/html", "utf-8", null);
                         mTvMessageTitle.setText(blog.getTitle());
                         mTvMessageAuthor.setText(blog.getAuthor());
                         mTvMessageTime.setText(blog.getPubDate());

@@ -202,6 +202,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
             case ll_user_blog:
                 startActivity(new Intent(getActivity(), BlogActivity.class));
                 break;
+            //弹出二维码
             case iv_user_qr_code:
                 showqr_codeDialog();
 
