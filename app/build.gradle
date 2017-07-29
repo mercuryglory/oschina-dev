@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply from:'../config/properties-util.gradle'
+
 android {
     compileSdkVersion 24
     buildToolsVersion '25.0.0'

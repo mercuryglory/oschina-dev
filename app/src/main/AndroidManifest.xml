@@ -4,7 +4,6 @@
     package="org.mercury.oschina" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_APN_SETTINGS." />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -14,8 +13,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -29,7 +26,7 @@
         tools:replace="android:icon" >
 
         <activity
-            android:name="org.mercury.oschina.main.activity.MainActivity"
+            android:name=".AuthActivity"
             android:launchMode="singleTask"
             android:theme="@style/App.Theme.Main" >
             <intent-filter >
@@ -64,8 +61,8 @@
             />
         <activity android:name="org.mercury.oschina.main.activity.QuickViodeActivity" />
         <activity android:name="org.mercury.oschina.main.activity.TextDialogActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity" ></activity >
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" ></activity >
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" />
 
         <activity android:name="org.mercury.oschina.tweet.activity.UserHomeActivity" />
         <activity android:name="org.mercury.oschina.tweet.activity.PhotoActivity" />
@@ -77,11 +74,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.App.Theme.NoTitle" />
 
-        <activity android:name="org.mercury.oschina.main.activity.BlogActivity" ></activity >
-        <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity" ></activity >
-        <activity android:name="org.mercury.oschina.main.activity.NoteDetailActivity" ></activity >
+        <activity android:name="org.mercury.oschina.main.activity.BlogActivity" />
+        <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity" />
+        <activity android:name="org.mercury.oschina.main.activity.NoteDetailActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.BlogInfoActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ImageBigActivity" />
+
+        <activity android:name=".main.activity.MainActivity" />
 
     </application >
 

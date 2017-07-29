@@ -1,0 +1,21 @@
+//  ../local.properties
+Properties localProperties = new Properties()
+localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+// ../gradle.properties
+Map rootProperties = project.rootProject.getProperties()
+
+def client_id = localProperties.getProperty('client_id', rootProperties.get('client_id', null))
+def client_secret = localProperties.getProperty('client_secret', rootProperties.get
+        ('client_secret', null))
+def redirect_uri = localProperties.getProperty('redirect_uri', rootProperties.get('redirect_uri',
+        null))
+
+android.buildTypes.all { buildType ->
+    buildType.buildConfigField "String", "CLIENT_ID", client_id
+    buildType.buildConfigField "String", "CLIENT_SECRET", client_secret
+    buildType.buildConfigField "String", "REDIRECT_URI", redirect_uri
+
+}
+
+
