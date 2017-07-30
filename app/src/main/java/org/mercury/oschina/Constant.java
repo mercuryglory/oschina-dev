@@ -1,4 +1,4 @@
-package org.mercury.oschina.tweet.util;
+package org.mercury.oschina;
 
 /**
  * 创建者:    Mercury
@@ -17,6 +17,8 @@ public class Constant {
     public static final String TO_BLOG = "TO_BLOG";
     public static final String TO_TIEZI = "TO_TIEZI";
     public static final String TO_NEWS = "TO_NEWS";
+
+    public static final String BASE_API_URL = "https://www.oschina.net/action/openapi/";
 
 
 }

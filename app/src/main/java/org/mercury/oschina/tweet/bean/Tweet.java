@@ -18,7 +18,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.tweet.activity.UserHomeActivity;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 
 import java.util.ArrayList;
 import java.util.List;

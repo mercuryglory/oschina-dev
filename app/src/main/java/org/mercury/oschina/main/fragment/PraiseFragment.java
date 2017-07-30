@@ -17,7 +17,7 @@ import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.bean.TweetLike;
 import org.mercury.oschina.bean.TweetLikeList;
 import org.mercury.oschina.tweet.activity.TweetDetailActivity;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.utils.OschinaUri;
 import org.mercury.oschina.utils.Utils;
 import org.mercury.oschina.utils.XmlUtils;

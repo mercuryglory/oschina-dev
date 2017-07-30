@@ -26,9 +26,9 @@
         tools:replace="android:icon" >
 
         <activity
-            android:name=".AuthActivity"
+            android:name=".WelcomeActivity"
             android:launchMode="singleTask"
-            android:theme="@style/App.Theme.Main" >
+            android:theme="@style/App.Theme.Launch" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -80,7 +80,13 @@
         <activity android:name="org.mercury.oschina.explorer.ui.activity.BlogInfoActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ImageBigActivity" />
 
-        <activity android:name=".main.activity.MainActivity" />
+        <activity android:name=".main.activity.MainActivity"
+            android:theme="@style/App.Theme.Main"
+            android:launchMode="singleTop"
+            />
+        <activity android:name=".AuthActivity"
+            android:launchMode="singleTop"/>
+
 
     </application >
 

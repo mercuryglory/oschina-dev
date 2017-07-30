@@ -18,7 +18,7 @@ import org.mercury.oschina.tweet.activity.UserHomeActivity;
 import org.mercury.oschina.tweet.activity.WebActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.tweet.widget.TweetTextView;

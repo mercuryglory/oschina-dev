@@ -21,7 +21,7 @@ import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.bean.Active;
 import org.mercury.oschina.bean.ActiveList;
 import org.mercury.oschina.tweet.activity.TweetDetailActivity;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.utils.OschinaUri;
 import org.mercury.oschina.utils.Utils;
 import org.mercury.oschina.utils.XmlUtils;

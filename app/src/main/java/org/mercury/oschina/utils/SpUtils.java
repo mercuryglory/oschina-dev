@@ -3,12 +3,14 @@ package org.mercury.oschina.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.mercury.oschina.base.AppContext;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * 类名:      ParallaxListView
- * 创建者:    PoplarTang
+ * 类名:      SpUtils
+ * 创建者:    Mercury
  * 创建时间:  2016/8/12.
  * 描述:
  */
@@ -114,9 +116,9 @@ public class SpUtils {
         }
     }
     //1. 保存String类型数据
-    public static void saveString(Context context, String key, String value)
+    public static void saveString(String spName, String key, String value)
     {
-        SharedPreferences preferences = context.getSharedPreferences(Fields.DRAFT_CONTENT, Context.MODE_PRIVATE);
+        SharedPreferences preferences = AppContext.mContext.getSharedPreferences(spName, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
         edit.putString(key, value);
         edit.commit();
@@ -125,21 +127,25 @@ public class SpUtils {
 
 
     //获取String数据
-    public static String getString(Context context,String key){
-        SharedPreferences preferences = context.getSharedPreferences(Fields.DRAFT_CONTENT, Context.MODE_PRIVATE);
-        return preferences.getString(key, "1");
+    public static String getString(String spName,String key){
+        SharedPreferences preferences = AppContext.mContext.getSharedPreferences(spName, Context.MODE_PRIVATE);
+        return preferences.getString(key, "");
     }
 
-   /* public static void saveBoolean(Context context, String key, Boolean value)
+    //1. 保存Boolean类型数据
+    public static void saveBoolean(String spName, String key, boolean value)
     {
-        SharedPreferences preferences = context.getSharedPreferences(Constant.USERID, Context.MODE_PRIVATE);
+        SharedPreferences preferences = AppContext.mContext.getSharedPreferences(spName, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
         edit.putBoolean(key, value);
         edit.commit();
+
     }
-    public static boolean getBoolean(Context context, String key)
-    {
-        SharedPreferences preferences = context.getSharedPreferences(Constant.USERID, Context.MODE_PRIVATE);
-        return preferences.getBoolean(key,false);
-    }*/
+
+
+    //获取Boolean数据
+    public static boolean getBoolean(String spName,String key){
+        SharedPreferences preferences = AppContext.mContext.getSharedPreferences(spName, Context.MODE_PRIVATE);
+        return preferences.getBoolean(key, false);
+    }
 }

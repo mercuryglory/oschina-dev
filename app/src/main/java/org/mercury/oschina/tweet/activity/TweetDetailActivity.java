@@ -26,7 +26,7 @@ import org.mercury.oschina.tweet.bean.TweetDetail;
 import org.mercury.oschina.tweet.holder.TweetHeadHolder;
 import org.mercury.oschina.tweet.net.HttpApi;
 import org.mercury.oschina.tweet.url.TweetUrl;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.tweet.util.Utils;
 import org.mercury.oschina.tweet.util.XmlUtils;

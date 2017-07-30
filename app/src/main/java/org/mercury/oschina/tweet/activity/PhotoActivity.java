@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.bumptech.glide.Glide;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

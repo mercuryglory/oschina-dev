@@ -19,7 +19,7 @@ import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.emoji.InputHelper;
 import org.mercury.oschina.tweet.extra.MyURLSpan;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.tweet.widget.MyLinkMovementMethod;

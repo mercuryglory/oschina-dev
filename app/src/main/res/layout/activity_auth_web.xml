@@ -4,8 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
     <WebView
-        android:id="@+id/web"
+        android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 

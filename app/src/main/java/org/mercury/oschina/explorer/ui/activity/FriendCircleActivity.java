@@ -23,7 +23,7 @@ import org.mercury.oschina.explorer.util.XmlUtils;
 import org.mercury.oschina.explorer.util.ApiHttp;
 import org.mercury.oschina.explorer.util.Fileds;
 import org.mercury.oschina.tweet.activity.TweetDetailActivity;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 
 import java.util.ArrayList;
 import java.util.List;

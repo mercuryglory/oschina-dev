@@ -17,7 +17,7 @@ import org.mercury.oschina.tweet.adapter.NewTweetAdapter;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetsList;
 import org.mercury.oschina.tweet.net.HttpApi;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.tweet.util.Utils;
 import org.mercury.oschina.tweet.util.XmlUtils;
 

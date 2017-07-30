@@ -10,7 +10,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.tweet.activity.WebActivity;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

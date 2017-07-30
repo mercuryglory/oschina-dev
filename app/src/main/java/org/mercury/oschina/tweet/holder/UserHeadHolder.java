@@ -12,7 +12,7 @@ import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.tweet.activity.PhotoActivity;
 import org.mercury.oschina.tweet.bean.User;
-import org.mercury.oschina.tweet.util.Constant;
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.tweet.widget.CustomDialog;
