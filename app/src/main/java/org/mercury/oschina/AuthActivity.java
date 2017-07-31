@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 
 import org.mercury.oschina.bean.AccessToken;
 import org.mercury.oschina.http.HttpApi;
+import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.main.activity.MainActivity;
 import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.utils.AccessTokenHelper;
@@ -105,6 +106,8 @@ public class AuthActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Constant.BASE_API_URL)
                 .build();
+        Object retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+
         HttpApi httpApi = retrofit.create(HttpApi.class);
         Map<String, String> params = new HashMap<>();
         params.put("client_id", BuildConfig.CLIENT_ID);
