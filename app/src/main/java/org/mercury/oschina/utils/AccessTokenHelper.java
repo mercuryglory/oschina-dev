@@ -1,5 +1,7 @@
 package org.mercury.oschina.utils;
 
+import org.mercury.oschina.Constant;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -11,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 public class AccessTokenHelper {
 
     public static void saveAccessToken(String userId,String accessToken) {
-        SpUtils.saveString(userId, "access_token", encryptToSHA(accessToken));
+        SpUtils.saveString(userId, Constant.ACCESS_TOKEN, encryptToSHA(accessToken));
     }
 
     public static String getAccessToken(String userId) {

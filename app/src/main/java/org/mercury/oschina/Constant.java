@@ -9,7 +9,7 @@ public class Constant {
 
     public static final String TWEET_DETAIL="TWEET_DETAIL";
 
-    public static final String USER_ID = "USER_ID";
+    public static final String USER_ID = "userId";
 
     public static final String PICTURE = "PICTURE";
     public static final String URL        = "URL";
@@ -18,7 +18,9 @@ public class Constant {
     public static final String TO_TIEZI = "TO_TIEZI";
     public static final String TO_NEWS = "TO_NEWS";
 
+    public static final String BASE_URL = "https://www.oschina.net/";
     public static final String BASE_API_URL = "https://www.oschina.net/action/openapi/";
 
 
+    public static final String ACCESS_TOKEN = "access_token";
 }

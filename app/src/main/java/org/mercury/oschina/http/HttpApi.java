@@ -15,6 +15,6 @@ import retrofit2.http.QueryMap;
 public interface HttpApi {
 
     @GET("token")
-    Call<AccessToken> getAccessToken(@QueryMap Map params);
+    Call<AccessToken> getAccessToken(@QueryMap Map<String,String> params);
 
 }
