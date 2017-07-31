@@ -3,7 +3,6 @@ package org.mercury.oschina.explorer.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -20,8 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.facebook.common.util.UriUtil;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
@@ -92,8 +89,8 @@ public class FriendAdapter extends BaseAdapter {
         TextView mTvMoreType;
         @Bind(R.id.iv_iamge)
         ImageView mIvIamge;
-        @Bind(R.id.iv_friend_q_icon)
-        SimpleDraweeView mIvFriendQIcon;
+        @Bind(R.id.iv_friend_icon)
+        ImageView mIvFriendIcon;
         @Bind(R.id.tv_more_name)
         TextView mTvMoreName;
         @Bind(R.id.tv_more_state)
@@ -117,19 +114,15 @@ public class FriendAdapter extends BaseAdapter {
 
         private void bindView(final Active active) {
 
-           /* mIvFriendQIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mActivity, UserHomeActivity.class);
-                    intent.putExtra(Constant.USER_ID,active);
-                    mActivity.startActivity(intent);
-                }
-            });*/
             mTvMoreName.setText(active.getAuthor());
-            Uri uri = UriUtil.parseUriOrNull(active.getPortrait());
-            mIvFriendQIcon.setImageURI(uri);
+
+            Glide.with(AppContext.context())
+                    .load(active.getPortrait())
+                    .override(320, 200)
+                    .fitCenter()
+                    .into(mIvFriendIcon);
             mTvMoreTime.setText(active.getPubDate());
-            // mIvFriendPl.setText(HTMLUtil.delHTMLTag(active.getMessage()));
+
             mTvMprePl.setText(active.getAppClient() + "");
             mTvMoreState.setText(active.getObjectTitle());
             mIvIamge.setOnClickListener(new View.OnClickListener() {
@@ -157,15 +150,14 @@ public class FriendAdapter extends BaseAdapter {
             mTvMorePhoneName.setVisibility(View.VISIBLE);
             mTvMorePhoneName.setText("Iphone");
             //显示图片
-            Uri uri1 = UriUtil.parseUriOrNull(active.getTweetimage());
             mIvIamge.setMaxHeight(200);
-            //  holder.mTvMprePl.setBackgroundResource(R.drawable.day_comment_reply_container_bg);
+
             Glide.with(AppContext.context()) // 指定Context
-                    .load(uri1)// 指定图片的URL
+                    .load(active.getTweetimage())// 指定图片的URL
                     .override(320, 200)
                     .fitCenter()
                     .into(mIvIamge);//指定显示图片的
-            // String htmlInfo = HTMLUtil.delHTMLTag();
+
             switch (active.getCatalog()) {
                 case 3:
                     mTvMorePhoneName.setVisibility(View.VISIBLE);

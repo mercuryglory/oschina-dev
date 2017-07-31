@@ -96,7 +96,7 @@ public class MeFragment extends BasicFragment implements AdapterView.OnItemClick
     @Override
     protected Object loadDataThread() {
 
-              AppContext.mainHandle.postDelayed(new Runnable() {
+              AppContext.mHandler.postDelayed(new Runnable() {
                   @Override
                   public void run() {
                       OkHttpUtils

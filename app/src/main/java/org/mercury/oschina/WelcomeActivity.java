@@ -10,6 +10,10 @@ import org.mercury.oschina.main.activity.MainActivity;
 import org.mercury.oschina.utils.AccessTokenHelper;
 import org.mercury.oschina.utils.SpUtils;
 
+/**
+ * created by Mercury at 2017/7/31
+ * descript: 欢迎页面
+ */
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override

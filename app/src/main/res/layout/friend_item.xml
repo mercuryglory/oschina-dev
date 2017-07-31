@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:fresco="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:descendantFocusability="blocksDescendants"
-                android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants" >
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/iv_friend_q_icon"
+    <ImageView
+        android:id="@+id/iv_friend_icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:src="@mipmap/ic_launcher"
-        fresco:failureImage="@mipmap/ic_launcher"
-        fresco:roundAsCircle="true"
-        fresco:roundBottomLeft="true"/>
+        android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/iv_friend_q_icon"
-        android:orientation="vertical">
+        android:layout_toRightOf="@+id/iv_friend_icon"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/tv_more_name"
@@ -32,19 +28,19 @@
             android:layout_marginTop="10dp"
             android:text="Aron刘洋"
             android:textColor="#48B25D"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal" >
 
             <TextView
                 android:id="@+id/tv_more_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="发表了博客"/>
+                android:text="发表了博客" />
 
             <TextView
                 android:id="@+id/tv_more_state"
@@ -52,10 +48,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:textColor="#83AAc1"
-                android:textSize="18sp"/>
-        </LinearLayout>
+                android:textSize="18sp" />
+        </LinearLayout >
 
-    </LinearLayout>
+    </LinearLayout >
 
     <TextView
         android:id="@+id/tv_more_time"
@@ -64,7 +60,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:text="3小时前"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <LinearLayout
         android:id="@+id/ll_2"
@@ -72,8 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/iv_friend_q_icon"
-        android:orientation="vertical">
+        android:layout_toRightOf="@+id/iv_friend_icon"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/iv_friend_pl"
@@ -82,12 +78,12 @@
             android:maxLines="4"
             android:text="我是一个测阿萨德法师打发阿斯蒂芬按时阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德法师打发阿斯蒂芬阿斯蒂芬按时试用的Fragment, 我创建的时候没有传进来Bundle, 所以显示这个内容"
             android:textColor="#000"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/iv_iamge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tv_more_huifu"
@@ -97,19 +93,19 @@
             android:background="@drawable/day_comment_reply_container_bg"
             android:text="今天 出去玩去 你们去吗"
             android:textSize="16sp"
-            android:visibility="gone"/>
-    </LinearLayout>
+            android:visibility="gone" />
+    </LinearLayout >
 
 
     <TextView
-        android:drawableLeft="@mipmap/platform"
         android:id="@+id/tv_more_phone_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_2"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/iv_friend_q_icon"
-        android:text="android"/>
+        android:layout_toRightOf="@+id/iv_friend_icon"
+        android:drawableLeft="@mipmap/platform"
+        android:text="android" />
 
     <LinearLayout
         android:id="@+id/top_ll"
@@ -120,40 +116,41 @@
         android:layout_margin="5dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="5dp">
+        android:paddingTop="5dp" >
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:padding="4dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/ic_comment_30"/>
+            android:src="@mipmap/ic_comment_30" />
 
         <TextView
             android:id="@+id/tv_mpre_pl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textSize="14sp"/>
-    </LinearLayout>
+            android:textSize="14sp" />
+    </LinearLayout >
+
     <LinearLayout
         android:id="@+id/top_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/top_ll"
-        android:visibility="gone"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:visibility="gone" >
 
-    <TextView
+        <TextView
 
-        android:text="亲!已全部加载"
-        android:visibility="gone"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"/>
-    <View
-        style="@style/line_gay" />
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="亲!已全部加载"
+            android:textSize="20sp"
+            android:visibility="gone" />
 
-</RelativeLayout>
+        <View style="@style/line_gay" />
+    </LinearLayout >
+
+</RelativeLayout >

@@ -23,7 +23,7 @@ public class GeneralUtils {
     }
 
     private static SharedPreferences getSharedPreferences() {
-        return AppContext.mContext
+        return AppContext.context
                 .getSharedPreferences(Constants.SP_VISITED_NEWS, Context.MODE_PRIVATE);
     }
 
@@ -32,7 +32,7 @@ public class GeneralUtils {
     }
 
     public static int getColor(int colorResId) {
-        return AppContext.mContext.getResources().getColor(colorResId);
+        return AppContext.context.getResources().getColor(colorResId);
     }
 
 }

@@ -15,7 +15,7 @@ import java.util.Random;
 public class Utils {
 
     public static void runOnUIThread(Runnable runnable){
-        AppContext.myHandler.post(runnable);
+        AppContext.mHandler.post(runnable);
     }
 
     public static String[] getStringArray(int resId){

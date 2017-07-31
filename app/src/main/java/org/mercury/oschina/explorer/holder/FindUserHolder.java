@@ -49,6 +49,6 @@ public class FindUserHolder extends BasicHolder<FindUserBean.ObjListBean> {
 
     @Override
     public View createView() {
-        return View.inflate(AppContext.mContext, R.layout.list_cell_friend, null);
+        return View.inflate(AppContext.context, R.layout.list_cell_friend, null);
     }
 }

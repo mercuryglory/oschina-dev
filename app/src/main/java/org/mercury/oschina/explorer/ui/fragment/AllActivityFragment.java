@@ -140,7 +140,7 @@ public class AllActivityFragment extends Fragment {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            SPUtils.saveBoolean(AppContext.mContext,mList.get(position - 1).getId()+"",true);
+            SPUtils.saveBoolean(AppContext.context,mList.get(position - 1).getId()+"",true);
 
             Intent intent = new Intent(AppContext.context(),AllActivityWebView.class);
             Event event = mList.get(position - 1);

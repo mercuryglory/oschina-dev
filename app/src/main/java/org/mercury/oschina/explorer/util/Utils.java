@@ -1,11 +1,9 @@
 package org.mercury.oschina.explorer.util;
 
 import android.content.res.Resources;
-import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.facebook.common.util.UriUtil;
 
 import org.mercury.oschina.base.AppContext;
 
@@ -17,13 +15,12 @@ import java.util.Random;
 public class Utils {
     public static void setImage(String url, ImageView iv){
         //显示图片
-        Uri uri1 = UriUtil.parseUriOrNull(url);
+//        Uri uri = UriUtil.parseUriOrNull(url);
         iv.setMaxHeight(200);
-        //  holder.mTvMprePl.setBackgroundResource(R.drawable.day_comment_reply_container_bg);
         Glide.with(AppContext.context()) // 指定Context
-                .load(uri1)// 指定图片的URL
+                .load(url)// 指定图片的URL
                 .fitCenter()
-                .into(iv);//指定显示图片的
+                .into(iv);
     }
     public static int createTextSize() {
         Random random = new Random();
@@ -35,7 +32,7 @@ public class Utils {
         return random.nextInt(100) + 90;
     }
     public static void runOnUIThread(Runnable runnable){
-        AppContext.myHandler.post(runnable);
+        AppContext.mHandler.post(runnable);
     }
 
     public static String[] getStringArray(int resId){
