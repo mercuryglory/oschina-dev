@@ -11,10 +11,14 @@ def client_secret = localProperties.getProperty('client_secret', rootProperties.
 def redirect_uri = localProperties.getProperty('redirect_uri', rootProperties.get('redirect_uri',
         null))
 
+def des_key = localProperties.getProperty('des_key', rootProperties.get('des_key', null))
+
 android.buildTypes.all { buildType ->
     buildType.buildConfigField "String", "CLIENT_ID", client_id
     buildType.buildConfigField "String", "CLIENT_SECRET", client_secret
     buildType.buildConfigField "String", "REDIRECT_URI", redirect_uri
+
+    buildType.buildConfigField "String", "DES_KEY", des_key
 
 }
 

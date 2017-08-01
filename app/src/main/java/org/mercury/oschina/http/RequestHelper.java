@@ -8,9 +8,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Mercury on 2017/7/31.
+ * 简单封装 Retrofit的配置和使用 单例模式
  */
 
-public class RequestHelper<T> {
+public class RequestHelper {
 
     private OkHttpClient mOkHttpClient;
     private Retrofit     mRetrofit;
@@ -56,7 +57,7 @@ public class RequestHelper<T> {
     }
 
     public <T> T getRetrofitCall(Class<T> clazz) {
-        return (T) mRetrofit.create(clazz);
+        return mRetrofit.create(clazz);
     }
 
 }

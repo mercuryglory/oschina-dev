@@ -21,16 +21,12 @@ import org.mercury.oschina.utils.SpUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * created by Mercury at 2017/7/30
@@ -98,17 +94,7 @@ public class AuthActivity extends AppCompatActivity {
     //获取access_token
     private void requestToken(String code) {
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
-                .readTimeout(10000L, TimeUnit.MILLISECONDS)
-                .build();
-        Retrofit retrofit = new Retrofit.Builder().client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(Constant.BASE_API_URL)
-                .build();
-        Object retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
-
-        HttpApi httpApi = retrofit.create(HttpApi.class);
+        HttpApi httpApi = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
         Map<String, String> params = new HashMap<>();
         params.put("client_id", BuildConfig.CLIENT_ID);
         params.put("client_secret", BuildConfig.CLIENT_SECRET);
