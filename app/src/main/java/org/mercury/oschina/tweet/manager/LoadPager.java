@@ -72,17 +72,9 @@ public abstract class LoadPager extends FrameLayout {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //得到解析后的对象
-                Object data = onSubLoadData();
+                //由子类实现
+                onSubLoadData();
 
-                //根据当前对象判断当前状态,这里修改,交给子类自己去判断
-//                currentState = checkData(data);
-//                Utils.runOnUIThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        showPage();
-//                    }
-//                });
             }
         }).start();
 

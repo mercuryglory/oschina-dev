@@ -1,11 +1,13 @@
 package org.mercury.oschina.http;
 
 import org.mercury.oschina.bean.AccessToken;
+import org.mercury.oschina.tweet.bean.TweetsList;
 
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 /**
@@ -16,5 +18,8 @@ public interface HttpApi {
 
     @GET("token")
     Call<AccessToken> getAccessToken(@QueryMap Map<String,String> params);
+
+    @GET("tweet_list")
+    Call<TweetsList> getTweetData(@Query("user") String user, @Query("page") int page);
 
 }

@@ -18,11 +18,4 @@
         android:text="加载中..."
         android:textSize="16sp" />
 
-    <!--<ImageView
-        android:id="@+id/iv"
-        android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/girl1"
-        />-->
 </RelativeLayout >

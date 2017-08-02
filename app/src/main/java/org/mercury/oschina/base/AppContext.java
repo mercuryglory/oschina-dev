@@ -7,6 +7,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.orhanobut.logger.Logger;
 
+import org.mercury.oschina.http.HttpInterceptor;
 import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.synthesis.utils.GeneralUtils;
 
@@ -40,6 +41,7 @@ public class AppContext extends BaseApplication {
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .addInterceptor(new HttpInterceptor())
                 .build();
         RequestHelper.init(client);
 
