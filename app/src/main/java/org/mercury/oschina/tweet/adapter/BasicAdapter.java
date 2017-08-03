@@ -60,7 +60,6 @@ public abstract class BasicAdapter<T> extends BaseAdapter {
         BasicHolder vh;
         if (convertView == null) {
             vh = createViewHolder();
-
         } else {
             vh = (BasicHolder) convertView.getTag();
         }

@@ -91,7 +91,7 @@ public class StringUtils {
      * @return
      */
     public static String friendly_time(String sdate) {
-        Date time = null;
+        Date time;
 
         if (TimeZoneUtil.isInEasternEightZones())
             time = toDate(sdate);

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.tweet.activity.PhotoActivity;
@@ -18,9 +19,7 @@ import org.mercury.oschina.tweet.activity.UserHomeActivity;
 import org.mercury.oschina.tweet.activity.WebActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
-import org.mercury.oschina.Constant;
 import org.mercury.oschina.tweet.util.GlideUtils;
-import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.tweet.widget.TweetTextView;
 import org.mercury.oschina.utils.StringUtils;
 
@@ -93,29 +92,11 @@ public class TweetHeadHolder extends BasicHolder<Tweet> {
 
         mTvTweetName.setText(tweet.getAuthor());
         mTvTweetTime.setText(StringUtils.friendly_time(tweet.getPubDate()));
-        tweet.setLikeUsers(parent.getContext(), mTvTweetLike, true);
-
-        switch (tweet.getAppclient()) {
-            case 1:
-                mTvTweetPlatform.setVisibility(View.GONE);
-                break;
-            case 3:
-                mTvTweetPlatform.setVisibility(View.VISIBLE);
-                mTvTweetPlatform.setText("Android");
-                break;
-            case 4:
-                mTvTweetPlatform.setVisibility(View.VISIBLE);
-                mTvTweetPlatform.setText("iPhone");
-
-                break;
-            default:
-                break;
-
-        }
 
         WebSettings settings = mWv.getSettings();
         settings.setSupportZoom(true);
         settings.setJavaScriptEnabled(true);
+
         mWv.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -128,32 +109,6 @@ public class TweetHeadHolder extends BasicHolder<Tweet> {
         });
         mWv.loadDataWithBaseURL(null, tweet.getBody(), "text/html", "utf-8", null);
 
-        //        RichText.from(tweet.getBody()).
-        //                autoFix(false).
-        //                fix(new ImageFixCallback() {
-        //                    @Override
-        //                    public void onFix(ImageHolder holder, boolean imageReady) {
-        //                        if (imageReady) {
-        //                            holder.setAutoFix(false);
-        //                        }
-        //                    }
-        //                }).
-        //                urlClick(new OnURLClickListener() {
-        //                    @Override
-        //                    public boolean urlClicked(String url) {
-        //                        Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
-        //                        Intent intent = new Intent(AppContext.context, WebActivity.class);
-        //                        intent.putExtra(Constant.URL, url);
-        //                        startActivity(intent);
-        //                        return true;
-        //                    }
-        //                }).into(mTvTweetBody);
-        mIvLikeState.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtil.showToast("先登录才能点赞哟");
-            }
-        });
-        mTvTweetCommentCount.setText(tweet.getLikeCount() + "");
+
     }
 }

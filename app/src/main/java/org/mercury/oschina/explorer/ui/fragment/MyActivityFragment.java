@@ -96,7 +96,7 @@ public class MyActivityFragment extends Fragment {
     @Override
     public void onRefresh() {
         //下拉重新 获取数据 更新页面
-        mList.clear();
+        mData.clear();
         //從新加載數據
         mLoadingPager.onLoad();
        setSwipeRefreshLoadingState();

@@ -27,5 +27,5 @@ public abstract class BasicHolder<T> {
         return view;
     }
 
-    public abstract void bindView(ViewGroup parent,T t);
+    public abstract void bindView(ViewGroup parent, T t);
 }

@@ -146,7 +146,7 @@ public class AllActivityFragment extends Fragment {
             Event event = mList.get(position - 1);
             intent.putExtra(Fileds.URL_WEB,event);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-          //intent.putExtra(Fileds.URL_WEB,mList.get(position - 1).getUrl());
+          //intent.putExtra(Fileds.URL_WEB,mData.get(position - 1).getUrl());
             AppContext.context().startActivity(intent);
             mAdapter.notifyDataSetChanged();
         }

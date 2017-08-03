@@ -3,14 +3,15 @@ package org.mercury.oschina.tweet.holder;
 import android.content.Intent;
 import android.text.Html;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.tweet.activity.PhotoActivity;
@@ -19,12 +20,9 @@ import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.emoji.InputHelper;
 import org.mercury.oschina.tweet.extra.MyURLSpan;
-import org.mercury.oschina.Constant;
 import org.mercury.oschina.tweet.util.GlideUtils;
-import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.tweet.widget.MyLinkMovementMethod;
 import org.mercury.oschina.tweet.widget.TweetTextView;
-import org.mercury.oschina.main.activity.MainActivity;
 import org.mercury.oschina.utils.StringUtils;
 
 import butterknife.Bind;
@@ -44,24 +42,14 @@ public class NewTweetHolder extends BasicHolder<Tweet> {
     TweetTextView mTvTweetBody;
     @Bind(R.id.iv_tweet_image)
     ImageView     mIvTweetImage;
-    @Bind(R.id.tv_tweet_like)
-    TweetTextView mTvTweetLike;
     @Bind(R.id.tv_tweet_time)
     TextView      mTvTweetTime;
-    @Bind(R.id.tv_tweet_platform)
-    TextView      mTvTweetPlatform;
-    @Bind(R.id.iv_like_state)
-    ImageView     mIvLikeState;
-    @Bind(R.id.tv_tweet_like_count)
-    TextView      mTvTweetLikeCount;
     @Bind(R.id.tv_tweet_comment_count)
     TextView      mTvTweetCommentCount;
-    @Bind(R.id.ll_info)
-    LinearLayout  mLlInfo;
 
     @Override
     public View createView() {
-        return View.inflate(MainActivity.mMainActivity, R.layout.item_tweet_new, null);
+        return View.inflate(AppContext.context, R.layout.item_tweet_new, null);
 
     }
 
@@ -99,12 +87,11 @@ public class NewTweetHolder extends BasicHolder<Tweet> {
         MyURLSpan.parseLinkText(mTvTweetBody, span);
 
         //赞.直接调用bean里面已经封装好的方法
-        tweet.setLikeUsers(parent.getContext(), mTvTweetLike, true);
+//        tweet.setLikeUsers(parent.getContext(), mTvTweetLike, true);
 
-        if (tweet.getImgBig().equals("") && tweet.getImgSmall().equals("")) {
+        if (TextUtils.isEmpty(tweet.getImgBig()) && TextUtils.isEmpty(tweet.getImgSmall())) {
             mIvTweetImage.setVisibility(View.GONE);
         } else {
-
             mIvTweetImage.setVisibility(View.VISIBLE);
             Glide.with(AppContext.context).load(tweet.getImgBig())
                     .into(mIvTweetImage);
@@ -122,30 +109,7 @@ public class NewTweetHolder extends BasicHolder<Tweet> {
         }
 
 
-        switch (tweet.getAppclient()) {
-            case 1:
-                mTvTweetPlatform.setVisibility(View.GONE);
-                break;
-            case 3:
-                mTvTweetPlatform.setVisibility(View.VISIBLE);
-                mTvTweetPlatform.setText("Android");
-                break;
-            case 4:
-                mTvTweetPlatform.setVisibility(View.VISIBLE);
-                mTvTweetPlatform.setText("iPhone");
-                break;
-            default:
-                break;
-
-        }
-        mIvLikeState.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtil.showToast("先登录才能点赞哟");
-            }
-        });
         mTvTweetTime.setText(StringUtils.friendly_time(tweet.getPubDate()));
-        mTvTweetLikeCount.setText(tweet.getLikeCount() + "");
         mTvTweetCommentCount.setText(tweet.getCommentCount() + "");
     }
 

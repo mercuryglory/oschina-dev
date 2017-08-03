@@ -1,114 +1,83 @@
 package org.mercury.oschina.tweet.bean;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.TextView.BufferType;
-
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
-import org.mercury.oschina.base.AppContext;
-import org.mercury.oschina.tweet.activity.UserHomeActivity;
-import org.mercury.oschina.Constant;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 动弹实体类
  *
- * @author liux (http://my.oschina.net/liux),kymjs(kymjs123@gmail.com)
+ * @author Mercury
  * @version 1.1 添加语音动弹功能
- * @created 2012-3-21
  * @changed 2014-12-1
  */
-@SuppressWarnings("serial")
-@XStreamAlias("tweet")
-public class Tweet extends Entity implements Parcelable {
 
-    public final static int CLIENT_MOBILE        = 2;
-    public final static int CLIENT_ANDROID       = 3;
-    public final static int CLIENT_IPHONE        = 4;
-    public final static int CLIENT_WINDOWS_PHONE = 5;
-    public final static int CLIENT_WECHAT        = 6;
+public class Tweet implements Parcelable {
 
-    @XStreamAlias("portrait")
-    private String portrait;
-    @XStreamAlias("author")
+    /**
+     * author : happut
+     * authorid : 812677
+     * body : 家里摄像头图像有变化，以为进贼了，结果发现一只大耗子在镜头里。。。你晚上等着 看我跟你大战三百回合！！！！
+     * commentCount : 23
+     * id : 14836527
+     * imgBig : https://static.oschina.net/uploads/space/2017/0801/163225_VjPt_812677.jpg
+     * imgSmall : https://static.oschina.net/uploads/space/2017/0801/163225_VjPt_812677_thumb.jpg
+     * portrait : https://static.oschina.net/uploads/user/406/812677_50.jpg?t=1404983903000
+     * pubDate : 2017-08-01 16:31:32
+     */
+
     private String author;
-    @XStreamAlias("authorid")
     private int    authorid;
-    @XStreamAlias("body")
     private String body;
-    @XStreamAlias("appclient")
-    private int    appclient;
-    @XStreamAlias("commentCount")
-    private String commentCount;
-    @XStreamAlias("pubDate")
-    private String pubDate;
-    @XStreamAlias("imgSmall")
-    private String imgSmall;
-    @XStreamAlias("imgBig")
+    private int    commentCount;
+    private int    id;
     private String imgBig;
-    @XStreamAlias("attach")
-    private String attach;
-
-    @XStreamAlias("likeCount")
-    private int likeCount;
-
-    @XStreamAlias("isLike")
-    private int isLike;
-
-    @XStreamAlias("likeList")
-    private List<User> likeUser = new ArrayList<User>();
-
-    private String imageFilePath;
-    private String audioPath;
-
-    public Tweet() {
-    }
+    private String imgSmall;
+    private String portrait;
+    private String pubDate;
 
     public Tweet(Parcel dest) {
-        id = dest.readInt();
-        portrait = dest.readString();
         author = dest.readString();
         authorid = dest.readInt();
         body = dest.readString();
-        appclient = dest.readInt();
-        commentCount = dest.readString();
-        pubDate = dest.readString();
-        imgSmall = dest.readString();
+        commentCount = dest.readInt();
+        id = dest.readInt();
         imgBig = dest.readString();
-        attach = dest.readString();
-        imageFilePath = dest.readString();
-        audioPath = dest.readString();
-        isLike = dest.readInt();
+        imgSmall = dest.readString();
+        pubDate = dest.readString();
+        portrait = dest.readString();
     }
 
-    public String getAttach() {
-        return attach;
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setAttach(String attach) {
-        this.attach = attach;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(author);
+        dest.writeInt(authorid);
+        dest.writeString(body);
+        dest.writeInt(commentCount);
+        dest.writeInt(id);
+        dest.writeString(imgBig);
+        dest.writeString(imgSmall);
+        dest.writeString(pubDate);
+        dest.writeString(portrait);
     }
 
-    public String getPortrait() {
-        return portrait;
-    }
+    public static final Creator<Tweet> CREATOR = new Creator<Tweet>() {
 
-    public void setPortrait(String portrait) {
-        this.portrait = portrait;
-    }
+        @Override
+        public Tweet[] newArray(int size) {
+            return new Tweet[size];
+        }
+
+        @Override
+        public Tweet createFromParcel(Parcel source) {
+            return new Tweet(source);
+        }
+    };
 
     public String getAuthor() {
         return author;
@@ -134,36 +103,20 @@ public class Tweet extends Entity implements Parcelable {
         this.body = body;
     }
 
-    public int getAppclient() {
-        return appclient;
-    }
-
-    public void setAppclient(int appclient) {
-        this.appclient = appclient;
-    }
-
-    public String getCommentCount() {
+    public int getCommentCount() {
         return commentCount;
     }
 
-    public void setCommentCount(String commentCount) {
+    public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
     }
 
-    public String getPubDate() {
-        return pubDate;
+    public int getId() {
+        return id;
     }
 
-    public void setPubDate(String pubDate) {
-        this.pubDate = pubDate;
-    }
-
-    public String getImgSmall() {
-        return imgSmall;
-    }
-
-    public void setImgSmall(String imgSmall) {
-        this.imgSmall = imgSmall;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImgBig() {
@@ -174,185 +127,134 @@ public class Tweet extends Entity implements Parcelable {
         this.imgBig = imgBig;
     }
 
-    public String getImageFilePath() {
-        return imageFilePath;
+    public String getImgSmall() {
+        return imgSmall;
     }
 
-    public void setImageFilePath(String imageFilePath) {
-        this.imageFilePath = imageFilePath;
+    public void setImgSmall(String imgSmall) {
+        this.imgSmall = imgSmall;
     }
 
-    public String getAudioPath() {
-        return audioPath;
+    public String getPortrait() {
+        return portrait;
     }
 
-    public void setAudioPath(String audioPath) {
-        this.audioPath = audioPath;
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
     }
 
-    public List<User> getLikeUser() {
-        return likeUser;
+    public String getPubDate() {
+        return pubDate;
     }
 
-    public void setLikeUser(List<User> likeUser) {
-        this.likeUser = likeUser;
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
     }
 
-    public int getLikeCount() {
-        return likeCount;
-    }
+    //    public void setLikeUsers(Context contet, TextView likeUser, boolean limit) {
+//        // 构造多个超链接的html, 通过选中的位置来获取用户名
+//        if (getLikeCount() > 0 && getLikeUser() != null
+//                && !getLikeUser().isEmpty()) {
+//            likeUser.setVisibility(View.VISIBLE);
+//            likeUser.setMovementMethod(LinkMovementMethod.getInstance());
+//            likeUser.setFocusable(false);
+//            likeUser.setLongClickable(false);
+//            likeUser.setText(addClickablePart(contet, limit),
+//                    BufferType.SPANNABLE);
+//        } else {
+//            likeUser.setVisibility(View.GONE);
+//            likeUser.setText("");
+//        }
+//    }
+//
+//    /**
+//     * @param
+//     * @return
+//     */
+//    private SpannableStringBuilder addClickablePart(final Context context,
+//                                                    boolean limit) {
+//
+//        StringBuilder sbBuilder = new StringBuilder();
+//        int showCunt = getLikeUser().size();
+//        if (limit && showCunt > 4) {
+//            showCunt = 4;
+//        }
+//
+//        for (int i = 0; i < showCunt; i++) {
+//            sbBuilder.append(getLikeUser().get(i).getName() + "、");
+//        }
+//
+//        String likeUsersStr = sbBuilder
+//                .substring(0, sbBuilder.lastIndexOf("、")).toString();
+//
+//        // 第一个赞图标
+//        // ImageSpan span = new ImageSpan(AppContext.getInstance(),
+//        // R.drawable.ic_unlike_small);
+//        SpannableString spanStr = new SpannableString("");
+//        // spanStr.setSpan(span, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+//
+//        SpannableStringBuilder ssb = new SpannableStringBuilder(spanStr);
+//        ssb.append(likeUsersStr);
+//
+//        String[] likeUsers = likeUsersStr.split("、");
+//
+//        if (likeUsers.length > 0) {
+//            // 最后一个
+//            for (int i = 0; i < likeUsers.length; i++) {
+//                final String name = likeUsers[i];
+//                final int start = likeUsersStr.indexOf(name) + spanStr.length();
+//                final int index = i;
+//                ssb.setSpan(new ClickableSpan() {
+//
+//                    @Override
+//                    public void onClick(View widget) {
+//                        User user = getLikeUser().get(index);
+//                        Intent intent = new Intent(AppContext.context, UserHomeActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        intent.putExtra(Constant.USER_ID, user);
+//                        AppContext.context().startActivity(intent);
+//                    }
+//
+//                    @Override
+//                    public void updateDrawState(TextPaint ds) {
+//                        super.updateDrawState(ds);
+//                        // ds.setColor(R.color.link_color); // 设置文本颜色
+//                        // 去掉下划线
+//                        ds.setUnderlineText(false);
+//                    }
+//
+//                }, start, start + name.length(), 0);
+//            }
+//        }
+//        if (likeUsers.length < getLikeCount()) {
+//            ssb.append("等");
+//            int start = ssb.length();
+//            String more = getLikeCount() + "人";
+//            ssb.append(more);
+//            ssb.setSpan(new ClickableSpan() {
+//
+//                @Override
+//                public void onClick(View widget) {
+//                    Bundle bundle = new Bundle();
+//                    //                    bundle.putInt(BaseListFragment.BUNDLE_KEY_CATALOG,
+//                    // getId());
+//                    //                    a'sa'd.showSimpleBack(context,
+//                    //                            SimpleBackPage.TWEET_LIKE_USER_LIST, bundle);
+//                }
+//
+//                @Override
+//                public void updateDrawState(TextPaint ds) {
+//                    super.updateDrawState(ds);
+//                    // ds.setColor(R.color.link_color); // 设置文本颜色
+//                    // 去掉下划线
+//                    ds.setUnderlineText(false);
+//                }
+//
+//            }, start, start + more.length(), 0);
+//            return ssb.append("觉得很赞");
+//        } else {
+//            return ssb.append("觉得很赞");
+//        }
+//    }
 
-    public void setLikeCount(int likeCount) {
-        this.likeCount = likeCount;
-    }
-
-    public int getIsLike() {
-        return isLike;
-    }
-
-    public void setIsLike(int isLike) {
-        this.isLike = isLike;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(portrait);
-        dest.writeString(author);
-        dest.writeInt(authorid);
-        dest.writeString(body);
-        dest.writeInt(appclient);
-        dest.writeString(commentCount);
-        dest.writeString(pubDate);
-        dest.writeString(imgSmall);
-        dest.writeString(imgBig);
-        dest.writeString(attach);
-        dest.writeString(imageFilePath);
-        dest.writeString(audioPath);
-        dest.writeInt(isLike);
-    }
-
-    public static final Creator<Tweet> CREATOR = new Creator<Tweet>() {
-
-        @Override
-        public Tweet[] newArray(int size) {
-            return new Tweet[size];
-        }
-
-        @Override
-        public Tweet createFromParcel(Parcel source) {
-            return new Tweet(source);
-        }
-    };
-
-    public void setLikeUsers(Context contet, TextView likeUser, boolean limit) {
-        // 构造多个超链接的html, 通过选中的位置来获取用户名
-        if (getLikeCount() > 0 && getLikeUser() != null
-                && !getLikeUser().isEmpty()) {
-            likeUser.setVisibility(View.VISIBLE);
-            likeUser.setMovementMethod(LinkMovementMethod.getInstance());
-            likeUser.setFocusable(false);
-            likeUser.setLongClickable(false);
-            likeUser.setText(addClickablePart(contet, limit),
-                    BufferType.SPANNABLE);
-        } else {
-            likeUser.setVisibility(View.GONE);
-            likeUser.setText("");
-        }
-    }
-
-    /**
-     * @param
-     * @return
-     */
-    private SpannableStringBuilder addClickablePart(final Context context,
-                                                    boolean limit) {
-
-        StringBuilder sbBuilder = new StringBuilder();
-        int showCunt = getLikeUser().size();
-        if (limit && showCunt > 4) {
-            showCunt = 4;
-        }
-
-        for (int i = 0; i < showCunt; i++) {
-            sbBuilder.append(getLikeUser().get(i).getName() + "、");
-        }
-
-        String likeUsersStr = sbBuilder
-                .substring(0, sbBuilder.lastIndexOf("、")).toString();
-
-        // 第一个赞图标
-        // ImageSpan span = new ImageSpan(AppContext.getInstance(),
-        // R.drawable.ic_unlike_small);
-        SpannableString spanStr = new SpannableString("");
-        // spanStr.setSpan(span, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-
-        SpannableStringBuilder ssb = new SpannableStringBuilder(spanStr);
-        ssb.append(likeUsersStr);
-
-        String[] likeUsers = likeUsersStr.split("、");
-
-        if (likeUsers.length > 0) {
-            // 最后一个
-            for (int i = 0; i < likeUsers.length; i++) {
-                final String name = likeUsers[i];
-                final int start = likeUsersStr.indexOf(name) + spanStr.length();
-                final int index = i;
-                ssb.setSpan(new ClickableSpan() {
-
-                    @Override
-                    public void onClick(View widget) {
-                        User user = getLikeUser().get(index);
-                        Intent intent = new Intent(AppContext.context, UserHomeActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra(Constant.USER_ID, user);
-                        AppContext.context().startActivity(intent);
-                    }
-
-                    @Override
-                    public void updateDrawState(TextPaint ds) {
-                        super.updateDrawState(ds);
-                        // ds.setColor(R.color.link_color); // 设置文本颜色
-                        // 去掉下划线
-                        ds.setUnderlineText(false);
-                    }
-
-                }, start, start + name.length(), 0);
-            }
-        }
-        if (likeUsers.length < getLikeCount()) {
-            ssb.append("等");
-            int start = ssb.length();
-            String more = getLikeCount() + "人";
-            ssb.append(more);
-            ssb.setSpan(new ClickableSpan() {
-
-                @Override
-                public void onClick(View widget) {
-                    Bundle bundle = new Bundle();
-                    //                    bundle.putInt(BaseListFragment.BUNDLE_KEY_CATALOG,
-                    // getId());
-                    //                    a'sa'd.showSimpleBack(context,
-                    //                            SimpleBackPage.TWEET_LIKE_USER_LIST, bundle);
-                }
-
-                @Override
-                public void updateDrawState(TextPaint ds) {
-                    super.updateDrawState(ds);
-                    // ds.setColor(R.color.link_color); // 设置文本颜色
-                    // 去掉下划线
-                    ds.setUnderlineText(false);
-                }
-
-            }, start, start + more.length(), 0);
-            return ssb.append("觉得很赞");
-        } else {
-            return ssb.append("觉得很赞");
-        }
-    }
 }

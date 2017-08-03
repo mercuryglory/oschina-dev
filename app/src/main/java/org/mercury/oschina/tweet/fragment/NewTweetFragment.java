@@ -8,113 +8,100 @@ import android.widget.AdapterView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.http.HttpApi;
+import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.tweet.activity.TweetDetailActivity;
 import org.mercury.oschina.tweet.adapter.NewTweetAdapter;
 import org.mercury.oschina.tweet.bean.Tweet;
-import org.mercury.oschina.tweet.bean.TweetsList;
-import org.mercury.oschina.tweet.net.HttpApi;
-import org.mercury.oschina.Constant;
-import org.mercury.oschina.tweet.util.Utils;
-import org.mercury.oschina.tweet.util.XmlUtils;
+import org.mercury.oschina.tweet.bean.TweetResponse;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import okhttp3.Call;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * 创建者:    Mercury
  * 创建时间:  2016/8/14
  * 描述:      最新动弹
  */
-public class NewTweetFragment extends BaseFragment implements AdapterView.OnItemClickListener,PullToRefreshBase.OnRefreshListener {
-
+public class NewTweetFragment extends BaseFragment implements AdapterView.OnItemClickListener,
+        PullToRefreshBase.OnRefreshListener {
 
     @Bind(R.id.ptr_tweet_refresh)
     PullToRefreshListView mPtrListView;
 
     public NewTweetAdapter mAdapter;
-    public List<Tweet>     mList;
+    public List<Tweet>     mData;
 
-    int    pageIndex = 0;
-    String uid       = "0";
-    public StringCallback mCallback;
-    public boolean        isLoadMore;
+    int pageIndex = 1;
+    public boolean isLoadMore;
 
 
     @Override
     protected Object loadDataThread() {
         loadData();
-        return mList;
+        return mData;
+    }
+
+    protected Call<TweetResponse> getCall() {
+        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+        Call<TweetResponse> tweetData = retrofitCall.getTweetData("0", pageIndex);
+        return tweetData;
     }
 
     public void loadData() {
 
-        if (mCallback == null) {
-            mCallback = new StringCallback() {
-                @Override
-                public void onError(Call call, Exception e, int i) {
-                    if (mPtrListView != null) {
-
-                        mPtrListView.onRefreshComplete();
-                    }
+        Call<TweetResponse> tweetData = getCall();
+        tweetData.enqueue(new Callback<TweetResponse>() {
+            @Override
+            public void onResponse(Call<TweetResponse> call, Response<TweetResponse> response) {
+                TweetResponse bean = response.body();
+                mData = bean.getTweetlist();
+                mLoadPager.currentState = mLoadPager.checkData(mData);
+                mLoadPager.showPage();
+                if (isLoadMore) {
+                    loadMore();
+                } else {
+                    refresh();
                 }
 
-                @Override
-                public void onResponse(String response, int i) {
+                mPtrListView.onRefreshComplete();
+            }
 
-                    if (mLoadPager != null) {
-                        TweetsList tweetsList = XmlUtils.toBean(TweetsList.class, response);
-                        mList = tweetsList.getList();
+            @Override
+            public void onFailure(Call<TweetResponse> call, Throwable t) {
+                mPtrListView.onRefreshComplete();
+            }
+        });
 
-                        Utils.runOnUIThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                mLoadPager.currentState = mLoadPager.checkData(mList);
-                                mLoadPager.showPage();
-                                if (isLoadMore) {
-                                    loadMore();
-                                } else {
-                                    refresh();
-                                }
-
-                                if (mPtrListView != null) {
-                                    mPtrListView.onRefreshComplete();
-                                }
-
-                            }
-                        });
-                    }
-                }
-            };
-        }
-        HttpApi.getTweetList(pageIndex, uid, mCallback);
     }
 
 
     public void loadMore() {
         if (mAdapter == null) {
             mAdapter = new NewTweetAdapter();
-            mAdapter.updateDatas(mList);
+            mAdapter.updateDatas(mData);
             mPtrListView.setAdapter(mAdapter);
         } else {
-            mAdapter.addDatas(mList);
+            mAdapter.addDatas(mData);
         }
     }
 
     public void refresh() {
-
         if (mAdapter == null) {
             mAdapter = new NewTweetAdapter();
-            mAdapter.updateDatas(mList);
+            mAdapter.updateDatas(mData);
             mPtrListView.setAdapter(mAdapter);
         } else {
-            mAdapter.updateDatas(mList);
+            mAdapter.updateDatas(mData);
         }
     }
 
@@ -129,9 +116,8 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
         super.onViewCreated(view, savedInstanceState);
         //初始化控件
         ButterKnife.bind(this, view);
-        mPtrListView = (PullToRefreshListView) view.findViewById(R.id.ptr_tweet_refresh);
-        mPtrListView.setMode(PullToRefreshBase.Mode.BOTH);
 
+        mPtrListView.setMode(PullToRefreshBase.Mode.BOTH);
         mPtrListView.setOnRefreshListener(this);
         mPtrListView.setOnItemClickListener(this);
 
@@ -160,7 +146,7 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
 
             case PULL_FROM_START:
                 isLoadMore = false;
-                pageIndex = 0;
+                pageIndex = 1;
                 loadData();
                 break;
 

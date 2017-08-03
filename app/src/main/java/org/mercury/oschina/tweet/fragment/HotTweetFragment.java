@@ -12,8 +12,12 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.http.HttpApi;
+import org.mercury.oschina.http.RequestHelper;
+import org.mercury.oschina.tweet.bean.TweetResponse;
 
 import butterknife.ButterKnife;
+import retrofit2.Call;
 
 
 /**
@@ -39,6 +43,13 @@ public class HotTweetFragment extends NewTweetFragment implements AdapterView.On
         mPtrListView.setOnRefreshListener(this);
         mPtrListView.setOnItemClickListener(this);
 
+    }
+
+    @Override
+    protected Call<TweetResponse> getCall() {
+        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+        Call<TweetResponse> tweetData = retrofitCall.getTweetData("-1", pageIndex);
+        return tweetData;
     }
 
     @Override
