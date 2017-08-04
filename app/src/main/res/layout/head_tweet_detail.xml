@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -13,42 +14,20 @@
             android:id="@+id/iv_tweet_face"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_margin="10dp"
             android:clickable="true"
             android:src="@mipmap/widget_dface" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/tv_tweet_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="Author Name"
-                android:textColor="@color/spinner_background_press"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tv_tweet_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="time" />
-        </LinearLayout >
-
         <TextView
-            android:id="@+id/tv_tweet_platform"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_tweet_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:drawableLeft="@mipmap/platform"
-            android:padding="5dp"
-            android:text="iPhone"
-            android:textSize="10sp" />
+            android:layout_gravity="center_vertical"
+            android:maxLines="1"
+            android:text="Author Name"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
 
     </LinearLayout >
 
@@ -56,15 +35,9 @@
         android:id="@+id/wv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:scrollbars="none" />
-    <!--<org.lion.oschina.tweet.widget.TweetTextView
-        android:id="@+id/tv_tweet_body"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="宝宝不哭"
-        android:textColor="#4f4f4f" />-->
 
     <ImageView
         android:id="@+id/iv_tweet_image"
@@ -75,39 +48,32 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="right"
-        android:orientation="horizontal" >
+        android:padding="10dp" >
 
-        <ImageView
-            android:id="@+id/iv_like_state"
+        <TextView
+            android:id="@+id/tv_tweet_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:src="@mipmap/ic_thumbup_normal" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/ic_comment_30" />
+            android:text="time" />
 
         <TextView
             android:id="@+id/tv_tweet_comment_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
+            android:layout_alignParentRight="true"
             android:text="5" />
-    </LinearLayout >
 
-    <org.mercury.oschina.tweet.widget.TweetTextView
-        android:id="@+id/tv_tweet_like"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="12sp"
-        android:text="红薯觉得很赞"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/tv_tweet_comment_count"
+            android:src="@mipmap/ic_comment_30" />
+
+    </RelativeLayout >
+
 </LinearLayout >

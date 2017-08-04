@@ -1,6 +1,8 @@
 package org.mercury.oschina.http;
 
 import org.mercury.oschina.bean.AccessToken;
+import org.mercury.oschina.tweet.bean.CommentList;
+import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
 
 import java.util.Map;
@@ -20,6 +22,12 @@ public interface HttpApi {
     Call<AccessToken> getAccessToken(@QueryMap Map<String,String> params);
 
     @GET("tweet_list")
-    Call<TweetResponse> getTweetData(@Query("user") String user, @Query("page") int page);
+    Call<TweetResponse> getTweetList(@Query("user") String user, @Query("page") int page);
 
+    @GET("tweet_detail")
+    Call<Tweet> getTweetDetail(@Query("id") int id);
+
+    @GET("comment_list")
+    Call<CommentList> getCommentList(@Query("id") int id, @Query("catalog") int catalog, @Query
+            ("page") int page);
 }

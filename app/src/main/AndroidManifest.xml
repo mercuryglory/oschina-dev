@@ -65,7 +65,9 @@
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" />
 
         <activity android:name="org.mercury.oschina.tweet.activity.UserHomeActivity" />
-        <activity android:name="org.mercury.oschina.tweet.activity.PhotoActivity" />
+        <activity android:name="org.mercury.oschina.tweet.activity.PhotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Account_Base.App.Theme.NoTitle"/>
         <activity android:name="org.mercury.oschina.tweet.activity.WebActivity" />
 
         <activity

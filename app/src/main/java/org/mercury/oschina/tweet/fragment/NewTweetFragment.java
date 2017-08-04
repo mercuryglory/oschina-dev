@@ -53,7 +53,7 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
 
     protected Call<TweetResponse> getCall() {
         HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
-        Call<TweetResponse> tweetData = retrofitCall.getTweetData("0", pageIndex);
+        Call<TweetResponse> tweetData = retrofitCall.getTweetList("0", pageIndex);
         return tweetData;
     }
 

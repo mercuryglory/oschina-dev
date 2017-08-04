@@ -48,7 +48,7 @@ public class HotTweetFragment extends NewTweetFragment implements AdapterView.On
     @Override
     protected Call<TweetResponse> getCall() {
         HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
-        Call<TweetResponse> tweetData = retrofitCall.getTweetData("-1", pageIndex);
+        Call<TweetResponse> tweetData = retrofitCall.getTweetList("-1", pageIndex);
         return tweetData;
     }
 

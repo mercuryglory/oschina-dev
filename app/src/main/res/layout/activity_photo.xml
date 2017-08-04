@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context="org.mercury.oschina.tweet.activity.PhotoActivity" >
 
     <uk.co.senab.photoview.PhotoView
+        android:layout_centerInParent="true"
         android:id="@+id/pv_screen"
-        android:scaleType="centerInside"
+        android:scaleType="fitCenter"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout >

@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 
 import org.mercury.oschina.tweet.holder.BasicHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 public abstract class BasicAdapter<T> extends BaseAdapter {
 
 
-    private List<T> mShowItems;
+    private List<T> mShowItems = new ArrayList<>();
 
     public void updateDatas(List<T> list) {
         this.mShowItems = list;

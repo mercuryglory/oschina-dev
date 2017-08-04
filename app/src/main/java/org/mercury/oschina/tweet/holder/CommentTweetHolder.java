@@ -47,14 +47,14 @@ public class CommentTweetHolder extends BasicHolder<Comment> {
 
     @Override
     public void bindView(ViewGroup parent, final Comment comment) {
-        GlideUtils.loadCircleImage(parent.getContext(), comment.getPortrait(), mIvTweetFace);
+        GlideUtils.loadCircleImage(parent.getContext(), comment.getCommentPortrait(), mIvTweetFace);
         //头像跳转
         mIvTweetFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User user = new User();
-                user.setId(comment.getAuthorId());
-                user.setName(comment.getAuthor());
+                user.setId(comment.getCommentAuthorId());
+                user.setName(comment.getCommentAuthor());
 
                 Intent intent = new Intent(AppContext.context, UserHomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -64,7 +64,7 @@ public class CommentTweetHolder extends BasicHolder<Comment> {
         });
 
 
-        mTvTweetName.setText(comment.getAuthor());
+        mTvTweetName.setText(comment.getCommentAuthor());
 
         //设置富文本
         mTvTweetBody.setMovementMethod(MyLinkMovementMethod.a());
@@ -76,7 +76,7 @@ public class CommentTweetHolder extends BasicHolder<Comment> {
         mTvTweetBody.setText(span);
         MyURLSpan.parseLinkText(mTvTweetBody, span);
 
-        switch (comment.getAppClient()) {
+        switch (comment.getClient_type()) {
             case 1:
                 mTvTweetPlatform.setVisibility(View.GONE);
                 break;

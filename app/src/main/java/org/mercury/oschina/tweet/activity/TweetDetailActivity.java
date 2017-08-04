@@ -13,30 +13,26 @@ import android.widget.ImageView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.emoji.EmojiView;
+import org.mercury.oschina.http.HttpApi;
+import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.tweet.adapter.CommentTweetAdapter;
 import org.mercury.oschina.tweet.bean.Comment;
 import org.mercury.oschina.tweet.bean.CommentList;
 import org.mercury.oschina.tweet.bean.Tweet;
-import org.mercury.oschina.tweet.bean.TweetDetail;
 import org.mercury.oschina.tweet.holder.TweetHeadHolder;
-import org.mercury.oschina.tweet.net.HttpApi;
-import org.mercury.oschina.tweet.url.TweetUrl;
-import org.mercury.oschina.Constant;
-import org.mercury.oschina.tweet.util.ToastUtil;
-import org.mercury.oschina.tweet.util.Utils;
-import org.mercury.oschina.tweet.util.XmlUtils;
 import org.mercury.oschina.utils.TDevice;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import okhttp3.Call;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by wang.zhonghao on 2017/5/25
@@ -63,7 +59,7 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
     private PullToRefreshListView mPtrListView;
 
     private boolean isLoadMore = false;
-    private int     pageIndex  = 0;
+    private int     page       = 1;
     private List<Comment> mList;
     private int           mId;
 
@@ -140,8 +136,8 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
     private void initData() {
         Intent intent = getIntent();
         mId = intent.getIntExtra(Constant.TWEET_DETAIL, 0);
-        getHttpData(mId);
-        getCommentData(mId);
+        getTweetDetail(mId);
+        getCommentData(mId, 3, page);
 
         toolbar.setTitle("动弹详情");
         setSupportActionBar(toolbar);
@@ -152,88 +148,63 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
             }
         });
 
+        mAdapter = new CommentTweetAdapter();
+        mPtrListView.setAdapter(mAdapter);
     }
 
-    private void getCommentData(int id) {
-        StringCallback callback = new StringCallback() {
+    private void getCommentData(int id, int catalog, int page) {
+        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+        Call<CommentList> commentList = retrofitCall.getCommentList(id, catalog, page);
+        commentList.enqueue(new Callback<CommentList>() {
             @Override
-            public void onError(Call call, Exception e, int i) {
-                mPtrListView.onRefreshComplete();
-                ToastUtil.showToast("请求失败");
-            }
-
-            @Override
-            public void onResponse(String response, int i) {
-                ToastUtil.showToast("请求成功");
-                CommentList commentList = XmlUtils.toBean(CommentList.class, response);
-                mList = commentList.getList();
-                Utils.runOnUIThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (isLoadMore) {
-                            loadMore();
-                        } else {
-                            refresh();
-                        }
-
-                        if (mPtrListView != null) {
-                            mPtrListView.onRefreshComplete();
-                        }
+            public void onResponse(Call<CommentList> call, Response<CommentList> response) {
+                CommentList body = response.body();
+                if (body != null && body.getCommentList().size() > 0) {
+                    mList = body.getCommentList();
+                    if (isLoadMore) {
+                        loadMore();
+                    } else {
+                        refresh();
                     }
-                });
-
+                    mPtrListView.onRefreshComplete();
+                }
             }
 
-        };
+            @Override
+            public void onFailure(Call<CommentList> call, Throwable t) {
 
-        HttpApi.getTweetComment(pageIndex, id, callback);
+            }
+        });
+
     }
 
     private void loadMore() {
-        if (mAdapter == null) {
-            mAdapter = new CommentTweetAdapter();
-            mAdapter.updateDatas(mList);
-            mPtrListView.setAdapter(mAdapter);
-        } else {
-            mAdapter.addDatas(mList);
-        }
+        mAdapter.addDatas(mList);
     }
 
     private void refresh() {
-
-        if (mAdapter == null) {
-            mAdapter = new CommentTweetAdapter();
-            mAdapter.updateDatas(mList);
-            mPtrListView.setAdapter(mAdapter);
-        } else {
-            mAdapter.updateDatas(mList);
-        }
+        mAdapter.updateDatas(mList);
     }
 
-    private void getHttpData(int id) {
-        StringCallback callback = new StringCallback() {
+    private void getTweetDetail(int id) {
+        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+        Call<Tweet> tweetDetail = retrofitCall.getTweetDetail(id);
+        tweetDetail.enqueue(new Callback<Tweet>() {
             @Override
-            public void onError(Call call, Exception e, int i) {
-                ToastUtil.showToast("请求失败");
+            public void onResponse(Call<Tweet> call, Response<Tweet> response) {
+                Tweet body = response.body();
+                if (body != null) {
+                    mTweetHeadHolder.bindView(mPtrListView, body);
+                }
+
             }
 
             @Override
-            public void onResponse(String response, int i) {
-                ToastUtil.showToast("请求成功");
-                TweetDetail tweetDetail = XmlUtils.toBean(TweetDetail.class, response);
-                final Tweet tweet = tweetDetail.getTweet();
-                Utils.runOnUIThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mTweetHeadHolder.bindView(mPtrListView, tweet);
-                    }
-                });
+            public void onFailure(Call<Tweet> call, Throwable t) {
 
             }
+        });
 
-        };
-        OkHttpUtils.get().url(TweetUrl.TWEET_DETAIL).addParams("id", id + "")
-                .build().execute(callback);
     }
 
 
@@ -248,14 +219,14 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
 
             case PULL_FROM_START:
                 isLoadMore = false;
-                pageIndex = 0;
-                getCommentData(mId);
+                page = 0;
+                getCommentData(mId, 3, page);
                 break;
 
             case PULL_FROM_END:
                 isLoadMore = true;
-                pageIndex++;
-                getCommentData(mId);
+                page++;
+                getCommentData(mId, 3, page);
                 break;
 
             default:

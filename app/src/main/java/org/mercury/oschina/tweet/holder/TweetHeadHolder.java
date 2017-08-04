@@ -1,6 +1,7 @@
 package org.mercury.oschina.tweet.holder;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
@@ -20,7 +21,6 @@ import org.mercury.oschina.tweet.activity.WebActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.GlideUtils;
-import org.mercury.oschina.tweet.widget.TweetTextView;
 import org.mercury.oschina.utils.StringUtils;
 
 import butterknife.Bind;
@@ -37,18 +37,12 @@ public class TweetHeadHolder extends BasicHolder<Tweet> {
     TextView      mTvTweetName;
     @Bind(R.id.tv_tweet_time)
     TextView      mTvTweetTime;
-    @Bind(R.id.tv_tweet_platform)
-    TextView      mTvTweetPlatform;
     @Bind(R.id.wv)
     WebView       mWv;
     @Bind(R.id.iv_tweet_image)
     ImageView     mIvTweetImage;
-    @Bind(R.id.iv_like_state)
-    ImageView     mIvLikeState;
     @Bind(R.id.tv_tweet_comment_count)
     TextView      mTvTweetCommentCount;
-    @Bind(R.id.tv_tweet_like)
-    TweetTextView mTvTweetLike;
 
     @Override
     public View createView() {
@@ -72,7 +66,7 @@ public class TweetHeadHolder extends BasicHolder<Tweet> {
             }
         });
 
-        if (tweet.getImgBig().equals("") && tweet.getImgSmall().equals("")) {
+        if (TextUtils.isEmpty(tweet.getImgBig()) && TextUtils.isEmpty(tweet.getImgSmall())) {
             mIvTweetImage.setVisibility(View.GONE);
         } else {
             mIvTweetImage.setVisibility(View.VISIBLE);
