@@ -17,6 +17,7 @@ import okhttp3.Response;
 
 /**
  * Created by Mercury on 2017/8/2.
+ * OKHttp 网络请求的拦截器
  */
 
 public class HttpInterceptor implements Interceptor {

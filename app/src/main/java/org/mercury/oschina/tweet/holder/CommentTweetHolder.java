@@ -77,16 +77,14 @@ public class CommentTweetHolder extends BasicHolder<Comment> {
         MyURLSpan.parseLinkText(mTvTweetBody, span);
 
         switch (comment.getClient_type()) {
-            case 1:
-                mTvTweetPlatform.setVisibility(View.GONE);
-                break;
             case 3:
-                mTvTweetPlatform.setVisibility(View.VISIBLE);
                 mTvTweetPlatform.setText("Android");
                 break;
             case 4:
-                mTvTweetPlatform.setVisibility(View.VISIBLE);
                 mTvTweetPlatform.setText("iPhone");
+                break;
+            case 5:
+                mTvTweetPlatform.setText("WP");
                 break;
             default:
                 break;

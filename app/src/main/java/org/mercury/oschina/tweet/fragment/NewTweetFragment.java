@@ -1,8 +1,6 @@
 package org.mercury.oschina.tweet.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -11,19 +9,16 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.tweet.activity.TweetDetailActivity;
 import org.mercury.oschina.tweet.adapter.NewTweetAdapter;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
-import org.mercury.oschina.tweet.manager.LoadPager;
 
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,12 +40,15 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
     int pageIndex = 1;
     public boolean isLoadMore;
 
-
     @Override
-    protected Object loadDataThread() {
+    protected void initData() {
+        mPtrListView.setMode(PullToRefreshBase.Mode.BOTH);
+        mPtrListView.setOnRefreshListener(this);
+        mPtrListView.setOnItemClickListener(this);
+
         loadData();
-        return mData;
     }
+
 
     protected Call<TweetResponse> getCall() {
         HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
@@ -66,8 +64,6 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
             public void onResponse(Call<TweetResponse> call, Response<TweetResponse> response) {
                 TweetResponse bean = response.body();
                 mData = bean.getTweetlist();
-                mLoadPager.currentState = mLoadPager.checkData(mData);
-                mLoadPager.showPage();
                 if (isLoadMore) {
                     loadMore();
                 } else {
@@ -80,8 +76,6 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
             @Override
             public void onFailure(Call<TweetResponse> call, Throwable t) {
                 mPtrListView.onRefreshComplete();
-                mLoadPager.currentState = LoadPager.state_success;
-                mLoadPager.showPage();
 
             }
         });
@@ -110,34 +104,8 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
     }
 
     @Override
-    protected View createView() {
-        View view = View.inflate(AppContext.context, R.layout.fragment_tweet_refresh, null);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //初始化控件
-        ButterKnife.bind(this, view);
-
-        mPtrListView.setMode(PullToRefreshBase.Mode.BOTH);
-        mPtrListView.setOnRefreshListener(this);
-        mPtrListView.setOnItemClickListener(this);
-
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(AppContext.context, TweetDetailActivity.class);
+        Intent intent = new Intent(getContext(), TweetDetailActivity.class);
         Tweet tweet = mAdapter.getShowItems().get((int) id);
         intent.putExtra(Constant.TWEET_DETAIL, tweet.getId());
         startActivity(intent);
@@ -164,5 +132,10 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
                 break;
 
         }
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_tweet_refresh;
     }
 }
