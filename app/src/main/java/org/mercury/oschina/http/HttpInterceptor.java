@@ -1,5 +1,8 @@
 package org.mercury.oschina.http;
 
+import android.content.Intent;
+
+import org.mercury.oschina.AuthActivity;
 import org.mercury.oschina.Constant;
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.utils.AccessTokenHelper;
@@ -23,6 +26,13 @@ public class HttpInterceptor implements Interceptor {
         Request oldRequest = chain.request();
 
         Request newRequest = addParam(oldRequest);
+        int code = chain.proceed(newRequest).code();
+        if (code == 401) {
+            Intent intent = new Intent(AppContext.context, AuthActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            AppContext.context.startActivity(intent);
+
+        }
         return chain.proceed(newRequest);
     }
 

@@ -18,6 +18,7 @@ import org.mercury.oschina.tweet.activity.TweetDetailActivity;
 import org.mercury.oschina.tweet.adapter.NewTweetAdapter;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
+import org.mercury.oschina.tweet.manager.LoadPager;
 
 import java.util.List;
 
@@ -79,6 +80,9 @@ public class NewTweetFragment extends BaseFragment implements AdapterView.OnItem
             @Override
             public void onFailure(Call<TweetResponse> call, Throwable t) {
                 mPtrListView.onRefreshComplete();
+                mLoadPager.currentState = LoadPager.state_success;
+                mLoadPager.showPage();
+
             }
         });
 
