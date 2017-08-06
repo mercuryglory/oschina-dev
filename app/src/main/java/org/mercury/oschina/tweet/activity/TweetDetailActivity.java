@@ -1,8 +1,6 @@
 package org.mercury.oschina.tweet.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +14,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
+import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.emoji.EmojiView;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
@@ -29,7 +28,6 @@ import org.mercury.oschina.utils.TDevice;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,7 +36,7 @@ import retrofit2.Response;
  * Created by wang.zhonghao on 2017/5/25
  * descript:  动弹详情
  */
-public class TweetDetailActivity extends AppCompatActivity implements AdapterView
+public class TweetDetailActivity extends BaseActivity implements AdapterView
         .OnItemClickListener, PullToRefreshBase.OnRefreshListener {
 
     @Bind(R.id.toolbar)
@@ -51,12 +49,8 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
     ImageView             ivTweetEmoji;
     @Bind(R.id.emoji_keyboard_fragment)
     FrameLayout           emojiKeyboardFragment;
-    private EditText    mEtContent;
-    private ImageView   mIvTweetEmoji;
-    private FrameLayout mEmojiKeyboardFragment;
 
     private CommentTweetAdapter   mAdapter;
-    private PullToRefreshListView mPtrListView;
 
     private boolean isLoadMore = false;
     private int     page       = 1;
@@ -67,57 +61,29 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
     private EmojiView       mEmojiView;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tweet_detail);
-        ButterKnife.bind(this);
-
-
-        mEtContent = (EditText) findViewById(R.id.et_content);
-        mIvTweetEmoji = (ImageView) findViewById(R.id.iv_tweet_emoji);
-
-        //占位弹出选择框
-        mEmojiKeyboardFragment = (FrameLayout) findViewById(R.id.emoji_keyboard_fragment);
-
-
-        mPtrListView = (PullToRefreshListView) findViewById(R.id.ptr_tweet_refresh);
-        mTweetHeadHolder = new TweetHeadHolder();
-        mPtrListView.getRefreshableView().addHeaderView(mTweetHeadHolder.getView());
-        initEmoji();
-        initEvent();
-        initData();
-    }
-
-
     private void initEmoji() {
 
-        mEtContent.setFocusable(true);
-        mEtContent.setFocusableInTouchMode(true);
-        mEtContent.requestFocus();
+        etContent.setFocusable(true);
+        etContent.setFocusableInTouchMode(true);
+        etContent.requestFocus();
 
         //弹出表情选择框
-        mIvTweetEmoji.setOnClickListener(new View.OnClickListener() {
+        ivTweetEmoji.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
                 if (mEmojiView == null) {
-                    mEmojiView = new EmojiView(TweetDetailActivity.this, mEtContent);
-                    mEmojiKeyboardFragment.addView(mEmojiView);
+                    mEmojiView = new EmojiView(TweetDetailActivity.this, etContent);
+                    emojiKeyboardFragment.addView(mEmojiView);
                 }
                 mEmojiView.openPanel();
-                TDevice.closeKeyboard(mEtContent);
+                TDevice.closeKeyboard(etContent);
 
             }
         });
     }
 
-    private void initEvent() {
-        mPtrListView.setMode(PullToRefreshBase.Mode.BOTH);
-        mPtrListView.setOnRefreshListener(this);
-        mPtrListView.setOnItemClickListener(this);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -133,7 +99,15 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
         return super.onOptionsItemSelected(item);
     }
 
-    private void initData() {
+    protected void initData() {
+        mTweetHeadHolder = new TweetHeadHolder();
+        ptrTweetRefresh.getRefreshableView().addHeaderView(mTweetHeadHolder.getView());
+        initEmoji();
+
+        ptrTweetRefresh.setMode(PullToRefreshBase.Mode.BOTH);
+        ptrTweetRefresh.setOnRefreshListener(this);
+        ptrTweetRefresh.setOnItemClickListener(this);
+
         Intent intent = getIntent();
         mId = intent.getIntExtra(Constant.TWEET_DETAIL, 0);
         getTweetDetail(mId);
@@ -149,7 +123,12 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
         });
 
         mAdapter = new CommentTweetAdapter();
-        mPtrListView.setAdapter(mAdapter);
+        ptrTweetRefresh.setAdapter(mAdapter);
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_tweet_detail;
     }
 
     private void getCommentData(int id, int catalog, int page) {
@@ -159,15 +138,15 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onResponse(Call<CommentList> call, Response<CommentList> response) {
                 CommentList body = response.body();
-                if (body != null && body.getCommentList().size() > 0) {
+                if (body.getCommentList() != null && body.getCommentList().size() > 0) {
                     mList = body.getCommentList();
                     if (isLoadMore) {
                         loadMore();
                     } else {
                         refresh();
                     }
-                    mPtrListView.onRefreshComplete();
                 }
+                ptrTweetRefresh.onRefreshComplete();
             }
 
             @Override
@@ -194,7 +173,7 @@ public class TweetDetailActivity extends AppCompatActivity implements AdapterVie
             public void onResponse(Call<Tweet> call, Response<Tweet> response) {
                 Tweet body = response.body();
                 if (body != null) {
-                    mTweetHeadHolder.bindView(mPtrListView, body);
+                    mTweetHeadHolder.bindView(ptrTweetRefresh, body);
                 }
 
             }

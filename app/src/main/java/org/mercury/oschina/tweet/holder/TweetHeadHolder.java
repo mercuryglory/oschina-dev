@@ -84,6 +84,7 @@ public class TweetHeadHolder extends BasicHolder<Tweet> {
             });
         }
 
+        mTvTweetCommentCount.setText(tweet.getCommentCount() + "");
         mTvTweetName.setText(tweet.getAuthor());
         mTvTweetTime.setText(StringUtils.friendly_time(tweet.getPubDate()));
 

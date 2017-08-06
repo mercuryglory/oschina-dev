@@ -74,7 +74,8 @@
             android:name="org.mercury.oschina.tweet.activity.TweetDetailActivity"
             android:label="动弹详情"
             android:screenOrientation="portrait"
-            android:theme="@style/Base.App.Theme.NoTitle" />
+            android:theme="@style/Base.App.Theme.NoTitle"
+            android:windowSoftInputMode="adjustResize"/>
 
         <activity android:name="org.mercury.oschina.main.activity.BlogActivity" />
         <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity" />

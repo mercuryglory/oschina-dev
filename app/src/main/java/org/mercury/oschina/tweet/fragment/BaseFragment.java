@@ -57,7 +57,7 @@ public abstract class BaseFragment extends Fragment {
             mRoot = inflater.inflate(getLayoutId(), container, false);
             mInflater = inflater;
 
-            //可留给子类重写
+            //可留给子类重写,这里面不要做操作控件的事情
             onBindViewBefore(mRoot);
 
             ButterKnife.bind(this, mRoot);
