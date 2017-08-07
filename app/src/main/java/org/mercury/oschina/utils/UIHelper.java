@@ -793,7 +793,7 @@ public class UIHelper {
 //     * @param context
 //     */
 //    public static void showScanActivity(Context context) {
-//        Intent intent = new Intent(context, CaptureActivity.class);
+//        Intent intent = new Intent(context, QRCodeActivity.class);
 //        context.startActivity(intent);
 //    }
 //

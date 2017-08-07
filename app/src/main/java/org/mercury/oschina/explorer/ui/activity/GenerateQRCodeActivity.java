@@ -2,7 +2,6 @@ package org.mercury.oschina.explorer.ui.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -15,8 +14,6 @@ import org.mercury.oschina.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.bingoogolapple.qrcode.core.BGAQRCodeUtil;
-import cn.bingoogolapple.qrcode.zxing.QRCodeEncoder;
 
 public class GenerateQRCodeActivity extends AppCompatActivity {
     @Bind(R.id.iv_generate_qrcode)
@@ -46,8 +43,10 @@ public class GenerateQRCodeActivity extends AppCompatActivity {
         new AsyncTask<Void, Void, Bitmap>() {
             @Override
             protected Bitmap doInBackground(Void... params) {
-                Bitmap logoBitmap = BitmapFactory.decodeResource(GenerateQRCodeActivity.this.getResources(), R.mipmap.ic_launcher);
-                return QRCodeEncoder.syncEncodeQRCode("http://www.baidu.com", BGAQRCodeUtil.dp2px(GenerateQRCodeActivity.this, 250), Color.parseColor("#FFAACE5F"), logoBitmap);
+                Bitmap logoBitmap = BitmapFactory.decodeResource(GenerateQRCodeActivity.this
+                        .getResources(), R.mipmap.ic_launcher);
+                return logoBitmap;
+//                return QRCodeEncoder.syncEncodeQRCode("http://www.baidu.com", BGAQRCodeUtil.dp2px(GenerateQRCodeActivity.this, 250), Color.parseColor("#FFAACE5F"), logoBitmap);
             }
 
             @Override

@@ -23,7 +23,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon" >
+        tools:replace="android:icon"
+        >
 
         <activity
             android:name=".WelcomeActivity"
@@ -45,7 +46,6 @@
         <activity android:name="org.mercury.oschina.main.activity.UserDetailsActivity" />
         <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity" />
         <activity android:name="org.mercury.oschina.main.activity.MsgActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.QRCodeActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ShakeActivity" />
         <activity
             android:name="org.mercury.oschina.main.activity.QuickTextActivity"
@@ -59,6 +59,11 @@
             android:configChanges="keyboardHidden|orientation"
             android:theme="@style/Account_Base.App.Theme.NoTitle"
             />
+
+        <activity android:name="com.qrcode.zxing.activity.QRCodeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
         <activity android:name="org.mercury.oschina.main.activity.QuickViodeActivity" />
         <activity android:name="org.mercury.oschina.main.activity.TextDialogActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity" />

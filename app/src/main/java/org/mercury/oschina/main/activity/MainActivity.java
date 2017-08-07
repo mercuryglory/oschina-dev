@@ -20,12 +20,13 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.qrcode.zxing.activity.QRCodeActivity;
+
 import org.mercury.oschina.R;
-import org.mercury.oschina.explorer.ui.activity.QRCodeActivity;
+import org.mercury.oschina.main.MainTab;
 import org.mercury.oschina.utils.Constants;
 import org.mercury.oschina.utils.Notice;
 import org.mercury.oschina.widget.BadgeView;
-import org.mercury.oschina.main.MainTab;
 import org.mercury.oschina.widget.OnTabReselectListener;
 
 import butterknife.Bind;

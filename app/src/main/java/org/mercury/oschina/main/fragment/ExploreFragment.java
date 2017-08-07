@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.qrcode.zxing.activity.QRCodeActivity;
+
 import org.mercury.oschina.R;
 import org.mercury.oschina.explorer.ui.activity.CampaignActivity;
 import org.mercury.oschina.explorer.ui.activity.FindUserActivity;
 import org.mercury.oschina.explorer.ui.activity.FriendCircleActivity;
 import org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity;
-import org.mercury.oschina.explorer.ui.activity.QRCodeActivity;
 import org.mercury.oschina.explorer.ui.activity.ShakeActivity;
 import org.mercury.oschina.main.BaseTitleFragment;
 
