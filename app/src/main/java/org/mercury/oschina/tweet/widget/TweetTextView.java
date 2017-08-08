@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 
 public class TweetTextView extends TextView {
-	
+
 	private final static String AT_HOST_PRE = "https://my.oschina.net";
 	private final static String MAIN_HOST = "https://www.oschina.net";
 
@@ -53,7 +53,7 @@ public class TweetTextView extends TextView {
 			Layout layout = getLayout();
 			int line = layout.getLineForVertical(y);
 			int offset = layout.getOffsetForHorizontal(line, x);
-			
+
 			float width = layout.getLineWidth(line);
 			if (y > width) {
 				offset = y;
@@ -103,7 +103,7 @@ public class TweetTextView extends TextView {
 	public void setDispatchToParent(boolean flag) {
 		dispatchToParent = flag;
 	}
-	
+
 	public static String modifyPath(String message) {
 		message = message.replaceAll("(<a[^>]+href=\")/([\\S]+)\"", "$1"
 				+ AT_HOST_PRE + "/$2\"");

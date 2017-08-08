@@ -30,7 +30,7 @@
                 android:id="@+id/tv_tweet_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:text="Author Name"
                 android:textColor="@color/spinner_background_press"
                 android:textSize="16sp" />
@@ -39,7 +39,7 @@
                 android:id="@+id/tv_tweet_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:includeFontPadding="false"

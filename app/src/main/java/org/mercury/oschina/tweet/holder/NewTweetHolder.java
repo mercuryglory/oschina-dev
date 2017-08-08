@@ -1,9 +1,8 @@
 package org.mercury.oschina.tweet.holder;
 
 import android.content.Intent;
-import android.text.Html;
-import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,10 +17,8 @@ import org.mercury.oschina.tweet.activity.PhotoActivity;
 import org.mercury.oschina.tweet.activity.UserHomeActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
-import org.mercury.oschina.tweet.emoji.InputHelper;
-import org.mercury.oschina.tweet.extra.MyURLSpan;
 import org.mercury.oschina.tweet.util.GlideUtils;
-import org.mercury.oschina.tweet.widget.MyLinkMovementMethod;
+import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.tweet.widget.TweetTextView;
 import org.mercury.oschina.utils.StringUtils;
 
@@ -77,14 +74,14 @@ public class NewTweetHolder extends BasicHolder<Tweet> {
         mTvTweetName.setText(tweet.getAuthor());
 
         //设置内容中的富文本
-        mTvTweetBody.setMovementMethod(MyLinkMovementMethod.a());
-        mTvTweetBody.setFocusable(false);
-        mTvTweetBody.setDispatchToParent(true);
-        mTvTweetBody.setLongClickable(false);
-        Spanned span = Html.fromHtml(TweetTextView.modifyPath(tweet.getBody()));
-        span = InputHelper.displayEmoji(AppContext.context().getResources(), span);
-        mTvTweetBody.setText(span);
-        MyURLSpan.parseLinkText(mTvTweetBody, span);
+        if (!TextUtils.isEmpty(tweet.getBody())) {
+            String content = tweet.getBody().replaceAll("[\n\\s]+", " ");
+            mTvTweetBody.setText(TweetParser.getInstance().parse(parent.getContext(), content));
+            mTvTweetBody.setMovementMethod(LinkMovementMethod.getInstance());
+            mTvTweetBody.setFocusable(false);
+            mTvTweetBody.setDispatchToParent(true);
+            mTvTweetBody.setLongClickable(false);
+        }
 
         //赞.直接调用bean里面已经封装好的方法
 //        tweet.setLikeUsers(parent.getContext(), mTvTweetLike, true);
