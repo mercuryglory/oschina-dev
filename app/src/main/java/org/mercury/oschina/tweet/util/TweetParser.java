@@ -32,6 +32,8 @@ public class TweetParser extends RichTextParser {
         spannable = parseOnlyGit(context, spannable);
         spannable = parseOnlyTag(context, spannable);
         spannable = parseOnlyLink(context, spannable);
+        spannable = parseOnlyImgSrc(context, spannable);
+        spannable = parseOnlyEmoji(context, spannable);
         spannable = InputHelper.displayEmoji(context.getResources(), spannable);
         return spannable;
     }

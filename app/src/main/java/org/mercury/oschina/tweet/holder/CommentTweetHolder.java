@@ -1,23 +1,21 @@
 package org.mercury.oschina.tweet.holder;
 
 import android.content.Intent;
-import android.text.Html;
-import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.tweet.activity.UserHomeActivity;
 import org.mercury.oschina.tweet.bean.Comment;
 import org.mercury.oschina.tweet.bean.User;
-import org.mercury.oschina.tweet.emoji.InputHelper;
-import org.mercury.oschina.tweet.extra.MyURLSpan;
-import org.mercury.oschina.Constant;
 import org.mercury.oschina.tweet.util.GlideUtils;
-import org.mercury.oschina.tweet.widget.MyLinkMovementMethod;
+import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.tweet.widget.TweetTextView;
 import org.mercury.oschina.utils.StringUtils;
 
@@ -67,14 +65,14 @@ public class CommentTweetHolder extends BasicHolder<Comment> {
         mTvTweetName.setText(comment.getCommentAuthor());
 
         //设置富文本
-        mTvTweetBody.setMovementMethod(MyLinkMovementMethod.a());
-        mTvTweetBody.setFocusable(false);
-        mTvTweetBody.setDispatchToParent(true);
-        mTvTweetBody.setLongClickable(false);
-        Spanned span = Html.fromHtml(TweetTextView.modifyPath(comment.getContent()));
-        span = InputHelper.displayEmoji(AppContext.context().getResources(), span);
-        mTvTweetBody.setText(span);
-        MyURLSpan.parseLinkText(mTvTweetBody, span);
+        if (!TextUtils.isEmpty(comment.getContent())) {
+            String content = comment.getContent().replaceAll("[\n\\s]+", " ");
+            mTvTweetBody.setText(TweetParser.getInstance().parse(parent.getContext(), content));
+            mTvTweetBody.setMovementMethod(LinkMovementMethod.getInstance());
+            mTvTweetBody.setFocusable(false);
+            mTvTweetBody.setDispatchToParent(true);
+            mTvTweetBody.setLongClickable(false);
+        }
 
         switch (comment.getClient_type()) {
             case 3:

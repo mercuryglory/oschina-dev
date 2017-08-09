@@ -24,6 +24,19 @@ public abstract class RichTextParser {
             "<a href=['\"]http[s]?://my.oschina.net/(\\w+|u/([0-9]+))['\"][^<>]+>(@([^@<>]+))</a>"
     );
 
+
+    private static final Pattern PatternAtImgSrc =Pattern.compile(
+      "<img src=['\"]http[s]?://www.oschina.net/.+['\"]\\s+alt=['\"](\\d+)['\"]>"
+    );
+
+    /**
+     * <emoji align="absmiddle" data-emoji="emoji heart_eyes" data-name="heart_eyes"></emoji>
+     */
+    private static final Pattern PatternAtEmoji=Pattern.compile(
+            "<emoji\\s+.+data-name=['\"](\\w+)['\"]></emoji>"
+    );
+
+
     static final Pattern PatternAtUser = Pattern.compile(
             "@[^@\\s:]+"
     );
@@ -309,6 +322,50 @@ public abstract class RichTextParser {
                 UIHelper.showUrlRedirect(context, str);
             }
         });
+    }
+
+    /**
+     * 格式化 <img src="http://www.oschina.net/js/ke/plugins/emoticons/13.gif" alt="13">
+     * 输出:[13]
+     */
+    static Spannable parseOnlyImgSrc(final Context context, CharSequence content) {
+        SpannableStringBuilder builder = new SpannableStringBuilder(content);
+        Matcher matcher;
+        while (true) {
+            matcher = PatternAtImgSrc.matcher(builder.toString());
+            if (matcher.find()) {
+                final String group0 = matcher.group(1); // ident 标识 如retrofit
+                SpannableStringBuilder replace = builder.replace(matcher.start(), matcher.end(),
+                        "[" + group0 + "]");
+                builder.setSpan(null, matcher.start(), matcher.start() + group0.length(),
+                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                continue;
+            }
+            break;
+        }
+        return builder;
+    }
+
+    /**
+     * 格式化<emoji align="absmiddle" data-emoji="emoji heart_eyes" data-name="heart_eyes"></emoji>
+     输出:    :heart_eyes:
+     */
+    static Spannable parseOnlyEmoji(final Context context, CharSequence content) {
+        SpannableStringBuilder builder = new SpannableStringBuilder(content);
+        Matcher matcher;
+        while (true) {
+            matcher = PatternAtEmoji.matcher(builder.toString());
+            if (matcher.find()) {
+                final String group0 = matcher.group(1); // ident 标识 如retrofit
+                SpannableStringBuilder replace = builder.replace(matcher.start(), matcher.end(),
+                        ":" + group0 + ":");
+                builder.setSpan(null, matcher.start(), matcher.start() + group0.length(),
+                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                continue;
+            }
+            break;
+        }
+        return builder;
     }
 
     public static boolean checkIsZH(String input) {
