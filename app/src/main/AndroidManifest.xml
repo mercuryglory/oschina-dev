@@ -90,7 +90,7 @@
 
         <activity android:name=".main.activity.MainActivity"
             android:theme="@style/App.Theme.Main"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             />
 
         <activity android:name=".AuthActivity"

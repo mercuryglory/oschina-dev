@@ -21,12 +21,6 @@
         <item>@string/main_tab_name_my</item>
     </string-array>
 
-    <string-array name="tweets_viewpage_arrays">
-        <item>最新动弹</item>
-        <item>热门动弹</item>
-        <item>我的动弹</item>
-    </string-array>
-
     <string-array name="quests_viewpage_arrays">
         <item>提问</item>
         <item>分享</item>

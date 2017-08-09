@@ -12,11 +12,6 @@ import org.mercury.oschina.main.fragment.UserFragment;
  */
 public enum MainTab {
 
-	/*
-    NEWS(0, R.string.main_tab_name_news, R.drawable.tab_icon_new,
-			NewsViewPagerFragment.class),
-			*/
-
     NEWS(0, R.string.main_tab_name_news, R.drawable.tab_icon_new,
             SynthesisFragment.class),
 
@@ -32,24 +27,24 @@ public enum MainTab {
     ME(4, R.string.main_tab_name_my, R.drawable.tab_icon_me,
             UserFragment.class);
 
-    private int      idx;
+    private int      id;
     private int      resName;
     private int      resIcon;
     private Class<?> clz;
 
-    MainTab(int idx, int resName, int resIcon, Class<?> clz) {
-        this.idx = idx;
+    MainTab(int id, int resName, int resIcon, Class<?> clz) {
+        this.id = id;
         this.resName = resName;
         this.resIcon = resIcon;
         this.clz = clz;
     }
 
-    public int getIdx() {
-        return idx;
+    public int getId() {
+        return id;
     }
 
-    public void setIdx(int idx) {
-        this.idx = idx;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getResName() {
