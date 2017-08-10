@@ -4,7 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <org.mercury.oschina.widget.recyclerload.HaoRecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        </org.mercury.oschina.widget.recyclerload.HaoRecyclerView >
+
+    </android.support.v4.widget.SwipeRefreshLayout >
+
+   <!-- <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/ptr_tweet_refresh"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -22,6 +36,6 @@
         ptr:ptrHeaderTextColor="#2da9b6"
         ptr:ptrHeaderBackground="#E5FCE8"
         >
-    </com.handmark.pulltorefresh.library.PullToRefreshListView >
+    </com.handmark.pulltorefresh.library.PullToRefreshListView >-->
 
 </FrameLayout >

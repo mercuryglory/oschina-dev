@@ -113,7 +113,7 @@ public class AllActivityWebView extends AppCompatActivity {
                         WebSettings settings = mWv2.getSettings();
                         settings.setJavaScriptEnabled(true);
                         //mWv2.loadUrl(body);
-                       // mWv2.loadData(body,"text/html","utf-8");
+                       // mWv2.requestData(body,"text/html","utf-8");
                         mWv2.loadDataWithBaseURL(null,body,"text/html","utf-8",null);
                     }
                 });
