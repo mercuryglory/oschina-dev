@@ -11,13 +11,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.AppContext;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
-import org.mercury.oschina.tweet.activity.PhotoActivity;
 import org.mercury.oschina.tweet.activity.UserHomeActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
@@ -25,6 +22,7 @@ import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.tweet.widget.TweetTextView;
 import org.mercury.oschina.utils.StringUtils;
+import org.mercury.oschina.widget.TweetPicturesLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,7 +30,7 @@ import butterknife.ButterKnife;
 /**
  * 创建者:    Mercury
  * 创建时间:  2016/8/15
- * 描述:      ${TODO}
+ * 描述:      最新动弹 列表 适配器
  */
 public class NewTweetAdapter extends BaseRecyclerAdapter<Tweet> {
 
@@ -83,21 +81,22 @@ public class NewTweetAdapter extends BaseRecyclerAdapter<Tweet> {
         //        tweet.setLikeUsers(parent.getContext(), mTvTweetLike, true);
 
         if (TextUtils.isEmpty(data.getImgBig()) && TextUtils.isEmpty(data.getImgSmall())) {
-            holder.ivTweetImage.setVisibility(View.GONE);
+            holder.layoutTweetImage.setVisibility(View.GONE);
         } else {
-            holder.ivTweetImage.setVisibility(View.VISIBLE);
-            Glide.with(mContext).load(data.getImgBig()).into(holder.ivTweetImage);
+            holder.layoutTweetImage.setVisibility(View.VISIBLE);
+            holder.layoutTweetImage.setImage(data.getImgSmall());
+//            Glide.with(mContext).load(data.getImgBig()).into(holder.ivTweetImage);
             //使图片可以跳转到缩放界面
-            holder.ivTweetImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(AppContext.context, PhotoActivity
-                            .class);
-                    intent.putExtra(Constant.PICTURE, data.getImgBig());
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    AppContext.context().startActivity(intent);
-                }
-            });
+//            holder.ivTweetImage.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(AppContext.context, PhotoActivity
+//                            .class);
+//                    intent.putExtra(Constant.PICTURE, data.getImgBig());
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    AppContext.context().startActivity(intent);
+//                }
+//            });
         }
 
 
@@ -109,19 +108,19 @@ public class NewTweetAdapter extends BaseRecyclerAdapter<Tweet> {
 
     static class ViewHolder extends RecyclerView.ViewHolder{
         @Bind(R.id.iv_tweet_face)
-        ImageView      ivTweetFace;
+        ImageView           ivTweetFace;
         @Bind(R.id.tv_tweet_name)
-        TextView       tvTweetName;
+        TextView            tvTweetName;
         @Bind(R.id.tv_tweet_body)
-        TweetTextView  tvTweetBody;
-        @Bind(R.id.iv_tweet_image)
-        ImageView      ivTweetImage;
+        TweetTextView       tvTweetBody;
+        @Bind(R.id.layout_tweet_picture)
+        TweetPicturesLayout layoutTweetImage;
         @Bind(R.id.tv_tweet_time)
-        TextView       tvTweetTime;
+        TextView            tvTweetTime;
         @Bind(R.id.tv_tweet_comment_count)
-        TextView       tvTweetCommentCount;
+        TextView            tvTweetCommentCount;
         @Bind(R.id.rl_info)
-        RelativeLayout rlInfo;
+        RelativeLayout      rlInfo;
 
         ViewHolder(View view) {
             super(view);
