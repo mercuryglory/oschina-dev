@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Active;
 import org.mercury.oschina.utils.DisplayRules;
 

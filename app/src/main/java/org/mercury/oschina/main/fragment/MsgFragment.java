@@ -12,7 +12,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.adapter.CollectAdapter;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Favorite;
 import org.mercury.oschina.bean.FavoriteList;
 import org.mercury.oschina.utils.OschinaUri;

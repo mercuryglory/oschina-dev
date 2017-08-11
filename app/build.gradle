@@ -2,15 +2,15 @@ apply plugin: 'com.android.application'
 apply from:'../config/properties-util.gradle'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "org.mercury.oschina"
-        minSdkVersion 19
-        targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
         multiDexEnabled true
 
         buildConfigField("String", "API_SERVER_URL", '"https://www.oschina.net/;http://192.168.1.74:9090/"')
@@ -51,9 +51,9 @@ dependencies {
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'pub.devrel:easypermissions:0.3.0'
 
-    compile 'com.android.support:design:24.0.0'
-    compile 'com.android.support:support-v4:24.0.0'
-    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile "com.android.support:design:$rootProject.ext.supportVersion"
+    compile "com.android.support:support-v4:$rootProject.ext.supportVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
 
     // retrofit2 + rxjava 2
     compile 'com.squareup.retrofit2:retrofit:2.2.0'

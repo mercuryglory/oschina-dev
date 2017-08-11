@@ -17,7 +17,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.adapter.MeAdapter;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Active;
 import org.mercury.oschina.bean.ActiveList;
 import org.mercury.oschina.tweet.activity.TweetDetailActivity;

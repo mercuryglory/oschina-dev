@@ -2,7 +2,7 @@ package org.mercury.oschina.utils;
 
 import android.content.res.Resources;
 
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 
 import java.util.Random;
 

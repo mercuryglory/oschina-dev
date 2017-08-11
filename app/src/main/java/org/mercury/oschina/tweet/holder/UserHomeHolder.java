@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Active;
 import org.mercury.oschina.tweet.emoji.InputHelper;
 import org.mercury.oschina.tweet.extra.MyURLSpan;

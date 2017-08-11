@@ -15,7 +15,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.explorer.adapter.FriendAdapter;
 import org.mercury.oschina.explorer.bean.Active;
 import org.mercury.oschina.explorer.bean.ActiveList;

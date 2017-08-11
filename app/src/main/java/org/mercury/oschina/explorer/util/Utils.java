@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 
 import java.util.Random;
 

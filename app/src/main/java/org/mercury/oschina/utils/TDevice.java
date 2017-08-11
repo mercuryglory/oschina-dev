@@ -35,7 +35,7 @@ import android.widget.EditText;
 import com.orhanobut.logger.Logger;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.base.BaseApplication;
 
 import java.io.File;

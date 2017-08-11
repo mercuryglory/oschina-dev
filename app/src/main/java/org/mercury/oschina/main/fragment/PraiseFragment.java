@@ -13,7 +13,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.adapter.PraiseAdapter;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.TweetLike;
 import org.mercury.oschina.bean.TweetLikeList;
 import org.mercury.oschina.tweet.activity.TweetDetailActivity;

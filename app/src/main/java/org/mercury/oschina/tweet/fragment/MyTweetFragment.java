@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 
 /**
  * 创建者:    Mercury

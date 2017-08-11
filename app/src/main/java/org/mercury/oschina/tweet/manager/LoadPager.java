@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package org.mercury.oschina.base;
+package org.mercury.oschina;
 
 import android.content.Context;
 import android.os.Handler;
@@ -7,6 +7,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.orhanobut.logger.Logger;
 
+import org.mercury.oschina.base.BaseApplication;
 import org.mercury.oschina.http.HttpInterceptor;
 import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.synthesis.utils.GeneralUtils;

@@ -44,7 +44,7 @@ import com.qrcode.zxing.utils.CaptureActivityHandler;
 import com.qrcode.zxing.utils.InactivityTimer;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.utils.DialogHelper;
 import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.utils.UIHelper;

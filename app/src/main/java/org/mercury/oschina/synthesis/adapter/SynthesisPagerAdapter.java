@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.synthesis.ui.fragment.BlogHeatFragment;
 import org.mercury.oschina.synthesis.ui.fragment.BlogNewestFragment;
 import org.mercury.oschina.synthesis.ui.FragmentInfo;

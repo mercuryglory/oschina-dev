@@ -3,7 +3,7 @@ package org.mercury.oschina.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

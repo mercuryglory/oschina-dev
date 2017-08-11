@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
+import org.mercury.oschina.tweet.util.ToastUtil;
 import org.mercury.oschina.utils.ImageLoader;
 
 import java.io.Serializable;
@@ -212,5 +213,9 @@ public abstract class BaseFragment extends Fragment {
 
     protected void onRestartInstance(Bundle bundle) {
 
+    }
+
+    protected void showToast(String msg) {
+        ToastUtil.showToast(getActivity(), msg);
     }
 }

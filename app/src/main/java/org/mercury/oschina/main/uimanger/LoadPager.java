@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.utils.Utils;
 
 import java.util.List;

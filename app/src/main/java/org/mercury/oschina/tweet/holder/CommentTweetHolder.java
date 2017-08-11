@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.tweet.activity.UserHomeActivity;
 import org.mercury.oschina.tweet.bean.Comment;
 import org.mercury.oschina.tweet.bean.User;

@@ -4,7 +4,7 @@ import android.content.Intent;
 
 import org.mercury.oschina.AuthActivity;
 import org.mercury.oschina.Constant;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.utils.AccessTokenHelper;
 import org.mercury.oschina.utils.SpUtils;
 

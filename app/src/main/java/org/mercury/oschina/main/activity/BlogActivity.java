@@ -17,7 +17,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.adapter.MyBlogAdapter;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Blog;
 import org.mercury.oschina.bean.BlogList;
 import org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity;

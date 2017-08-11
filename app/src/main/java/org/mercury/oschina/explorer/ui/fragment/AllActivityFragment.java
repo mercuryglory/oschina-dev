@@ -19,7 +19,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.explorer.adapter.AllActivityAdapter;
 import org.mercury.oschina.explorer.bean.Event;
 import org.mercury.oschina.explorer.bean.EventList;

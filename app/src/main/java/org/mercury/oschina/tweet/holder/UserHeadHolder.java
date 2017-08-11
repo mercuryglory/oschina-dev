@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.tweet.activity.PhotoActivity;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.Constant;

@@ -21,7 +21,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.MyInformation;
 import org.mercury.oschina.bean.User;
 import org.mercury.oschina.utils.Fields;

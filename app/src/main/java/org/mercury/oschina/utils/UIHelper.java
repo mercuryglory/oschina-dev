@@ -22,7 +22,7 @@ import android.widget.ZoomButtonsController;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.mercury.oschina.AppConfig;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.tweet.extra.SimpleBackActivity;
 import org.mercury.oschina.tweet.extra.SimpleBackPage;
 

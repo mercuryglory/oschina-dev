@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.explorer.bean.Active;
 import org.mercury.oschina.explorer.ui.activity.ImageBigActivity;
 import org.mercury.oschina.explorer.util.DisplayRules;

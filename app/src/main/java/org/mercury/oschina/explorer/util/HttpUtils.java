@@ -5,7 +5,7 @@ import android.widget.Toast;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 
 import okhttp3.Call;
 

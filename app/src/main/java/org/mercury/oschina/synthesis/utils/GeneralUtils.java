@@ -3,7 +3,7 @@ package org.mercury.oschina.synthesis.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.utils.Constants;
 
 import java.util.Map;

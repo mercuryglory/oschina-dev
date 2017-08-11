@@ -18,7 +18,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.orhanobut.logger.Logger;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.synthesis.adapter.BasicAdapter;
 import org.mercury.oschina.synthesis.bean.Entity;
 import org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity;

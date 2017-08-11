@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.explorer.adapter.BasicHolder;
 import org.mercury.oschina.explorer.bean.Event;
 import org.mercury.oschina.explorer.util.SPUtils;

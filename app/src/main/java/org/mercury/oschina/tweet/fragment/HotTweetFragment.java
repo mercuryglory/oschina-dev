@@ -2,7 +2,6 @@ package org.mercury.oschina.tweet.fragment;
 
 
 import org.mercury.oschina.http.HttpApi;
-import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.tweet.bean.TweetResponse;
 
 import java.util.List;
@@ -18,14 +17,13 @@ public class HotTweetFragment extends NewTweetFragment {
 
 
     @Override
-    protected Call<TweetResponse> getCall() {
-        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+    protected Call<TweetResponse> getCall(HttpApi retrofitCall) {
         Call<TweetResponse> tweetData = retrofitCall.getTweetList("-1", pageIndex);
         return tweetData;
     }
 
     @Override
     public void loadMore(List list) {
-        rv.loadMoreEnd();
+        mRecyclerView.loadMoreEnd();
     }
 }

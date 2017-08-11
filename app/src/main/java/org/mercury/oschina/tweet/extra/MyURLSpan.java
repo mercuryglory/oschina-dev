@@ -9,7 +9,7 @@ import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.TextView;
 
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.tweet.activity.WebActivity;
 import org.mercury.oschina.Constant;
 

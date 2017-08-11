@@ -12,7 +12,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.explorer.adapter.MyActivityAdpter;
 import org.mercury.oschina.explorer.bean.Event;
 import org.mercury.oschina.explorer.bean.EventList;

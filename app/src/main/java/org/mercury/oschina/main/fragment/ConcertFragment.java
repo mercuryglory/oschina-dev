@@ -11,7 +11,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.adapter.FansAdapter;
-import org.mercury.oschina.base.AppContext;
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Friend;
 import org.mercury.oschina.bean.FriendsList;
 import org.mercury.oschina.utils.Utils;
