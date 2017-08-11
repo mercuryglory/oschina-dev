@@ -39,7 +39,7 @@ public class NewTweetAdapter extends BaseRecyclerAdapter<Tweet> {
     }
 
     @Override
-    protected RecyclerView.ViewHolder onCreateDefaultViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(mInflater.inflate(R.layout.item_tweet_new, parent, false));
     }
 
@@ -84,8 +84,8 @@ public class NewTweetAdapter extends BaseRecyclerAdapter<Tweet> {
             holder.layoutTweetImage.setVisibility(View.GONE);
         } else {
             holder.layoutTweetImage.setVisibility(View.VISIBLE);
+            //加载内容图片,可能一张或多张
             holder.layoutTweetImage.setImage(data.getImgSmall());
-//            Glide.with(mContext).load(data.getImgBig()).into(holder.ivTweetImage);
             //使图片可以跳转到缩放界面
 //            holder.ivTweetImage.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -104,7 +104,6 @@ public class NewTweetAdapter extends BaseRecyclerAdapter<Tweet> {
         holder.tvTweetCommentCount.setText(data.getCommentCount() + "");
 
     }
-
 
     static class ViewHolder extends RecyclerView.ViewHolder{
         @Bind(R.id.iv_tweet_face)

@@ -1,5 +1,6 @@
 package org.mercury.oschina.tweet.util;
 
+import android.content.Context;
 import android.widget.Toast;
 
 import org.mercury.oschina.base.AppContext;
@@ -14,6 +15,8 @@ import org.mercury.oschina.base.AppContext;
 public class ToastUtil {
     private static Toast toast;
 
+    private static Toast sToast;
+
     public static void showToast(String text) {
         if (toast == null) {
             toast = Toast.makeText(AppContext.context, text, Toast.LENGTH_SHORT);
@@ -23,5 +26,14 @@ public class ToastUtil {
         }
         toast.show();
 
+    }
+
+    public static void showToast(Context context, String text) {
+        if (sToast == null) {
+            sToast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+        } else {
+            sToast.setText(text);
+        }
+        sToast.show();
     }
 }

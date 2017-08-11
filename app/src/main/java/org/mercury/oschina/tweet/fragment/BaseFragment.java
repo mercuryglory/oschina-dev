@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.mercury.oschina.tweet.util.ToastUtil;
+
 import butterknife.ButterKnife;
 
 
@@ -97,5 +99,9 @@ public abstract class BaseFragment extends Fragment {
 
     protected void initBundle(Bundle bundle) {
 
+    }
+
+    protected void showToast(String msg) {
+        ToastUtil.showToast(mContext, msg);
     }
 }

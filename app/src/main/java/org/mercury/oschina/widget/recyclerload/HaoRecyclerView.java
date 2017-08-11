@@ -54,20 +54,20 @@ public class HaoRecyclerView extends RecyclerView {
     }
 
 
-//    //点击监听
-//    public void setOnItemClickListener(AdapterView.OnItemClickListener onItemClickListener) {
-//        if (mWrapAdapter != null && mWrapAdapter instanceof WrapAdapter) {
-//            ((WrapAdapter) mWrapAdapter).setOnItemClickListener(onItemClickListener);
-//        }
-//    }
-//
-//
-//    //长按监听
-//    public void setOnItemLongClickListener(AdapterView.OnItemLongClickListener listener) {
-//        if (mWrapAdapter != null && mWrapAdapter instanceof WrapAdapter) {
-//            ((WrapAdapter) mWrapAdapter).setOnItemLongClickListener(listener);
-//        }
-//    }
+    //点击监听
+    public void setOnItemClickListener(WrapAdapter.OnItemClickListener onItemClickListener) {
+        if (mWrapAdapter != null && mWrapAdapter instanceof WrapAdapter) {
+            ((WrapAdapter) mWrapAdapter).setOnItemClickListener(onItemClickListener);
+        }
+    }
+
+
+    //长按监听
+    public void setOnItemLongClickListener(WrapAdapter.OnItemLongClickListener listener) {
+        if (mWrapAdapter != null && mWrapAdapter instanceof WrapAdapter) {
+            ((WrapAdapter) mWrapAdapter).setOnItemLongClickListener(listener);
+        }
+    }
 
     /**
      * 底部加载更多的布局的初始化

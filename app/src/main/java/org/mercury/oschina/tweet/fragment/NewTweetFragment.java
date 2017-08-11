@@ -6,10 +6,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import org.mercury.oschina.R;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
-import org.mercury.oschina.widget.recyclerload.HaoRecyclerView;
-import org.mercury.oschina.widget.recyclerload.OnLoadMoreListener;
 import org.mercury.oschina.tweet.adapter.NewTweetAdapter;
 import org.mercury.oschina.tweet.bean.TweetResponse;
+import org.mercury.oschina.widget.recyclerload.HaoRecyclerView;
+import org.mercury.oschina.widget.recyclerload.OnLoadMoreListener;
+import org.mercury.oschina.widget.recyclerload.WrapAdapter;
 
 import java.util.List;
 
@@ -45,6 +46,13 @@ public class NewTweetFragment extends BaseFragment implements SwipeRefreshLayout
         mAdapter = new NewTweetAdapter(getActivity());
         rv.setAdapter(mAdapter);
         requestData();
+
+        rv.setOnItemClickListener(new WrapAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, long itemId) {
+                showToast(position + "");
+            }
+        });
     }
 
 
