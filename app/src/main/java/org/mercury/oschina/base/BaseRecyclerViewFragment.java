@@ -12,6 +12,7 @@ import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.widget.EmptyLayout;
 import org.mercury.oschina.widget.recyclerload.HaoRecyclerView;
 import org.mercury.oschina.widget.recyclerload.OnLoadMoreListener;
+import org.mercury.oschina.widget.recyclerload.WrapAdapter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,7 +24,7 @@ import retrofit2.Response;
  */
 
 public abstract class BaseRecyclerViewFragment<T> extends BaseFragment implements
-        SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener {
+        SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener, WrapAdapter.OnItemClickListener {
 
     protected SwipeRefreshLayout mRefreshLayout;
     protected HaoRecyclerView mRecyclerView;
@@ -54,6 +55,7 @@ public abstract class BaseRecyclerViewFragment<T> extends BaseFragment implement
                 .VERTICAL));
 
         mRecyclerView.setAdapter(getRecyclerAdapter());
+        mRecyclerView.setOnItemClickListener(this);
 
         requestData();
 
@@ -74,12 +76,15 @@ public abstract class BaseRecyclerViewFragment<T> extends BaseFragment implement
             @Override
             public void onFailure(Call<T> call, Throwable t) {
                 mEmptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                showToast(getResources().getString(R.string.state_network_error));
                 failure(call, t);
             }
         });
     }
 
-    protected abstract void failure(Call<T> call, Throwable t);
+    protected void failure(Call<T> call, Throwable t) {
+
+    }
 
     protected abstract void response(Call<T> call, Response<T> response);
 
@@ -92,4 +97,8 @@ public abstract class BaseRecyclerViewFragment<T> extends BaseFragment implement
     }
 
 
+    @Override
+    public void onItemClick(int position, long itemId) {
+
+    }
 }

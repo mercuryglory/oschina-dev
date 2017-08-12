@@ -1,17 +1,21 @@
 package org.mercury.oschina.tweet.activity;
 
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
@@ -22,8 +26,14 @@ import org.mercury.oschina.tweet.adapter.CommentTweetAdapter;
 import org.mercury.oschina.tweet.bean.Comment;
 import org.mercury.oschina.tweet.bean.CommentList;
 import org.mercury.oschina.tweet.bean.Tweet;
-import org.mercury.oschina.tweet.holder.TweetHeadHolder;
+import org.mercury.oschina.tweet.bean.User;
+import org.mercury.oschina.tweet.util.GlideUtils;
+import org.mercury.oschina.tweet.util.TweetParser;
+import org.mercury.oschina.tweet.widget.TweetTextView;
+import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.utils.TDevice;
+import org.mercury.oschina.widget.TweetPicturesLayout;
+import org.mercury.oschina.widget.recyclerload.HaoRecyclerView;
 
 import java.util.List;
 
@@ -40,24 +50,36 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
         .OnItemClickListener, PullToRefreshBase.OnRefreshListener {
 
     @Bind(R.id.toolbar)
-    Toolbar               toolbar;
-    @Bind(R.id.ptr_tweet_refresh)
-    PullToRefreshListView ptrTweetRefresh;
+    Toolbar             toolbar;
     @Bind(R.id.et_content)
-    EditText              etContent;
+    EditText            etContent;
     @Bind(R.id.iv_tweet_emoji)
-    ImageView             ivTweetEmoji;
+    ImageView           ivTweetEmoji;
     @Bind(R.id.emoji_keyboard_fragment)
-    FrameLayout           emojiKeyboardFragment;
+    FrameLayout         emojiKeyboardFragment;
+    @Bind(R.id.iv_tweet_face)
+    ImageView           ivTweetFace;
+    @Bind(R.id.tv_tweet_name)
+    TextView            tvTweetName;
+    @Bind(R.id.tv_tweet_body)
+    TweetTextView       tvTweetBody;
+    @Bind(R.id.tv_tweet_time)
+    TextView            tvTweetTime;
+    @Bind(R.id.tv_tweet_comment_count)
+    TextView            tvTweetCommentCount;
+    @Bind(R.id.recyclerview)
+    HaoRecyclerView     recyclerview;
+    @Bind(R.id.layout_tweet_picture)
+    TweetPicturesLayout layoutTweetPicture;
 
-    private CommentTweetAdapter   mAdapter;
+    private CommentTweetAdapter mAdapter;
 
     private boolean isLoadMore = false;
     private int     page       = 1;
     private List<Comment> mList;
     private int           mId;
 
-    private TweetHeadHolder mTweetHeadHolder;
+//    private TweetHeadHolder mTweetHeadHolder;
     private EmojiView       mEmojiView;
 
 
@@ -100,18 +122,16 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
     }
 
     protected void initData() {
-        mTweetHeadHolder = new TweetHeadHolder();
-        ptrTweetRefresh.getRefreshableView().addHeaderView(mTweetHeadHolder.getView());
         initEmoji();
 
-        ptrTweetRefresh.setMode(PullToRefreshBase.Mode.BOTH);
-        ptrTweetRefresh.setOnRefreshListener(this);
-        ptrTweetRefresh.setOnItemClickListener(this);
+//        ptrTweetRefresh.setMode(PullToRefreshBase.Mode.BOTH);
+//        ptrTweetRefresh.setOnRefreshListener(this);
+//        ptrTweetRefresh.setOnItemClickListener(this);
 
         Intent intent = getIntent();
         mId = intent.getIntExtra(Constant.TWEET_DETAIL, 0);
         getTweetDetail(mId);
-        getCommentData(mId, 3, page);
+        getCommentList(mId, 3, page);
 
         toolbar.setTitle("动弹详情");
         setSupportActionBar(toolbar);
@@ -122,8 +142,9 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
             }
         });
 
-        mAdapter = new CommentTweetAdapter();
-        ptrTweetRefresh.setAdapter(mAdapter);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new CommentTweetAdapter(this);
+        recyclerview.setAdapter(mAdapter);
     }
 
     @Override
@@ -131,7 +152,7 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
         return R.layout.activity_tweet_detail;
     }
 
-    private void getCommentData(int id, int catalog, int page) {
+    private void getCommentList(int id, int catalog, int page) {
         HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
         Call<CommentList> commentList = retrofitCall.getCommentList(id, catalog, page);
         commentList.enqueue(new Callback<CommentList>() {
@@ -141,12 +162,11 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
                 if (body.getCommentList() != null && body.getCommentList().size() > 0) {
                     mList = body.getCommentList();
                     if (isLoadMore) {
-                        loadMore();
+                        loadMore(body.getCommentList());
                     } else {
-                        refresh();
+                        refresh(body.getCommentList());
                     }
                 }
-                ptrTweetRefresh.onRefreshComplete();
             }
 
             @Override
@@ -157,12 +177,16 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
 
     }
 
-    private void loadMore() {
-        mAdapter.addDatas(mList);
+    private void loadMore(List<Comment> commentList) {
+        mAdapter.addAll(mList);
     }
 
-    private void refresh() {
-        mAdapter.updateDatas(mList);
+    private void refresh(List<Comment> commentList) {
+        if (mAdapter == null) {
+            mAdapter.addAll(commentList);
+        } else {
+            mAdapter.setData(commentList);
+        }
     }
 
     private void getTweetDetail(int id) {
@@ -173,7 +197,7 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
             public void onResponse(Call<Tweet> call, Response<Tweet> response) {
                 Tweet body = response.body();
                 if (body != null) {
-                    mTweetHeadHolder.bindView(ptrTweetRefresh, body);
+                    updateTweetDetail(body);
                 }
 
             }
@@ -183,6 +207,47 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
 
             }
         });
+
+    }
+
+    private void updateTweetDetail(final Tweet tweet) {
+        GlideUtils.loadCircleImage(this, tweet.getPortrait(), ivTweetFace);
+        //头像跳转到动弹详情
+        ivTweetFace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User user = new User();
+                user.setId(tweet.getAuthorid());
+                user.setName(tweet.getAuthor());
+
+                Intent intent = new Intent(AppContext.context, UserHomeActivity.class);
+                intent.putExtra(Constant.USER_ID, user);
+                startActivity(intent);
+            }
+        });
+
+        if (TextUtils.isEmpty(tweet.getImgBig()) && TextUtils.isEmpty(tweet.getImgSmall())) {
+            layoutTweetPicture.setVisibility(View.GONE);
+        } else {
+            layoutTweetPicture.setVisibility(View.VISIBLE);
+            //加载内容图片,可能一张或多张
+            layoutTweetPicture.setImage(tweet.getImgSmall());
+        }
+
+        //设置内容中的富文本
+        if (!TextUtils.isEmpty(tweet.getBody())) {
+            String content = tweet.getBody().replaceAll("[\n\\s]+", " ");
+            tvTweetBody.setText(TweetParser.getInstance().parse(this, content));
+            tvTweetBody.setMovementMethod(LinkMovementMethod.getInstance());
+            tvTweetBody.setFocusable(false);
+            tvTweetBody.setDispatchToParent(true);
+            tvTweetBody.setLongClickable(false);
+        }
+
+        tvTweetCommentCount.setText(tweet.getCommentCount() + "");
+        tvTweetName.setText(tweet.getAuthor());
+        tvTweetTime.setText(StringUtils.friendly_time(tweet.getPubDate()));
+
 
     }
 
@@ -199,13 +264,13 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
             case PULL_FROM_START:
                 isLoadMore = false;
                 page = 0;
-                getCommentData(mId, 3, page);
+                getCommentList(mId, 3, page);
                 break;
 
             case PULL_FROM_END:
                 isLoadMore = true;
                 page++;
-                getCommentData(mId, 3, page);
+                getCommentList(mId, 3, page);
                 break;
 
             default:
@@ -213,4 +278,5 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
 
         }
     }
+
 }

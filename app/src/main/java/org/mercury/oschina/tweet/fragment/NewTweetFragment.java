@@ -1,11 +1,15 @@
 package org.mercury.oschina.tweet.fragment;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.base.BaseRecyclerViewFragment;
 import org.mercury.oschina.http.HttpApi;
+import org.mercury.oschina.tweet.activity.TweetDetailActivity;
 import org.mercury.oschina.tweet.adapter.NewTweetAdapter;
+import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
 import org.mercury.oschina.widget.recyclerload.OnLoadMoreListener;
 
@@ -25,68 +29,6 @@ public class NewTweetFragment extends BaseRecyclerViewFragment<TweetResponse> im
 
     int pageIndex = 1;
     public boolean isLoadMore;
-
-//    @Bind(R.id.rv)
-//    HaoRecyclerView    rv;
-//    @Bind(R.id.swr)
-//    SwipeRefreshLayout swr;
-
-//    @Override
-//    protected void initData() {
-//        swr.setColorSchemeResources(R.color.swiperefresh_color1, R.color.swiperefresh_color2, R
-//                .color.swiperefresh_color3, R.color.swiperefresh_color4);
-//        swr.setOnRefreshListener(this);
-//        rv.setOnLoadMoreListener(this);
-//        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        rv.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration
-//                .VERTICAL));
-//
-//        mAdapter = new NewTweetAdapter(getActivity());
-//        rv.setAdapter(mAdapter);
-//        requestData();
-//
-//        rv.setOnItemClickListener(new WrapAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int position, long itemId) {
-//                showToast(position + "");
-//            }
-//        });
-//    }
-
-
-//    protected Call<TweetResponse> getCall() {
-//        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
-//        Call<TweetResponse> tweetData = retrofitCall.getTweetList("0", pageIndex);
-//        return tweetData;
-//    }
-
-//    public void requestData() {
-//
-//        Call<TweetResponse> tweetData = getCall();
-//        tweetData.enqueue(new Callback<TweetResponse>() {
-//            @Override
-//            public void onResponse(Call<TweetResponse> call, Response<TweetResponse> response) {
-//                TweetResponse bean = response.body();
-//                if (isLoadMore) {
-//                    loadMore(bean.getTweetlist());
-//                } else {
-//                    refresh(bean.getTweetlist());
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<TweetResponse> call, Throwable t) {
-//
-//            }
-//        });
-//
-//    }
-
-    @Override
-    protected void failure(Call<TweetResponse> call, Throwable t) {
-
-    }
 
     @Override
     protected void response(Call<TweetResponse> call, Response<TweetResponse> response) {
@@ -127,12 +69,6 @@ public class NewTweetFragment extends BaseRecyclerViewFragment<TweetResponse> im
         mRecyclerView.refreshComplete();
     }
 
-//    @Override
-//    protected int getLayoutId() {
-//        return R.layout.fragment_tweet_refresh;
-//    }
-
-
     @Override
     public void onRefresh() {
         isLoadMore = false;
@@ -148,5 +84,13 @@ public class NewTweetFragment extends BaseRecyclerViewFragment<TweetResponse> im
         pageIndex++;
         requestData();
 
+    }
+
+    @Override
+    public void onItemClick(int position, long itemId) {
+        Intent intent = new Intent(mContext, TweetDetailActivity.class);
+        Tweet tweet = mAdapter.getItem(position);
+        intent.putExtra(Constant.TWEET_DETAIL, tweet.getId());
+        startActivity(intent);
     }
 }

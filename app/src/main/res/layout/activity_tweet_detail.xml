@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:focusableInTouchMode="true"
     android:orientation="vertical" >
 
@@ -13,20 +15,111 @@
 
     </android.support.v7.widget.Toolbar >
 
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/ptr_tweet_refresh"
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:cacheColorHint="#00000000"
-        android:divider="#19000000"
-        android:dividerHeight="1dp"
-        android:fadingEdge="none"
-        android:fastScrollEnabled="false"
-        android:footerDividersEnabled="true"
-        android:headerDividersEnabled="false"
-        android:scrollbars="none"
-        android:smoothScrollbar="true" />
+        android:layout_weight="1" >
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:elevation="0dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_scrollFlags="scroll" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:id="@+id/iv_tweet_face"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:src="@mipmap/widget_dface" />
+
+                        <TextView
+                            android:id="@+id/tv_tweet_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="Author Name"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </LinearLayout >
+
+                    <org.mercury.oschina.tweet.widget.TweetTextView
+                        android:id="@+id/tv_tweet_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="内容"
+                        android:textColor="@color/black" />
+
+                    <org.mercury.oschina.widget.TweetPicturesLayout
+                        android:id="@+id/layout_tweet_picture"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:layout_marginTop="@dimen/lay_8"
+                        app:horizontalSpace="@dimen/lay_4"
+                        app:verticalSpace="@dimen/lay_4" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp" >
+
+                        <TextView
+                            android:id="@+id/tv_tweet_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="time" />
+
+                        <TextView
+                            android:id="@+id/tv_tweet_comment_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@id/tv_tweet_comment_count"
+                            android:src="@mipmap/ic_comment_30" />
+
+                    </RelativeLayout >
+                </LinearLayout >
+
+            </android.support.design.widget.AppBarLayout >
+
+            <org.mercury.oschina.widget.recyclerload.HaoRecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+            </org.mercury.oschina.widget.recyclerload.HaoRecyclerView >
+
+        </android.support.design.widget.CoordinatorLayout >
+    </android.support.v4.widget.SwipeRefreshLayout >
+
 
     <LinearLayout
         android:layout_width="match_parent"

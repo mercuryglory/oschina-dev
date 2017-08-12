@@ -52,7 +52,7 @@ public class TweetHeadHolder extends BasicHolder<Tweet> {
     @Override
     public void bindView(final ViewGroup parent, final Tweet tweet) {
         GlideUtils.loadCircleImage(parent.getContext(), tweet.getPortrait(), mIvTweetFace);
-        //头像跳转到动弹详情
+        //头像跳转到用户中心
         mIvTweetFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
