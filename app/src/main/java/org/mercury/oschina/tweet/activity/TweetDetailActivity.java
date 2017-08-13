@@ -1,19 +1,17 @@
 package org.mercury.oschina.tweet.activity;
 
 import android.content.Intent;
+import android.support.design.widget.AppBarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 import org.mercury.oschina.AppContext;
 import org.mercury.oschina.Constant;
@@ -34,6 +32,7 @@ import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.utils.TDevice;
 import org.mercury.oschina.widget.TweetPicturesLayout;
 import org.mercury.oschina.widget.recyclerload.HaoRecyclerView;
+import org.mercury.oschina.widget.recyclerload.OnLoadMoreListener;
 
 import java.util.List;
 
@@ -46,8 +45,8 @@ import retrofit2.Response;
  * Created by wang.zhonghao on 2017/5/25
  * descript:  动弹详情
  */
-public class TweetDetailActivity extends BaseActivity implements AdapterView
-        .OnItemClickListener, PullToRefreshBase.OnRefreshListener {
+public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLayout
+        .OnRefreshListener, OnLoadMoreListener {
 
     @Bind(R.id.toolbar)
     Toolbar             toolbar;
@@ -71,23 +70,21 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
     HaoRecyclerView     recyclerview;
     @Bind(R.id.layout_tweet_picture)
     TweetPicturesLayout layoutTweetPicture;
+    @Bind(R.id.appbar)
+    AppBarLayout        appbar;
+    @Bind(R.id.refresh_layout)
+    SwipeRefreshLayout  refreshLayout;
 
     private CommentTweetAdapter mAdapter;
 
     private boolean isLoadMore = false;
     private int     page       = 1;
-    private List<Comment> mList;
     private int           mId;
 
-//    private TweetHeadHolder mTweetHeadHolder;
-    private EmojiView       mEmojiView;
+    private EmojiView mEmojiView;
 
 
     private void initEmoji() {
-
-        etContent.setFocusable(true);
-        etContent.setFocusableInTouchMode(true);
-        etContent.requestFocus();
 
         //弹出表情选择框
         ivTweetEmoji.setOnClickListener(new View.OnClickListener() {
@@ -107,26 +104,8 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                super.onBackPressed();
-                break;
-
-            default:
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     protected void initData() {
         initEmoji();
-
-//        ptrTweetRefresh.setMode(PullToRefreshBase.Mode.BOTH);
-//        ptrTweetRefresh.setOnRefreshListener(this);
-//        ptrTweetRefresh.setOnItemClickListener(this);
 
         Intent intent = getIntent();
         mId = intent.getIntExtra(Constant.TWEET_DETAIL, 0);
@@ -145,6 +124,21 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new CommentTweetAdapter(this);
         recyclerview.setAdapter(mAdapter);
+        refreshLayout.setOnRefreshListener(this);
+        recyclerview.setOnLoadMoreListener(this);
+
+        refreshLayout.setColorSchemeResources(R.color.swiperefresh_color1, R.color
+                .swiperefresh_color2, R.color.swiperefresh_color3, R.color.swiperefresh_color4);
+        appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset >= 0) {
+                    refreshLayout.setEnabled(true);
+                } else {
+                    refreshLayout.setEnabled(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -160,12 +154,13 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
             public void onResponse(Call<CommentList> call, Response<CommentList> response) {
                 CommentList body = response.body();
                 if (body.getCommentList() != null && body.getCommentList().size() > 0) {
-                    mList = body.getCommentList();
                     if (isLoadMore) {
                         loadMore(body.getCommentList());
                     } else {
                         refresh(body.getCommentList());
                     }
+                } else {
+                    recyclerview.loadMoreEnd();
                 }
             }
 
@@ -178,7 +173,12 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
     }
 
     private void loadMore(List<Comment> commentList) {
-        mAdapter.addAll(mList);
+        if (commentList.size() > 0) {
+            mAdapter.addAll(commentList);
+            recyclerview.loadMoreComplete();
+        } else {
+            recyclerview.loadMoreEnd();
+        }
     }
 
     private void refresh(List<Comment> commentList) {
@@ -187,6 +187,8 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
         } else {
             mAdapter.setData(commentList);
         }
+        recyclerview.refreshComplete();
+        refreshLayout.setRefreshing(false);
     }
 
     private void getTweetDetail(int id) {
@@ -253,30 +255,17 @@ public class TweetDetailActivity extends BaseActivity implements AdapterView
 
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+    public void onRefresh() {
+        isLoadMore = false;
+        recyclerview.setCanloadMore(false);
+        page = 1;
+        getCommentList(mId, 3, page);
     }
 
     @Override
-    public void onRefresh(PullToRefreshBase refreshView) {
-        switch (refreshView.getCurrentMode()) {
-
-            case PULL_FROM_START:
-                isLoadMore = false;
-                page = 0;
-                getCommentList(mId, 3, page);
-                break;
-
-            case PULL_FROM_END:
-                isLoadMore = true;
-                page++;
-                getCommentList(mId, 3, page);
-                break;
-
-            default:
-                break;
-
-        }
+    public void onLoadMore() {
+        isLoadMore = true;
+        page++;
+        getCommentList(mId, 3, page);
     }
-
 }

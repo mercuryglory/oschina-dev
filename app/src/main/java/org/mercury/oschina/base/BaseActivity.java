@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import org.mercury.oschina.tweet.util.ToastUtil;
+
 import butterknife.ButterKnife;
 
 /**
@@ -38,5 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract int getContentView();
 
-
+    protected void showToast(String msg) {
+        ToastUtil.showToast(this, msg);
+    }
 }
