@@ -12,6 +12,7 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
@@ -90,15 +91,20 @@
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ImageBigActivity" />
 
         <activity android:name=".main.activity.MainActivity"
+            android:label="首页"
             android:theme="@style/App.Theme.Main"
             android:launchMode="singleTask"
             />
-
         <activity android:name=".AuthActivity"
+            android:label="登录验证"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
 
-
+        <activity
+            android:name=".tweet.activity.ImageGalleryActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/App.Theme.Full"
+            android:screenOrientation="portrait"/>
 
     </application >
 

@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="Author Name"
-                android:textColor="@color/spinner_background_press"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <org.mercury.oschina.tweet.widget.TweetTextView
@@ -45,7 +45,7 @@
                 android:focusableInTouchMode="false"
                 android:includeFontPadding="false"
                 android:text="最近研究了这个项目，学习rx系列,修复了楼主的bug 主要原因在mainActivity里面资讯fragment的构建"
-                android:textColor="#4f4f4f"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <org.mercury.oschina.widget.TweetPicturesLayout

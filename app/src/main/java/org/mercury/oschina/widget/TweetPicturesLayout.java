@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
 import org.mercury.oschina.R;
+import org.mercury.oschina.tweet.activity.ImageGalleryActivity;
 
 /**
  * Created by JuQiu
@@ -29,6 +30,7 @@ public class TweetPicturesLayout extends ViewGroup implements View.OnClickListen
     private static final int SINGLE_MIN_H = 34;
 
     private String[] mImages;
+    private String[] mBigImages;
     private float    mVerticalSpacing;
     private float    mHorizontalSpacing;
     private int      mColumn;
@@ -105,7 +107,8 @@ public class TweetPicturesLayout extends ViewGroup implements View.OnClickListen
     }
 
     public void setImage(String[] images) {
-        if(mImages==images)return;
+        if (mImages == images)
+            return;
 
         // 移除布局
         removeAllImage();
@@ -147,8 +150,9 @@ public class TweetPicturesLayout extends ViewGroup implements View.OnClickListen
         }
     }
 
-    public void setImage(String images) {
-        if (TextUtils.isEmpty(images)) return;
+    public void setImage(String images,String imgBigs) {
+        if (TextUtils.isEmpty(images))
+            return;
         String commonUrl = "https://static.oschina.net/uploads/space/";
         String[] urls = images.split(",");
         if (urls.length > 1) {
@@ -157,6 +161,17 @@ public class TweetPicturesLayout extends ViewGroup implements View.OnClickListen
             }
         }
         setImage(urls);
+
+        if(TextUtils.isEmpty(imgBigs))
+            return;
+        String[] imageBigs = imgBigs.split(",");
+        if (imageBigs.length > 1) {
+            for (int i = imageBigs.length - 1; i > 0; i--) {
+                imageBigs[i] = commonUrl.concat(imageBigs[i]);
+            }
+        }
+        mBigImages = imageBigs;
+
     }
 
     public String getMaxSubString(String s1, String s2) {
@@ -164,7 +179,7 @@ public class TweetPicturesLayout extends ViewGroup implements View.OnClickListen
         max = (s1.length() > s2.length() ? s1 : s2);
         min = (max == s1 ? s2 : s1);
         for (int i = 0; i < min.length(); i++) {
-            for(int y=0,z=min.length()-i;z!=min.length()+1;y++,i++) {
+            for (int y = 0, z = min.length() - i; z != min.length() + 1; y++, i++) {
                 String temp = min.substring(y, z);
                 if (max.contains(temp)) {
                     return temp;
@@ -308,28 +323,20 @@ public class TweetPicturesLayout extends ViewGroup implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        //        Tweet.Image[] images = mImages;
-        //        if (images == null || images.length <= 0)
-        //            return;
-        //
-        //        Object obj = v.getTag();
-        //        if (obj == null || !(obj instanceof Integer))
-        //            return;
-        //
-        //        int index = (int) obj;
-        //        if (index < 0)
-        //            index = 0;
-        //        if (index >= images.length)
-        //            index = images.length - 1;
-        //
-        //        Tweet.Image image = images[index];
-        //        if (!Tweet.Image.check(image))
-        //            return;
-        //
-        //        String[] paths = Tweet.Image.getImagePath(images);
-        //        if (paths == null || paths.length <= 0)
-        //            return;
-        //
-        //        ImageGalleryActivity.show(getContext(), paths, index);
+        String[] images = mBigImages;
+        if (images == null || images.length <= 0)
+            return;
+
+        Object obj = v.getTag();
+        if (obj == null || !(obj instanceof Integer))
+            return;
+
+        int index = (int) obj;
+        if (index < 0)
+            index = 0;
+        if (index >= mBigImages.length)
+            index = mBigImages.length - 1;
+
+        ImageGalleryActivity.show(getContext(), mBigImages, index);
     }
 }

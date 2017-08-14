@@ -233,7 +233,7 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
         } else {
             layoutTweetPicture.setVisibility(View.VISIBLE);
             //加载内容图片,可能一张或多张
-            layoutTweetPicture.setImage(tweet.getImgSmall());
+            layoutTweetPicture.setImage(tweet.getImgSmall(), tweet.getImgBig());
         }
 
         //设置内容中的富文本

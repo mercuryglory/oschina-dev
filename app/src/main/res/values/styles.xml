@@ -20,6 +20,11 @@
         <item name="android:windowBackground">@drawable/welcome</item>
     </style>
 
+    <style name="App.Theme.Full" parent="Base.App.Theme.NoTitle">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <style name="Test" parent="Theme.AppCompat.Light" >
         <item name="android:windowTranslucentStatus">true</item>
         <!--<item name="android:windowIsTranslucent">true</item>-->
@@ -656,6 +661,7 @@
         <item name="android:windowIsFloating" >true</item ><!-- 是否浮现在activity之上 -->
         <item name="android:windowIsTranslucent" >true</item ><!-- 半透明 -->
         <item name="windowNoTitle" >true</item ><!-- 无标题 -->
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowBackground" >@android:color/transparent</item ><!-- 背景透明 -->
         <item name="android:backgroundDimEnabled" >true</item ><!-- 模糊 -->
         <item name="windowActionBar" >false</item >

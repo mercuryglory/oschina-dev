@@ -85,18 +85,8 @@ public class NewTweetAdapter extends BaseRecyclerAdapter<Tweet> {
         } else {
             holder.layoutTweetImage.setVisibility(View.VISIBLE);
             //加载内容图片,可能一张或多张
-            holder.layoutTweetImage.setImage(data.getImgSmall());
-            //使图片可以跳转到缩放界面
-//            holder.ivTweetImage.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = new Intent(AppContext.context, PhotoActivity
-//                            .class);
-//                    intent.putExtra(Constant.PICTURE, data.getImgBig());
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    AppContext.context().startActivity(intent);
-//                }
-//            });
+            holder.layoutTweetImage.setImage(data.getImgSmall(),data.getImgBig());
+
         }
 
 
