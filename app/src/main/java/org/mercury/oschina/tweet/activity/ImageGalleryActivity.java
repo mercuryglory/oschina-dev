@@ -3,7 +3,9 @@ package org.mercury.oschina.tweet.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -19,16 +21,22 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import net.oschina.common.utils.BitmapUtil;
 import net.oschina.common.widget.Loading;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
+import org.mercury.oschina.utils.AppOperator;
+import org.mercury.oschina.utils.FileUtil;
 
+import java.io.File;
 import java.util.List;
+import java.util.concurrent.Future;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 import uk.co.senab.photoview.PhotoView;
 
@@ -115,8 +123,8 @@ public class ImageGalleryActivity extends BaseActivity implements ViewPager.OnPa
         vpImage.setAdapter(new ViewPagerAdapter());
         vpImage.setCurrentItem(mCurrentPos);
 
-        //初始的时候如果是从第一个图片点进来的,setCurrentItem不会走onPageSelected
-        tvIndex.setText(String.format("%s/%s", mCurrentPos + 1, mImages.length));
+        //初始的时候如果是从第一个图片点进来的,setCurrentItem不会走onPageSelected,手动调用一次
+        onPageSelected(mCurrentPos);
     }
 
     @Override
@@ -159,10 +167,68 @@ public class ImageGalleryActivity extends BaseActivity implements ViewPager.OnPa
     public void onClick() {
         String[] permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
         if (EasyPermissions.hasPermissions(this, permissions)) {
-            showToast("有权限");
+            saveToFile();
         } else {
             EasyPermissions.requestPermissions(this, "请先授予保存图片到SD卡的权限", PERMISSION_ID, permissions);
         }
+    }
+
+    private void saveToFile() {
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            showToast("没有外部存储");
+            return;
+        }
+
+        String path = mImages[mCurrentPos];
+        final Future<File> future = getImageLoader().load(path).downloadOnly(Target
+                .SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
+        AppOperator.getExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    File sourceFile = future.get();
+                    if (sourceFile == null || !sourceFile.exists()) {
+                        return;
+                    }
+                    String extension = BitmapUtil.getExtension(sourceFile.getAbsolutePath());
+                    String extDir = Environment.getExternalStoragePublicDirectory(Environment
+                            .DIRECTORY_PICTURES).getAbsolutePath() + File.separator + "oschina-dev";
+                    File extDirFile = new File(extDir);
+                    if (!extDirFile.exists()) {
+                        if (!extDirFile.mkdirs()) {
+                            callSaveStatus(false, null);
+                            return;
+                        }
+                    }
+                    //要保存的图片文件的目录和文件名
+                    File saveFile = new File(extDirFile, String.format("IMG_%s.%s", System
+                            .currentTimeMillis(), extension));
+                    boolean isSuccess = FileUtil.copyFile(sourceFile, saveFile);
+                    callSaveStatus(isSuccess, saveFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    callSaveStatus(false,null);
+                }
+            }
+
+
+        });
+
+    }
+
+    private void callSaveStatus(final boolean success, final File savePath) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (success) {
+                    Uri uri = Uri.fromFile(savePath);
+                    sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+                    showToast("保存成功");
+                } else {
+                    showToast("保存失败");
+                }
+            }
+        });
     }
 
     private class ViewPagerAdapter extends PagerAdapter {
@@ -253,6 +319,7 @@ public class ImageGalleryActivity extends BaseActivity implements ViewPager.OnPa
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             showToast("您已经禁止了相关权限,请到设置界面重新开启");
+            new AppSettingsDialog.Builder(this).build().show();
         } else {
             showToast("您没有授予SD卡读写权限");
         }

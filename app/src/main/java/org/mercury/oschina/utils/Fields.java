@@ -10,10 +10,8 @@ package org.mercury.oschina.utils;
  */
 public class Fields {
 
-    public static final String DRAFT_CONTENT     = "DRAFT_CONTENT";
 
     public static String SCREENIMAGS = "SCREENIMAGS";
     public static String CARE = "CARE";
     public static String FANS = "FANS";
-    public static String APPURL = "APPURL";
 }
