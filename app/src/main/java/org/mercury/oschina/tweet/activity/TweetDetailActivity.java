@@ -1,6 +1,8 @@
 package org.mercury.oschina.tweet.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -79,10 +81,25 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
 
     private boolean isLoadMore = false;
     private int     page       = 1;
-    private int           mId;
+    public static final String KEY_TWEET = "KEY_TWEET";
 
     private EmojiView mEmojiView;
+    private Tweet mTweet;
 
+    public static void show(Context context, Tweet tweet) {
+        Intent intent = new Intent(context, TweetDetailActivity.class);
+        intent.putExtra(KEY_TWEET, tweet);
+        context.startActivity(intent);
+
+    }
+
+    @Override
+    protected void initBundle(Bundle bundle) {
+        mTweet = bundle.getParcelable(KEY_TWEET);
+        if (mTweet == null) {
+            return;
+        }
+    }
 
     private void initEmoji() {
 
@@ -107,10 +124,11 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
     protected void initData() {
         initEmoji();
 
-        Intent intent = getIntent();
-        mId = intent.getIntExtra(Constant.TWEET_DETAIL, 0);
-        getTweetDetail(mId);
-        getCommentList(mId, 3, page);
+        //动弹详情从列表页传递,效率更高
+        updateTweetDetail(mTweet);
+
+        //获取评论列表
+        getCommentList(mTweet.getId(), 3, page);
 
         toolbar.setTitle("动弹详情");
         setSupportActionBar(toolbar);
@@ -191,26 +209,6 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
         refreshLayout.setRefreshing(false);
     }
 
-    private void getTweetDetail(int id) {
-        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
-        Call<Tweet> tweetDetail = retrofitCall.getTweetDetail(id);
-        tweetDetail.enqueue(new Callback<Tweet>() {
-            @Override
-            public void onResponse(Call<Tweet> call, Response<Tweet> response) {
-                Tweet body = response.body();
-                if (body != null) {
-                    updateTweetDetail(body);
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<Tweet> call, Throwable t) {
-
-            }
-        });
-
-    }
 
     private void updateTweetDetail(final Tweet tweet) {
         GlideUtils.loadCircleImage(this, tweet.getPortrait(), ivTweetFace);
@@ -259,13 +257,15 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
         isLoadMore = false;
         recyclerview.setCanloadMore(false);
         page = 1;
-        getCommentList(mId, 3, page);
+        getCommentList(mTweet.getId(), 3, page);
     }
 
     @Override
     public void onLoadMore() {
         isLoadMore = true;
         page++;
-        getCommentList(mId, 3, page);
+        getCommentList(mTweet.getId(), 3, page);
     }
+
+
 }

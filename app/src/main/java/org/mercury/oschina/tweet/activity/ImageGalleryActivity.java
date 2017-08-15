@@ -39,6 +39,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * Created by wang.zhonghao on 2017/8/14.
@@ -233,7 +234,7 @@ public class ImageGalleryActivity extends BaseActivity implements ViewPager.OnPa
 
     private class ViewPagerAdapter extends PagerAdapter {
 
-        private View.OnClickListener mFinishListener;
+        private PhotoViewAttacher.OnPhotoTapListener mFinishListener;
 
         @Override
         public int getCount() {
@@ -250,7 +251,8 @@ public class ImageGalleryActivity extends BaseActivity implements ViewPager.OnPa
             View view = LayoutInflater.from(container.getContext()).inflate(R.layout
                     .layout_viewpager_image, container, false);
             PhotoView ivPreview = (PhotoView) view.findViewById(R.id.iv_preview);
-            ivPreview.setOnClickListener(getListener());
+
+            ivPreview.setOnPhotoTapListener(getListener());
 
             Loading loading = (Loading) view.findViewById(R.id.loading);
             loadImage(position, mImages[position], ivPreview, loading);
@@ -258,11 +260,11 @@ public class ImageGalleryActivity extends BaseActivity implements ViewPager.OnPa
             return view;
         }
 
-        private View.OnClickListener getListener() {
+        private PhotoViewAttacher.OnPhotoTapListener getListener() {
             if (mFinishListener == null) {
-                mFinishListener = new View.OnClickListener() {
+                mFinishListener=new PhotoViewAttacher.OnPhotoTapListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onPhotoTap(View view, float x, float y) {
                         finish();
                     }
                 };

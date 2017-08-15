@@ -1,14 +1,12 @@
 package org.mercury.oschina.tweet.fragment;
 
-import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 
-import org.mercury.oschina.Constant;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.base.BaseRecyclerViewFragment;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.tweet.activity.TweetDetailActivity;
-import org.mercury.oschina.tweet.adapter.NewTweetAdapter;
+import org.mercury.oschina.tweet.adapter.TweetListAdapter;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
 import org.mercury.oschina.widget.recyclerload.OnLoadMoreListener;
@@ -25,7 +23,7 @@ import retrofit2.Response;
  */
 public class NewTweetFragment extends BaseRecyclerViewFragment<TweetResponse> implements SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener {
 
-    public NewTweetAdapter mAdapter;
+    public TweetListAdapter mAdapter;
 
     int pageIndex = 1;
     public boolean isLoadMore;
@@ -49,7 +47,7 @@ public class NewTweetFragment extends BaseRecyclerViewFragment<TweetResponse> im
 
     @Override
     protected BaseRecyclerAdapter getRecyclerAdapter() {
-        NewTweetAdapter adapter = new NewTweetAdapter(getActivity());
+        TweetListAdapter adapter = new TweetListAdapter(getActivity());
         mAdapter = adapter;
         return adapter;
     }
@@ -88,9 +86,9 @@ public class NewTweetFragment extends BaseRecyclerViewFragment<TweetResponse> im
 
     @Override
     public void onItemClick(int position, long itemId) {
-        Intent intent = new Intent(mContext, TweetDetailActivity.class);
         Tweet tweet = mAdapter.getItem(position);
-        intent.putExtra(Constant.TWEET_DETAIL, tweet.getId());
-        startActivity(intent);
+        if (tweet != null) {
+            TweetDetailActivity.show(getContext(), tweet);
+        }
     }
 }

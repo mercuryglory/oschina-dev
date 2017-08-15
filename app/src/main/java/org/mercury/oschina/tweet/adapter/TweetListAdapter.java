@@ -30,11 +30,11 @@ import butterknife.ButterKnife;
 /**
  * 创建者:    Mercury
  * 创建时间:  2016/8/15
- * 描述:      最新动弹 列表 适配器
+ * 描述:      动弹列表 适配器
  */
-public class NewTweetAdapter extends BaseRecyclerAdapter<Tweet> {
+public class TweetListAdapter extends BaseRecyclerAdapter<Tweet> {
 
-    public NewTweetAdapter(Context context) {
+    public TweetListAdapter(Context context) {
         super(context);
     }
 

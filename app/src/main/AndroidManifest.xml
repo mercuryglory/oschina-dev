@@ -79,6 +79,7 @@
 
         <activity
             android:name="org.mercury.oschina.tweet.activity.TweetDetailActivity"
+            android:launchMode="singleTop"
             android:label="动弹详情"
             android:screenOrientation="portrait"
             android:theme="@style/Base.App.Theme.NoTitle"

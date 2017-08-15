@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/ic_bg_item_selector"
@@ -37,7 +38,7 @@
                     android:layout_weight="1"
                     android:maxLines="1"
                     android:text="Author Name"
-                    android:textColor="@color/spinner_background_press"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <TextView
@@ -61,9 +62,9 @@
                 android:focusableInTouchMode="false"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="@dimen/font_4"
-                android:text="宝宝不开心"
                 android:textColor="#4f4f4f"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tool:text="这是内容哦" />
 
             <TextView
                 android:id="@+id/tv_tweet_platform"
