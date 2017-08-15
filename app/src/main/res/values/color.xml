@@ -136,4 +136,6 @@
     <color name="indicator_color">#3F51B5</color>
     <color name="progress_arc">#1e95ff</color>
     <color name="btn_pressed">#18BE40</color>
+
+    <color name="user_info_pressed">#1EB050</color>
 </resources>

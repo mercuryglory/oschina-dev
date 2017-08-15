@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,14 +44,17 @@ public class OtherUserHomeActivity extends BaseActivity {
     Toolbar         toolbar;
     @Bind(R.id.layout_appbar)
     AppBarLayout    layoutAppbar;
+    @Bind(R.id.tablayout)
+    TabLayout tablayout;
 
 
     private static final String KEY_AUTHORID = "KEY_AUTHORID";
 
+
     private UserHomeAdapter mAdapter;
     private int pageIndex = 0;
-    private List<Active>   mList;
-    private User           mUser;
+    private List<Active> mList;
+    private User         mUser;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -81,6 +85,10 @@ public class OtherUserHomeActivity extends BaseActivity {
                 (ivPortraitLogo);
         getImageLoader().load(mUser.getPortrait()).error(R.mipmap.widget_dface).into
                 (ivUserPortrait);
+
+        tablayout.addTab(tablayout.newTab().setText("动弹"));
+        tablayout.addTab(tablayout.newTab().setText("博客"));
+        tablayout.addTab(tablayout.newTab().setText("讨论"));
     }
 
     @Override
@@ -92,8 +100,8 @@ public class OtherUserHomeActivity extends BaseActivity {
     }
 
     private class AppbarListener implements AppBarLayout.OnOffsetChangedListener {
-        int maxOffset = -1;
-        boolean isShow = false;
+        int     maxOffset = -1;
+        boolean isShow    = false;
 
         @Override
         public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
