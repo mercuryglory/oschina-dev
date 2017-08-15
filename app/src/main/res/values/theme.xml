@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary" >@color/day_colorPrimary</item >
+        <item name="colorPrimaryDark" >@color/day_colorPrimaryDark</item >
+        <item name="colorAccent" >@color/colorAccent</item >
+
+        <!--textcolor-->
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="actionBarSize">48dp</item>
+        <item name="toolbarStyle">@style/App.Widget.Light.Toolbar</item>
+    </style >
+
+    <style name="App.Theme.Main" parent="Base.App.Theme.NoTitle" />
+
+    <style name="App.Theme.Launch" parent="Base.App.Theme.NoTitle">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/welcome</item>
+    </style>
+
+    <style name="App.Theme.Full" parent="Base.App.Theme.NoTitle">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Test" parent="Theme.AppCompat.Light" >
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="Base.App.Theme.Light" parent="@style/Theme.AppCompat.Light">
         <!--color primary-->
         <item name="colorPrimary">@color/day_colorPrimary</item>

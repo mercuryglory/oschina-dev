@@ -47,6 +47,8 @@ public class Tweet implements Parcelable {
         portrait = dest.readString();
     }
 
+    public Tweet() {
+    }
 
     @Override
     public int describeContents() {

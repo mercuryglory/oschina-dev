@@ -25,8 +25,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon"
-        >
+        tools:replace="android:icon" >
 
         <activity
             android:name=".WelcomeActivity"
@@ -55,35 +54,39 @@
 
         <activity
             android:name="org.mercury.oschina.main.activity.LoginActivity"
+            android:configChanges="keyboardHidden|orientation"
             android:label="登录中心"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation"
-            android:theme="@style/Account_Base.App.Theme.NoTitle"
-            />
+            android:theme="@style/Account_Base.App.Theme.NoTitle" />
 
-        <activity android:name="com.qrcode.zxing.activity.QRCodeActivity"
+        <activity
+            android:name="com.qrcode.zxing.activity.QRCodeActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity android:name="org.mercury.oschina.main.activity.QuickViodeActivity" />
         <activity android:name="org.mercury.oschina.main.activity.TextDialogActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" />
 
-        <activity android:name="org.mercury.oschina.tweet.activity.UserHomeActivity" />
-        <activity android:name="org.mercury.oschina.tweet.activity.PhotoActivity"
+        <activity
+            android:name="org.mercury.oschina.tweet.activity.OtherUserHomeActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/App.Theme.Main"/>
+        <activity
+            android:name="org.mercury.oschina.tweet.activity.PhotoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Account_Base.App.Theme.NoTitle"/>
+            android:theme="@style/Account_Base.App.Theme.NoTitle" />
         <activity android:name="org.mercury.oschina.tweet.activity.WebActivity" />
 
         <activity
             android:name="org.mercury.oschina.tweet.activity.TweetDetailActivity"
-            android:launchMode="singleTop"
             android:label="动弹详情"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/Base.App.Theme.NoTitle"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
 
         <activity android:name="org.mercury.oschina.main.activity.BlogActivity" />
         <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity" />
@@ -91,21 +94,22 @@
         <activity android:name="org.mercury.oschina.explorer.ui.activity.BlogInfoActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ImageBigActivity" />
 
-        <activity android:name=".main.activity.MainActivity"
+        <activity
+            android:name=".main.activity.MainActivity"
             android:label="首页"
-            android:theme="@style/App.Theme.Main"
             android:launchMode="singleTask"
-            />
-        <activity android:name=".AuthActivity"
+            android:theme="@style/App.Theme.Main" />
+        <activity
+            android:name=".AuthActivity"
             android:label="登录验证"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".tweet.activity.ImageGalleryActivity"
             android:launchMode="singleTop"
-            android:theme="@style/App.Theme.Full"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/App.Theme.Full" />
 
     </application >
 

@@ -15,8 +15,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.mercury.oschina.AppContext;
-import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.emoji.EmojiView;
@@ -72,8 +70,8 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
     HaoRecyclerView     recyclerview;
     @Bind(R.id.layout_tweet_picture)
     TweetPicturesLayout layoutTweetPicture;
-    @Bind(R.id.appbar)
-    AppBarLayout        appbar;
+    @Bind(R.id.layout_appbar)
+    AppBarLayout        layoutAppbar;
     @Bind(R.id.refresh_layout)
     SwipeRefreshLayout  refreshLayout;
 
@@ -147,7 +145,7 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
 
         refreshLayout.setColorSchemeResources(R.color.swiperefresh_color1, R.color
                 .swiperefresh_color2, R.color.swiperefresh_color3, R.color.swiperefresh_color4);
-        appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+        layoutAppbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (verticalOffset >= 0) {
@@ -217,12 +215,10 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
             @Override
             public void onClick(View v) {
                 User user = new User();
-                user.setId(tweet.getAuthorid());
+                user.setUid(tweet.getAuthorid());
                 user.setName(tweet.getAuthor());
-
-                Intent intent = new Intent(AppContext.context, UserHomeActivity.class);
-                intent.putExtra(Constant.USER_ID, user);
-                startActivity(intent);
+                user.setPortrait(tweet.getPortrait());
+                OtherUserHomeActivity.show(TweetDetailActivity.this, user);
             }
         });
 

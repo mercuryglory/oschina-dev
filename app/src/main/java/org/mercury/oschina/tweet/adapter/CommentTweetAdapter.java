@@ -1,7 +1,6 @@
 package org.mercury.oschina.tweet.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -10,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.mercury.oschina.AppContext;
-import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
-import org.mercury.oschina.tweet.activity.UserHomeActivity;
+import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
 import org.mercury.oschina.tweet.bean.Comment;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.GlideUtils;
@@ -46,13 +43,10 @@ public class CommentTweetAdapter extends BaseRecyclerAdapter<Comment> {
             @Override
             public void onClick(View v) {
                 User user = new User();
-                user.setId(comment.getCommentAuthorId());
+                user.setUid(comment.getCommentAuthorId());
                 user.setName(comment.getCommentAuthor());
-
-                Intent intent = new Intent(AppContext.context, UserHomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(Constant.USER_ID, user);
-                AppContext.context().startActivity(intent);
+                user.setPortrait(comment.getCommentPortrait());
+                OtherUserHomeActivity.show(mContext, user);
             }
         });
 

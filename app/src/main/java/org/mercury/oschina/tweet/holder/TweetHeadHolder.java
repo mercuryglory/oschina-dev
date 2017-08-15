@@ -16,7 +16,7 @@ import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.AppContext;
 import org.mercury.oschina.tweet.activity.PhotoActivity;
-import org.mercury.oschina.tweet.activity.UserHomeActivity;
+import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
 import org.mercury.oschina.tweet.activity.WebActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
@@ -57,10 +57,10 @@ public class TweetHeadHolder extends BasicHolder<Tweet> {
             @Override
             public void onClick(View v) {
                 User user = new User();
-                user.setId(tweet.getAuthorid());
-                user.setName(tweet.getAuthor());
+//                user.setId(tweet.getAuthorid());
+//                user.setName(tweet.getAuthor());
 
-                Intent intent = new Intent(AppContext.context, UserHomeActivity.class);
+                Intent intent = new Intent(AppContext.context, OtherUserHomeActivity.class);
                 intent.putExtra(Constant.USER_ID, user);
                 parent.getContext().startActivity(intent);
             }

@@ -1,7 +1,6 @@
 package org.mercury.oschina.tweet.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -11,11 +10,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
-import org.mercury.oschina.AppContext;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
-import org.mercury.oschina.tweet.activity.UserHomeActivity;
+import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.GlideUtils;
@@ -50,18 +47,16 @@ public class TweetListAdapter extends BaseRecyclerAdapter<Tweet> {
         GlideUtils.loadCircleImage(mContext, data.getPortrait(),
                 holder.ivTweetFace);
 
-        //点击头像图片后跳转到该用户中心界面
+        //点击头像图片后跳转到该用户的个人界面
         holder.ivTweetFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User user = new User();
-                user.setId(data.getAuthorid());
+                user.setUid(data.getAuthorid());
                 user.setName(data.getAuthor());
+                user.setPortrait(data.getPortrait());
+                OtherUserHomeActivity.show(mContext, user);
 
-                Intent intent = new Intent(AppContext.context, UserHomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(Constant.USER_ID, user);
-                AppContext.context().startActivity(intent);
             }
         });
 

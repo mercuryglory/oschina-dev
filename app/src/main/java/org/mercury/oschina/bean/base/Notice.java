@@ -1,12 +1,13 @@
 package org.mercury.oschina.bean.base;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by Mercury on 2017/8/3.
  */
 
-public class Notice implements Serializable{
+public class Notice implements Parcelable{
 
     /**
      * replyCount : 0
@@ -19,6 +20,25 @@ public class Notice implements Serializable{
     private int msgCount;
     private int fansCount;
     private int referCount;
+
+    protected Notice(Parcel in) {
+        replyCount = in.readInt();
+        msgCount = in.readInt();
+        fansCount = in.readInt();
+        referCount = in.readInt();
+    }
+
+    public static final Creator<Notice> CREATOR = new Creator<Notice>() {
+        @Override
+        public Notice createFromParcel(Parcel in) {
+            return new Notice(in);
+        }
+
+        @Override
+        public Notice[] newArray(int size) {
+            return new Notice[size];
+        }
+    };
 
     public int getReplyCount() {
         return replyCount;
@@ -50,5 +70,18 @@ public class Notice implements Serializable{
 
     public void setReferCount(int referCount) {
         this.referCount = referCount;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(replyCount);
+        dest.writeInt(msgCount);
+        dest.writeInt(fansCount);
+        dest.writeInt(referCount);
     }
 }
