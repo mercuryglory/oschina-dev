@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -155,6 +156,11 @@ public class HaoRecyclerView extends RecyclerView {
                 lastVisibleItemPosition = ((LinearLayoutManager) layoutManager)
                         .findLastVisibleItemPosition();
             }
+
+            Log.i("Mercury", "firstVisibleItemPosition: "+((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition());
+            Log.i("Mercury", "lastVisibleItemPosition: "+((LinearLayoutManager) layoutManager).findLastVisibleItemPosition());
+            Log.i("Mercury", "getChildCount: "+((LinearLayoutManager) layoutManager).getChildCount());
+            Log.i("Mercury", "getItemCount: "+((LinearLayoutManager) layoutManager).getItemCount());
 
             if (layoutManager.getChildCount() > 0
                     && lastVisibleItemPosition >= layoutManager.getItemCount() - 1) {

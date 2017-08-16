@@ -178,6 +178,9 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
                 } else {
                     recyclerview.loadMoreEnd();
                 }
+                if (refreshLayout.isRefreshing()) {
+                    refreshLayout.setRefreshing(false);
+                }
             }
 
             @Override
@@ -204,7 +207,7 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
             mAdapter.setData(commentList);
         }
         recyclerview.refreshComplete();
-        refreshLayout.setRefreshing(false);
+
     }
 
 

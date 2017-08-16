@@ -113,7 +113,9 @@ public class WrapAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      * @return
      */
     public boolean isFooter(int position) {
-        return position == getItemCount() - 1;
+        if(adapter.getItemCount()>=20)
+            return position == getItemCount() - 1;
+        return position == getItemCount();
     }
 
 
@@ -142,9 +144,12 @@ public class WrapAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemCount() {
         if (adapter != null) {
-            return 1 + adapter.getItemCount();
+            //如果单次数据大于等于20条,才会出现loading的尾布局
+            if (adapter.getItemCount() >= 20)
+                return adapter.getItemCount() + 1;
+            return adapter.getItemCount();
         } else {
-            return 1;
+            return 0;
         }
     }
 

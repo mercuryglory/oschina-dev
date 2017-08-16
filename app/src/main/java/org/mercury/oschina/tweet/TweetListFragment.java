@@ -38,6 +38,9 @@ public class TweetListFragment extends BaseRecyclerViewFragment<TweetResponse> i
     @Override
     protected void response(Call<TweetResponse> call, Response<TweetResponse> response) {
         TweetResponse bean = response.body();
+        if (bean == null || bean.getTweetlist() == null) {
+            return;
+        }
         if (isLoadMore) {
             loadMore(bean.getTweetlist());
         } else {
