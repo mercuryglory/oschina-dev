@@ -1,41 +1,22 @@
 package org.mercury.oschina.synthesis.ui.fragment;
 
-import android.support.v4.view.ViewPager;
-
-import com.ToxicBakery.viewpager.transforms.ScaleInOutTransformer;
-import com.orhanobut.logger.Logger;
+import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.main.BaseTitleFragment;
-import org.mercury.oschina.synthesis.adapter.SynthesisPagerAdapter;
-import org.mercury.oschina.tweet.widget.PagerSlidingTabStrip;
-
-import butterknife.Bind;
+import org.mercury.oschina.base.BaseViewPagerFragment;
 
 /**
  * Created by mercury on 2016-08-14 19:33:46.
  * 综合模块
- * 子模块：资讯  热点  博客  推荐
+ * 子模块：新闻资讯  推荐博客  每日博客
  */
-public class SynthesisFragment extends BaseTitleFragment {
-    private static final String TAG = "SynthesisFragment";
-
-    @Bind(R.id.slidingTab)
-    PagerSlidingTabStrip mSlidingTab;
-    @Bind(R.id.viewPager)
-    ViewPager mViewPager;
-
-    private SynthesisPagerAdapter mAdapter;
+public class SynthesisFragment extends BaseViewPagerFragment {
 
     @Override
-    protected void initData() {
-        Logger.t(TAG).i("onCreateView");
-        mAdapter = new SynthesisPagerAdapter(getActivity().getSupportFragmentManager());
-        mViewPager.setAdapter(mAdapter);
-        mViewPager.setPageTransformer(true,new ScaleInOutTransformer());
-        mSlidingTab.setViewPager(mViewPager);
+    protected  void initData() {
+        //选择了一个fragment切换时的动画效果
+        baseViewpager.setPageTransformer(true, new ZoomInTransformer());
     }
-
 
     @Override
     protected int getTitleRes() {
@@ -43,8 +24,12 @@ public class SynthesisFragment extends BaseTitleFragment {
     }
 
     @Override
-    protected int getContentLayoutId() {
-        return R.layout.fragment_synthesis;
+    protected PagerInfo[] getPagerInfo() {
+        return new PagerInfo[]{
+                new PagerInfo("新闻资讯", NewsFragment.class, null),
+                new PagerInfo("推荐博客", BlogNewestFragment.class, null),
+                new PagerInfo("每日博客", BlogHeatFragment.class, null)
+        };
     }
 
 
