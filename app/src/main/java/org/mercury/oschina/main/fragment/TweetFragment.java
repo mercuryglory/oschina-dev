@@ -1,13 +1,15 @@
 package org.mercury.oschina.main.fragment;
 
 
+import android.os.Bundle;
+
 import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseViewPagerFragment;
-import org.mercury.oschina.tweet.fragment.HotTweetFragment;
-import org.mercury.oschina.tweet.fragment.MyTweetFragment;
-import org.mercury.oschina.tweet.fragment.NewTweetFragment;
+import org.mercury.oschina.tweet.TweetListFragment;
+import org.mercury.oschina.utils.SpUtils;
 
 /**
  * Created by mercury on 2016-08-14 19:33:46.
@@ -29,10 +31,19 @@ public class TweetFragment extends BaseViewPagerFragment {
 
     @Override
     protected PagerInfo[] getPagerInfo() {
+        int userId = Integer.parseInt(SpUtils.get(mContext, Constant.USER_ID, "").toString());
         return new PagerInfo[]{
-                new PagerInfo("最新动弹", NewTweetFragment.class, null),
-                new PagerInfo("热门动弹", HotTweetFragment.class, null),
-                new PagerInfo("我的动弹", MyTweetFragment.class, null)
+                new PagerInfo("最新动弹", TweetListFragment.class, getBundle(TweetListFragment
+                        .CATALOG_NEW)),
+                new PagerInfo("热门动弹", TweetListFragment.class, getBundle(TweetListFragment
+                        .CATALOG_HOT)),
+                new PagerInfo("我的动弹", TweetListFragment.class, getBundle(userId))
         };
+    }
+
+    private Bundle getBundle(int catalog) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(TweetListFragment.REQUEST_CATALOG, catalog);
+        return bundle;
     }
 }

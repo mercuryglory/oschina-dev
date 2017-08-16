@@ -1,5 +1,7 @@
-package org.mercury.oschina.tweet.fragment;
+package org.mercury.oschina.tweet;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import org.mercury.oschina.base.BaseRecyclerAdapter;
@@ -21,12 +23,17 @@ import retrofit2.Response;
  * 创建时间:  2016/8/14
  * 描述:      最新动弹
  */
-public class NewTweetFragment extends BaseRecyclerViewFragment<TweetResponse> implements SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener {
+public class TweetListFragment extends BaseRecyclerViewFragment<TweetResponse> implements SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener {
 
     public TweetListAdapter mAdapter;
 
     int pageIndex = 1;
     public boolean isLoadMore;
+
+    public static final String REQUEST_CATALOG = "REQUEST_CATALOG";
+    public static final int    CATALOG_NEW     = 0;
+    public static final int    CATALOG_HOT     = -1;
+    public long requestType;
 
     @Override
     protected void response(Call<TweetResponse> call, Response<TweetResponse> response) {
@@ -38,10 +45,25 @@ public class NewTweetFragment extends BaseRecyclerViewFragment<TweetResponse> im
         }
     }
 
+    public static Fragment instantiate(int userId) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(REQUEST_CATALOG, userId);
+        TweetListFragment fragment = new TweetListFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    @Override
+    protected void initBundle(Bundle bundle) {
+        super.initBundle(bundle);
+        if (bundle != null) {
+            requestType = bundle.getInt(REQUEST_CATALOG);
+        }
+    }
 
     @Override
     protected Call<TweetResponse> getCall(HttpApi retrofitCall) {
-        Call<TweetResponse> tweetData = retrofitCall.getTweetList("0", pageIndex);
+        Call<TweetResponse> tweetData = retrofitCall.getTweetList(requestType, pageIndex);
         return tweetData;
     }
 
@@ -53,6 +75,11 @@ public class NewTweetFragment extends BaseRecyclerViewFragment<TweetResponse> im
     }
 
     public void loadMore(List list) {
+        //如果是热门动弹,有且仅有20条(目前)
+        if (requestType == CATALOG_HOT) {
+            mRecyclerView.loadMoreEnd();
+            return;
+        }
         mAdapter.addAll(list);
         mRecyclerView.loadMoreComplete();
     }

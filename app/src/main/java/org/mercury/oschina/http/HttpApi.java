@@ -22,7 +22,7 @@ public interface HttpApi {
     Call<AccessToken> getAccessToken(@QueryMap Map<String,String> params);
 
     @GET("tweet_list")
-    Call<TweetResponse> getTweetList(@Query("user") String user, @Query("page") int page);
+    Call<TweetResponse> getTweetList(@Query("user") long user, @Query("page") int page);
 
     @GET("tweet_detail")
     Call<Tweet> getTweetDetail(@Query("id") int id);

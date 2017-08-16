@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.util.Pair;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,10 +18,11 @@ import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
-import org.mercury.oschina.bean.Active;
 import org.mercury.oschina.tweet.adapter.UserHomeAdapter;
 import org.mercury.oschina.tweet.bean.User;
+import org.mercury.oschina.tweet.TweetListFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -45,16 +51,19 @@ public class OtherUserHomeActivity extends BaseActivity {
     @Bind(R.id.layout_appbar)
     AppBarLayout    layoutAppbar;
     @Bind(R.id.tablayout)
-    TabLayout tablayout;
-
+    TabLayout       tablayout;
+    @Bind(R.id.view_divider)
+    View      viewDivider;
+    @Bind(R.id.viewPager)
+    ViewPager viewPager;
 
     private static final String KEY_AUTHORID = "KEY_AUTHORID";
 
 
     private UserHomeAdapter mAdapter;
     private int pageIndex = 0;
-    private List<Active> mList;
-    private User         mUser;
+    private List<Pair<String,Fragment>> mFragments;
+    private User       mUser;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -86,10 +95,41 @@ public class OtherUserHomeActivity extends BaseActivity {
         getImageLoader().load(mUser.getPortrait()).error(R.mipmap.widget_dface).into
                 (ivUserPortrait);
 
-        tablayout.addTab(tablayout.newTab().setText("动弹"));
-        tablayout.addTab(tablayout.newTab().setText("博客"));
-        tablayout.addTab(tablayout.newTab().setText("讨论"));
+
+
+        if (mFragments == null) {
+            mFragments = new ArrayList<>();
+            mFragments.add(new Pair<String, Fragment>("动弹", TweetListFragment.instantiate(mUser.getUid())));
+            mFragments.add(new Pair<String, Fragment>("博客", new Fragment()));
+            mFragments.add(new Pair<String, Fragment>("讨论", new Fragment()));
+
+        }
+        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+        tablayout.setupWithViewPager(viewPager);
     }
+
+    private class ViewPagerAdapter extends FragmentStatePagerAdapter {
+
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position).second;
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragments.get(position).first;
+        }
+    }
+
 
     @Override
     protected void initBundle(Bundle bundle) {
@@ -98,6 +138,7 @@ public class OtherUserHomeActivity extends BaseActivity {
             return;
         }
     }
+
 
     private class AppbarListener implements AppBarLayout.OnOffsetChangedListener {
         int     maxOffset = -1;
@@ -111,10 +152,12 @@ public class OtherUserHomeActivity extends BaseActivity {
             if (maxOffset + verticalOffset == 0) {
                 ivPortraitLogo.setVisibility(View.VISIBLE);
                 tvNameLogo.setVisibility(View.VISIBLE);
+                viewDivider.setVisibility(View.GONE);
                 isShow = true;
             } else if (isShow) {
                 ivPortraitLogo.setVisibility(View.GONE);
                 tvNameLogo.setVisibility(View.GONE);
+                viewDivider.setVisibility(View.VISIBLE);
                 isShow = false;
             }
         }
