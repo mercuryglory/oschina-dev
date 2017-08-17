@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="false"
     android:scrollbars="none" >
 
@@ -45,21 +46,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_top"
                 android:gravity="center_horizontal"
-                android:padding="10dp" >
+                 >
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_user_pic"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="bottom"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/widget_dface" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_user_gender"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_alignRight="@+id/iv_user_pic"
+                    android:layout_alignBottom="@+id/iv_user_pic"
                     android:src="@mipmap/userinfo_icon_male" />
             </RelativeLayout >
 
@@ -70,7 +71,7 @@
                 android:layout_below="@+id/rl_user_avatar"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="点击头像登录"
+                tools:text="用户名"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -78,101 +79,54 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal" >
 
-            <LinearLayout
-                android:id="@+id/ll_user_score"
+            <TextView
+                android:id="@+id/tv_user_tweet"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/selector_list_item"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:padding="10dp"
+                android:text="动弹"
+                android:textColor="@color/white" />
 
-                <TextView
-                    android:id="@+id/tv_user_score"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="积分"
-                    android:textColor="#fff" />
-            </LinearLayout >
-
-            <LinearLayout
-                android:id="@+id/ll_user_collect"
+            <TextView
+                android:id="@+id/tv_user_favorite"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/selector_list_item"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:padding="10dp"
+                android:text="收藏"
+                android:textColor="@color/white" />
 
-                <TextView
-                    android:id="@+id/tv_user_collect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="收藏"
-                    android:textColor="#fff" />
-            </LinearLayout >
-
-            <LinearLayout
-                android:id="@+id/ll_user_care"
+            <TextView
+                android:id="@+id/tv_user_like"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/selector_list_item"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:padding="10dp"
+                android:text="关注"
+                android:textColor="@color/white" />
 
-                <TextView
-                    android:id="@+id/tv_user_stare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="关注"
-                    android:textColor="#fff" />
-            </LinearLayout >
-
-            <LinearLayout
-                android:id="@+id/ll_user_fans"
+            <TextView
+                android:id="@+id/tv_user_fans"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/selector_list_item"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:padding="10dp"
+                android:text="粉丝"
+                android:textColor="@color/white" />
 
-                <TextView
-                    android:id="@+id/tv_user_follower"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="粉丝"
-                    android:textColor="#fff" />
-            </LinearLayout >
         </LinearLayout >
 
         <LinearLayout

@@ -3,12 +3,14 @@ package org.mercury.oschina.main.fragment;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -16,39 +18,28 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
-import org.mercury.oschina.R;
 import org.mercury.oschina.AppContext;
+import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseFragment;
-import org.mercury.oschina.bean.MyInformation;
-import org.mercury.oschina.bean.User;
 import org.mercury.oschina.emoji.UiUtil;
+import org.mercury.oschina.http.HttpApi;
+import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.main.activity.BlogActivity;
-import org.mercury.oschina.main.activity.CollectionActivity;
 import org.mercury.oschina.main.activity.LoginActivity;
 import org.mercury.oschina.main.activity.MsgActivity;
-import org.mercury.oschina.main.activity.ThierActivity;
+import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.ToastUtil;
-import org.mercury.oschina.utils.Fields;
-import org.mercury.oschina.utils.OschinaUri;
-import org.mercury.oschina.utils.Utils;
-import org.mercury.oschina.utils.XmlUtils;
 
 import java.util.Hashtable;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Call;
-
-import static org.mercury.oschina.R.id.iv_user_pic;
-import static org.mercury.oschina.R.id.iv_user_qr_code;
-import static org.mercury.oschina.R.id.ll_user_blog;
-import static org.mercury.oschina.R.id.ll_user_care;
-import static org.mercury.oschina.R.id.ll_user_collect;
-import static org.mercury.oschina.R.id.ll_user_msg;
+import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Mercury on 2016-08-14 19:33:46.
@@ -59,47 +50,45 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
     private static final int QR_WIDTH  = 100;
     private static final int QR_HEIGHT = 100;
 
-    @Bind(iv_user_pic)
-    ImageView      mIvUserPic;
-    @Bind(R.id.iv_user_gender)
-    ImageView      mIvUserGender;
-    @Bind(iv_user_qr_code)
-    ImageView      mIvUserQrCode;
-    @Bind(R.id.tv_user_name)
-    TextView       mTvUserName;
-    @Bind(R.id.tv_user_score)
-    TextView       mTvUserScore;
-    @Bind(R.id.ll_user_score)
-    LinearLayout   mLlUserScore;
-    @Bind(R.id.tv_user_collect)
-    TextView       mTvUserCollect;
-    @Bind(ll_user_collect)
-    LinearLayout   mLlUserCollect;
-    @Bind(R.id.tv_user_stare)
-    TextView       mTvUserStare;
-    @Bind(ll_user_care)
-    LinearLayout   mLlUserCare;
-    @Bind(R.id.tv_user_follower)
-    TextView       mTvUserFollower;
-    @Bind(R.id.ll_user_fans)
-    LinearLayout   mLlUserFans;
-    @Bind(R.id.rl_user)
-    RelativeLayout mRlUser;
-    @Bind(ll_user_msg)
-    LinearLayout   mLlUserMsg;
-    @Bind(ll_user_blog)
-    LinearLayout   mLlUserBlog;
-    @Bind(R.id.ll_user_note)
-    LinearLayout   mLlUserNote;
-    @Bind(R.id.ll_user_team)
-    LinearLayout   mLlUserTeam;
 
-    public  DisplayImageOptions mOptions;
-    private User                mUser;
+    public DisplayImageOptions mOptions;
+    @Bind(R.id.iv_setting)
+    ImageView       ivSetting;
+    @Bind(R.id.iv_user_qr_code)
+    ImageView       ivUserQrCode;
+    @Bind(R.id.rl_top)
+    RelativeLayout  rlTop;
+    @Bind(R.id.iv_user_pic)
+    CircleImageView ivUserPic;
+    @Bind(R.id.iv_user_gender)
+    CircleImageView       ivUserGender;
+    @Bind(R.id.rl_user_avatar)
+    RelativeLayout  rlUserAvatar;
+    @Bind(R.id.tv_user_name)
+    TextView        tvUserName;
+    @Bind(R.id.rl_user)
+    RelativeLayout  rlUser;
+    @Bind(R.id.tv_user_tweet)
+    TextView        tvUserTweet;
+    @Bind(R.id.tv_user_favorite)
+    TextView        tvUserFavorite;
+    @Bind(R.id.tv_user_like)
+    TextView        tvUserLike;
+    @Bind(R.id.tv_user_fans)
+    TextView        tvUserFans;
+    @Bind(R.id.ll_user_msg)
+    LinearLayout   llUserMsg;
+    @Bind(R.id.ll_user_blog)
+    LinearLayout   llUserBlog;
+    @Bind(R.id.ll_user_note)
+    LinearLayout   llUserNote;
+    @Bind(R.id.ll_user_team)
+    LinearLayout   llUserTeam;
+
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_user;
+        return R.layout.fragment_user_myinfo;
     }
 
     @Override
@@ -107,103 +96,80 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
         super.initWidget(root);
         //由于采用了沉浸式标题栏（其实相当于将整个布局向上填充遮盖了系统标题栏的高度，导致图标部分被遮挡
         // 在系统标题栏之内），所以人为代码设置paddinttop，和屏幕顶部拉开距离
-        mRlUser.setPadding(mRlUser.getLeft(), UiUtil.getStatusBarHeight(getActivity()), mRlUser
-                .getRight(), mRlUser.getBottom());
+        rlUser.setPadding(rlUser.getLeft(), UiUtil.getStatusBarHeight(getActivity()), rlUser
+                .getRight(), rlUser.getBottom());
     }
 
     @Override
     protected void initData() {
-        super.initData();
-        mOptions = new DisplayImageOptions.Builder().showImageOnLoading(R.mipmap.ic_launcher)
-                .showImageForEmptyUri(R.mipmap.ic_launcher)
-                .showImageOnFail(R.mipmap.ic_launcher)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)// 会识别图片的方向信息
-                .build();
+        requestData();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        OkHttpUtils.get().url(OschinaUri.ME_URL)
-                .build()
-                .execute(new StringCallback() {
+    private void requestData() {
+        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+        Call<User> myInfo = retrofitCall.getMyInfo();
+        myInfo.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                User body = response.body();
+                if (body != null) {
+                    updateMyInfo(body);
+                }
+            }
 
-                    @Override
-                    public void onError(Call call, Exception e, int i) {
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                showToast(getResources().getString(R.string.state_network_error));
 
-                        Toast.makeText(getActivity(), "请求失败!", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(String s, int i) {
-                        //      Toast.makeText(getActivity(), "请求成功!", Toast.LENGTH_SHORT).show();
-                        MyInformation myInformation = XmlUtils.toBean(MyInformation.class, s
-                                .getBytes());
-                        mUser = myInformation.getUser();
-
-
-                        Utils.runOnUIThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ImageLoader.getInstance().displayImage(mUser.getPortrait(),
-                                        mIvUserPic,
-                                        mOptions);
-                                mIvUserGender.setImageResource(mUser.getGender().equals(1) ? R
-                                        .mipmap
-                                        .userinfo_icon_male : R.mipmap.userinfo_icon_female);
-                                mTvUserName.setText(mUser.getName());
-                                mTvUserScore.setText(mUser.getScore() + "");
-                                mTvUserCollect.setText(mUser.getFavoritecount() + "");
-                                mTvUserStare.setText(mUser.getFollowers() + "");
-                                mTvUserFollower.setText(mUser.getFans() + "");
-
-                            }
-                        });
-
-                    }
-                });
-
+            }
+        });
     }
 
+    private void updateMyInfo(User body) {
+        tvUserName.setText(body.getName());
+        getImgLoader().load(body.getPortrait()).into(ivUserPic);
+        if (body.getGender() == 1) {
+            ivUserGender.setImageResource(R.mipmap.userinfo_icon_male);
+        } else if (body.getGender() == 2) {
+            ivUserGender.setImageResource(R.mipmap.userinfo_icon_female);
+        }
+    }
 
-    @OnClick({R.id.ll_user_score, R.id.ll_user_fans, ll_user_care, ll_user_collect,
-            iv_user_pic, ll_user_msg,ll_user_blog,iv_user_qr_code})
+    @OnClick({R.id.iv_user_pic, R.id.ll_user_msg, R.id.ll_user_blog, R.id.iv_user_qr_code})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_user_score:
-                break;
-            case R.id.ll_user_fans:
-                Intent intent = new Intent(getActivity(), ThierActivity.class);
-                intent.putExtra(Fields.FANS, "fans");
-                startActivity(intent);
-                break;
-            case ll_user_care:
-                Intent intent1 = new Intent(getActivity(), ThierActivity.class);
-                intent1.putExtra(Fields.CARE, "care");
-                startActivity(intent1);
+            //            case R.id.ll_user_score:
+            //                break;
+            //            case R.id.ll_user_fans:
+            //                Intent intent = new Intent(getActivity(), ThierActivity.class);
+            //                intent.putExtra(Fields.FANS, "fans");
+            //                startActivity(intent);
+            //                break;
+            //            case ll_user_care:
+            //                Intent intent1 = new Intent(getActivity(), ThierActivity.class);
+            //                intent1.putExtra(Fields.CARE, "care");
+            //                startActivity(intent1);
+            //
+            //                break;
+            //            case ll_user_collect:
+            //
+            //                startActivity(new Intent(getActivity(), CollectionActivity.class));
+            //                break;
 
-                break;
-            case ll_user_collect:
-
-                startActivity(new Intent(getActivity(), CollectionActivity.class));
-                break;
-            //点击头像登录
-            case iv_user_pic:
-
+            //点击头像重新进行auth授权登录
+            case R.id.iv_user_pic:
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
 
-            case ll_user_msg:
+            case R.id.ll_user_msg:
                 startActivity(new Intent(getActivity(), MsgActivity.class));
                 break;
-            case ll_user_blog:
+            case R.id.ll_user_blog:
                 startActivity(new Intent(getActivity(), BlogActivity.class));
                 break;
             //弹出二维码
-            case iv_user_qr_code:
+            case R.id.iv_user_qr_code:
                 showqr_codeDialog();
 
                 break;
@@ -268,5 +234,19 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 }
 

@@ -7,6 +7,7 @@ import org.mercury.oschina.synthesis.bean.NewsResponse;
 import org.mercury.oschina.tweet.bean.CommentResponse;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
+import org.mercury.oschina.tweet.bean.User;
 
 import java.util.Map;
 
@@ -45,5 +46,8 @@ public interface HttpApi {
 
     @GET("post_list")
     Call<PostResponse> getPostList(@Query("catalog") int catalog, @Query("page") int page);
+
+    @GET("my_information")
+    Call<User> getMyInfo();
 
 }
