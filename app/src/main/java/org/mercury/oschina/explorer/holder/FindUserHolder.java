@@ -7,10 +7,10 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.mercury.oschina.R;
 import org.mercury.oschina.AppContext;
+import org.mercury.oschina.R;
+import org.mercury.oschina.explorer.adapter.BasicHolder;
 import org.mercury.oschina.explorer.bean.FindUserBean;
-import org.mercury.oschina.synthesis.holder.BasicHolder;
 
 import butterknife.Bind;
 
@@ -32,10 +32,6 @@ public class FindUserHolder extends BasicHolder<FindUserBean.ObjListBean> {
     @Bind(R.id.tv_desc)
     TextView mTvDesc;
 
-    @Override
-    public TextView getTitleView() {
-        return mTvName;
-    }
 
     @Override
     public void bindView(FindUserBean.ObjListBean objListBean) {

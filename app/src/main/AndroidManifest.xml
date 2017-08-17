@@ -29,7 +29,7 @@
 
         <activity
             android:name=".WelcomeActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:theme="@style/App.Theme.Launch" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,7 @@
             </intent-filter >
         </activity >
 
-        <activity android:name="org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity" />
+        <activity android:name="org.mercury.oschina.synthesis.ui.NewsDetailActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FriendCircleActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.CampaignActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.fragment.AllActivityWebView" />

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ic_bg_item_selector"
+    android:background="@drawable/ic_material"
     android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp" >
@@ -23,7 +23,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_10" >
+        android:paddingTop="@dimen/size_10"
+        android:paddingBottom="@dimen/size_10">
 
         <TextView
             android:id="@+id/tv_blog_author"

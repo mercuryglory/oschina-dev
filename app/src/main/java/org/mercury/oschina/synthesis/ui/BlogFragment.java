@@ -1,4 +1,4 @@
-package org.mercury.oschina.synthesis.ui.fragment;
+package org.mercury.oschina.synthesis.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,7 @@ import org.mercury.oschina.synthesis.adapter.BlogListAdapter;
 import org.mercury.oschina.synthesis.bean.Blog;
 import org.mercury.oschina.synthesis.bean.BlogResponse;
 import org.mercury.oschina.tweet.TweetListFragment;
+import org.mercury.oschina.utils.GeneralUtils;
 
 import java.util.List;
 
@@ -119,7 +120,7 @@ public class BlogFragment extends BaseRecyclerViewFragment<BlogResponse> {
     public void onItemClick(int position, long itemId) {
         Blog blog = mAdapter.getItem(position);
         if (blog != null) {
-
+            GeneralUtils.writeVisitedItem(blog.getId());
         }
     }
 }

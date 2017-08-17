@@ -16,7 +16,7 @@ import org.mercury.oschina.adapter.CollectAdapter;
 import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Favorite;
 import org.mercury.oschina.bean.FavoriteList;
-import org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity;
+import org.mercury.oschina.synthesis.ui.NewsDetailActivity;
 import org.mercury.oschina.utils.OschinaUri;
 import org.mercury.oschina.utils.Utils;
 import org.mercury.oschina.utils.XmlUtils;

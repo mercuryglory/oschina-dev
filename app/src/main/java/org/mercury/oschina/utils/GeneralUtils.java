@@ -1,10 +1,9 @@
-package org.mercury.oschina.synthesis.utils;
+package org.mercury.oschina.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import org.mercury.oschina.AppContext;
-import org.mercury.oschina.utils.Constants;
 
 import java.util.Map;
 
@@ -12,13 +11,15 @@ import java.util.Map;
  * Created by more on 2016-08-17 20:06:53.
  */
 public class GeneralUtils {
-    public static void writeVisitedItem(String href) {
+
+    public static void writeVisitedItem(int id) {
+
         getSharedPreferences()
                 .edit()
-                .putString(href, href)
-                .commit();
-        if (AppContext.mAllVisitedItem != null) {
-            AppContext.mAllVisitedItem.put(href, href);
+                .putInt(String.valueOf(id), id)
+                .apply();
+        if (getAllVisitedItem() != null && !getAllVisitedItem().containsKey(id)) {
+            getAllVisitedItem().put(String.valueOf(id), id);
         }
     }
 
@@ -27,8 +28,8 @@ public class GeneralUtils {
                 .getSharedPreferences(Constants.SP_VISITED_NEWS, Context.MODE_PRIVATE);
     }
 
-    public static Map<String, String> getAllVisitedItem() {
-        return (Map<String, String>) getSharedPreferences().getAll();
+    public static Map<String, Integer> getAllVisitedItem() {
+        return (Map<String, Integer>) getSharedPreferences().getAll();
     }
 
     public static int getColor(int colorResId) {

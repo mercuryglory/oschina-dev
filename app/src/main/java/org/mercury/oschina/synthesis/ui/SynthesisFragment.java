@@ -1,4 +1,4 @@
-package org.mercury.oschina.synthesis.ui.fragment;
+package org.mercury.oschina.synthesis.ui;
 
 import android.os.Bundle;
 
@@ -30,7 +30,8 @@ public class SynthesisFragment extends BaseViewPagerFragment {
         return new PagerInfo[]{
                 new PagerInfo("新闻资讯", NewsFragment.class, null),
                 new PagerInfo("最新博客", BlogFragment.class, getBundle(BlogFragment.CATALOG_NEW)),
-                new PagerInfo("热门博客", BlogFragment.class, getBundle(BlogFragment.CATALOG_HOT))
+                new PagerInfo("热门博客", BlogFragment.class, getBundle(BlogFragment.CATALOG_HOT)),
+                new PagerInfo("技术问答", PostFragment.class, getBundle(PostFragment.CATALOG_ANSWER))
         };
     }
 

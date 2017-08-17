@@ -18,7 +18,6 @@ import com.orhanobut.logger.Logger;
 import org.mercury.oschina.R;
 import org.mercury.oschina.explorer.adapter.FindUserAdapter;
 import org.mercury.oschina.explorer.bean.FindUserBean;
-import org.mercury.oschina.synthesis.api.HttpApi;
 
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class FindUserActivity extends AppCompatActivity implements AdapterView.O
             List<FindUserBean.ObjListBean> obj_list = response.body().getObj_list();
             if (obj_list!=null&&obj_list.size()>0){
                 mLvList.setVisibility(View.VISIBLE);
-                mAdapter.updateItem(obj_list);
+//                mAdapter.updateItem(obj_list);
             }else {
                 mLvList.setVisibility(View.GONE);
             }
@@ -63,7 +62,7 @@ public class FindUserActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void initView() {
-        mAdapter = new FindUserAdapter();
+//        mAdapter = new FindUserAdapter(this);
         mLvList.setAdapter(mAdapter);
         mLvList.setOnItemClickListener(this);
     }
@@ -126,12 +125,12 @@ public class FindUserActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void search(String newText) {
-        HttpApi.getOscUser(newText,mCallback);
+//        HttpApi.getOscUser(newText,mCallback);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        FindUserBean.ObjListBean item = mAdapter.getItem(position);
+
 
     }
 }

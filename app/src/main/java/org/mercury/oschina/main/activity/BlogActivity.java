@@ -20,7 +20,7 @@ import org.mercury.oschina.adapter.MyBlogAdapter;
 import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Blog;
 import org.mercury.oschina.bean.BlogList;
-import org.mercury.oschina.synthesis.ui.activity.NewsDetailActivity;
+import org.mercury.oschina.synthesis.ui.NewsDetailActivity;
 import org.mercury.oschina.utils.OschinaUri;
 import org.mercury.oschina.utils.Utils;
 import org.mercury.oschina.utils.XmlUtils;

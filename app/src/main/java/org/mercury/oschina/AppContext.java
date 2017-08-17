@@ -10,9 +10,7 @@ import com.orhanobut.logger.Logger;
 import org.mercury.oschina.base.BaseApplication;
 import org.mercury.oschina.http.HttpInterceptor;
 import org.mercury.oschina.http.RequestHelper;
-import org.mercury.oschina.synthesis.utils.GeneralUtils;
 
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -23,7 +21,6 @@ import okhttp3.OkHttpClient;
 public class AppContext extends BaseApplication {
     public static AppContext          context;
     public static Handler             mHandler;
-    public static Map<String, String> mAllVisitedItem;
 
     public static Context getContext() {
         return context;
@@ -36,7 +33,6 @@ public class AppContext extends BaseApplication {
         mHandler = new Handler();
         context = this;
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
-        mAllVisitedItem = GeneralUtils.getAllVisitedItem();
         Logger.init("====_");
 
         OkHttpClient client = new OkHttpClient.Builder()
