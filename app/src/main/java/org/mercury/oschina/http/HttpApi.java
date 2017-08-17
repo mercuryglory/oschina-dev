@@ -1,7 +1,9 @@
 package org.mercury.oschina.http;
 
 import org.mercury.oschina.bean.AccessToken;
-import org.mercury.oschina.tweet.bean.CommentList;
+import org.mercury.oschina.synthesis.bean.BlogResponse;
+import org.mercury.oschina.synthesis.bean.NewsResponse;
+import org.mercury.oschina.tweet.bean.CommentResponse;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
 
@@ -28,6 +30,16 @@ public interface HttpApi {
     Call<Tweet> getTweetDetail(@Query("id") int id);
 
     @GET("comment_list")
-    Call<CommentList> getCommentList(@Query("id") int id, @Query("catalog") int catalog, @Query
+    Call<CommentResponse> getCommentList(@Query("id") int id, @Query("catalog") int catalog, @Query
             ("page") int page);
+
+    @GET("blog_list")
+    Call<BlogResponse> getBlogNewList(@Query("page") int page);
+
+    @GET("blog_recommend_list")
+    Call<BlogResponse> getBlogHotList(@Query("page") int page);
+
+    @GET("news_list")
+    Call<NewsResponse> getNewsList(@Query("catalog") int catalog, @Query("page") int page);
+
 }

@@ -1,5 +1,7 @@
 package org.mercury.oschina.synthesis.ui.fragment;
 
+import android.os.Bundle;
+
 import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
 
 import org.mercury.oschina.R;
@@ -27,10 +29,15 @@ public class SynthesisFragment extends BaseViewPagerFragment {
     protected PagerInfo[] getPagerInfo() {
         return new PagerInfo[]{
                 new PagerInfo("新闻资讯", NewsFragment.class, null),
-                new PagerInfo("推荐博客", BlogNewestFragment.class, null),
-                new PagerInfo("每日博客", BlogHeatFragment.class, null)
+                new PagerInfo("最新博客", BlogFragment.class, getBundle(BlogFragment.CATALOG_NEW)),
+                new PagerInfo("热门博客", BlogFragment.class, getBundle(BlogFragment.CATALOG_HOT))
         };
     }
 
+    public Bundle getBundle(int type) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(BlogFragment.REQUEST_CATALOG, type);
+        return bundle;
+    }
 
 }

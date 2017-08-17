@@ -22,7 +22,7 @@ import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.tweet.adapter.CommentTweetAdapter;
 import org.mercury.oschina.tweet.bean.Comment;
-import org.mercury.oschina.tweet.bean.CommentList;
+import org.mercury.oschina.tweet.bean.CommentResponse;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.GlideUtils;
@@ -164,11 +164,11 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
 
     private void getCommentList(int id, int catalog, int page) {
         HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
-        Call<CommentList> commentList = retrofitCall.getCommentList(id, catalog, page);
-        commentList.enqueue(new Callback<CommentList>() {
+        Call<CommentResponse> commentList = retrofitCall.getCommentList(id, catalog, page);
+        commentList.enqueue(new Callback<CommentResponse>() {
             @Override
-            public void onResponse(Call<CommentList> call, Response<CommentList> response) {
-                CommentList body = response.body();
+            public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
+                CommentResponse body = response.body();
                 if (body.getCommentList() != null && body.getCommentList().size() > 0) {
                     if (isLoadMore) {
                         loadMore(body.getCommentList());
@@ -184,7 +184,7 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
             }
 
             @Override
-            public void onFailure(Call<CommentList> call, Throwable t) {
+            public void onFailure(Call<CommentResponse> call, Throwable t) {
 
             }
         });

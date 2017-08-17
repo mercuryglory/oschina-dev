@@ -12,7 +12,7 @@ import java.util.List;
  * 
  */
 
-public class CommentList extends BaseBean{
+public class CommentResponse extends BaseBean{
 
     private List<Comment> commentList;
 

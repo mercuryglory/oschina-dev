@@ -1,54 +1,120 @@
 package org.mercury.oschina.synthesis.ui.fragment;
 
-import com.orhanobut.logger.Logger;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
-import org.mercury.oschina.synthesis.adapter.BasicAdapter;
-import org.mercury.oschina.synthesis.adapter.NewsAdapter;
-import org.mercury.oschina.synthesis.api.HttpApi;
-import org.mercury.oschina.synthesis.bean.NewsListBean;
+import org.mercury.oschina.base.BaseRecyclerAdapter;
+import org.mercury.oschina.base.BaseRecyclerViewFragment;
+import org.mercury.oschina.http.HttpApi;
+import org.mercury.oschina.synthesis.adapter.NewsListAdapter;
+import org.mercury.oschina.synthesis.bean.Blog;
+import org.mercury.oschina.synthesis.bean.NewsResponse;
+import org.mercury.oschina.tweet.TweetListFragment;
+
+import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by more on 2016-08-15 15:03:38.
+ * Created by Mercury on 2016-08-15 15:03:38.
+ * 新闻资讯 列表
  */
-public class NewsFragment extends BaseListFragment<NewsListBean.ResultBean.NewsItemsBean> {
-    private static final String TAG = "====_NewsFragment";
-    private Callback<NewsListBean> mCallback = new Callback<NewsListBean>() {
-        @Override
-        public void onResponse(Call<NewsListBean> call, Response<NewsListBean> response) {
-            Logger.t(TAG).i("onResponse");
-            NewsListBean.ResultBean resultBean = response.body().getResult();
-            preToken = resultBean.getPrevPageToken();
-            nextToken = resultBean.getNextPageToken();
-            if (isRefresh) {
-                mAdapter.updateItem(resultBean.getItems());
-            } else {
-                mAdapter.appendItem(resultBean.getItems());
-            }
-            stopRefresh();
-        }
+public class NewsFragment extends BaseRecyclerViewFragment<NewsResponse> {
 
-        @Override
-        public void onFailure(Call<NewsListBean> call, Throwable t) {
-            Logger.t(TAG).i("onFailure");
-        }
-    };
+    public NewsListAdapter mAdapter;
 
+    int pageIndex = 1;
+    public boolean isLoadMore;
 
+    public static final String REQUEST_CATALOG = "REQUEST_CATALOG";
+    public static final int    CATALOG_NEW     = 1;
+    public static final int    CATALOG_HOT     = 2;
+    public int requestType;
 
     @Override
-    protected BasicAdapter<NewsListBean.ResultBean.NewsItemsBean> onCreateAdapter() {
-        return new NewsAdapter();
+    protected void response(Call<NewsResponse> call, Response<NewsResponse> response) {
+        NewsResponse bean = response.body();
+        if (bean == null || bean.getNewslist() == null) {
+            return;
+        }
+        if (isLoadMore) {
+            loadMore(bean.getNewslist());
+        } else {
+            refresh(bean.getNewslist());
+        }
     }
 
+    public static Fragment instantiate(int userId) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(REQUEST_CATALOG, userId);
+        TweetListFragment fragment = new TweetListFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
-    protected void onLoadData() {
-        HttpApi.getNewsList(token, mCallback);
+    protected void initBundle(Bundle bundle) {
+        super.initBundle(bundle);
+        if (bundle != null) {
+            requestType = bundle.getInt(REQUEST_CATALOG);
+        }
     }
 
+    @Override
+    protected Call<NewsResponse> getCall(HttpApi retrofitCall) {
+        Call<NewsResponse> newsList = retrofitCall.getNewsList(1, pageIndex);
+        return newsList;
+    }
 
+    @Override
+    protected BaseRecyclerAdapter getRecyclerAdapter() {
+        NewsListAdapter adapter = new NewsListAdapter(getActivity());
+        mAdapter = adapter;
+        return adapter;
+    }
+
+    public void loadMore(List list) {
+        if (list == null || list.size() == 0) {
+            mRecyclerView.loadMoreEnd();
+            return;
+        }
+        mAdapter.addAll(list);
+        mRecyclerView.loadMoreComplete();
+    }
+
+    public void refresh(List list) {
+        if (mAdapter == null) {
+            mAdapter.addAll(list);
+        } else {
+            mAdapter.setData(list);
+        }
+        mRefreshLayout.setRefreshing(false);
+        mRecyclerView.refreshComplete();
+    }
+
+    @Override
+    public void onRefresh() {
+        isLoadMore = false;
+        mRecyclerView.setCanloadMore(false);
+        pageIndex = 1;
+        requestData();
+
+    }
+
+    @Override
+    public void onLoadMore() {
+        isLoadMore = true;
+        pageIndex++;
+        requestData();
+
+    }
+
+    @Override
+    public void onItemClick(int position, long itemId) {
+        Blog blog = mAdapter.getItem(position);
+        if (blog != null) {
+
+        }
+    }
 }
