@@ -2,7 +2,7 @@ package org.mercury.oschina.synthesis.ui;
 
 import android.os.Bundle;
 
-import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
+import com.ToxicBakery.viewpager.transforms.TabletTransformer;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseViewPagerFragment;
@@ -17,7 +17,7 @@ public class SynthesisFragment extends BaseViewPagerFragment {
     @Override
     protected  void initData() {
         //选择了一个fragment切换时的动画效果
-        baseViewpager.setPageTransformer(true, new ZoomInTransformer());
+        baseViewpager.setPageTransformer(true, new TabletTransformer());
     }
 
     @Override

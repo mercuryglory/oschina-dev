@@ -4,7 +4,7 @@ import org.mercury.oschina.R;
 import org.mercury.oschina.main.fragment.ExploreFragment;
 import org.mercury.oschina.synthesis.ui.SynthesisFragment;
 import org.mercury.oschina.main.fragment.TweetFragment;
-import org.mercury.oschina.main.fragment.UserFragment;
+import org.mercury.oschina.user.UserFragment;
 
 /**
  * Created by wang.zhonghao on 2017/5/25

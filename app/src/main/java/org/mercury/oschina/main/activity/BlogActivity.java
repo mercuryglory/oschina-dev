@@ -2,7 +2,6 @@ package org.mercury.oschina.main.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +14,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.R;
 import org.mercury.oschina.adapter.MyBlogAdapter;
-import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Blog;
 import org.mercury.oschina.bean.BlogList;
 import org.mercury.oschina.synthesis.ui.NewsDetailActivity;
@@ -49,7 +48,6 @@ public class BlogActivity extends AppCompatActivity implements AdapterView.OnIte
         initAdapter();
         loadData();
         setData();
-        initActionbar();
 
     }
 
@@ -131,18 +129,6 @@ public class BlogActivity extends AppCompatActivity implements AdapterView.OnIte
 
                     }
                 });
-
-    }
-    private void initActionbar() {
-        // 得到actionbar
-        ActionBar actionBar = getSupportActionBar();
-        // 设置标题
-        actionBar.setTitle("用户博客列表");
-
-        // 设置箭头
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
 
     }
 

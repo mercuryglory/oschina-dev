@@ -53,14 +53,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
-            android:name="org.mercury.oschina.main.activity.LoginActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:label="登录中心"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/Account_Base.App.Theme.NoTitle" />
-
-        <activity
             android:name="com.qrcode.zxing.activity.QRCodeActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />

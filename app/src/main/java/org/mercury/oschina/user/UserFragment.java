@@ -1,12 +1,9 @@
-package org.mercury.oschina.main.fragment;
+package org.mercury.oschina.user;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,7 +14,6 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import org.mercury.oschina.AppContext;
 import org.mercury.oschina.R;
@@ -26,7 +22,6 @@ import org.mercury.oschina.emoji.UiUtil;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.main.activity.BlogActivity;
-import org.mercury.oschina.main.activity.LoginActivity;
 import org.mercury.oschina.main.activity.MsgActivity;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.ToastUtil;
@@ -34,7 +29,6 @@ import org.mercury.oschina.tweet.util.ToastUtil;
 import java.util.Hashtable;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -51,17 +45,16 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
     private static final int QR_HEIGHT = 100;
 
 
-    public DisplayImageOptions mOptions;
     @Bind(R.id.iv_setting)
     ImageView       ivSetting;
-    @Bind(R.id.iv_user_qr_code)
-    ImageView       ivUserQrCode;
+    @Bind(R.id.iv_user_qrcode)
+    ImageView       ivUserQrcode;
     @Bind(R.id.rl_top)
     RelativeLayout  rlTop;
     @Bind(R.id.iv_user_pic)
     CircleImageView ivUserPic;
     @Bind(R.id.iv_user_gender)
-    CircleImageView       ivUserGender;
+    ImageView       ivUserGender;
     @Bind(R.id.rl_user_avatar)
     RelativeLayout  rlUserAvatar;
     @Bind(R.id.tv_user_name)
@@ -76,14 +69,14 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
     TextView        tvUserLike;
     @Bind(R.id.tv_user_fans)
     TextView        tvUserFans;
-    @Bind(R.id.ll_user_msg)
-    LinearLayout   llUserMsg;
-    @Bind(R.id.ll_user_blog)
-    LinearLayout   llUserBlog;
-    @Bind(R.id.ll_user_note)
-    LinearLayout   llUserNote;
-    @Bind(R.id.ll_user_team)
-    LinearLayout   llUserTeam;
+    @Bind(R.id.ll_my_msg)
+    LinearLayout    llMyMsg;
+    @Bind(R.id.ll_my_blog)
+    LinearLayout    llMyBlog;
+    @Bind(R.id.ll_my_question)
+    LinearLayout    llMyQuestion;
+    @Bind(R.id.ll_my_event)
+    LinearLayout    llMyEvent;
 
 
     @Override
@@ -135,10 +128,34 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
-    @OnClick({R.id.iv_user_pic, R.id.ll_user_msg, R.id.ll_user_blog, R.id.iv_user_qr_code})
+    @OnClick({R.id.iv_setting, R.id.iv_user_qrcode, R.id.iv_user_pic, R.id.tv_user_tweet, R.id.tv_user_favorite, R.id.tv_user_like, R.id.tv_user_fans,
+            R.id.ll_my_msg, R.id.ll_my_blog, R.id.ll_my_question, R.id.ll_my_event})
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
+            //开启设置
+            case R.id.iv_setting:
+
+                break;
+
+            //弹出二维码
+            case R.id.iv_user_qrcode:
+                showQRCodeDialog();
+
+                break;
+            //我的动弹
+            case R.id.tv_user_tweet:
+                break;
+            //我的收藏
+            case R.id.tv_user_favorite:
+                break;
+            //我的关注
+            case R.id.tv_user_like:
+                break;
+            //我的粉丝
+            case R.id.tv_user_fans:
+                break;
             //            case R.id.ll_user_score:
             //                break;
             //            case R.id.ll_user_fans:
@@ -157,27 +174,30 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
             //                startActivity(new Intent(getActivity(), CollectionActivity.class));
             //                break;
 
-            //点击头像重新进行auth授权登录
+            //更换头像或查看大头像
             case R.id.iv_user_pic:
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-                break;
 
-            case R.id.ll_user_msg:
+                break;
+            //我的消息
+            case R.id.ll_my_msg:
                 startActivity(new Intent(getActivity(), MsgActivity.class));
                 break;
-            case R.id.ll_user_blog:
+            //我的博客
+            case R.id.ll_my_blog:
                 startActivity(new Intent(getActivity(), BlogActivity.class));
                 break;
-            //弹出二维码
-            case R.id.iv_user_qr_code:
-                showqr_codeDialog();
-
+            //我的问答
+            case R.id.ll_my_question:
                 break;
+            //我的活动
+            case R.id.ll_my_event:
+                break;
+
         }
     }
 
 
-    private void showqr_codeDialog() {
+    private void showQRCodeDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         View view = View.inflate(AppContext.context,
@@ -234,19 +254,6 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
-            savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }
 

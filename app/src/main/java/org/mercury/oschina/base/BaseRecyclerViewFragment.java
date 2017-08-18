@@ -24,12 +24,13 @@ import retrofit2.Response;
  */
 
 public abstract class BaseRecyclerViewFragment<T> extends BaseFragment implements
-        SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener, WrapAdapter.OnItemClickListener {
+        SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener, WrapAdapter.OnItemClickListener, View.OnClickListener {
 
     protected SwipeRefreshLayout mRefreshLayout;
     protected HaoRecyclerView mRecyclerView;
     protected EmptyLayout mEmptyLayout;
 
+    protected int pageIndex = 1;
 
     @Override
     protected int getLayoutId() {
@@ -41,6 +42,7 @@ public abstract class BaseRecyclerViewFragment<T> extends BaseFragment implement
         mRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swr);
         mRecyclerView = (HaoRecyclerView) root.findViewById(R.id.recyclerview);
         mEmptyLayout = (EmptyLayout) root.findViewById(R.id.error_layout);
+        mEmptyLayout.setOnLayoutClickListener(this);
     }
 
     @Override
@@ -58,7 +60,6 @@ public abstract class BaseRecyclerViewFragment<T> extends BaseFragment implement
         mRecyclerView.setOnItemClickListener(this);
 
         requestData();
-
 
     }
 
@@ -99,6 +100,14 @@ public abstract class BaseRecyclerViewFragment<T> extends BaseFragment implement
 
     @Override
     public void onItemClick(int position, long itemId) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        mEmptyLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+        pageIndex = 1;
+        requestData();
 
     }
 }

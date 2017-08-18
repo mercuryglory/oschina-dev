@@ -3,6 +3,7 @@ package org.mercury.oschina.tweet;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.base.BaseRecyclerViewFragment;
@@ -11,6 +12,7 @@ import org.mercury.oschina.tweet.activity.TweetDetailActivity;
 import org.mercury.oschina.tweet.adapter.TweetListAdapter;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
+import org.mercury.oschina.widget.EmptyLayout;
 import org.mercury.oschina.widget.recyclerload.OnLoadMoreListener;
 
 import java.util.List;
@@ -27,7 +29,6 @@ public class TweetListFragment extends BaseRecyclerViewFragment<TweetResponse> i
 
     public TweetListAdapter mAdapter;
 
-    int pageIndex = 1;
     public boolean isLoadMore;
 
     public static final String REQUEST_CATALOG = "REQUEST_CATALOG";
@@ -40,6 +41,10 @@ public class TweetListFragment extends BaseRecyclerViewFragment<TweetResponse> i
         TweetResponse bean = response.body();
         if (bean == null || bean.getTweetlist() == null) {
             return;
+        }
+        if (bean.getTweetlist().size() == 0) {
+            mEmptyLayout.setVisibility(View.VISIBLE);
+            mEmptyLayout.setErrorType(EmptyLayout.NODATA);
         }
         if (isLoadMore) {
             loadMore(bean.getTweetlist());

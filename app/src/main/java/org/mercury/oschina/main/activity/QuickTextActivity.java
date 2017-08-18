@@ -113,7 +113,7 @@ public class QuickTextActivity extends AppCompatActivity
                 initDialog();
                 break;
             case R.id.ib_mention:
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
                 break;
             case R.id.ib_trend_software:
                 String str = "#请输入软件名#";
