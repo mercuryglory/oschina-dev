@@ -14,9 +14,9 @@ import org.mercury.oschina.adapter.MainShowAdpter;
 import org.mercury.oschina.bean.base.FragmentInfo;
 import org.mercury.oschina.tweet.widget.PagerSlidingTabStrip;
 import org.mercury.oschina.main.fragment.AppFragment;
-import org.mercury.oschina.main.fragment.BlogFragment;
+import org.mercury.oschina.user.UserBlogFragment;
 import org.mercury.oschina.main.fragment.CodeFragment;
-import org.mercury.oschina.main.fragment.MsgFragment;
+import org.mercury.oschina.user.MsgFragment;
 import org.mercury.oschina.main.fragment.TopicFragment;
 import org.mercury.oschina.utils.Utils;
 
@@ -55,7 +55,7 @@ public class CollectionActivity extends AppCompatActivity {
         mShowItems.add(new FragmentInfo(titles[0], appFragment));
         mShowItems.add(new FragmentInfo(titles[1], new TopicFragment()));
         mShowItems.add(new FragmentInfo(titles[4], new CodeFragment()));
-        mShowItems.add(new FragmentInfo(titles[2], new BlogFragment()));
+        mShowItems.add(new FragmentInfo(titles[2], new UserBlogFragment()));
         mShowItems.add(new FragmentInfo(titles[3], new MsgFragment()));
 
         mVpMainShowLayout.setAdapter(new MainShowAdpter(getSupportFragmentManager(), mShowItems));

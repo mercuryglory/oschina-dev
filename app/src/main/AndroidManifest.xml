@@ -103,6 +103,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/App.Theme.Full" />
 
+        <activity
+            android:name=".main.activity.UserSingleInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            />
     </application >
 
 </manifest >

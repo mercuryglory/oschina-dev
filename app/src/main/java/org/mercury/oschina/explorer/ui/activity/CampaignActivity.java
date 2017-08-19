@@ -9,10 +9,10 @@ import android.view.MenuItem;
 import com.ToxicBakery.viewpager.transforms.RotateDownTransformer;
 
 import org.mercury.oschina.R;
+import org.mercury.oschina.bean.base.FragmentInfo;
 import org.mercury.oschina.explorer.adapter.ActivityViewPagerAdapter;
 import org.mercury.oschina.explorer.ui.fragment.AllActivityFragment;
 import org.mercury.oschina.explorer.ui.fragment.MyActivityFragment;
-import org.mercury.oschina.tweet.bean.FragmentInfo;
 import org.mercury.oschina.tweet.widget.PagerSlidingTabStrip;
 
 import java.util.ArrayList;

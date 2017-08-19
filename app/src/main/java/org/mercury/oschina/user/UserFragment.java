@@ -1,7 +1,6 @@
 package org.mercury.oschina.user;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,8 +20,7 @@ import org.mercury.oschina.base.BaseFragment;
 import org.mercury.oschina.emoji.UiUtil;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
-import org.mercury.oschina.main.activity.BlogActivity;
-import org.mercury.oschina.main.activity.MsgActivity;
+import org.mercury.oschina.main.activity.UserSingleInfoActivity;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.ToastUtil;
 
@@ -180,11 +178,11 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
                 break;
             //我的消息
             case R.id.ll_my_msg:
-                startActivity(new Intent(getActivity(), MsgActivity.class));
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_MESSAGE);
                 break;
             //我的博客
             case R.id.ll_my_blog:
-                startActivity(new Intent(getActivity(), BlogActivity.class));
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_BLOG);
                 break;
             //我的问答
             case R.id.ll_my_question:

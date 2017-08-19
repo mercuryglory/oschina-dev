@@ -8,6 +8,8 @@ import org.mercury.oschina.tweet.bean.CommentResponse;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
 import org.mercury.oschina.tweet.bean.User;
+import org.mercury.oschina.user.bean.MessageResponse;
+import org.mercury.oschina.user.bean.ProjectResponse;
 
 import java.util.Map;
 
@@ -49,5 +51,11 @@ public interface HttpApi {
 
     @GET("my_information")
     Call<User> getMyInfo();
+
+    @GET("message_list")
+    Call<MessageResponse> getPrivateMsg(@Query("page") int page);
+
+    @GET("user_blog_list")
+    Call<ProjectResponse> getUserBlogList(@Query("authoruid") int authoruid, @Query("page") int page);
 
 }
