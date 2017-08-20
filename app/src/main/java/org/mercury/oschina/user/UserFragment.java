@@ -71,8 +71,6 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
     LinearLayout    llMyMsg;
     @Bind(R.id.ll_my_blog)
     LinearLayout    llMyBlog;
-    @Bind(R.id.ll_my_question)
-    LinearLayout    llMyQuestion;
     @Bind(R.id.ll_my_event)
     LinearLayout    llMyEvent;
 
@@ -127,7 +125,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
     }
 
     @OnClick({R.id.iv_setting, R.id.iv_user_qrcode, R.id.iv_user_pic, R.id.tv_user_tweet, R.id.tv_user_favorite, R.id.tv_user_like, R.id.tv_user_fans,
-            R.id.ll_my_msg, R.id.ll_my_blog, R.id.ll_my_question, R.id.ll_my_event})
+            R.id.ll_my_msg, R.id.ll_my_blog, R.id.ll_my_event})
     @Override
     public void onClick(View v) {
 
@@ -183,9 +181,6 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
             //我的博客
             case R.id.ll_my_blog:
                 UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_BLOG);
-                break;
-            //我的问答
-            case R.id.ll_my_question:
                 break;
             //我的活动
             case R.id.ll_my_event:

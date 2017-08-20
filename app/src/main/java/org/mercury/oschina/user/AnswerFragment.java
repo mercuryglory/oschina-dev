@@ -1,4 +1,4 @@
-package org.mercury.oschina.main.fragment;
+package org.mercury.oschina.user;
 
 import android.content.Intent;
 import android.view.View;
@@ -17,6 +17,7 @@ import org.mercury.oschina.AppContext;
 import org.mercury.oschina.bean.Favorite;
 import org.mercury.oschina.bean.FavoriteList;
 import org.mercury.oschina.main.activity.NoteDetailActivity;
+import org.mercury.oschina.main.fragment.BasicFragment;
 import org.mercury.oschina.utils.OschinaUri;
 import org.mercury.oschina.utils.Utils;
 import org.mercury.oschina.utils.XmlUtils;
@@ -28,14 +29,11 @@ import okhttp3.Call;
 
 
 /**
- * @创建者 Administrator
- * @创建时间 2016/8/15 2:29
- * @描述 ${TODU}
- * @更新者 $Author$
- * @更新时间 $Date$
- * @更新描述 ${TODU}
+ * 创建者:    Mercury
+ * 创建时间:  2016/8/14
+ * 描述:      用户问答列表
  */
-public class TopicFragment extends BasicFragment implements AdapterView.OnItemClickListener {
+public class AnswerFragment extends BasicFragment implements AdapterView.OnItemClickListener {
 
     private PullToRefreshListView mPtrlistView;
 
