@@ -6,8 +6,9 @@ package org.mercury.oschina.user;
 
 public enum FragmentInfo {
 
-    MY_MESSAGE("消息列表(私信)", MsgFragment.class),
-    MY_BLOG("用户博客列表", UserBlogFragment.class);
+    MY_MESSAGE("消息列表", MsgFragment.class),
+    MY_BLOG("用户博客列表", PraisFragment.class),
+    MY_ACTIVE("我的动态", ActiveFragment.class);
 
     private String title;
     private Class clazz;

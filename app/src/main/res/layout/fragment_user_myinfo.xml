@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/rl_user"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="250dp"
         android:background="@color/ques_bt_text_color_light" >
 
         <RelativeLayout
@@ -82,7 +82,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/selector_list_item"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:text="动弹"
                 android:textColor="@color/white" />
 
@@ -93,7 +93,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/selector_list_item"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:text="收藏"
                 android:textColor="@color/white" />
 
@@ -104,7 +104,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/selector_list_item"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:text="关注"
                 android:textColor="@color/white" />
 
@@ -115,7 +115,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/selector_list_item"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:text="粉丝"
                 android:textColor="@color/white" />
 
@@ -202,7 +202,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="我的活动"
+            android:text="我的动态"
             android:textColor="#7A7A7A"
             android:textSize="16sp" />
     </LinearLayout >

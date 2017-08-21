@@ -184,6 +184,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
                 break;
             //我的活动
             case R.id.ll_my_event:
+                UserSingleInfoActivity.show(getContext(),FragmentInfo.MY_ACTIVE);
                 break;
 
         }

@@ -5,11 +5,10 @@ import android.os.Bundle;
 
 import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
 
-import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseViewPagerFragment;
 import org.mercury.oschina.tweet.TweetListFragment;
-import org.mercury.oschina.utils.SpUtils;
+import org.mercury.oschina.utils.AccessTokenHelper;
 
 /**
  * Created by mercury on 2016-08-14 19:33:46.
@@ -31,7 +30,7 @@ public class TweetFragment extends BaseViewPagerFragment {
 
     @Override
     protected PagerInfo[] getPagerInfo() {
-        int userId = Integer.parseInt(SpUtils.get(mContext, Constant.USER_ID, "").toString());
+        int userId = AccessTokenHelper.getUserId();
         return new PagerInfo[]{
                 new PagerInfo("最新动弹", TweetListFragment.class, getBundle(TweetListFragment
                         .CATALOG_NEW)),

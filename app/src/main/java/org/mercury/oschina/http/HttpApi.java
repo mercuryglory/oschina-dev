@@ -8,6 +8,7 @@ import org.mercury.oschina.tweet.bean.CommentResponse;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
 import org.mercury.oschina.tweet.bean.User;
+import org.mercury.oschina.user.bean.ActiveResponse;
 import org.mercury.oschina.user.bean.MessageResponse;
 import org.mercury.oschina.user.bean.ProjectResponse;
 
@@ -25,7 +26,7 @@ import retrofit2.http.QueryMap;
 public interface HttpApi {
 
     @GET("token")
-    Call<AccessToken> getAccessToken(@QueryMap Map<String,String> params);
+    Call<AccessToken> getAccessToken(@QueryMap Map<String, String> params);
 
     @GET("tweet_list")
     Call<TweetResponse> getTweetList(@Query("user") long user, @Query("page") int page);
@@ -56,6 +57,19 @@ public interface HttpApi {
     Call<MessageResponse> getPrivateMsg(@Query("page") int page);
 
     @GET("user_blog_list")
-    Call<ProjectResponse> getUserBlogList(@Query("authoruid") int authoruid, @Query("page") int page);
+    Call<ProjectResponse> getUserBlogList(@Query("authoruid") int authoruid, @Query("page") int
+            page);
+
+
+    /**
+     *
+     * @param catalog 类别ID [0、1所有动态,2提到我的,3评论,4我自己 ]
+     * @param userId
+     * @param page
+     * @return
+     */
+    @GET("active_list")
+    Call<ActiveResponse> getActiveList(@Query("catalog") int catalog, @Query("user") int userId,
+                                       @Query("page") int page);
 
 }

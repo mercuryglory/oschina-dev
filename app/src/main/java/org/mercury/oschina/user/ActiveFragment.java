@@ -2,7 +2,6 @@ package org.mercury.oschina.user;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.View;
 
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.base.BaseRecyclerViewFragment;
@@ -10,48 +9,46 @@ import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.synthesis.adapter.BlogListAdapter;
 import org.mercury.oschina.synthesis.bean.Blog;
 import org.mercury.oschina.tweet.TweetListFragment;
-import org.mercury.oschina.user.bean.ProjectResponse;
+import org.mercury.oschina.user.bean.ActiveResponse;
 import org.mercury.oschina.utils.AccessTokenHelper;
 import org.mercury.oschina.utils.GeneralUtils;
-import org.mercury.oschina.widget.EmptyLayout;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
 
-
 /**
  * 创建者:    Mercury
  * 创建时间:  2016/8/14
- * 描述:      用户博客列表
+ * 描述:      我的动态
  */
-public class UserBlogFragment extends BaseRecyclerViewFragment<ProjectResponse> {
+public class ActiveFragment extends BaseRecyclerViewFragment<ActiveResponse> {
 
     public BlogListAdapter mAdapter;
 
     public boolean isLoadMore;
 
     public static final String REQUEST_CATALOG = "REQUEST_CATALOG";
-    public static final int    CATALOG_NEW     = 1;
+    public static final int    CATALOG_MY     = 4;
     public static final int    CATALOG_HOT     = 2;
     public int requestType;
 
     @Override
-    protected void response(Call<ProjectResponse> call, Response<ProjectResponse> response) {
-        ProjectResponse bean = response.body();
-        if (bean == null || bean.getProjectlist() == null) {
+    protected void response(Call<ActiveResponse> call, Response<ActiveResponse> response) {
+        ActiveResponse bean = response.body();
+        if (bean == null || bean.getActivelist() == null) {
             return;
         }
-        if (bean.getCount() == 0) {
-            mEmptyLayout.setVisibility(View.VISIBLE);
-            mEmptyLayout.setErrorType(EmptyLayout.NODATA);
-
-        }
+//        if (bean.getCount() == 0) {
+//            mEmptyLayout.setVisibility(View.VISIBLE);
+//            mEmptyLayout.setErrorType(EmptyLayout.NODATA);
+//
+//        }
         if (isLoadMore) {
-            loadMore(bean.getProjectlist());
+            loadMore(bean.getActivelist());
         } else {
-            refresh(bean.getProjectlist());
+            refresh(bean.getActivelist());
         }
     }
 
@@ -72,10 +69,11 @@ public class UserBlogFragment extends BaseRecyclerViewFragment<ProjectResponse> 
     }
 
     @Override
-    protected Call<ProjectResponse> getCall(HttpApi retrofitCall) {
+    protected Call<ActiveResponse> getCall(HttpApi retrofitCall) {
         int userId = AccessTokenHelper.getUserId();
-        Call<ProjectResponse> userBlogList = retrofitCall.getUserBlogList(userId, pageIndex);
-        return userBlogList;
+        Call<ActiveResponse> activeList = retrofitCall.getActiveList(CATALOG_MY,
+                AccessTokenHelper.getUserId(), pageIndex);
+        return activeList;
     }
 
     @Override

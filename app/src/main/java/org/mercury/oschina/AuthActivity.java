@@ -114,6 +114,9 @@ public class AuthActivity extends AppCompatActivity {
                 if (bean != null) {
                     //存储当前登录的userId到sp文件中
                     SpUtils.put(AuthActivity.this, Constant.USER_ID, String.valueOf(bean.getUid()));
+                    //将当前登录的userId以原始的数据格式存入sp中
+                    AccessTokenHelper.saveUserId(bean.getUid());
+
                     //将access_token 转换为sha-1存入sp中
                     AccessTokenHelper.saveAccessToken(String.valueOf(bean.getUid()), bean
                             .getAccess_token());

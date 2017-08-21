@@ -22,6 +22,14 @@ import sun.misc.BASE64Encoder;
 
 public class AccessTokenHelper {
 
+    public static void saveUserId(int userId) {
+        SpUtils.saveInt(SpUtils.FILE_NAME,Constant.ACCESS_USERID, userId);
+    }
+
+    public static int getUserId() {
+        return SpUtils.getInt(SpUtils.FILE_NAME, Constant.ACCESS_USERID);
+    }
+
     public static void saveAccessToken(String userId,String accessToken) {
         SpUtils.saveString(userId, Constant.ACCESS_TOKEN, encryptBaseDes(accessToken));
     }

@@ -121,15 +121,30 @@ public class SpUtils {
         SharedPreferences preferences = AppContext.context.getSharedPreferences(spName, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
         edit.putString(key, value);
-        edit.commit();
+        edit.apply();
 
     }
-
 
     //获取String数据
     public static String getString(String spName,String key){
         SharedPreferences preferences = AppContext.context.getSharedPreferences(spName, Context.MODE_PRIVATE);
         return preferences.getString(key, "");
+    }
+
+    //保存Integer类型数据
+    public static void saveInt(String spName, String key, int value) {
+        SharedPreferences preferences = AppContext.context.getSharedPreferences(spName, Context
+                .MODE_PRIVATE);
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putInt(key, value);
+        edit.apply();
+    }
+
+    //获取Integer数据
+    public static int getInt(String spName, String key) {
+        SharedPreferences preferences = AppContext.context.getSharedPreferences(spName, Context
+                .MODE_PRIVATE);
+        return preferences.getInt(key, 0);
     }
 
     //1. 保存Boolean类型数据
