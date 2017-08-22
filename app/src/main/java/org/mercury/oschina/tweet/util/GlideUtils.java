@@ -22,4 +22,12 @@ public class GlideUtils {
                 .error(R.mipmap.widget_dface)
                 .into(view);
     }
+
+    public static void loadImage(Context context, String url, ImageView view) {
+        Glide.with(context)
+                .load(url)
+                .error(R.mipmap.widget_dface)
+                .placeholder(R.mipmap.widget_dface)
+                .into(view);
+    }
 }

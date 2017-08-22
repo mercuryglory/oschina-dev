@@ -1,6 +1,7 @@
 package org.mercury.oschina.http;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.mercury.oschina.AuthActivity;
@@ -41,8 +42,10 @@ public class HttpInterceptor implements Interceptor {
     private Request addParam(Request oldRequest) {
         String userId = SpUtils.get(AppContext.context, Constant.USER_ID, "").toString();
         String accessToken = AccessTokenHelper.getAccessToken(userId);
-        Log.i("access_token", accessToken);
-        Log.i("userId", SpUtils.get(AppContext.context, Constant.USER_ID, "").toString());
+        if (!TextUtils.isEmpty(userId) && !TextUtils.isEmpty(accessToken)) {
+            Log.i("userId", userId);
+            Log.i("access_token", accessToken);
+        }
         HttpUrl.Builder builder = oldRequest.url().newBuilder().setQueryParameter
                 ("access_token", accessToken);
         Request newRequest = oldRequest.newBuilder()

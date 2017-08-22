@@ -2,16 +2,16 @@ package org.mercury.oschina.user;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.base.BaseRecyclerViewFragment;
 import org.mercury.oschina.http.HttpApi;
-import org.mercury.oschina.synthesis.adapter.BlogListAdapter;
-import org.mercury.oschina.synthesis.bean.Blog;
 import org.mercury.oschina.tweet.TweetListFragment;
+import org.mercury.oschina.user.adapter.ActiveListAdapter;
 import org.mercury.oschina.user.bean.ActiveResponse;
 import org.mercury.oschina.utils.AccessTokenHelper;
-import org.mercury.oschina.utils.GeneralUtils;
+import org.mercury.oschina.widget.EmptyLayout;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import retrofit2.Response;
  */
 public class ActiveFragment extends BaseRecyclerViewFragment<ActiveResponse> {
 
-    public BlogListAdapter mAdapter;
+    public ActiveListAdapter mAdapter;
 
     public boolean isLoadMore;
 
@@ -40,11 +40,11 @@ public class ActiveFragment extends BaseRecyclerViewFragment<ActiveResponse> {
         if (bean == null || bean.getActivelist() == null) {
             return;
         }
-//        if (bean.getCount() == 0) {
-//            mEmptyLayout.setVisibility(View.VISIBLE);
-//            mEmptyLayout.setErrorType(EmptyLayout.NODATA);
-//
-//        }
+        if (bean.getActivelist().size() == 0 && !isLoadMore) {
+            mEmptyLayout.setVisibility(View.VISIBLE);
+            mEmptyLayout.setErrorType(EmptyLayout.NODATA);
+            return;
+        }
         if (isLoadMore) {
             loadMore(bean.getActivelist());
         } else {
@@ -70,7 +70,6 @@ public class ActiveFragment extends BaseRecyclerViewFragment<ActiveResponse> {
 
     @Override
     protected Call<ActiveResponse> getCall(HttpApi retrofitCall) {
-        int userId = AccessTokenHelper.getUserId();
         Call<ActiveResponse> activeList = retrofitCall.getActiveList(CATALOG_MY,
                 AccessTokenHelper.getUserId(), pageIndex);
         return activeList;
@@ -78,7 +77,7 @@ public class ActiveFragment extends BaseRecyclerViewFragment<ActiveResponse> {
 
     @Override
     protected BaseRecyclerAdapter getRecyclerAdapter() {
-        BlogListAdapter adapter = new BlogListAdapter(getActivity());
+        ActiveListAdapter adapter = new ActiveListAdapter(getActivity());
         mAdapter = adapter;
         return adapter;
     }
@@ -121,9 +120,6 @@ public class ActiveFragment extends BaseRecyclerViewFragment<ActiveResponse> {
 
     @Override
     public void onItemClick(int position, long itemId) {
-        Blog blog = mAdapter.getItem(position);
-        if (blog != null) {
-            GeneralUtils.writeVisitedItem(blog.getId());
-        }
+
     }
 }

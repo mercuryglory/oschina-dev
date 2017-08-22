@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by wang.zhonghao on 2017/8/19.
+ * 私信列表  适配器
  */
 
 public class MsgListAdapter extends BaseRecyclerAdapter<Message> {

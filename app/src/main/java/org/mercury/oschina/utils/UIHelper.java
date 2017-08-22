@@ -55,25 +55,6 @@ public class UIHelper {
 
     private static final String SHOWIMAGE = "ima-api:action=showImage&data=";
 
-//    /**
-//     * 显示登录界面
-//     * 
-//     * @param context
-//     */
-//    public static void showLoginActivity(Context context) {
-//        Intent intent = new Intent(context, LoginActivity.class);
-//        context.startActivity(intent);
-//    }
-//
-//    /**
-//     * 显示Team界面
-//     * 
-//     * @param context
-//     */
-//    public static void showTeamMainActivity(Context context) {
-//        Intent intent = new Intent(context, TeamMainActivity.class);
-//        context.startActivity(intent);
-//    }
 
     /**
      * 显示新闻详情
