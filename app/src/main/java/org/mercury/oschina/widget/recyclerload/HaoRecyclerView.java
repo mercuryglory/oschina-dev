@@ -129,10 +129,13 @@ public class HaoRecyclerView extends RecyclerView {
 
     @Override
     public void setAdapter(Adapter adapter) {
-        mAdapter = adapter;
-        mWrapAdapter = new WrapAdapter(this, loadingMoreFooter, adapter);
-        super.setAdapter(mWrapAdapter);
-        mAdapter.registerAdapterDataObserver(mDataObserver);
+        if (adapter != null) {
+            mAdapter = adapter;
+            mWrapAdapter = new WrapAdapter(this, loadingMoreFooter, adapter);
+            super.setAdapter(mWrapAdapter);
+            mAdapter.registerAdapterDataObserver(mDataObserver);
+        }
+
     }
 
     @Override

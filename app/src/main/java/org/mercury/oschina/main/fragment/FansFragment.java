@@ -39,7 +39,7 @@ public class FansFragment extends BasicFragment implements AdapterView.OnItemCli
     public View createView() {
 
         mPtrlistView =
-                (PullToRefreshListView)View.inflate(AppContext.context, R.layout.refresh_list_view_layout2, null);
+                (PullToRefreshListView)View.inflate(AppContext.context, R.layout.refresh_list_view_layout, null);
 
         // 设置模式
         mPtrlistView.setMode(PullToRefreshBase.Mode.BOTH);

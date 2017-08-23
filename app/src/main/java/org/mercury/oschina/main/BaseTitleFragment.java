@@ -41,12 +41,9 @@ public abstract class BaseTitleFragment extends BaseFragment {
 
     }
 
-    protected abstract @StringRes
-    int getTitleRes();
+    protected abstract @StringRes int getTitleRes();
 
-    protected
-    @DrawableRes
-    int getIconRes() {
+    protected @DrawableRes int getIconRes() {
         return R.mipmap.btn_search_normal;
     }
 
@@ -54,7 +51,5 @@ public abstract class BaseTitleFragment extends BaseFragment {
         return null;
     }
 
-    protected abstract
-    @LayoutRes
-    int getContentLayoutId();
+    protected abstract @LayoutRes int getContentLayoutId();
 }

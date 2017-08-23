@@ -15,8 +15,8 @@ import org.mercury.oschina.bean.base.FragmentInfo;
 import org.mercury.oschina.tweet.widget.PagerSlidingTabStrip;
 import org.mercury.oschina.main.fragment.AppFragment;
 import org.mercury.oschina.main.fragment.CodeFragment;
-import org.mercury.oschina.user.MsgFragment;
-import org.mercury.oschina.user.AnswerFragment;
+import org.mercury.oschina.user.PrivateMsgFragment;
+import org.mercury.oschina.user.AtMeFragment;
 import org.mercury.oschina.utils.Utils;
 
 import java.util.ArrayList;
@@ -52,10 +52,10 @@ public class CollectionActivity extends AppCompatActivity {
         // 得到字符数组里面的信息
         String[] titles = Utils.getStringArray(R.array.tab_names1);
         mShowItems.add(new FragmentInfo(titles[0], appFragment));
-        mShowItems.add(new FragmentInfo(titles[1], new AnswerFragment()));
+        mShowItems.add(new FragmentInfo(titles[1], new AtMeFragment()));
         mShowItems.add(new FragmentInfo(titles[4], new CodeFragment()));
 //        mShowItems.add(new FragmentInfo(titles[2], new PraisFragment()));
-        mShowItems.add(new FragmentInfo(titles[3], new MsgFragment()));
+        mShowItems.add(new FragmentInfo(titles[3], new PrivateMsgFragment()));
 
         mVpMainShowLayout.setAdapter(new MainShowAdpter(getSupportFragmentManager(), mShowItems));
 

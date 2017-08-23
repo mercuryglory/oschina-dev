@@ -17,7 +17,7 @@ import butterknife.Bind;
 
 /**
  * Created by wang.zhonghao on 2017/8/9.
- * 内部包含可滑动的子fragment模块的父fragment
+ * 使用viewpager滑动加载子fragment模块的父fragment的基类(带标题栏)
  */
 
 public abstract class BaseViewPagerFragment extends BaseTitleFragment {

@@ -3,7 +3,6 @@ package org.mercury.oschina.user.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -13,7 +12,6 @@ import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.TweetParser;
-import org.mercury.oschina.tweet.widget.TweetTextView;
 import org.mercury.oschina.user.bean.Active;
 import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.widget.TweetPicturesLayout;
@@ -70,9 +68,7 @@ public class ActiveListAdapter extends BaseRecyclerAdapter<Active> {
             holder.tvActiveMsg.setVisibility(View.VISIBLE);
             String content = data.getMessage().replaceAll("[\n\\s]+", " ");
             holder.tvActiveMsg.setText(TweetParser.getInstance().parse(mContext, content));
-            holder.tvActiveMsg.setMovementMethod(LinkMovementMethod.getInstance());
             holder.tvActiveMsg.setFocusable(false);
-            holder.tvActiveMsg.setDispatchToParent(true);
             holder.tvActiveMsg.setLongClickable(false);
         }
 
@@ -120,7 +116,7 @@ public class ActiveListAdapter extends BaseRecyclerAdapter<Active> {
         @Bind(R.id.tv_active_title)
         TextView            tvActiveTitle;
         @Bind(R.id.tv_active_msg)
-        TweetTextView       tvActiveMsg;
+        TextView       tvActiveMsg;
         @Bind(R.id.layout_tweet_picture)
         TweetPicturesLayout layoutTweetPicture;
         @Bind(R.id.tv_pub_time)

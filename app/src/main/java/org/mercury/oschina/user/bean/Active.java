@@ -29,15 +29,17 @@ public class Active implements Parcelable {
      * url :
      */
 
-    private int appClient;
+    private int             appClient;
     private String          author;
     private int             authorid;
     private int             catalog;
     private int             commentCount;
     private int             id;
     private String          message;
+    private String          objectBody;
     private int             objectCatalog;
     private int             objectId;
+    private String          objectName;
     private ObjectReplyBean objectReply;
     private String          objectTitle;
     private int             objectType;
@@ -45,6 +47,22 @@ public class Active implements Parcelable {
     private String          pubDate;
     private String          tweetImage;
     private String          url;
+
+    public String getObjectBody() {
+        return objectBody;
+    }
+
+    public void setObjectBody(String objectBody) {
+        this.objectBody = objectBody;
+    }
+
+    public String getObjectName() {
+        return objectName;
+    }
+
+    public void setObjectName(String objectName) {
+        this.objectName = objectName;
+    }
 
     public int getAppClient() {
         return appClient;
@@ -174,7 +192,7 @@ public class Active implements Parcelable {
         this.url = url;
     }
 
-    public static class ObjectReplyBean implements Parcelable{
+    public static class ObjectReplyBean implements Parcelable {
         // 	动态对象回复者名称
         private String objectName;
         // 	动态对象回复内容
@@ -225,6 +243,9 @@ public class Active implements Parcelable {
         }
     }
 
+    public Active() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -239,8 +260,10 @@ public class Active implements Parcelable {
         dest.writeInt(this.commentCount);
         dest.writeInt(this.id);
         dest.writeString(this.message);
+        dest.writeString(this.objectBody);
         dest.writeInt(this.objectCatalog);
         dest.writeInt(this.objectId);
+        dest.writeString(this.objectName);
         dest.writeParcelable(this.objectReply, flags);
         dest.writeString(this.objectTitle);
         dest.writeInt(this.objectType);
@@ -248,9 +271,6 @@ public class Active implements Parcelable {
         dest.writeString(this.pubDate);
         dest.writeString(this.tweetImage);
         dest.writeString(this.url);
-    }
-
-    public Active() {
     }
 
     protected Active(Parcel in) {
@@ -261,8 +281,10 @@ public class Active implements Parcelable {
         this.commentCount = in.readInt();
         this.id = in.readInt();
         this.message = in.readString();
+        this.objectBody = in.readString();
         this.objectCatalog = in.readInt();
         this.objectId = in.readInt();
+        this.objectName = in.readString();
         this.objectReply = in.readParcelable(ObjectReplyBean.class.getClassLoader());
         this.objectTitle = in.readString();
         this.objectType = in.readInt();
@@ -272,7 +294,7 @@ public class Active implements Parcelable {
         this.url = in.readString();
     }
 
-    public static final Parcelable.Creator<Active> CREATOR = new Parcelable.Creator<Active>() {
+    public static final Creator<Active> CREATOR = new Creator<Active>() {
         @Override
         public Active createFromParcel(Parcel source) {
             return new Active(source);
