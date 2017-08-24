@@ -72,4 +72,7 @@ public interface HttpApi {
     Call<ActiveResponse> getActiveList(@Query("catalog") int catalog, @Query("user") int userId,
                                        @Query("page") int page);
 
+    @GET("user_information")
+    Call<User> getOtherUserInfo(@Query("friend") long userId);
+
 }

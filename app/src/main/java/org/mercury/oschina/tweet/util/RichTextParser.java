@@ -5,8 +5,10 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 
+import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
 import org.mercury.oschina.utils.UIHelper;
 
 import java.util.regex.Matcher;
@@ -188,7 +190,7 @@ public abstract class RichTextParser {
 //    }
 //
     /**
-     * 格式化<a href="url" ...>@xxx</a>
+     * 格式化<a href="url" ...>@xxx</a>  用户名
      * // http://my.oschina.net/u/user_id
      * // http://my.oschina.net/user_ident
      *
@@ -202,8 +204,8 @@ public abstract class RichTextParser {
         while (true) {
             matcher = PatternAtUserWithHtml.matcher(builder.toString());
             if (matcher.find()) {
-                final String group0 = matcher.group(1); // ident 标识 如retrofit
-                final String group1 = matcher.group(2); // uid id
+                final String group0 = matcher.group(1); // ident 标识 如u/186034
+                final String group1 = matcher.group(2); // uid  如186034
                 final String group2 = matcher.group(3); // @Nick
                 final String group3 = matcher.group(4); // Nick
                 builder.replace(matcher.start(), matcher.end(), group2);
@@ -213,17 +215,15 @@ public abstract class RichTextParser {
                 } catch (Exception e) {
                     uid = 0;
                 }
-                final long _uid = uid;
+                Log.i("pattern", " group0: " + group0 + " group1: " + group1 + " group2: " +
+                        group2 + " group3: " + group3);
+                final long finalUid = uid;
                 ClickableSpan span = new ClickableSpan() {
                     @Override
                     public void onClick(View widget) {
-//                        if (_uid > 0) {
-//                            OtherUserHomeActivity.show(context, _uid);
-//                        } else if (!TextUtils.isEmpty(group0)) {
-//                            OtherUserHomeActivity.show(context, 0, group0);
-//                        } else {
-//                            OtherUserHomeActivity.show(context, group3);
-//                        }
+                        if (finalUid > 0) {
+                            OtherUserHomeActivity.show(context, finalUid);
+                        }
                     }
                 };
                 builder.setSpan(span, matcher.start(), matcher.start() + group2.length(),

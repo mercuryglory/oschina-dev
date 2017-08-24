@@ -18,15 +18,20 @@ import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
-import org.mercury.oschina.tweet.adapter.UserHomeAdapter;
-import org.mercury.oschina.tweet.bean.User;
+import org.mercury.oschina.http.HttpApi;
+import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.tweet.TweetListFragment;
+import org.mercury.oschina.tweet.bean.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * Created by wang.zhonghao on 2017/8/15
@@ -58,12 +63,14 @@ public class OtherUserHomeActivity extends BaseActivity {
     ViewPager viewPager;
 
     private static final String KEY_AUTHORID = "KEY_AUTHORID";
+    private static final String KEY_USERID = "KEY_USERID";
 
 
-    private UserHomeAdapter mAdapter;
-    private int pageIndex = 0;
     private List<Pair<String,Fragment>> mFragments;
     private User       mUser;
+
+    private static boolean needRequest;
+    private long userId;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -80,6 +87,7 @@ public class OtherUserHomeActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     protected void initData() {
         toolbar.setTitle("");
@@ -88,24 +96,52 @@ public class OtherUserHomeActivity extends BaseActivity {
 
         layoutAppbar.addOnOffsetChangedListener(new AppbarListener());
 
-        tvUsername.setText(mUser.getName());
-        tvNameLogo.setText(mUser.getName());
-        getImageLoader().load(mUser.getPortrait()).error(R.mipmap.widget_dface).into
-                (ivPortraitLogo);
-        getImageLoader().load(mUser.getPortrait()).error(R.mipmap.widget_dface).into
-                (ivUserPortrait);
-
-
+        if (needRequest) {
+            requestData();
+        } else {
+            updateInfo(mUser);
+        }
 
         if (mFragments == null) {
             mFragments = new ArrayList<>();
-            mFragments.add(new Pair<String, Fragment>("动弹", TweetListFragment.instantiate(mUser.getUid())));
+            long a = userId;
+            mFragments.add(new Pair<String, Fragment>("动弹", TweetListFragment.instantiate(new
+                    Long(userId).intValue())));
             mFragments.add(new Pair<String, Fragment>("博客", new Fragment()));
             mFragments.add(new Pair<String, Fragment>("讨论", new Fragment()));
 
         }
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
         tablayout.setupWithViewPager(viewPager);
+    }
+
+    private void requestData() {
+        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+        Call<User> otherUserInfo = retrofitCall.getOtherUserInfo(userId);
+        otherUserInfo.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                User body = response.body();
+                if (body != null) {
+                    updateInfo(body);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                showToast(getResources().getString(R.string.state_network_error));
+
+            }
+        });
+    }
+
+    private void updateInfo(User user) {
+        tvUsername.setText(user.getName());
+        tvNameLogo.setText(user.getName());
+        getImageLoader().load(user.getPortrait()).error(R.mipmap.widget_dface).into
+                (ivPortraitLogo);
+        getImageLoader().load(user.getPortrait()).error(R.mipmap.widget_dface).into
+                (ivUserPortrait);
     }
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -135,8 +171,15 @@ public class OtherUserHomeActivity extends BaseActivity {
     protected void initBundle(Bundle bundle) {
         mUser = bundle.getParcelable(KEY_AUTHORID);
         if (mUser == null) {
+            userId = bundle.getLong(KEY_USERID, 0);
+            int a = 1;
+        } else {
+            userId = mUser.getUid();
+        }
+        if (userId == 0) {
             return;
         }
+
     }
 
 
@@ -175,8 +218,17 @@ public class OtherUserHomeActivity extends BaseActivity {
     }
 
     public static void show(Context context, User user) {
+        needRequest = false;
         Intent intent = new Intent(context, OtherUserHomeActivity.class);
         intent.putExtra(KEY_AUTHORID, user);
+        context.startActivity(intent);
+
+    }
+
+    public static void show(Context context, long id) {
+        needRequest = true;
+        Intent intent = new Intent(context, OtherUserHomeActivity.class);
+        intent.putExtra(KEY_USERID, id);
         context.startActivity(intent);
 
     }

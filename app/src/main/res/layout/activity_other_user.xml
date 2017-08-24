@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:padding="@dimen/size_10"
-                    android:text="钢铁侠"
+                    tools:text="钢铁侠"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
