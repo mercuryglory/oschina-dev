@@ -80,13 +80,25 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
     private boolean isLoadMore = false;
     private int     page       = 1;
     public static final String KEY_TWEET = "KEY_TWEET";
+    public static final String KEY_TWEETID = "KEY_TWEETID";
 
     private EmojiView mEmojiView;
     private Tweet mTweet;
+    private int tweetId;
+    private static boolean needRequest;
 
     public static void show(Context context, Tweet tweet) {
+        needRequest = false;
         Intent intent = new Intent(context, TweetDetailActivity.class);
         intent.putExtra(KEY_TWEET, tweet);
+        context.startActivity(intent);
+
+    }
+
+    public static void show(Context context, int id) {
+        needRequest = true;
+        Intent intent = new Intent(context, TweetDetailActivity.class);
+        intent.putExtra(KEY_TWEETID, id);
         context.startActivity(intent);
 
     }
@@ -95,8 +107,20 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
     protected void initBundle(Bundle bundle) {
         mTweet = bundle.getParcelable(KEY_TWEET);
         if (mTweet == null) {
+            //不是从动弹列表而来
+            tweetId = bundle.getInt(KEY_TWEETID, 0);
+        } else {
+            tweetId = mTweet.getId();
+        }
+        if (tweetId == 0) {
             return;
         }
+    }
+
+    @Override
+    protected void initWidget() {
+        super.initWidget();
+        initEmoji();
     }
 
     private void initEmoji() {
@@ -118,15 +142,17 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
         });
     }
 
-
     protected void initData() {
-        initEmoji();
 
-        //动弹详情从列表页传递,效率更高
-        updateTweetDetail(mTweet);
+        //如何可以的话动弹详情从列表页传递,效率更高
+        if (needRequest) {
+            getTweetDetail(tweetId);
+        } else {
+            updateTweetDetail(mTweet);
+        }
 
         //获取评论列表
-        getCommentList(mTweet.getId(), 3, page);
+        getCommentList(tweetId, 3, page);
 
         toolbar.setTitle("动弹详情");
         setSupportActionBar(toolbar);
@@ -153,6 +179,25 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
                 } else {
                     refreshLayout.setEnabled(false);
                 }
+            }
+        });
+    }
+
+    private void getTweetDetail(int tweetId) {
+        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+        Call<Tweet> tweetDetail = retrofitCall.getTweetDetail(tweetId);
+        tweetDetail.enqueue(new Callback<Tweet>() {
+            @Override
+            public void onResponse(Call<Tweet> call, Response<Tweet> response) {
+                Tweet body = response.body();
+                if (body != null) {
+                    updateTweetDetail(body);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Tweet> call, Throwable t) {
+                showToast(getResources().getString(R.string.state_network_error));
             }
         });
     }
@@ -256,14 +301,14 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
         isLoadMore = false;
         recyclerview.setCanloadMore(false);
         page = 1;
-        getCommentList(mTweet.getId(), 3, page);
+        getCommentList(tweetId, 3, page);
     }
 
     @Override
     public void onLoadMore() {
         isLoadMore = true;
         page++;
-        getCommentList(mTweet.getId(), 3, page);
+        getCommentList(tweetId, 3, page);
     }
 
 

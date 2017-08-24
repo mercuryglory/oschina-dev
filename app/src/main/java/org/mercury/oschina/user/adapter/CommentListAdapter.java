@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,7 +19,6 @@ import org.mercury.oschina.utils.StringUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by wang.zhonghao on 2017/8/22.
@@ -42,8 +42,6 @@ public class CommentListAdapter extends BaseRecyclerAdapter<Active> {
             holder.tvMessage.setVisibility(View.GONE);
         } else {
             holder.tvMessage.setVisibility(View.VISIBLE);
-            holder.tvMessage.setText(data.getMessage());
-
             String content = data.getMessage().replaceAll("[\n\\s]+", " ");
             holder.tvMessage.setMovementMethod(LinkMovementMethod.getInstance());
             holder.tvMessage.setText(TweetParser.getInstance().parse(mContext, content));
@@ -55,7 +53,7 @@ public class CommentListAdapter extends BaseRecyclerAdapter<Active> {
         } else {
             //设置富文本
             holder.tvBody.setVisibility(View.VISIBLE);
-            String content = data.getMessage().replaceAll("[\n\\s]+", " ");
+            String content = data.getObjectBody().replaceAll("[\n\\s]+", " ");
             holder.tvBody.setMovementMethod(LinkMovementMethod.getInstance());
             holder.tvBody.setText(TweetParser.getInstance().parse(mContext, content));
             holder.tvBody.setFocusable(false);
@@ -74,6 +72,7 @@ public class CommentListAdapter extends BaseRecyclerAdapter<Active> {
                 break;
 
             default:
+                holder.tvPubPlatform.setText("");
                 break;
 
         }
@@ -92,21 +91,21 @@ public class CommentListAdapter extends BaseRecyclerAdapter<Active> {
 
     static class ViewHolder extends RecyclerView.ViewHolder{
         @Bind(R.id.iv_user_face)
-        CircleImageView ivUserFace;
+        ImageView      ivUserFace;
         @Bind(R.id.tv_author)
-        TextView        tvAuthor;
+        TextView       tvAuthor;
         @Bind(R.id.tv_message)
-        TextView        tvMessage;
+        TextView       tvMessage;
         @Bind(R.id.tv_body)
-        TextView        tvBody;
+        TextView       tvBody;
         @Bind(R.id.tv_pub_time)
-        TextView        tvPubTime;
+        TextView       tvPubTime;
         @Bind(R.id.tv_pub_platform)
-        TextView        tvPubPlatform;
+        TextView       tvPubPlatform;
         @Bind(R.id.tv_comment_count)
-        TextView        tvCommentCount;
+        TextView       tvCommentCount;
         @Bind(R.id.rl_info)
-        RelativeLayout  rlInfo;
+        RelativeLayout rlInfo;
 
         ViewHolder(View view) {
             super(view);

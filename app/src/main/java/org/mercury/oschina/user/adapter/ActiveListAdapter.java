@@ -22,6 +22,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by wang.zhonghao on 2017/8/22.
+ * 我的动态 列表 适配器
  */
 
 public class ActiveListAdapter extends BaseRecyclerAdapter<Active> {

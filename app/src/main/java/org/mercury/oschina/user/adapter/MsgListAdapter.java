@@ -10,6 +10,7 @@ import android.widget.TextView;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.tweet.util.GlideUtils;
+import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.user.bean.Message;
 import org.mercury.oschina.utils.StringUtils;
 
@@ -32,7 +33,12 @@ public class MsgListAdapter extends BaseRecyclerAdapter<Message> {
         ViewHolder holder = (ViewHolder) h;
         GlideUtils.loadCircleImage(mContext, data.getPortrait(), holder.ivPortrait);
         holder.tvFriend.setText(data.getFriendname());
-        holder.tvContent.setText(data.getContent());
+
+        String content = data.getContent().replaceAll("[\n\\s]+", " ");
+        holder.tvContent.setText(TweetParser.getInstance().parse(mContext, content));
+        holder.tvContent.setFocusable(false);
+        holder.tvContent.setLongClickable(false);
+
         holder.tvTime.setText(StringUtils.friendly_time(data.getPubDate()));
 
     }

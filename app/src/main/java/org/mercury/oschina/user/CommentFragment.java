@@ -8,7 +8,9 @@ import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.base.BaseRecyclerViewFragment;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.tweet.TweetListFragment;
+import org.mercury.oschina.tweet.activity.TweetDetailActivity;
 import org.mercury.oschina.user.adapter.CommentListAdapter;
+import org.mercury.oschina.user.bean.Active;
 import org.mercury.oschina.user.bean.ActiveResponse;
 import org.mercury.oschina.utils.AccessTokenHelper;
 import org.mercury.oschina.widget.EmptyLayout;
@@ -30,7 +32,7 @@ public class CommentFragment extends BaseRecyclerViewFragment<ActiveResponse> {
     public boolean isLoadMore;
 
     public static final String REQUEST_CATALOG = "REQUEST_CATALOG";
-    public static final int    CATALOG_MY     = 4;
+    public static final int    CATALOG_COMMENT     = 3;
     public static final int    CATALOG_HOT     = 2;
     public int requestType;
 
@@ -70,7 +72,7 @@ public class CommentFragment extends BaseRecyclerViewFragment<ActiveResponse> {
 
     @Override
     protected Call<ActiveResponse> getCall(HttpApi retrofitCall) {
-        Call<ActiveResponse> activeList = retrofitCall.getActiveList(CATALOG_MY,
+        Call<ActiveResponse> activeList = retrofitCall.getActiveList(CATALOG_COMMENT,
                 AccessTokenHelper.getUserId(), pageIndex);
         return activeList;
     }
@@ -120,6 +122,9 @@ public class CommentFragment extends BaseRecyclerViewFragment<ActiveResponse> {
 
     @Override
     public void onItemClick(int position, long itemId) {
-
+        Active item = mAdapter.getItem(position);
+        if (item != null) {
+            TweetDetailActivity.show(getContext(), item.getObjectId());
+        }
     }
 }
