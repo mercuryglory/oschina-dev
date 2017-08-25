@@ -108,6 +108,12 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             />
+
+        <activity
+            android:name=".user.PrivateMessageActivity"
+            android:label="私信内容"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
     </application >
 
 </manifest >

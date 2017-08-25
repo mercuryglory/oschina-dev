@@ -62,6 +62,7 @@
     </style >
 
     <style name="Base.App.Widget.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?colorPrimary</item>
         <item name="titleTextAppearance">@style/App.TextAppearance.Widget.Toolbar.Title</item>
         <item name="titleMargin">0dp</item>
         <item name="contentInsetStart">0dp</item>

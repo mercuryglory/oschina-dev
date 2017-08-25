@@ -104,7 +104,6 @@ public class OtherUserHomeActivity extends BaseActivity {
 
         if (mFragments == null) {
             mFragments = new ArrayList<>();
-            long a = userId;
             mFragments.add(new Pair<String, Fragment>("动弹", TweetListFragment.instantiate(new
                     Long(userId).intValue())));
             mFragments.add(new Pair<String, Fragment>("博客", new Fragment()));
@@ -172,7 +171,6 @@ public class OtherUserHomeActivity extends BaseActivity {
         mUser = bundle.getParcelable(KEY_AUTHORID);
         if (mUser == null) {
             userId = bundle.getLong(KEY_USERID, 0);
-            int a = 1;
         } else {
             userId = mUser.getUid();
         }
@@ -217,6 +215,7 @@ public class OtherUserHomeActivity extends BaseActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //传递User对象过来
     public static void show(Context context, User user) {
         needRequest = false;
         Intent intent = new Intent(context, OtherUserHomeActivity.class);
@@ -225,6 +224,7 @@ public class OtherUserHomeActivity extends BaseActivity {
 
     }
 
+    //传递authorId过来
     public static void show(Context context, long id) {
         needRequest = true;
         Intent intent = new Intent(context, OtherUserHomeActivity.class);

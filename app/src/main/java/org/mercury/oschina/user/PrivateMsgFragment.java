@@ -121,9 +121,10 @@ public class PrivateMsgFragment extends BaseRecyclerViewFragment<MessageResponse
 
     @Override
     public void onItemClick(int position, long itemId) {
+        //到该私信中两用户的聊天列表
         Message message = mAdapter.getItem(position);
         if (message != null) {
-//            TweetDetailActivity.show(getContext(), message);
+            PrivateMessageActivity.show(getContext(), message.getFriendid());
         }
     }
 }

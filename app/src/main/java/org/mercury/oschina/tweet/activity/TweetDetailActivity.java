@@ -54,8 +54,8 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
     EditText            etContent;
     @Bind(R.id.iv_tweet_emoji)
     ImageView           ivTweetEmoji;
-    @Bind(R.id.emoji_keyboard_fragment)
-    FrameLayout         emojiKeyboardFragment;
+    @Bind(R.id.emoji_keyboard_view)
+    FrameLayout         emojiKeyboardView;
     @Bind(R.id.iv_tweet_face)
     ImageView           ivTweetFace;
     @Bind(R.id.tv_tweet_name)
@@ -133,7 +133,7 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
 
                 if (mEmojiView == null) {
                     mEmojiView = new EmojiView(TweetDetailActivity.this, etContent);
-                    emojiKeyboardFragment.addView(mEmojiView);
+                    emojiKeyboardView.addView(mEmojiView);
                 }
                 mEmojiView.openPanel();
                 TDevice.closeKeyboard(etContent);

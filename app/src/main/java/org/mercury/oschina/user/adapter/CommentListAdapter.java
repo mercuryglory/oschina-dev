@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
+import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.user.bean.Active;
@@ -32,9 +33,15 @@ public class CommentListAdapter extends BaseRecyclerAdapter<Active> {
     }
 
     @Override
-    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder h, Active data, int position) {
+    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder h, final Active data, int position) {
         ViewHolder holder = (ViewHolder) h;
         GlideUtils.loadCircleImage(mContext, data.getPortrait(), holder.ivUserFace);
+        holder.ivUserFace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OtherUserHomeActivity.show(mContext, new Integer(data.getAuthorid()).longValue());
+            }
+        });
 
         holder.tvAuthor.setText(data.getAuthor());
 

@@ -10,8 +10,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="?colorPrimary" >
+        android:layout_height="?actionBarSize" >
 
     </android.support.v7.widget.Toolbar >
 
@@ -126,11 +125,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:orientation="horizontal" >
 
         <EditText
+            android:layout_marginLeft="@dimen/size_10"
+            android:textSize="@dimen/font_14"
             android:id="@+id/et_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -142,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@mipmap/btn_emoji_normal" />
+            android:src="@drawable/btn_emoji_selector" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -152,7 +151,7 @@
     </LinearLayout >
 
     <FrameLayout
-        android:id="@+id/emoji_keyboard_fragment"
+        android:id="@+id/emoji_keyboard_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
