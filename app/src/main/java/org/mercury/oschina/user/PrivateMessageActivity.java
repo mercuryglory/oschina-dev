@@ -35,7 +35,7 @@ public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResp
 
     @Override
     protected Call<CommentResponse> getCall(HttpApi retrofitCall) {
-        Call<CommentResponse> commentList = retrofitCall.getCommentList(1, CATALOG_MSG, pageIndex);
+        Call<CommentResponse> commentList = retrofitCall.getCommentList(1, CATALOG_MSG, 2);
         return commentList;
     }
 
