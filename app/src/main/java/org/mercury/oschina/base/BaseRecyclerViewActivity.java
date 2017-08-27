@@ -1,7 +1,6 @@
 package org.mercury.oschina.base;
 
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -35,6 +34,8 @@ public abstract class BaseRecyclerViewActivity<T> extends BaseActivity implement
 
     protected int pageIndex = 1;
 
+    protected boolean isRefreshing;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_base_recyclerview;
@@ -66,8 +67,6 @@ public abstract class BaseRecyclerViewActivity<T> extends BaseActivity implement
 
         mRecyclerView.setOnLoadMoreListener(this);
         mRecyclerView.setLayoutManager(getLayoutManager());
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration
-                .VERTICAL));
 
         mRecyclerView.setAdapter(getRecyclerAdapter());
         mRecyclerView.setOnItemClickListener(this);

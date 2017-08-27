@@ -58,6 +58,13 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         }
     }
 
+    public void addAllInPos(List<T> items,int pos) {
+        if (items != null) {
+            mData.addAll(pos, items);
+            notifyItemRangeInserted(pos, items.size());
+        }
+    }
+
     public void clear() {
         mData.clear();
         notifyDataSetChanged();

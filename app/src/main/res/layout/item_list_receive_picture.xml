@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="12dp"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
@@ -21,19 +22,27 @@
         tools:text="星期一，8月15日，22：20"
         tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/tv_receive_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="60dp"
-        android:background="@drawable/bg_balloon_left"
-        android:paddingBottom="@dimen/size_8"
-        android:paddingLeft="@dimen/size_20"
-        android:paddingRight="18dp"
-        android:paddingTop="@dimen/size_8"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_16"
-        tools:text="你好啊这是测试文本内容长度对布局的影响你好啊这是测试文本内容长度对布局的影响" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/iv_receiver_picture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <net.oschina.common.widget.Loading
+            android:id="@+id/loading"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:gBackgroundColor="@color/white_alpha_16"
+            app:gForegroundColor="@color/main_green"
+            app:gForegroundLineSize="1dp" />
+    </FrameLayout >
 
 
 </LinearLayout >

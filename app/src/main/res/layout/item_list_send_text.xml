@@ -31,9 +31,10 @@
         android:paddingLeft="18dp"
         android:paddingRight="@dimen/size_20"
         android:paddingTop="@dimen/size_8"
+        android:layout_marginLeft="60dp"
         android:textColor="@color/white"
         android:textSize="@dimen/font_16"
-        tools:text="你好啊" />
+        tools:text="你好啊这是测试文本内容长度对布局的影响你好啊这是测试文本内容长度对布局的影响" />
 
 
 </LinearLayout >
