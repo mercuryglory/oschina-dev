@@ -1,30 +1,22 @@
 package org.mercury.oschina.user;
 
-import android.app.AlertDialog;
-import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-
-import org.mercury.oschina.AppContext;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseFragment;
 import org.mercury.oschina.emoji.UiUtil;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.main.activity.UserSingleInfoActivity;
+import org.mercury.oschina.tweet.TweetListFragment;
 import org.mercury.oschina.tweet.bean.User;
-import org.mercury.oschina.tweet.util.ToastUtil;
-
-import java.util.Hashtable;
+import org.mercury.oschina.utils.AccessTokenHelper;
+import org.mercury.oschina.widget.CodeDialog;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -39,8 +31,8 @@ import retrofit2.Response;
  */
 public class UserFragment extends BaseFragment implements View.OnClickListener {
 
-    private static final int QR_WIDTH  = 100;
-    private static final int QR_HEIGHT = 100;
+    private static final int QR_WIDTH  = 300;
+    private static final int QR_HEIGHT = 300;
 
 
     @Bind(R.id.iv_setting)
@@ -124,7 +116,8 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
-    @OnClick({R.id.iv_setting, R.id.iv_user_qrcode, R.id.iv_user_pic, R.id.tv_user_tweet, R.id.tv_user_favorite, R.id.tv_user_like, R.id.tv_user_fans,
+    @OnClick({R.id.iv_setting, R.id.iv_user_qrcode, R.id.iv_user_pic, R.id.tv_user_tweet, R.id
+            .tv_user_favorite, R.id.tv_user_like, R.id.tv_user_fans,
             R.id.ll_my_msg, R.id.ll_my_blog, R.id.ll_my_event})
     @Override
     public void onClick(View v) {
@@ -137,11 +130,15 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
 
             //弹出二维码
             case R.id.iv_user_qrcode:
-                showQRCodeDialog();
+                CodeDialog dialog = new CodeDialog(getContext());
+                dialog.show();
 
                 break;
             //我的动弹
             case R.id.tv_user_tweet:
+                Bundle bundle = new Bundle();
+                bundle.putInt(TweetListFragment.REQUEST_CATALOG, AccessTokenHelper.getUserId());
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_TWEET, bundle);
                 break;
             //我的收藏
             case R.id.tv_user_favorite:
@@ -176,77 +173,20 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
                 break;
             //我的消息
             case R.id.ll_my_msg:
-                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_MESSAGE);
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_MESSAGE, null);
                 break;
             //我的博客
             case R.id.ll_my_blog:
-                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_BLOG);
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_BLOG, null);
                 break;
             //我的活动
             case R.id.ll_my_event:
-                UserSingleInfoActivity.show(getContext(),FragmentInfo.MY_ACTIVE);
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_ACTIVE, null);
                 break;
 
         }
     }
 
-
-    private void showQRCodeDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        View view = View.inflate(AppContext.context,
-                R.layout.dialog_code, null);
-        builder.setView(view);
-
-        // 显示出来
-        final AlertDialog dialog = builder.show();
-
-        // 查找控件
-        ImageView iv_code = (ImageView) view.findViewById(R.id.iv_code);
-        createQRImage("http://www.cnblogs.com/mythou/p/3280023.html", iv_code);
-        iv_code.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                ToastUtil.showToast("已保存到本地");
-                dialog.dismiss();
-                return true;
-            }
-        });
-
-    }
-
-    public void createQRImage(String url, ImageView iv_code) {
-        try {
-            //判断URL合法性
-            if (url == null || "".equals(url) || url.length() < 1) {
-                return;
-            }
-            Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
-            hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            //图像数据转换，使用了矩阵转换
-            BitMatrix bitMatrix = new QRCodeWriter().encode(url, BarcodeFormat.QR_CODE, QR_WIDTH,
-                    QR_HEIGHT, hints);
-            int[] pixels = new int[QR_WIDTH * QR_HEIGHT];
-            //下面这里按照二维码的算法，逐个生成二维码的图片，
-            //两个for循环是图片横列扫描的结果
-            for (int y = 0; y < QR_HEIGHT; y++) {
-                for (int x = 0; x < QR_WIDTH; x++) {
-                    if (bitMatrix.get(x, y)) {
-                        pixels[y * QR_WIDTH + x] = 0xff000000;
-                    } else {
-                        pixels[y * QR_WIDTH + x] = 0xffffffff;
-                    }
-                }
-            }
-            //生成二维码图片的格式，使用ARGB_8888
-            Bitmap bitmap = Bitmap.createBitmap(QR_WIDTH, QR_HEIGHT, Bitmap.Config.ARGB_8888);
-            bitmap.setPixels(pixels, 0, QR_WIDTH, 0, 0, QR_WIDTH, QR_HEIGHT);
-            //显示到一个ImageView上面
-            iv_code.setImageBitmap(bitmap);
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 }

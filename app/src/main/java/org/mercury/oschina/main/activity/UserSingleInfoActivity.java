@@ -27,8 +27,10 @@ public class UserSingleInfoActivity extends BaseActivity {
     FrameLayout flContainer;
 
     public static final String FRAGMENT_KEY = "FRAGMENT_KEY";
+    public static final String BUNDEL_KEY   = "bundle_key";
 
     private FragmentInfo mInfo;
+    private Bundle       mBundle;
 
     @Override
     protected int getContentView() {
@@ -49,27 +51,24 @@ public class UserSingleInfoActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        try {
-            addFragment(R.id.fl_container, (Fragment) mInfo.getClazz().newInstance());
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        addFragment(R.id.fl_container, Fragment.instantiate(this, mInfo.getClazz().getName(),
+                mBundle));
 
     }
 
     @Override
     protected void initBundle(Bundle bundle) {
         if (bundle != null) {
+            mBundle = bundle.getBundle(BUNDEL_KEY);
             mInfo = (FragmentInfo) bundle.getSerializable(FRAGMENT_KEY);
         }
     }
 
 
-    public static void show(Context context, FragmentInfo info) {
+    public static void show(Context context, FragmentInfo info, Bundle bundle) {
         Intent intent = new Intent(context, UserSingleInfoActivity.class);
         intent.putExtra(FRAGMENT_KEY, info);
+        intent.putExtra(BUNDEL_KEY, bundle);
         context.startActivity(intent);
     }
 

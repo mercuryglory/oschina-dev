@@ -34,7 +34,7 @@ public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResp
     @Override
     protected void response(Call<CommentResponse> call, Response<CommentResponse> response) {
         CommentResponse body = response.body();
-        if (body != null) {
+        if (body != null && body.getCommentList() != null) {
             Collections.reverse(body.getCommentList());
             if (isRefreshing) {
                 refresh(body.getCommentList());
@@ -42,7 +42,11 @@ public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResp
                 mAdapter.setData(body.getCommentList());
                 scrollToBottom();
             }
+        } else {
+            mRefreshLayout.setRefreshing(false);
+
         }
+
     }
 
     private void scrollToBottom() {
@@ -54,8 +58,8 @@ public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResp
         isRefreshing = false;
         if (commentList != null) {
             mAdapter.addAllInPos(commentList, 0);
+            mRecyclerView.scrollToPosition(commentList.size() - 1);
         }
-        mRecyclerView.scrollToPosition(0);
     }
 
     @Override

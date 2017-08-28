@@ -23,7 +23,7 @@ import retrofit2.Response;
 /**
  * 创建者:    Mercury
  * 创建时间:  2016/8/14
- * 描述:      最新动弹
+ * 描述:      动弹列表共用(最新动弹,热门动弹,我的动弹)
  */
 public class TweetListFragment extends BaseRecyclerViewFragment<TweetResponse> implements SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener {
 

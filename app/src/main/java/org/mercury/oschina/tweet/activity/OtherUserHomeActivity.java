@@ -106,6 +106,7 @@ public class OtherUserHomeActivity extends BaseActivity {
             mFragments = new ArrayList<>();
             mFragments.add(new Pair<String, Fragment>("动弹", TweetListFragment.instantiate(new
                     Long(userId).intValue())));
+            //todo 博客 问答
             mFragments.add(new Pair<String, Fragment>("博客", new Fragment()));
             mFragments.add(new Pair<String, Fragment>("讨论", new Fragment()));
 

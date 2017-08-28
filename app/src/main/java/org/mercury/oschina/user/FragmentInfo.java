@@ -1,11 +1,14 @@
 package org.mercury.oschina.user;
 
+import org.mercury.oschina.tweet.TweetListFragment;
+
 /**
  * Created by wang.zhonghao on 2017/8/19.
  */
 
 public enum FragmentInfo {
 
+    MY_TWEET("动弹列表", TweetListFragment.class),
     MY_MESSAGE("我的消息", MyMessageFragment.class),
     MY_BLOG("我的博客", UserBlogFragment.class),
     MY_ACTIVE("我的动态", ActiveFragment.class);

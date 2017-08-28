@@ -6,4 +6,18 @@
         <item name="android:windowIsTranslucent">false</item>
     </style>
 
+    <style name="App.Theme.Dialog" parent="Base.App.Theme.NoTitle" >
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <!--重点就是这个属性,决定了dialog弹出时窗体背景的颜色,这个颜色是可以覆盖你自定义的布局背景色的-->
+        <item name="android:windowBackground">@color/transparent</item>
+
+        <item name="android:actionMenuTextColor">@color/black</item>
+        <item name="android:actionMenuTextAppearance">@color/white</item>
+        <item name="android:textColorPrimary">@color/black_alpha_240</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:screenOrientation">portrait</item>
+
+    </style>
+
 </resources >

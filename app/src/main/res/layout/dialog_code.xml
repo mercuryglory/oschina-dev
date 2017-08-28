@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/actionbar_item_background_normal"
-    android:gravity="center" >
+    android:layout_height="match_parent"
+    android:background="#66000000"
+    android:gravity="center"
+    android:orientation="vertical" >
 
     <ImageView
         android:id="@+id/iv_code"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/baby" />
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:background="@color/white"
+        android:contentDescription="二维码图案" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_code"
-        android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:gravity="center"
-        android:padding="10dp"
         android:text="扫一扫下面的二维码图案~长按保存到本地~"
-        android:textColor="#5000"
-        android:textSize="14sp" />
-</RelativeLayout >
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+</LinearLayout >

@@ -70,6 +70,7 @@
             tools:text="用户名" />
 
         <LinearLayout
+            android:id="@+id/ll_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -120,6 +121,12 @@
                 android:textColor="@color/white" />
 
         </LinearLayout >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white40"
+            android:layout_above="@id/ll_bottom" />
 
     </RelativeLayout >
 
