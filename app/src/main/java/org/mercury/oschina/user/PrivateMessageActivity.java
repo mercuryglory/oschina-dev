@@ -31,6 +31,9 @@ public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResp
 
     private int userId;
 
+    //Todo 其实聊天列表应该是加载更多的布局反过来的效果,这里用的SwipeRefreshLayout下拉刷新加载更多数据,将列表向上
+    //滑动一点,模拟这样的效果.其实还是要自定义一个RecyclerView控件
+
     @Override
     protected void response(Call<CommentResponse> call, Response<CommentResponse> response) {
         CommentResponse body = response.body();

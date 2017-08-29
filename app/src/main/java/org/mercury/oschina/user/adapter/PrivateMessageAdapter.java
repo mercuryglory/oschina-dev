@@ -14,6 +14,12 @@ import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.tweet.bean.Comment;
 import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.utils.AccessTokenHelper;
+import org.mercury.oschina.utils.StringUtils;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by wang.zhonghao on 2017/8/25.
@@ -51,6 +57,7 @@ public class PrivateMessageAdapter extends BaseRecyclerAdapter<Comment> {
 
     @Override
     protected void onBindDefaultViewHolder(RecyclerView.ViewHolder h, Comment data, int position) {
+        Comment preComment = position != 0 ? getItem(position - 1) : null;
         switch (getItemViewType(position)) {
             case SENDER:
                 SenderViewHolder senderViewHolder = (SenderViewHolder) h;
@@ -61,9 +68,11 @@ public class PrivateMessageAdapter extends BaseRecyclerAdapter<Comment> {
                     senderViewHolder.tvSendText.setFocusable(false);
                     senderViewHolder.tvSendText.setLongClickable(false);
                 }
+                formatTime(preComment, data, senderViewHolder.tvSendTime);
                 break;
             case SENDER_PICTURE:
                 SenderPictureViewHolder senderPictureViewHolder = (SenderPictureViewHolder) h;
+                formatTime(preComment, data, senderPictureViewHolder.tvSendTime);
                 break;
             case RECEIVER:
                 ReceiverViewHolder receiverViewHolder = (ReceiverViewHolder) h;
@@ -74,10 +83,12 @@ public class PrivateMessageAdapter extends BaseRecyclerAdapter<Comment> {
                     receiverViewHolder.tvReceiveText.setFocusable(false);
                     receiverViewHolder.tvReceiveText.setLongClickable(false);
                 }
+                formatTime(preComment, data, receiverViewHolder.tvSendTime);
                 break;
             case RECEIVER_PICTURE:
                 ReceiverPictureViewHolder receiverPictureViewHolder = (ReceiverPictureViewHolder) h;
                 receiverPictureViewHolder.ivReceiverPic.setImageResource(R.mipmap.quick_option_album_nor);
+                formatTime(preComment, data, receiverPictureViewHolder.tvSendTime);
                 break;
 
             default:
@@ -100,6 +111,45 @@ public class PrivateMessageAdapter extends BaseRecyclerAdapter<Comment> {
         } else {
             return new ReceiverPictureViewHolder(mInflater.inflate(R.layout.item_list_receive_picture,
                     parent, false));
+        }
+    }
+
+    private void formatTime(Comment preComment, Comment currentComment, TextView tvTime) {
+        tvTime.setVisibility(View.GONE);
+        //第0条一定是要展示格式化时间的
+        if (preComment == null) {
+            tvTime.setVisibility(View.VISIBLE);
+            tvTime.setText(formatTime(currentComment.getPubDate()));
+
+        } else {
+            if (checkTime(preComment.getPubDate(), currentComment.getPubDate())) {
+                tvTime.setVisibility(View.VISIBLE);
+                tvTime.setText(formatTime(currentComment.getPubDate()));
+            }
+        }
+    }
+
+    private String formatTime(String time) {
+        if(TextUtils.isEmpty(time))
+            return "";
+        Date date = StringUtils.toDate(time);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat dayFormat = new SimpleDateFormat("MM月dd日");
+        SimpleDateFormat weekFormat = new SimpleDateFormat("EEEE", Locale.CHINESE);
+        return weekFormat.format(date) + "," + dayFormat.format(date) + "," + timeFormat.format
+                (date);
+    }
+
+    //如果两个条目之间的发布时间相差超过5分钟
+    private boolean checkTime(String preTime, String currentTime) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            long first = format.parse(preTime).getTime();
+            long second = format.parse(currentTime).getTime();
+            return second - first > 300000;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

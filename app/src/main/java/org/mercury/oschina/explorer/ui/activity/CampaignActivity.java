@@ -11,8 +11,8 @@ import com.ToxicBakery.viewpager.transforms.RotateDownTransformer;
 import org.mercury.oschina.R;
 import org.mercury.oschina.bean.base.FragmentInfo;
 import org.mercury.oschina.explorer.adapter.ActivityViewPagerAdapter;
-import org.mercury.oschina.explorer.ui.fragment.AllActivityFragment;
-import org.mercury.oschina.explorer.ui.fragment.MyActivityFragment;
+import org.mercury.oschina.user.UserFollowFragment;
+import org.mercury.oschina.user.UserFavoriteFragment;
 import org.mercury.oschina.tweet.widget.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
@@ -65,8 +65,8 @@ public class CampaignActivity extends AppCompatActivity {
 
     private void init() {
         String[] title = getResources().getStringArray(R.array.tab2_names);
-        mBeanList.add(new FragmentInfo(title[0], new AllActivityFragment()));
-        mBeanList.add(new FragmentInfo(title[1], new MyActivityFragment()));
+        mBeanList.add(new FragmentInfo(title[0], new UserFollowFragment()));
+        mBeanList.add(new FragmentInfo(title[1], new UserFavoriteFragment()));
         mVp.setAdapter(new ActivityViewPagerAdapter(getSupportFragmentManager(), mBeanList));
         mPst.setViewPager(mVp);
     }

@@ -31,10 +31,6 @@ import retrofit2.Response;
  */
 public class UserFragment extends BaseFragment implements View.OnClickListener {
 
-    private static final int QR_WIDTH  = 300;
-    private static final int QR_HEIGHT = 300;
-
-
     @Bind(R.id.iv_setting)
     ImageView       ivSetting;
     @Bind(R.id.iv_user_qrcode)

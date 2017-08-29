@@ -1,4 +1,4 @@
-package org.mercury.oschina.explorer.ui.fragment;
+package org.mercury.oschina.explorer.ui;
 
 import android.content.Intent;
 import android.net.Uri;
