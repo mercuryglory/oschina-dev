@@ -38,11 +38,12 @@
                         android:src="@mipmap/widget_dface" />
 
                     <ImageView
+                        android:id="@+id/iv_gender"
                         android:layout_width="@dimen/size_20"
                         android:layout_height="@dimen/size_20"
                         android:layout_alignBottom="@id/iv_user_portrait"
                         android:layout_alignEnd="@id/iv_user_portrait"
-                        android:src="@mipmap/ic_male" />
+                        tools:src="@mipmap/ic_male" />
 
                 </RelativeLayout >
 

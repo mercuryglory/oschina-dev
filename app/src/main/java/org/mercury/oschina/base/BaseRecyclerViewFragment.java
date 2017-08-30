@@ -53,13 +53,20 @@ public abstract class BaseRecyclerViewFragment<T> extends BaseFragment implement
 
         mRecyclerView.setOnLoadMoreListener(this);
         mRecyclerView.setLayoutManager(getLayoutManager());
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration
-                .VERTICAL));
+        addItemDivider(true);
 
         mRecyclerView.setAdapter(getRecyclerAdapter());
         mRecyclerView.setOnItemClickListener(this);
 
         requestData();
+
+    }
+
+    protected void addItemDivider(boolean add) {
+        if (add) {
+            mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
+                    DividerItemDecoration.VERTICAL));
+        }
 
     }
 

@@ -3,11 +3,14 @@ package org.mercury.oschina.user;
 import android.os.Bundle;
 import android.view.View;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.base.BaseRecyclerViewFragment;
 import org.mercury.oschina.http.HttpApi;
-import org.mercury.oschina.user.adapter.FavoriteListAdapter;
-import org.mercury.oschina.user.bean.FavoriteResponse;
+import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
+import org.mercury.oschina.user.adapter.FriendListAdapter;
+import org.mercury.oschina.user.bean.User;
+import org.mercury.oschina.user.bean.UserResponse;
 import org.mercury.oschina.widget.EmptyLayout;
 
 import java.util.List;
@@ -17,36 +20,36 @@ import retrofit2.Response;
 
 /**
  * Created by Mercury on 2016-08-14 19:33:46.
- * 收藏列表
+ * 好友列表(我关注的 我的粉丝)
  */
-public class UserFavoriteFragment extends BaseRecyclerViewFragment<FavoriteResponse> {
+public class FriendListFragment extends BaseRecyclerViewFragment<UserResponse> {
 
-    public FavoriteListAdapter mAdapter;
+    public FriendListAdapter mAdapter;
 
     public boolean isLoadMore;
 
-    public static final String REQUEST_CATALOG = "REQUEST_CATALOG";
-    // 0-全部|1-软件|2-话题|3-博客|4-新闻|5代码|7-翻译
-    public static final int TYPE_DEFAULT = 0;
-    public static final int    CATALOG_HOT     = 2;
+
+
+    public static final int RELATION_FANS = 0;
+    public static final int RELATION_FOLLOW = 1;
     public int requestType;
 
     @Override
-    protected void response(Call<FavoriteResponse> call, Response<FavoriteResponse> response) {
-        FavoriteResponse bean = response.body();
+    protected void response(Call<UserResponse> call, Response<UserResponse> response) {
+        UserResponse bean = response.body();
         if (bean == null) {
             return;
         }
 
         if (isLoadMore) {
-            loadMore(bean.getFavoriteList());
+            loadMore(bean.getUserList());
         } else {
-            if (bean.getFavoriteList() == null) {
+            if (bean.getUserList() == null) {
                 mEmptyLayout.setVisibility(View.VISIBLE);
                 mEmptyLayout.setErrorType(EmptyLayout.NODATA);
                 return;
             }
-            refresh(bean.getFavoriteList());
+            refresh(bean.getUserList());
         }
     }
 
@@ -63,19 +66,19 @@ public class UserFavoriteFragment extends BaseRecyclerViewFragment<FavoriteRespo
     protected void initBundle(Bundle bundle) {
         super.initBundle(bundle);
         if (bundle != null) {
-            requestType = bundle.getInt(REQUEST_CATALOG);
+            requestType = bundle.getInt(Constant.REQUEST_CATALOG);
         }
     }
 
     @Override
-    protected Call<FavoriteResponse> getCall(HttpApi retrofitCall) {
-        Call<FavoriteResponse> favoriteList = retrofitCall.getFavoriteList(TYPE_DEFAULT, pageIndex);
-        return favoriteList;
+    protected Call<UserResponse> getCall(HttpApi retrofitCall) {
+        Call<UserResponse> userList = retrofitCall.getUserList(requestType, pageIndex);
+        return userList;
     }
 
     @Override
     protected BaseRecyclerAdapter getRecyclerAdapter() {
-        FavoriteListAdapter adapter = new FavoriteListAdapter(getActivity());
+        FriendListAdapter adapter = new FriendListAdapter(getActivity());
         mAdapter = adapter;
         return adapter;
     }
@@ -118,6 +121,9 @@ public class UserFavoriteFragment extends BaseRecyclerViewFragment<FavoriteRespo
 
     @Override
     public void onItemClick(int position, long itemId) {
-
+        User item = mAdapter.getItem(position);
+        if (item != null) {
+            OtherUserHomeActivity.show(getContext(), new Integer(item.getUserid()).longValue());
+        }
     }
 }

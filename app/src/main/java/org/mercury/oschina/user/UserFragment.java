@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseFragment;
 import org.mercury.oschina.emoji.UiUtil;
@@ -117,7 +118,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
             R.id.ll_my_msg, R.id.ll_my_blog, R.id.ll_my_event})
     @Override
     public void onClick(View v) {
-
+        Bundle bundle = new Bundle();
         switch (v.getId()) {
             //开启设置
             case R.id.iv_setting:
@@ -132,32 +133,24 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
                 break;
             //我的动弹
             case R.id.tv_user_tweet:
-                Bundle bundle = new Bundle();
                 bundle.putInt(TweetListFragment.REQUEST_CATALOG, AccessTokenHelper.getUserId());
                 UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_TWEET, bundle);
                 break;
             //我的收藏
             case R.id.tv_user_favorite:
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_FAVORITE, null);
                 break;
             //我的关注
             case R.id.tv_user_like:
+                bundle.putInt(Constant.REQUEST_CATALOG, FriendListFragment.RELATION_FOLLOW);
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_FRIEND, bundle);
                 break;
             //我的粉丝
             case R.id.tv_user_fans:
+                bundle.putInt(Constant.REQUEST_CATALOG, FriendListFragment.RELATION_FANS);
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_FRIEND, bundle);
                 break;
-            //            case R.id.ll_user_score:
-            //                break;
-            //            case R.id.ll_user_fans:
-            //                Intent intent = new Intent(getActivity(), ThierActivity.class);
-            //                intent.putExtra(Fields.FANS, "fans");
-            //                startActivity(intent);
-            //                break;
-            //            case ll_user_care:
-            //                Intent intent1 = new Intent(getActivity(), ThierActivity.class);
-            //                intent1.putExtra(Fields.CARE, "care");
-            //                startActivity(intent1);
-            //
-            //                break;
+
             //            case ll_user_collect:
             //
             //                startActivity(new Intent(getActivity(), CollectionActivity.class));

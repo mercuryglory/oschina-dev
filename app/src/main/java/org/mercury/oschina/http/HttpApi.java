@@ -9,8 +9,10 @@ import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.user.bean.ActiveResponse;
+import org.mercury.oschina.user.bean.FavoriteResponse;
 import org.mercury.oschina.user.bean.MessageResponse;
 import org.mercury.oschina.user.bean.ProjectResponse;
+import org.mercury.oschina.user.bean.UserResponse;
 
 import java.util.Map;
 
@@ -74,5 +76,17 @@ public interface HttpApi {
 
     @GET("user_information")
     Call<User> getOtherUserInfo(@Query("friend") long userId);
+
+    @GET("favorite_list")
+    Call<FavoriteResponse> getFavoriteList(@Query("type") int type, @Query("page") int page);
+
+    /**
+     *
+     * @param relation 0-粉丝|1-关注的人(default=0)
+     * @param page
+     * @return
+     */
+    @GET("friends_list")
+    Call<UserResponse> getUserList(@Query("relation") int relation, @Query("page") int page);
 
 }

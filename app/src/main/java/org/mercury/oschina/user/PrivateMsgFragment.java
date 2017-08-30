@@ -83,7 +83,6 @@ public class PrivateMsgFragment extends BaseRecyclerViewFragment<MessageResponse
     }
 
     public void loadMore(List list) {
-        //如果是热门动弹,有且仅有20条(目前)
         if (list.size() == 0) {
             mRecyclerView.loadMoreEnd();
             return;

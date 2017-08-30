@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.mercury.oschina.R;
@@ -61,8 +62,11 @@ public class OtherUserHomeActivity extends BaseActivity {
     View      viewDivider;
     @Bind(R.id.viewPager)
     ViewPager viewPager;
+    @Bind(R.id.iv_gender)
+    ImageView ivGender;
 
     private static final String KEY_AUTHORID = "KEY_AUTHORID";
+
     private static final String KEY_USERID = "KEY_USERID";
 
 
@@ -142,6 +146,11 @@ public class OtherUserHomeActivity extends BaseActivity {
                 (ivPortraitLogo);
         getImageLoader().load(user.getPortrait()).error(R.mipmap.widget_dface).into
                 (ivUserPortrait);
+        if (user.getGender() == 1) {
+            ivGender.setImageResource(R.mipmap.ic_male);
+        } else if (user.getGender() == 2) {
+            ivGender.setImageResource(R.mipmap.userinfo_icon_female);
+        }
     }
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {

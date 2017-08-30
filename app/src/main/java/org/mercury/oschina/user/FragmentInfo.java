@@ -8,6 +8,8 @@ import org.mercury.oschina.tweet.TweetListFragment;
 
 public enum FragmentInfo {
 
+    MY_FRIEND("关注列表",FriendListFragment.class),
+    MY_FAVORITE("收藏",UserFavoriteFragment.class),
     MY_TWEET("动弹列表", TweetListFragment.class),
     MY_MESSAGE("我的消息", MyMessageFragment.class),
     MY_BLOG("我的博客", UserBlogFragment.class),

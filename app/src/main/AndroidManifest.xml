@@ -42,8 +42,6 @@
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FriendCircleActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.CampaignActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.AllActivityWebView" />
-        <activity android:name="org.mercury.oschina.main.activity.ThierActivity" />
-        <activity android:name="org.mercury.oschina.main.activity.CollectionActivity" />
         <activity android:name="org.mercury.oschina.main.activity.UserDetailsActivity" />
         <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity" />
         <activity android:name="org.mercury.oschina.main.activity.MsgActivity" />
