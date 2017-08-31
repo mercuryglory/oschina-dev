@@ -4,6 +4,7 @@
     <!-- day -->
     <color name="day_colorPrimary">#24cf5f</color>
     <color name="day_colorPrimaryDark">#24cf5f</color>
+    <color name="day_textColor">#333333</color>
 
     <!-- night -->
 

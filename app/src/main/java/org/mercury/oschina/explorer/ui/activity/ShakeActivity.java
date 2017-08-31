@@ -3,11 +3,8 @@ package org.mercury.oschina.explorer.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -16,8 +13,9 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import org.mercury.oschina.R;
 import org.mercury.oschina.AppContext;
+import org.mercury.oschina.R;
+import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.bean.ShakeObject;
 import org.mercury.oschina.synthesis.ui.NewsDetailActivity;
 import org.mercury.oschina.utils.Constants;
@@ -25,18 +23,22 @@ import org.mercury.oschina.utils.XmlUtils;
 
 import cz.msebera.android.httpclient.Header;
 
-public class ShakeActivity extends AppCompatActivity {
+public class ShakeActivity extends BaseActivity {
+
     private ShakeListener mShaker;
     private RelativeLayout layoutRoot;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shake);
-        initActionbar();
-        final Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        layoutRoot = (RelativeLayout) findViewById(R.id.layoutRoot);
 
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_shake;
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        layoutRoot = (RelativeLayout) findViewById(R.id.layoutRoot);
+        final Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         mShaker = new ShakeListener(this);
         mShaker.setOnShakeListener(new ShakeListener.OnShakeListener() {
             public void onShake() {
@@ -56,12 +58,6 @@ public class ShakeActivity extends AppCompatActivity {
                                         }
                                     })
                                     .setActionTextColor(Color.parseColor("#DD88ff88"));
-//                            View view = snackbar.getView();
-//                            TextView tv_snack = (TextView) view.findViewById(R.id.snackbar_text);
-//                            tv_snack.setTextSize(24);
-//                            tv_snack.setPadding(8,8,8,8);
-//                            tv_snack.setTextColor(Color.parseColor("#aaff8888"));
-//                            tv_snack.setBackgroundColor(Color.parseColor("#55ff88ff"));
                             snackbar.show();
                         }
 
@@ -90,13 +86,6 @@ public class ShakeActivity extends AppCompatActivity {
     }
 
 
-    private void initActionbar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("今天你摇了吗?");
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

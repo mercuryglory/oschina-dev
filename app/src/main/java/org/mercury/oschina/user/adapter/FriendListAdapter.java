@@ -1,6 +1,7 @@
 package org.mercury.oschina.user.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -34,13 +35,17 @@ public class FriendListAdapter extends BaseRecyclerAdapter<User> {
 
         holder.tvAuthor.setText(data.getName());
         holder.tvExpertise.setText(data.getExpertise());
-        // TODO: 2017/8/30 用代码设置textview的drawableRight无效
+        Drawable male = ContextCompat.getDrawable(mContext,
+                R.mipmap.userinfo_icon_male);
+        int width = male.getIntrinsicHeight();
+        male.setBounds(0, 0, width, width);
+        Drawable female = ContextCompat.getDrawable(mContext,
+                R.mipmap.userinfo_icon_female);
+        female.setBounds(0, 0, width, width);
         if (data.getGender() == 1) {
-            holder.tvAuthor.setCompoundDrawables(null, null, ContextCompat.getDrawable(mContext,
-                    R.mipmap.userinfo_icon_male), null);
+            holder.tvAuthor.setCompoundDrawables(null, null, male, null);
         } else if (data.getGender() == 2) {
-            holder.tvAuthor.setCompoundDrawables(null, null, ContextCompat.getDrawable(mContext,
-                    R.mipmap.userinfo_icon_female), null);
+            holder.tvAuthor.setCompoundDrawables(null, null, female, null);
         }
     }
 

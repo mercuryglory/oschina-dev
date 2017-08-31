@@ -39,10 +39,8 @@
         </activity >
 
         <activity android:name="org.mercury.oschina.synthesis.ui.NewsDetailActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.FriendCircleActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.CampaignActivity" />
+        <activity android:name="org.mercury.oschina.explorer.ui.activity.SoftwareActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.AllActivityWebView" />
-        <activity android:name="org.mercury.oschina.main.activity.UserDetailsActivity" />
         <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity" />
         <activity android:name="org.mercury.oschina.main.activity.MsgActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ShakeActivity" />
@@ -57,7 +55,6 @@
 
         <activity android:name="org.mercury.oschina.main.activity.QuickViodeActivity" />
         <activity android:name="org.mercury.oschina.main.activity.TextDialogActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.GenerateQRCodeActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" />
 
         <activity
@@ -78,7 +75,6 @@
             android:theme="@style/Base.App.Theme.NoTitle"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name="org.mercury.oschina.main.activity.BlogActivity" />
         <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity" />
         <activity android:name="org.mercury.oschina.main.activity.NoteDetailActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.BlogInfoActivity" />

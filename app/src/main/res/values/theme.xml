@@ -9,6 +9,7 @@
 
         <!--textcolor-->
         <item name="android:textColorPrimary">@color/white</item>
+        <item name="textColor">@color/day_textColor</item>
         <item name="actionBarSize">48dp</item>
         <item name="toolbarStyle">@style/App.Widget.Light.Toolbar</item>
     </style >

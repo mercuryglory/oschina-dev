@@ -23,4 +23,6 @@ public class Constant {
 
     public static final String REQUEST_CATALOG = "REQUEST_CATALOG";
 
+    public static final String QRCODE_DIR = "oschina二维码";
+
 }

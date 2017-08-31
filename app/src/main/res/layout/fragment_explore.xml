@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F2F2"
     android:orientation="vertical" >
 
     <View
@@ -9,161 +10,83 @@
         android:layout_marginTop="20dp" />
 
     <LinearLayout
+        android:id="@+id/ll_software"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp" >
 
-        <LinearLayout
-            android:id="@+id/ll_friend_circle"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="10dp" >
+            android:src="@drawable/ic_discover_softwares" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/icon_explore_friends" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="朋友圈"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-        </LinearLayout >
-
-        <View style="@style/line_gay" />
-
-        <View
-            style="@style/line_gay"
-            android:layout_marginTop="20dp" />
-
-        <LinearLayout
-            android:id="@+id/ll_find_user"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="10dp" >
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/icon_explore_finduser" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="找人"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-        </LinearLayout >
-
-        <View style="@style/line_gay" />
-
-        <LinearLayout
-            android:id="@+id/ll_activity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="10dp" >
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/icon_explore_event" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="活动"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-        </LinearLayout >
-
-        <View style="@style/line_gay" />
-
-        <View
-            style="@style/line_gay"
-            android:layout_marginTop="20dp" />
-
-        <LinearLayout
-            android:id="@+id/ll_qr_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="10dp" >
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/icon_explore_scan" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="扫一扫"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-        </LinearLayout >
-
-        <View style="@style/line_gay" />
-
-
-        <LinearLayout
-            android:id="@+id/ll_create_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="10dp" >
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/icon_qr_code" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="生成二维码"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-        </LinearLayout >
-
-        <View style="@style/line_gay" />
-
-        <LinearLayout
-            android:id="@+id/ll_shake"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="10dp" >
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/icon_explore_shake" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="摇一摇"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-        </LinearLayout >
-
-        <View style="@style/line_gay" />
+            android:layout_marginLeft="10dp"
+            android:text="开源软件"
+            android:textColor="@color/day_textColor"
+            android:textSize="16sp" />
     </LinearLayout >
+
+    <View style="@style/line_gay" />
+
+    <View
+        style="@style/line_gay"
+        android:layout_marginTop="20dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_discover_scan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="扫一扫"
+            android:textColor="@color/day_textColor"
+            android:textSize="16sp" />
+    </LinearLayout >
+
+    <View
+        style="@style/line_gay"
+        android:layout_marginLeft="20dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_shake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_discover_shake" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="摇一摇"
+            android:textColor="@color/day_textColor"
+            android:textSize="16sp" />
+    </LinearLayout >
+
+    <View style="@style/line_gay" />
 </LinearLayout >

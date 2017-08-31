@@ -1,5 +1,10 @@
 package org.mercury.oschina.utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.Closeable;
@@ -61,6 +66,37 @@ public class FileUtil {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    /**
+     * 保存图片到SD卡下的指定目录
+     * @param context
+     * @param filePath
+     * @param bitmap
+     * @param quality
+     * @throws IOException
+     */
+    public static void saveImgToSD(Context context, String filePath, Bitmap bitmap, int quality) throws IOException {
+        if (bitmap != null) {
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
+            bitmap.compress(Bitmap.CompressFormat.PNG, quality, bos);
+            bos.flush();
+            bos.close();
+            if (context != null) {
+                //保存到本地成功后,给系统发送广播通知扫描媒体文件,这样相册中能马上看到更新后的文件,而不是重启后才看到
+                scanPhoto(context, filePath);
+            }
+        }
+    }
+
+    private static void scanPhoto(Context context, String filePath) {
+        File file = new File(filePath);
+        if (file.exists()) {
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri uri = Uri.fromFile(file);
+            intent.setData(uri);
+            context.sendBroadcast(intent);
         }
     }
 }
