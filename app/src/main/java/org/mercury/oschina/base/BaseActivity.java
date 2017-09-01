@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
  * Activity 的基类
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements DialogControl{
+public abstract class BaseActivity extends AppCompatActivity{
 
     protected String mPackageName = this.getClass().getName();
     protected String mClassName = this.getClass().getSimpleName();

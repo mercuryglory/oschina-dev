@@ -1,4 +1,4 @@
-package org.mercury.oschina.explorer.ui.activity;
+package org.mercury.oschina.explorer;
 
 import android.content.Context;
 import android.hardware.SensorListener;

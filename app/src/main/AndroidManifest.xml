@@ -77,8 +77,6 @@
 
         <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity" />
         <activity android:name="org.mercury.oschina.main.activity.NoteDetailActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.BlogInfoActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.ImageBigActivity" />
 
         <activity
             android:name=".main.activity.MainActivity"

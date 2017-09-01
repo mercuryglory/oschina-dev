@@ -17,15 +17,21 @@ import org.mercury.oschina.AppContext;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.bean.ShakeObject;
+import org.mercury.oschina.explorer.ShakeListener;
 import org.mercury.oschina.synthesis.ui.NewsDetailActivity;
 import org.mercury.oschina.utils.Constants;
 import org.mercury.oschina.utils.XmlUtils;
 
 import cz.msebera.android.httpclient.Header;
 
+/**
+ * created by Mercury at 2017/9/1
+ * descript: 摇一摇
+ * 受限于openapi可提供的信息，当前仅仅选取随机页数请求得到的新闻列表中随机一条新闻资讯
+ */
 public class ShakeActivity extends BaseActivity {
 
-    private ShakeListener mShaker;
+    private ShakeListener  mShaker;
     private RelativeLayout layoutRoot;
 
 
