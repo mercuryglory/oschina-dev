@@ -76,7 +76,6 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity" />
-        <activity android:name="org.mercury.oschina.main.activity.NoteDetailActivity" />
 
         <activity
             android:name=".main.activity.MainActivity"

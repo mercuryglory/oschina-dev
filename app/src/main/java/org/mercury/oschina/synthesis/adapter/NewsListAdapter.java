@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
-import org.mercury.oschina.synthesis.bean.Blog;
+import org.mercury.oschina.synthesis.bean.News;
 import org.mercury.oschina.utils.GeneralUtils;
 import org.mercury.oschina.utils.StringUtils;
 
@@ -24,14 +24,14 @@ import butterknife.ButterKnife;
  * Created by Mercury on 2016-08-15 18:57:32.
  * 新闻列表 适配器
  */
-public class NewsListAdapter extends BaseRecyclerAdapter<Blog> {
+public class NewsListAdapter extends BaseRecyclerAdapter<News> {
 
     public NewsListAdapter(Context context) {
         super(context);
     }
 
     @Override
-    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder h, Blog data, int position) {
+    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder h, News data, int position) {
         ViewHolder holder = (ViewHolder) h;
 
         SpannableStringBuilder span = new SpannableStringBuilder();

@@ -7,10 +7,10 @@ import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.base.BaseRecyclerViewFragment;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.synthesis.adapter.NewsListAdapter;
-import org.mercury.oschina.synthesis.bean.Blog;
+import org.mercury.oschina.synthesis.bean.News;
 import org.mercury.oschina.synthesis.bean.NewsResponse;
-import org.mercury.oschina.utils.GeneralUtils;
 import org.mercury.oschina.tweet.TweetListFragment;
+import org.mercury.oschina.utils.GeneralUtils;
 
 import java.util.List;
 
@@ -111,9 +111,9 @@ public class NewsFragment extends BaseRecyclerViewFragment<NewsResponse> {
 
     @Override
     public void onItemClick(int position, long itemId) {
-        Blog blog = mAdapter.getItem(position);
-        if (blog != null) {
-            GeneralUtils.writeVisitedItem(blog.getId());
+        News news = mAdapter.getItem(position);
+        if (news != null) {
+            GeneralUtils.writeVisitedItem(news.getId());
         }
     }
 }

@@ -9,13 +9,13 @@ import java.util.List;
  */
 public class NewsResponse extends BaseBean {
 
-    private List<Blog> newslist;
+    private List<News> newslist;
 
-    public List<Blog> getNewslist() {
+    public List<News> getNewslist() {
         return newslist;
     }
 
-    public void setNewslist(List<Blog> newslist) {
+    public void setNewslist(List<News> newslist) {
         this.newslist = newslist;
     }
 }
