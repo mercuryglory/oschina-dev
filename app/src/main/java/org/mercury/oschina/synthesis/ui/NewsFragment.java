@@ -114,6 +114,8 @@ public class NewsFragment extends BaseRecyclerViewFragment<NewsResponse> {
         News news = mAdapter.getItem(position);
         if (news != null) {
             GeneralUtils.writeVisitedItem(news.getId());
+            NewsDetailActivity.show(getContext(), news.getId());
+
         }
     }
 }

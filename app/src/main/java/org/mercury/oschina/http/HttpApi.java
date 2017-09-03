@@ -1,6 +1,7 @@
 package org.mercury.oschina.http;
 
 import org.mercury.oschina.bean.AccessToken;
+import org.mercury.oschina.synthesis.bean.NewsDetail;
 import org.mercury.oschina.synthesis.bean.PostResponse;
 import org.mercury.oschina.synthesis.bean.BlogResponse;
 import org.mercury.oschina.synthesis.bean.NewsResponse;
@@ -88,5 +89,8 @@ public interface HttpApi {
      */
     @GET("friends_list")
     Call<UserResponse> getUserList(@Query("relation") int relation, @Query("page") int page);
+
+    @GET("news_detail")
+    Call<NewsDetail> getNewsDetail(@Query("id") long id);
 
 }

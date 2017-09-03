@@ -20,18 +20,6 @@ public class BaseBean implements Parcelable {
         notice = in.readParcelable(Notice.class.getClassLoader());
     }
 
-    public static final Creator<BaseBean> CREATOR = new Creator<BaseBean>() {
-        @Override
-        public BaseBean createFromParcel(Parcel in) {
-            return new BaseBean(in);
-        }
-
-        @Override
-        public BaseBean[] newArray(int size) {
-            return new BaseBean[size];
-        }
-    };
-
     public Notice getNotice() {
         return notice;
     }
