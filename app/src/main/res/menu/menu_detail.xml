@@ -6,6 +6,6 @@
         android:id="@+id/menu_comment_coumt"
         android:orderInCategory="100"
         android:title="评论"
-        android:icon="@mipmap/ic_comment"
+        app:actionLayout="@layout/layout_menu_comment"
         app:showAsAction="always" />
 </menu >

@@ -115,6 +115,12 @@ public class SpUtils {
             editor.commit();
         }
     }
+
+    private static SharedPreferences getSharedPreferences(String spName) {
+        return AppContext.context.getSharedPreferences(spName, Context.MODE_PRIVATE);
+
+    }
+
     //1. 保存String类型数据
     public static void saveString(String spName, String key, String value)
     {
@@ -131,7 +137,12 @@ public class SpUtils {
         return preferences.getString(key, "");
     }
 
-    //保存Integer类型数据
+    /**
+     * 保存Integer类型数据,自定义sp文件名
+     * @param spName
+     * @param key
+     * @param value
+     */
     public static void saveInt(String spName, String key, int value) {
         SharedPreferences preferences = AppContext.context.getSharedPreferences(spName, Context
                 .MODE_PRIVATE);
@@ -140,27 +151,48 @@ public class SpUtils {
         edit.apply();
     }
 
-    //获取Integer数据
+    /**
+     * 保存Integer类型数据,自定义sp文件名
+     * @param spName
+     * @param key
+     */
     public static int getInt(String spName, String key) {
         SharedPreferences preferences = AppContext.context.getSharedPreferences(spName, Context
                 .MODE_PRIVATE);
         return preferences.getInt(key, 0);
     }
 
-    //1. 保存Boolean类型数据
-    public static void saveBoolean(String spName, String key, boolean value)
-    {
-        SharedPreferences preferences = AppContext.context.getSharedPreferences(spName, Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = preferences.edit();
+    /**
+     * 保存Boolean类型数据,自定义sp文件名
+     * @param spName
+     * @param key
+     * @param value
+     */
+    public static void saveBoolean(String spName, String key, boolean value) {
+        SharedPreferences.Editor edit = getSharedPreferences(spName).edit();
         edit.putBoolean(key, value);
-        edit.commit();
-
+        edit.apply();
     }
 
 
-    //获取Boolean数据
+    /**
+     * 获取Boolean数据,从自定义sp文件名
+     * @param spName
+     * @param key
+     * @return
+     */
     public static boolean getBoolean(String spName,String key){
-        SharedPreferences preferences = AppContext.context.getSharedPreferences(spName, Context.MODE_PRIVATE);
-        return preferences.getBoolean(key, false);
+        return getSharedPreferences(spName).getBoolean(key, false);
+    }
+
+    /**
+     * 获取Boolean数据,从自定义sp文件名
+     * @param spName
+     * @param key
+     * @param defvalue  默认值
+     * @return
+     */
+    public static boolean getBoolean(String spName, String key, boolean defvalue) {
+        return getSharedPreferences(spName).getBoolean(key, defvalue);
     }
 }

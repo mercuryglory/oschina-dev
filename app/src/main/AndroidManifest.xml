@@ -40,7 +40,6 @@
 
         <activity android:name="org.mercury.oschina.synthesis.ui.NewsDetailActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.SoftwareActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.AllActivityWebView" />
         <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity" />
         <activity android:name="org.mercury.oschina.main.activity.MsgActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ShakeActivity" />

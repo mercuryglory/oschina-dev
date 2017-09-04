@@ -226,7 +226,7 @@ public class ShakeActivity extends BaseActivity implements SensorEventListener {
     }
 
     /**
-     * 在销毁该页面的时候,都应该把传感器注销,否则在其它地方仍然可以震动
+     * 在销毁该页面的时候,都应该把传感器注销,否则仍然可以震动
      * @param item
      * @return
      */

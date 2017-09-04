@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/iv_right"
+        android:layout_marginRight="@dimen/size_10"
+        android:layout_marginLeft="@dimen/size_10"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_arrow_right" />
+
+    <TextView
+        android:layout_toLeftOf="@+id/iv_right"
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/size_10"
+        android:paddingTop="@dimen/lay_16"
+        android:paddingBottom="@dimen/lay_16"
+        android:paddingRight="@dimen/lay_16"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_16"
+        tools:text="最火的项目都在这里啦最火的项目都在这里啦最火的项目都在这里啦" />
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginLeft="@dimen/size_10"
+        android:background="@color/light_gray" />
+
+</RelativeLayout >

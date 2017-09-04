@@ -4,18 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
+import org.mercury.oschina.synthesis.adapter.RelativeRecommendAdapter;
 import org.mercury.oschina.synthesis.bean.NewsDetail;
 import org.mercury.oschina.utils.StringUtils;
+import org.mercury.oschina.widget.OWebView;
 
 import butterknife.Bind;
 import retrofit2.Call;
@@ -37,13 +42,19 @@ public class NewsDetailActivity extends BaseActivity {
     @Bind(R.id.tv_time)
     TextView         tvTime;
     @Bind(R.id.webview)
-    WebView          webview;
+    OWebView         webview;
     @Bind(R.id.nsv_container)
     NestedScrollView nsvContainer;
+    @Bind(R.id.rv_recommend)
+    RecyclerView     rvRecommend;
 
     public static final String KEY_ID = "key_id";
 
+
     private int newsId;
+
+    private TextView                 mTextView;
+    private RelativeRecommendAdapter mAdapter;
 
     @Override
     protected int getContentView() {
@@ -66,7 +77,7 @@ public class NewsDetailActivity extends BaseActivity {
 
     @Override
     protected void initWidget() {
-        toolbar.setTitle("咨询详情");
+        toolbar.setTitle("资讯详情");
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,12 +85,25 @@ public class NewsDetailActivity extends BaseActivity {
                 supportFinishAfterTransition();
             }
         });
+        rvRecommend.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new RelativeRecommendAdapter(this);
+        rvRecommend.setAdapter(mAdapter);
+        // TODO: 2017/9/4 底部的富文本输入框,发表评论,收藏,分享
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_detail, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_detail, menu);
+        MenuItem item = menu.findItem(R.id.menu_comment_coumt);
+        if (item != null) {
+            View actionView = item.getActionView();
+            if (actionView != null) {
+                mTextView = (TextView) actionView.findViewById(R.id.tv_comment_count);
+
+            }
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -111,6 +135,8 @@ public class NewsDetailActivity extends BaseActivity {
         tvTitle.setText(body.getTitle());
         tvAuthor.setText("@" + body.getAuthor());
         tvTime.setText("发布于" + StringUtils.friendlyTime(body.getPubDate()));
-        webview.loadDataWithBaseURL("", body.getBody(), "text/html", "UTF-8", "");
+        webview.loadDataAsync(body.getBody(), null);
+        mTextView.setText(body.getCommentCount() + "");
+        mAdapter.setData(body.getRelativies());
     }
 }

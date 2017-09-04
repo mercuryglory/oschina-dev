@@ -22,8 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/lay_16"
-            android:paddingRight="@dimen/lay_16"
+
             android:orientation="vertical" >
 
             <TextView
@@ -31,18 +30,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/size_8"
+                android:paddingLeft="@dimen/lay_16"
+                android:paddingRight="@dimen/lay_16"
                 android:paddingTop="@dimen/size_8"
                 android:textColor="@color/main_black"
                 android:textSize="@dimen/font_18"
                 tools:text="DB v0.1 发布" />
 
             <LinearLayout
-                android:paddingBottom="@dimen/size_8"
+                android:paddingLeft="@dimen/lay_16"
+                android:paddingRight="@dimen/lay_16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_4"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/size_8" >
 
                 <TextView
                     android:id="@+id/tv_author"
@@ -60,18 +63,41 @@
             </LinearLayout >
 
             <FrameLayout
-                android:background="#f9f9f9"
+                android:paddingLeft="@dimen/lay_16"
+                android:paddingRight="@dimen/lay_16"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:background="#f9f9f9"
+                android:paddingBottom="@dimen/size_8" >
 
-                <WebView
-                    android:scrollbars="none"
+                <org.mercury.oschina.widget.OWebView
                     android:id="@+id/webview"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:scrollbars="none" />
 
             </FrameLayout >
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="相关推荐"
+                android:paddingLeft="@dimen/lay_16"
+                android:paddingRight="@dimen/lay_16"
+                android:paddingBottom="@dimen/size_8"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_gray" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+            </android.support.v7.widget.RecyclerView >
 
         </LinearLayout >
     </android.support.v4.widget.NestedScrollView >
