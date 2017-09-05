@@ -3,20 +3,14 @@ package org.mercury.oschina.main.activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
-
-import com.qrcode.zxing.activity.QRCodeActivity;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
@@ -51,17 +45,8 @@ public class MainActivity extends BaseActivity implements
 
     /**
      * Used to store the last screen title. For use in
-     * {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-
-
-    private LinearLayout mLy_quick_option_text;
-    private LinearLayout mLy_quick_option_voice2;
-    private LinearLayout mLy_quick_option_photo;
-    private LinearLayout mLy_quick_option_album;
-    private LinearLayout mLy_quick_option_scan;
-    private LinearLayout mLy_quick_option_note;
 
     @Override
     protected int getContentView() {
@@ -73,9 +58,7 @@ public class MainActivity extends BaseActivity implements
         mTitle = getResources().getString(R.string.main_tab_name_news);
         mTitles = getResources().getStringArray(R.array.main_titles_arrays);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-        if (android.os.Build.VERSION.SDK_INT > 10) {
-            mTabHost.getTabWidget().setShowDividers(0);
-        }
+        mTabHost.getTabWidget().setShowDividers(0);
         initTabs();
 
         // 中间按键图片触发
@@ -86,67 +69,6 @@ public class MainActivity extends BaseActivity implements
 
         IntentFilter filter = new IntentFilter(Constants.INTENT_ACTION_NOTICE);
         filter.addAction(Constants.INTENT_ACTION_LOGOUT);
-    }
-
-
-    private void showQuickOption() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        View view = View.inflate(getApplicationContext(), R.layout.dialog_quick_option, null);
-        builder.setView(view);
-        final AlertDialog dialog = builder.show();
-        //文字
-        mLy_quick_option_text = (LinearLayout) view.findViewById(R.id.ly_quick_option_text);
-        //语音
-        mLy_quick_option_voice2 = (LinearLayout) view.findViewById(R.id.ly_quick_option_voice2);
-        //拍照
-        mLy_quick_option_photo = (LinearLayout) view.findViewById(R.id.ly_quick_option_photo);
-        //相册
-        mLy_quick_option_album = (LinearLayout) view.findViewById(R.id.ly_quick_option_album);
-        //扫一扫
-        mLy_quick_option_scan = (LinearLayout) view.findViewById(R.id.ly_quick_option_scan);
-        //便签
-        mLy_quick_option_note = (LinearLayout) view.findViewById(R.id.ly_quick_option_note);
-
-        mLy_quick_option_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), QuickTextActivity.class));
-                dialog.dismiss();
-
-            }
-        });
-        mLy_quick_option_voice2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), QuickViodeActivity.class));
-                dialog.dismiss();
-            }
-        });
-        mLy_quick_option_album.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent("android.intent.action.PICK");
-                intent.setType("image/*");
-                startActivityForResult(intent, 0);
-                dialog.dismiss();
-
-            }
-        });
-        mLy_quick_option_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
-                dialog.dismiss();
-            }
-        });
-
-        mLy_quick_option_scan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, QRCodeActivity.class));
-                dialog.dismiss();
-            }
-        });
     }
 
 
@@ -177,16 +99,6 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
-    @SuppressWarnings("deprecation")
-    private void restoreActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            actionBar.setDisplayShowTitleEnabled(true);
-            actionBar.setTitle(mTitle);
-        }
-    }
-
 
     @Override
     public void onTabChanged(String tabId) {
@@ -209,12 +121,11 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            // 点击了快速操作按钮
+        switch (v.getId()) {
+            // 发布动弹
             case R.id.quick_option_iv:
-                //  TweetPublishActivity.show(MainActivity.this);
-                showQuickOption();
+                Intent intent = new Intent(this, QuickTextActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;

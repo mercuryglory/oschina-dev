@@ -48,11 +48,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
-            android:name="com.qrcode.zxing.activity.QRCodeActivity"
-            android:launchMode="singleTop"
+            android:name="com.qrcode.zxing.activity.CaptureActivity"
+            android:label="二维码/条码"
             android:screenOrientation="portrait" />
 
-        <activity android:name="org.mercury.oschina.main.activity.QuickViodeActivity" />
         <activity android:name="org.mercury.oschina.main.activity.TextDialogActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" />
 

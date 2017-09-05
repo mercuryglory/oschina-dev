@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.qrcode.zxing.activity.QRCodeActivity;
+import com.qrcode.zxing.activity.CaptureActivity;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.explorer.ui.activity.ShakeActivity;
@@ -46,7 +46,7 @@ public class ExploreFragment extends BaseTitleFragment implements View.OnClickLi
                 break;
             //扫一扫
             case ll_qr_code:
-                startActivity(new Intent(getContext(), QRCodeActivity.class));
+                startActivity(new Intent(getContext(), CaptureActivity.class));
                 break;
             //摇一摇
             case ll_shake:

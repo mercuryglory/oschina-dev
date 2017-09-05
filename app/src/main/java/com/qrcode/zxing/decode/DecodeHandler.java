@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
@@ -31,7 +32,7 @@ import com.google.zxing.PlanarYUVLuminanceSource;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.qrcode.zxing.activity.QRCodeActivity;
+import com.qrcode.zxing.activity.CaptureActivity;
 
 import org.mercury.oschina.R;
 
@@ -40,11 +41,11 @@ import java.util.Map;
 
 public class DecodeHandler extends Handler {
 
-    private final QRCodeActivity    activity;
+    private final CaptureActivity   activity;
     private final MultiFormatReader multiFormatReader;
     private boolean running = true;
 
-    public DecodeHandler(QRCodeActivity activity, Map<DecodeHintType, Object> hints) {
+    public DecodeHandler(CaptureActivity activity, Map<DecodeHintType, Object> hints) {
         multiFormatReader = new MultiFormatReader();
         multiFormatReader.setHints(hints);
         this.activity = activity;
@@ -89,6 +90,7 @@ public class DecodeHandler extends Handler {
         int tmp = size.width;
         size.width = size.height;
         size.height = tmp;
+        Log.i("decode_handler", data.length + "");
 
         Result rawResult = null;
         PlanarYUVLuminanceSource source = buildLuminanceSource(rotatedData, size.width, size.height);

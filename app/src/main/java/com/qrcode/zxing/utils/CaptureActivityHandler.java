@@ -23,7 +23,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.google.zxing.Result;
-import com.qrcode.zxing.activity.QRCodeActivity;
+import com.qrcode.zxing.activity.CaptureActivity;
 import com.qrcode.zxing.camera.CameraManager;
 import com.qrcode.zxing.decode.DecodeThread;
 
@@ -38,16 +38,16 @@ import org.mercury.oschina.R;
  */
 public class CaptureActivityHandler extends Handler {
 
-    private final QRCodeActivity activity;
-    private final DecodeThread   decodeThread;
-    private final CameraManager  cameraManager;
-    private       State          state;
+    private final CaptureActivity activity;
+    private final DecodeThread    decodeThread;
+    private final CameraManager   cameraManager;
+    private       State           state;
 
     private enum State {
         PREVIEW, SUCCESS, DONE
     }
 
-    public CaptureActivityHandler(QRCodeActivity activity, CameraManager cameraManager, int decodeMode) {
+    public CaptureActivityHandler(CaptureActivity activity, CameraManager cameraManager, int decodeMode) {
         this.activity = activity;
         decodeThread = new DecodeThread(activity, decodeMode);
         decodeThread.start();
@@ -73,8 +73,7 @@ public class CaptureActivityHandler extends Handler {
                 break;
             case R.id.decode_failed:
                 // We're decoding as fast as possible, so when one decode fails,
-                // start another.
-                state = State.PREVIEW;
+                // start another.state = State.PREVIEW;
                 cameraManager.requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
                 break;
             case R.id.return_scan_result:

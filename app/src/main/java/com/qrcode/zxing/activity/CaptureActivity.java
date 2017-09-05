@@ -22,7 +22,6 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.text.ClipboardManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -43,8 +42,9 @@ import com.qrcode.zxing.utils.BeepManager;
 import com.qrcode.zxing.utils.CaptureActivityHandler;
 import com.qrcode.zxing.utils.InactivityTimer;
 
-import org.mercury.oschina.R;
 import org.mercury.oschina.AppContext;
+import org.mercury.oschina.R;
+import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.utils.DialogHelper;
 import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.utils.UIHelper;
@@ -65,10 +65,10 @@ import pub.devrel.easypermissions.EasyPermissions;
  * @author dswitkin@google.com (Daniel Switkin)
  * @author Sean Owen
  */
-public final class QRCodeActivity extends AppCompatActivity implements
+public final class CaptureActivity extends BaseActivity implements
         SurfaceHolder.Callback, EasyPermissions.PermissionCallbacks,View.OnClickListener {
 
-    private static final String TAG = QRCodeActivity.class.getSimpleName();
+    private static final String TAG = CaptureActivity.class.getSimpleName();
 
     private CameraManager          cameraManager;
     private CaptureActivityHandler handler;
@@ -83,9 +83,12 @@ public final class QRCodeActivity extends AppCompatActivity implements
     private Rect mCropRect = null;
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+    protected int getContentView() {
+        return R.layout.activity_qrcode;
+    }
 
+    @Override
+    protected void initWidget() {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_qrcode);
@@ -207,63 +210,21 @@ public final class QRCodeActivity extends AppCompatActivity implements
         if (StringUtils.isUrl(text)) {
             showUrlOption(text);
         } else {
-//            handleOtherText(text);
+            handleOtherText(text);
         }
     }
 
     private void showUrlOption(final String url) {
+        Log.i(TAG, url);
         if (url.contains("scan_login")) {
-//            showConfirmLogin(url);
+            showConfirmLogin(url);
             return;
         }
 
-//        if (url.contains("www.oschina.net/event/signin?event")) {
-//            final long sourceId = Long.valueOf(url.substring(url.indexOf("=") + 1));//2192570;
-//            // 2193441
-//            OSChinaApi.getDetail(5, "", sourceId, new TextHttpResponseHandler() {
-//                @Override
-//                public void onFailure(int statusCode, Header[] headers, String responseString,
-//                                      Throwable throwable) {
-//                    if (mFlash != null) {
-//                        SimplexToast.show(QRCodeActivity.this, "请连接网络再试");
-//                    }
-//
-//                    @Override
-//                    public void onSuccess ( int statusCode, Header[] headers, String responseString)
-//                    {
-//                        try {
-//                            net.oschina.app.improve.bean.base.ResultBean<SubBean> resultBean =
-//                                    AppOperator.createGson().fromJson(responseString,
-//                                    new TypeToken<net.oschina.app.improve.bean.base
-//                                            .ResultBean<SubBean>>() {
-//                                    }.getType());
-//                            if (resultBean.isSuccess()) {
-//                                Map<String, Object> extra = resultBean.getResult().getExtra();
-//                                if (Double.valueOf(extra.get("eventApplyStatus").toString())
-//                                        .intValue() != -1)
-//                                    SignUpInfoActivity.show(QRCodeActivity.this, sourceId, 2);
-//                                else
-//                                    EventDetailActivity.show(QRCodeActivity.this, sourceId);
-//                            } else {
-//                                EventDetailActivity.show(QRCodeActivity.this, sourceId);
-//                            }
-//                            finish();
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                            EventDetailActivity.show(QRCodeActivity.this, sourceId);
-//                            finish();
-//                        }
-//                    }
-//                });
-//            } else{
-//                UserEventSigninActivity.show(QRCodeActivity.this, sourceId);
-//                finish();
-//            }
-//            return;
-//        }
-
-        if (url.contains("oschina.net")) {
-            UIHelper.showUrlRedirect(QRCodeActivity.this, url);
+        // TODO: 2017/9/5  
+        if (url.contains("my.oschina.net")) {
+            showToast("用户主页");
+            UIHelper.showUrlRedirect(CaptureActivity.this, url);
             finish();
             return;
         }
@@ -272,7 +233,7 @@ public final class QRCodeActivity extends AppCompatActivity implements
                 .OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                UIHelper.showUrlRedirect(QRCodeActivity.this, url);
+                UIHelper.showUrlRedirect(CaptureActivity.this, url);
                 finish();
             }
         }, new DialogInterface.OnClickListener() {
@@ -283,126 +244,28 @@ public final class QRCodeActivity extends AppCompatActivity implements
         }).show();
     }
 
-//    private void showConfirmLogin(final String url) {
-//
-//        DialogHelper.getConfirmDialog(this, "扫描成功，是否进行网页登陆", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
+    private void showConfirmLogin(final String url) {
+
+        DialogHelper.getConfirmDialog(this, "扫描成功，是否进行网页登陆", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 //                handleScanLogin(url);
-//                finish();
-//            }
-//        }, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                finish();
-//            }
-//        }).show();
-//    }
-//
-//    @SuppressWarnings("deprecation")
-//    private void handleScanLogin(final String url) {
-//        OSChinaApi.scanQrCodeLogin(url, new AsyncHttpResponseHandler() {
-//
-//            @Override
-//            public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
-//                ResultBean result = XmlUtils.toBean(ResultBean.class, arg2);
-//                if (result != null && result.getResult() != null
-//                        && result.getResult().OK()) {
-//                    AppContext.showToast(result.getResult().getErrorMessage());
-//                    finish();
-//                } else {
-//                    handler.sendEmptyMessage(R.id.restart_preview);
-//                    AppContext.showToast(result != null
-//                            && result.getResult() != null ? result.getResult()
-//                            .getErrorMessage() : "登陆失败");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-//                                  Throwable arg3) {
-//                handler.sendEmptyMessage(R.id.restart_preview);
-//                if (arg2 != null) {
-//                    AppContext.showToast(new String(arg2));
-//                } else {
-//                    AppContext.showToast("网页登陆失败");
-//                }
-//            }
-//
-//            @Override
-//            public void onStart() {
-//                super.onStart();
-//                showWaitDialog("已扫描，正在登陆...");
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                super.onFinish();
-//                hideWaitDialog();
-//            }
-//        });
-//    }
-//
-//    private void handleOtherText(final String text) {
-//        // 判断是否符合基本的json格式
-//        if (!text.matches("^\\{.*")) {
-//            showCopyTextOption(text);
-//        } else {
-//            try {
-//                BarCode barcode = BarCode.parse(text);
-//                int type = barcode.getType();
-//                switch (type) {
-//                    case BarCode.SIGN_IN:// 签到
-//                        handleSignIn(barcode);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            } catch (AppException e) {
-//                showCopyTextOption(text);
-//            }
-//        }
-//    }
-//
-//    private void handleSignIn(BarCode barCode) {
-//        if (barCode.isRequireLogin() && !AccountHelper.isLogin()) {
-//            showLogin();
-//            return;
-//        }
-//        showWaitDialog("正在签到...");
-//        AsyncHttpResponseHandler handler = new AsyncHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
-//                try {
-//                    SingInResult res = SingInResult.parse(new String(arg2));
-//                    if (res.isOk()) {
-//                        DialogHelper.getMessageDialog(QRCodeActivity.this, res.getMessage())
-//                                .show();
-//                    } else {
-//                        DialogHelper.getMessageDialog(QRCodeActivity.this, res.getErrorMes())
-//                                .show();
-//                    }
-//                } catch (AppException e) {
-//                    e.printStackTrace();
-//                    onFailure(arg0, arg1, arg2, e);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-//                                  Throwable arg3) {
-//                hideWaitDialog();
-//                DialogHelper.getMessageDialog(QRCodeActivity.this, arg3.getMessage()).show();
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                super.onFinish();
-//                hideWaitDialog();
-//            }
-//        };
-//        OSChinaApi.signin(barCode.getUrl(), handler);
-//    }
+                finish();
+            }
+        }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        }).show();
+    }
+
+    private void handleOtherText(final String text) {
+        // 判断是否符合基本的json格式
+        if (!text.matches("^\\{.*")) {
+            showCopyTextOption(text);
+        }
+    }
 
 
     private void showCopyTextOption(final String text) {
