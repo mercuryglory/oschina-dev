@@ -65,4 +65,6 @@
 
     <color name="indicator_color">#3F51B5</color>
 
+    <color name="bg_gray">#f5f5f5</color>
+
 </resources>

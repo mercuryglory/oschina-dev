@@ -8,7 +8,7 @@ public interface DialogControl {
 
 	ProgressDialog showWaitDialog();
 
-	ProgressDialog showWaitDialog(int resid);
+	ProgressDialog showWaitDialog(int resId);
 
 	ProgressDialog showWaitDialog(String text);
 }

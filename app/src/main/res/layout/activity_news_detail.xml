@@ -20,9 +20,11 @@
         android:scrollbars="vertical" >
 
         <LinearLayout
+            android:id="@+id/ll_content"
+            android:visibility="gone"
+            tools:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="vertical" >
 
             <TextView
@@ -38,14 +40,14 @@
                 tools:text="DB v0.1 发布" />
 
             <LinearLayout
-                android:paddingLeft="@dimen/lay_16"
-                android:paddingRight="@dimen/lay_16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_4"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/size_8" >
+                android:paddingBottom="@dimen/size_8"
+                android:paddingLeft="@dimen/lay_16"
+                android:paddingRight="@dimen/lay_16" >
 
                 <TextView
                     android:id="@+id/tv_author"
@@ -63,39 +65,39 @@
             </LinearLayout >
 
             <FrameLayout
-                android:paddingLeft="@dimen/lay_16"
-                android:paddingRight="@dimen/lay_16"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#f9f9f9"
-                android:paddingBottom="@dimen/size_8" >
+                android:paddingBottom="@dimen/size_8"
+                android:paddingLeft="@dimen/lay_16"
+                android:paddingRight="@dimen/lay_16" >
 
                 <org.mercury.oschina.widget.OWebView
                     android:id="@+id/webview"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:scrollbars="none" />
 
             </FrameLayout >
 
             <TextView
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="相关推荐"
+                android:background="@drawable/rect_gray"
+                android:paddingTop="@dimen/size_8"
+                android:paddingBottom="@dimen/size_8"
                 android:paddingLeft="@dimen/lay_16"
                 android:paddingRight="@dimen/lay_16"
-                android:paddingBottom="@dimen/size_8"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/light_gray" />
+                android:text="相关推荐" />
 
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_recommend"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:visibility="visible" >
 
             </android.support.v7.widget.RecyclerView >
 

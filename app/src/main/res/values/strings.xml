@@ -53,7 +53,6 @@
 
     <string name="state_network_error">网络错误</string>
 
-    <!--zjw-->
     <string name="load_error">重新加载</string>
     <string-array name="tab_names1">
 
@@ -65,10 +64,9 @@
     </string-array>
     <string-array name="tab_names2">
         <item>关注</item>
-        <!--<item>应用</item>
-    <item>游戏</item>-->
         <item>粉丝</item>
 
     </string-array>
-    <!--zjw-->
+
+    <string name="loading">加载中...</string>
 </resources>

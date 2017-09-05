@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.mercury.oschina.R;
@@ -47,6 +48,8 @@ public class NewsDetailActivity extends BaseActivity {
     NestedScrollView nsvContainer;
     @Bind(R.id.rv_recommend)
     RecyclerView     rvRecommend;
+    @Bind(R.id.ll_content)
+    LinearLayout     llContent;
 
     public static final String KEY_ID = "key_id";
 
@@ -88,6 +91,7 @@ public class NewsDetailActivity extends BaseActivity {
         rvRecommend.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new RelativeRecommendAdapter(this);
         rvRecommend.setAdapter(mAdapter);
+        showWaitDialog();
         // TODO: 2017/9/4 底部的富文本输入框,发表评论,收藏,分享
 
     }
@@ -126,17 +130,25 @@ public class NewsDetailActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<NewsDetail> call, Throwable t) {
-
+                hideWaitDialog();
             }
         });
     }
 
-    private void onSuccess(NewsDetail body) {
+    private void onSuccess(final NewsDetail body) {
+        hideWaitDialog();
         tvTitle.setText(body.getTitle());
         tvAuthor.setText("@" + body.getAuthor());
         tvTime.setText("发布于" + StringUtils.friendlyTime(body.getPubDate()));
-        webview.loadDataAsync(body.getBody(), null);
         mTextView.setText(body.getCommentCount() + "");
-        mAdapter.setData(body.getRelativies());
+        webview.loadDataAsync(body.getBody(), new OWebView.FinishTask() {
+            @Override
+            public void finishTask() {
+                llContent.setVisibility(View.VISIBLE);
+                rvRecommend.setVisibility(View.VISIBLE);
+                mAdapter.setData(body.getRelativies());
+            }
+        });
+
     }
 }

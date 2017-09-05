@@ -1,5 +1,6 @@
 package org.mercury.oschina.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
+import org.mercury.oschina.R;
 import org.mercury.oschina.tweet.util.ToastUtil;
+import org.mercury.oschina.utils.DialogHelper;
 
 import butterknife.ButterKnife;
 
@@ -18,10 +21,11 @@ import butterknife.ButterKnife;
  * Activity 的基类
  */
 
-public abstract class BaseActivity extends AppCompatActivity{
+public abstract class BaseActivity extends AppCompatActivity implements DialogControl{
 
     protected String mPackageName = this.getClass().getName();
     protected String mClassName = this.getClass().getSimpleName();
+    protected ProgressDialog mProgressDialog;
 
     protected RequestManager mRequestManager;
 
@@ -82,4 +86,33 @@ public abstract class BaseActivity extends AppCompatActivity{
         }
         return mRequestManager;
     }
+
+
+    @Override
+    public void hideWaitDialog() {
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+        }
+    }
+
+    @Override
+    public ProgressDialog showWaitDialog() {
+        return showWaitDialog(R.string.loading);
+    }
+
+    @Override
+    public ProgressDialog showWaitDialog(int resId) {
+        return showWaitDialog(getString(resId));
+    }
+
+    @Override
+    public ProgressDialog showWaitDialog(String text) {
+        if (mProgressDialog == null) {
+            mProgressDialog = DialogHelper.getProgressDialog(this, text);
+        }
+        mProgressDialog.show();
+        return mProgressDialog;
+    }
+
 }
