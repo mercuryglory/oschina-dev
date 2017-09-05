@@ -1,23 +1,70 @@
 package org.mercury.oschina.synthesis.ui;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.ToxicBakery.viewpager.transforms.TabletTransformer;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.BaseViewPagerFragment;
+import org.mercury.oschina.bean.PageInfo;
+import org.mercury.oschina.main.BaseTitleFragment;
+
+import butterknife.Bind;
 
 /**
  * Created by mercury on 2016-08-14 19:33:46.
  * 综合模块
  * 子模块：新闻资讯  推荐博客  每日博客
  */
-public class SynthesisFragment extends BaseViewPagerFragment {
+public class SynthesisFragment extends BaseTitleFragment {
+
+    @Bind(R.id.tab_nav)
+    TabLayout    tabNav;
+    @Bind(R.id.iv_arrow)
+    ImageView    ivArrow;
+    @Bind(R.id.viewpager)
+    ViewPager    viewpager;
+    @Bind(R.id.ll_content)
+    LinearLayout llContent;
+
+    private PageInfo[] mPageInfos;
 
     @Override
-    protected  void initData() {
+    protected void initData() {
         //选择了一个fragment切换时的动画效果
-        baseViewpager.setPageTransformer(true, new TabletTransformer());
+        viewpager.setPageTransformer(true, new TabletTransformer());
+        mPageInfos = getPageInfos();
+
+        viewpager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
+
+            @Override
+            public int getItemPosition(Object object) {
+                return FragmentPagerAdapter.POSITION_NONE;
+            }
+
+            @Override
+            public Fragment getItem(int position) {
+                PageInfo pageInfo = mPageInfos[position];
+                return Fragment.instantiate(getContext(), pageInfo.clazz.getName(), pageInfo.args);
+            }
+
+            @Override
+            public int getCount() {
+                return mPageInfos.length;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mPageInfos[position].title;
+            }
+        });
+        tabNav.setupWithViewPager(viewpager);
+        viewpager.setCurrentItem(0, true);
     }
 
     @Override
@@ -26,12 +73,19 @@ public class SynthesisFragment extends BaseViewPagerFragment {
     }
 
     @Override
-    protected PagerInfo[] getPagerInfo() {
-        return new PagerInfo[]{
-                new PagerInfo("新闻资讯", NewsFragment.class, null),
-                new PagerInfo("最新博客", BlogFragment.class, getBundle(BlogFragment.CATALOG_NEW)),
-                new PagerInfo("热门博客", BlogFragment.class, getBundle(BlogFragment.CATALOG_HOT)),
-                new PagerInfo("技术问答", PostFragment.class, getBundle(PostFragment.CATALOG_ANSWER))
+    protected int getContentLayoutId() {
+        return R.layout.fragment_synthesis;
+    }
+
+    protected PageInfo[] getPageInfos() {
+        return new PageInfo[]{
+                new PageInfo("新闻资讯", NewsFragment.class, null),
+                new PageInfo("最新博客", BlogFragment.class, getBundle(BlogFragment
+                        .CATALOG_NEW)),
+                new PageInfo("热门博客", BlogFragment.class, getBundle(BlogFragment
+                        .CATALOG_HOT)),
+                new PageInfo("技术问答", PostFragment.class, getBundle(PostFragment
+                        .CATALOG_ANSWER))
         };
     }
 
@@ -40,5 +94,6 @@ public class SynthesisFragment extends BaseViewPagerFragment {
         bundle.putInt(BlogFragment.REQUEST_CATALOG, type);
         return bundle;
     }
+
 
 }

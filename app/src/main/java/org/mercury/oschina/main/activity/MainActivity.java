@@ -1,18 +1,14 @@
 package org.mercury.oschina.main.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +19,7 @@ import android.widget.TextView;
 import com.qrcode.zxing.activity.QRCodeActivity;
 
 import org.mercury.oschina.R;
+import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.main.MainTab;
 import org.mercury.oschina.utils.Constants;
 import org.mercury.oschina.utils.Notice;
@@ -32,15 +29,14 @@ import org.mercury.oschina.widget.OnTabReselectListener;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements
+public class MainActivity extends BaseActivity implements
         TabHost.OnTabChangeListener, View.OnClickListener,
         View.OnTouchListener {
 
     private static final String TAG = "====_MainActivity";
 
-    public static Activity mMainActivity;
 
-    private long mBackPressedTime;
+    private long preTime;
 
     @Bind(android.R.id.tabhost)
     FragmentTabHost mTabHost;
@@ -68,16 +64,12 @@ public class MainActivity extends AppCompatActivity implements
     private LinearLayout mLy_quick_option_note;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mMainActivity = this;
-        ButterKnife.bind(this);
-        initView();
+    protected int getContentView() {
+        return R.layout.activity_main;
     }
 
-
-    public void initView() {
+    @Override
+    protected void initWidget() {
         mTitle = getResources().getString(R.string.main_tab_name_news);
         mTitles = getResources().getStringArray(R.array.main_titles_arrays);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
@@ -96,12 +88,8 @@ public class MainActivity extends AppCompatActivity implements
         filter.addAction(Constants.INTENT_ACTION_LOGOUT);
     }
 
+
     private void showQuickOption() {
-        //        final QuickOptionDialog dialog = new QuickOptionDialog(
-        //                MainActivity.this);
-        //        dialog.setCancelable(true);
-        //        dialog.setCanceledOnTouchOutside(true);
-        //        dialog.show();
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         View view = View.inflate(getApplicationContext(), R.layout.dialog_quick_option, null);
         builder.setView(view);
@@ -199,25 +187,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
-//        restoreActionBar();
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        switch (id) {
-//            case R.id.search:
-//                UIHelper.showSimpleBack(this, SimpleBackPage.SEARCH);
-//                break;
-//            default:
-//                break;
-//        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onTabChanged(String tabId) {
@@ -280,7 +249,19 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis() - preTime > 2000) {
+                showToast("再按一次退出");
+                preTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
+
+
+
 }

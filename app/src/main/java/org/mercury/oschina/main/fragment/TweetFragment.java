@@ -7,6 +7,7 @@ import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseViewPagerFragment;
+import org.mercury.oschina.bean.PageInfo;
 import org.mercury.oschina.tweet.TweetListFragment;
 import org.mercury.oschina.utils.AccessTokenHelper;
 
@@ -29,14 +30,14 @@ public class TweetFragment extends BaseViewPagerFragment {
     }
 
     @Override
-    protected PagerInfo[] getPagerInfo() {
+    protected PageInfo[] getPagerInfo() {
         int userId = AccessTokenHelper.getUserId();
-        return new PagerInfo[]{
-                new PagerInfo("最新动弹", TweetListFragment.class, getBundle(TweetListFragment
+        return new PageInfo[]{
+                new PageInfo("最新动弹", TweetListFragment.class, getBundle(TweetListFragment
                         .CATALOG_NEW)),
-                new PagerInfo("热门动弹", TweetListFragment.class, getBundle(TweetListFragment
+                new PageInfo("热门动弹", TweetListFragment.class, getBundle(TweetListFragment
                         .CATALOG_HOT)),
-                new PagerInfo("我的动弹", TweetListFragment.class, getBundle(userId))
+                new PageInfo("我的动弹", TweetListFragment.class, getBundle(userId))
         };
     }
 

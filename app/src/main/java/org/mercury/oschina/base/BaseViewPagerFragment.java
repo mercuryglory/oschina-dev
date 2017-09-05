@@ -1,6 +1,5 @@
 package org.mercury.oschina.base;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.mercury.oschina.R;
+import org.mercury.oschina.bean.PageInfo;
 import org.mercury.oschina.main.BaseTitleFragment;
 
 import butterknife.Bind;
@@ -42,26 +42,14 @@ public abstract class BaseViewPagerFragment extends BaseTitleFragment {
         baseViewpager.setCurrentItem(0, true);
     }
 
-    protected abstract PagerInfo[] getPagerInfo();
-
-    public static class PagerInfo {
-        private String title;
-        private Class<?> clazz;
-        private Bundle args;
-
-        public PagerInfo(String title, Class<?> clazz, Bundle args) {
-            this.title = title;
-            this.clazz = clazz;
-            this.args = args;
-        }
-    }
+    protected abstract PageInfo[] getPagerInfo();
 
     public class BaseViewPagerAdapter extends FragmentPagerAdapter {
 
-        private PagerInfo[] mPagerInfo;
+        private PageInfo[] mPagerInfo;
         private Fragment currentFragment;
 
-        public BaseViewPagerAdapter(FragmentManager fm, PagerInfo[] pagerInfo) {
+        public BaseViewPagerAdapter(FragmentManager fm, PageInfo[] pagerInfo) {
             super(fm);
             mPagerInfo = pagerInfo;
         }
@@ -80,7 +68,7 @@ public abstract class BaseViewPagerFragment extends BaseTitleFragment {
 
         @Override
         public Fragment getItem(int position) {
-            PagerInfo pagerInfo = mPagerInfo[position];
+            PageInfo pagerInfo = mPagerInfo[position];
             return Fragment.instantiate(getContext(), pagerInfo.clazz.getName(), pagerInfo.args);
         }
 
