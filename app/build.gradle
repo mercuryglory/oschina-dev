@@ -50,6 +50,7 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'pub.devrel:easypermissions:0.3.0'
+    compile 'com.mercury.xrecyclerview:xrecyclerview:1.1.0'
 
     compile "com.android.support:design:$rootProject.ext.supportVersion"
     compile "com.android.support:support-v4:$rootProject.ext.supportVersion"

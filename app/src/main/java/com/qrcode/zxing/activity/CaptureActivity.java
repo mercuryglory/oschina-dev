@@ -22,6 +22,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.text.ClipboardManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -45,9 +46,9 @@ import com.qrcode.zxing.utils.InactivityTimer;
 import org.mercury.oschina.AppContext;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
+import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
 import org.mercury.oschina.utils.DialogHelper;
 import org.mercury.oschina.utils.StringUtils;
-import org.mercury.oschina.utils.UIHelper;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -221,27 +222,29 @@ public final class CaptureActivity extends BaseActivity implements
             return;
         }
 
-        // TODO: 2017/9/5  
+        // 扫描开源中国用户的二维码,跳转到用户页面
         if (url.contains("my.oschina.net")) {
-            showToast("用户主页");
-            UIHelper.showUrlRedirect(CaptureActivity.this, url);
+            String userId = url.substring(url.lastIndexOf("/") + 1);
+            OtherUserHomeActivity.show(this, Long.parseLong(userId));
             finish();
             return;
         }
+        new AlertDialog.Builder(this).setTitle("可能存在风险").show();
 
-        DialogHelper.getConfirmDialog(this, "可能存在风险，是否打开链接?\n" + url, new DialogInterface
-                .OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                UIHelper.showUrlRedirect(CaptureActivity.this, url);
-                finish();
-            }
-        }, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-            }
-        }).show();
+//        DialogHelper.getConfirmDialog(this, "可能存在风险，是否打开链接?\n" + url, new DialogInterface
+//                .OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                showToast("确定");
+//                UIHelper.showUrlRedirect(CaptureActivity.this, url);
+//                finish();
+//            }
+//        }, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                finish();
+//            }
+//        }).show();
     }
 
     private void showConfirmLogin(final String url) {
