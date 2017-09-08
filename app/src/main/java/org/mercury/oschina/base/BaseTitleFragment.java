@@ -1,4 +1,4 @@
-package org.mercury.oschina.main;
+package org.mercury.oschina.base;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewStub;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.BaseFragment;
 import org.mercury.oschina.widget.TitleBar;
 
 /**

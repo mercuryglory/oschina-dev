@@ -1,38 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:gravity="center_vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-<ImageView
-    android:id="@+id/ic_all_icon"
-    android:src="@mipmap/ic_launcher"
-    android:layout_margin="10dp"
-    android:layout_width="60dp"
-    android:layout_height="80dp"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/ic_all_icon"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:src="@mipmap/ic_launcher" />
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
         <TextView
             android:id="@+id/tv_all_title"
-            android:text="周日小聚"
-            android:textSize="18sp"
-            android:textColor="#000"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="周日小聚"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
         <TextView
             android:id="@+id/tv_all_time"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="3dp"
-            android:text="2015.12.1 13:12"
-            android:textSize="16sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="10dp"
+            android:text="2015.12.1 13:12"
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_all_content"
-            android:text="国际会议在XX地方召开"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-</LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="国际会议在XX地方召开" />
+    </LinearLayout >
+</LinearLayout >

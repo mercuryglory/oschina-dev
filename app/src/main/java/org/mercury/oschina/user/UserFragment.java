@@ -151,11 +151,6 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
                 UserSingleInfoActivity.show(getContext(), FragmentInfo.MY_FRIEND, bundle);
                 break;
 
-            //            case ll_user_collect:
-            //
-            //                startActivity(new Intent(getActivity(), CollectionActivity.class));
-            //                break;
-
             //更换头像或查看大头像
             case R.id.iv_user_pic:
 

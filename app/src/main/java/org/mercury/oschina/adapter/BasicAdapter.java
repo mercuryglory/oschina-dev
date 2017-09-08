@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by mercury on 2016/8/2.
  */
-public abstract  class BasicAdapter<T> extends BaseAdapter {
+public abstract class BasicAdapter<T> extends BaseAdapter {
 
     protected List<T> mShowItems = new ArrayList<>();
 
@@ -70,7 +70,7 @@ public abstract  class BasicAdapter<T> extends BaseAdapter {
         }
 
         //赋值
-        viewHolder.bindView( mShowItems.get(position));
+        viewHolder.bindView(mShowItems.get(position));
         //bindView(viewHolder, mShowItems.get(position));
 
 
@@ -87,8 +87,8 @@ public abstract  class BasicAdapter<T> extends BaseAdapter {
 
 
         //还原动画
- //       ViewCompat.animate(view).translationX(0).scaleX(1f).scaleY(1f).setDuration(600).rotation(0).setInterpolator(new OvershootInterpolator()).start();
-
+        //       ViewCompat.animate(view).translationX(0).scaleX(1f).scaleY(1f).setDuration(600)
+        // .rotation(0).setInterpolator(new OvershootInterpolator()).start();
 
 
         return view;

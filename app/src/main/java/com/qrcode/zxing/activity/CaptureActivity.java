@@ -22,7 +22,6 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.text.ClipboardManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -49,6 +48,7 @@ import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
 import org.mercury.oschina.utils.DialogHelper;
 import org.mercury.oschina.utils.StringUtils;
+import org.mercury.oschina.utils.UIHelper;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -229,22 +229,20 @@ public final class CaptureActivity extends BaseActivity implements
             finish();
             return;
         }
-        new AlertDialog.Builder(this).setTitle("可能存在风险").show();
 
-//        DialogHelper.getConfirmDialog(this, "可能存在风险，是否打开链接?\n" + url, new DialogInterface
-//                .OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                showToast("确定");
-//                UIHelper.showUrlRedirect(CaptureActivity.this, url);
-//                finish();
-//            }
-//        }, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                finish();
-//            }
-//        }).show();
+        DialogHelper.getConfirmDialog(this, "可能存在风险，是否打开链接?\n" + url, new DialogInterface
+                .OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                UIHelper.showUrlRedirect(CaptureActivity.this, url);
+                finish();
+            }
+        }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        }).show();
     }
 
     private void showConfirmLogin(final String url) {

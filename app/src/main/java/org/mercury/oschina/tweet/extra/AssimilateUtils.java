@@ -168,7 +168,7 @@ public class AssimilateUtils {
 //                @Override
 //                public void onClick(View widget) {
 //                    if (substr.startsWith("http://") || substr.startsWith("https://")){
-//                        UIHelper.openBrowser(context, substr);
+//                        UIHelper.openInternalBrowser(context, substr);
 //                    }else {
 //                        OtherUserHomeActivity.show(context, substr);
 //                    }

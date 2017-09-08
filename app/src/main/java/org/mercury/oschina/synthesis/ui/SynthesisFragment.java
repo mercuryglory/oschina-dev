@@ -12,7 +12,7 @@ import com.ToxicBakery.viewpager.transforms.TabletTransformer;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.bean.PageInfo;
-import org.mercury.oschina.main.BaseTitleFragment;
+import org.mercury.oschina.base.BaseTitleFragment;
 
 import butterknife.Bind;
 

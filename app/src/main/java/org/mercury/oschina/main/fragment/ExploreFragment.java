@@ -9,7 +9,7 @@ import com.qrcode.zxing.activity.CaptureActivity;
 import org.mercury.oschina.R;
 import org.mercury.oschina.explorer.ui.activity.ShakeActivity;
 import org.mercury.oschina.explorer.ui.activity.SoftwareActivity;
-import org.mercury.oschina.main.BaseTitleFragment;
+import org.mercury.oschina.base.BaseTitleFragment;
 
 import butterknife.Bind;
 import butterknife.OnClick;

@@ -51,7 +51,7 @@
 
     <string name="permissions_camera_error">相机无法完成初始化,请正确授权。</string>
 
-    <string name="state_network_error">网络错误</string>
+    <string name="state_network_error">网络连接异常</string>
 
     <string name="load_error">重新加载</string>
     <string-array name="tab_names1">

@@ -8,7 +8,7 @@
         <item name="colorAccent" >@color/colorAccent</item >
 
         <!--textcolor-->
-        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorPrimary">@color/black_alpha_240</item>
         <item name="textColor">@color/day_textColor</item>
         <item name="actionBarSize">48dp</item>
         <item name="toolbarStyle">@style/App.Widget.Light.Toolbar</item>
@@ -26,6 +26,10 @@
     <style name="App.Theme.Full" parent="Base.App.Theme.NoTitle">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="App.Theme.Dialog.Alert" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:textColorPrimary">@color/black_alpha_240</item>
     </style>
 
     <style name="Test" parent="Theme.AppCompat.Light" >

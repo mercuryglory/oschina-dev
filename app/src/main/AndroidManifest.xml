@@ -41,7 +41,6 @@
         <activity android:name="org.mercury.oschina.synthesis.ui.NewsDetailActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.SoftwareActivity" />
         <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity" />
-        <activity android:name="org.mercury.oschina.main.activity.MsgActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ShakeActivity" />
         <activity
             android:name="org.mercury.oschina.main.activity.QuickTextActivity"
@@ -52,7 +51,6 @@
             android:label="二维码/条码"
             android:screenOrientation="portrait" />
 
-        <activity android:name="org.mercury.oschina.main.activity.TextDialogActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" />
 
         <activity
@@ -103,6 +101,11 @@
             android:label="私信内容"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".main.activity.BrowserActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
     </application >
 
 </manifest >
