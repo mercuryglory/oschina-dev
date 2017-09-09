@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import org.mercury.oschina.base.BaseChatViewActivity;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
-import org.mercury.oschina.base.BaseRecyclerViewActivity;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.tweet.bean.Comment;
 import org.mercury.oschina.tweet.bean.CommentResponse;
@@ -23,7 +23,7 @@ import retrofit2.Response;
  * 类似QQ,不是一般的到底部自动加载更多,而是列表拉到上面以后再去拉取之前的消息内容
  */
 
-public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResponse> {
+public class PrivateMessageActivity extends BaseChatViewActivity<CommentResponse> {
 
     private PrivateMessageAdapter mAdapter;
     public static final int CATALOG_MSG = 4;
@@ -43,11 +43,8 @@ public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResp
                 refresh(body.getCommentList());
             } else {
                 mAdapter.setData(body.getCommentList());
-                scrollToBottom();
+//                scrollToBottom();
             }
-        } else {
-            mRefreshLayout.setRefreshing(false);
-
         }
 
     }
@@ -57,11 +54,10 @@ public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResp
     }
 
     private void refresh(List<Comment> commentList) {
-        mRefreshLayout.setRefreshing(false);
+        mRecyclerView.refreshComplete();
         isRefreshing = false;
         if (commentList != null) {
             mAdapter.addAllInPos(commentList, 0);
-            mRecyclerView.scrollToPosition(commentList.size() - 1);
         }
     }
 
@@ -78,26 +74,6 @@ public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResp
         return mAdapter;
     }
 
-    @Override
-    public void onRefresh() {
-        //这里进行加载更多的操作
-        isRefreshing = true;
-        pageIndex++;
-        requestData();
-    }
-
-    @Override
-    public void onLoadMore() {
-
-    }
-
-    @Override
-    protected void initData() {
-        super.initData();
-        mRecyclerView.setCanloadMore(false);
-
-    }
-
     public static void show(Context context, int userId) {
         Intent intent = new Intent(context, PrivateMessageActivity.class);
         intent.putExtra(USER_ID, userId);
@@ -108,5 +84,13 @@ public class PrivateMessageActivity extends BaseRecyclerViewActivity<CommentResp
     @Override
     protected void initBundle(Bundle bundle) {
         userId = bundle.getInt(USER_ID, 0);
+    }
+
+    @Override
+    public void refresh() {
+        //这里进行加载更多的操作
+        isRefreshing = true;
+        pageIndex++;
+        requestData();
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -39,6 +40,7 @@ public class PrivateMessageAdapter extends BaseRecyclerAdapter<Comment> {
 
     @Override
     public int getItemViewType(int position) {
+        Log.i("getItemViewType", "position:"+position);
         Comment item = getItem(position);
         if (item.getCommentAuthorId() == AccessTokenHelper.getUserId()) {
             //受限于openapi返回的内容，目前并不能获取真实发送的图片url，只能以固定图片代替
