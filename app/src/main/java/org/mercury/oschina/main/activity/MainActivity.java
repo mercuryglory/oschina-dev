@@ -124,7 +124,7 @@ public class MainActivity extends BaseActivity implements
         switch (v.getId()) {
             // 发布动弹
             case R.id.quick_option_iv:
-                Intent intent = new Intent(this, QuickTextActivity.class);
+                Intent intent = new Intent(this, PublicTweetActivity.class);
                 startActivity(intent);
                 break;
             default:

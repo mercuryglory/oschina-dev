@@ -2,10 +2,8 @@ package org.mercury.oschina.main.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,25 +14,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.mercury.oschina.R;
+import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.emoji.EmojiView;
 import org.mercury.oschina.utils.TDevice;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by Mercury on 2016/8/15.
  * 弹一弹
  */
-public class QuickTextActivity extends AppCompatActivity
-        implements View.OnClickListener {
+public class PublicTweetActivity extends BaseActivity implements View.OnClickListener {
 
 
     @Bind(R.id.iv_back)
     ImageView mIvBack;
-    @Bind(R.id.iv_send)
-    ImageView mIvSend;
+    @Bind(R.id.tv_send)
+    TextView mTvSend;
     @Bind(R.id.search_bar)
     RelativeLayout mSearchBar;
     @Bind(R.id.et_content)
@@ -71,18 +68,18 @@ public class QuickTextActivity extends AppCompatActivity
     private EmojiView mEmojiView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_tweet_pub);
-        ButterKnife.bind(this);
-        initEmoji();
+    protected int getContentView() {
+        return R.layout.activity_tweet_pub;
     }
 
-    private void initEmoji() {
+    @Override
+    protected void initData() {
+        super.initData();
         mEtContent.setFocusable(true);
         mEtContent.setFocusableInTouchMode(true);
         mEtContent.requestFocus();
     }
+
 
 
     private void init() {
@@ -106,7 +103,7 @@ public class QuickTextActivity extends AppCompatActivity
             case R.id.et_content:
                 break;
             case R.id.ib_picture:
-                AlertDialog.Builder builder = new AlertDialog.Builder(QuickTextActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(PublicTweetActivity.this);
                 mView1 = View.inflate(getApplicationContext(), R.layout.activity_text_dialog, null);
                 builder.setView(mView1);
                 mAlertDialog = builder.show();

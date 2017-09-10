@@ -43,7 +43,7 @@
         <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity" />
         <activity android:name="org.mercury.oschina.explorer.ui.activity.ShakeActivity" />
         <activity
-            android:name="org.mercury.oschina.main.activity.QuickTextActivity"
+            android:name="org.mercury.oschina.main.activity.PublicTweetActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
