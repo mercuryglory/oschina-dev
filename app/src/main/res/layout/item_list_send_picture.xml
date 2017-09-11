@@ -45,7 +45,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/tiger"
                 android:contentDescription="@null"/>
 
             <net.oschina.common.widget.Loading

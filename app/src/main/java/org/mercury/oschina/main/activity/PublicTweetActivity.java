@@ -90,13 +90,13 @@ public class PublicTweetActivity extends BaseActivity implements View.OnClickLis
         mIvBack.setOnClickListener(this);
     }
 
-    @OnClick({R.id.iv_back, R.id.iv_send, R.id.search_bar, R.id.et_content, R.id.ib_picture, R.id.ib_mention, R.id.ib_trend_software, R.id.ib_emoji_keyboard})
+    @OnClick({R.id.iv_back, R.id.tv_send, R.id.search_bar, R.id.et_content, R.id.ib_picture, R.id.ib_mention, R.id.ib_trend_software, R.id.ib_emoji_keyboard})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.iv_send:
+            case R.id.tv_send:
                 break;
             case R.id.search_bar:
                 break;

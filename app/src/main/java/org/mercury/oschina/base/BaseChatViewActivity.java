@@ -24,9 +24,9 @@ import retrofit2.Response;
 public abstract class BaseChatViewActivity<T> extends BaseActivity implements
         CRecyclerView.LoadingListener, View.OnClickListener {
 
-    protected CRecyclerView      mRecyclerView;
-    protected EmptyLayout        mEmptyLayout;
-    protected Toolbar            mToolbar;
+    protected CRecyclerView mRecyclerView;
+    protected EmptyLayout   mEmptyLayout;
+    protected Toolbar       mToolbar;
 
     protected int pageIndex = 1;
 
@@ -97,7 +97,10 @@ public abstract class BaseChatViewActivity<T> extends BaseActivity implements
     protected abstract BaseRecyclerAdapter getRecyclerAdapter();
 
     protected RecyclerView.LayoutManager getLayoutManager() {
-        return new LinearLayoutManager(this);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+//        manager.setStackFromEnd(true);
+//        manager.setReverseLayout(true);
+        return manager;
     }
 
 

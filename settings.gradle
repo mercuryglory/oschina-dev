@@ -1,1 +1,1 @@
-include ':app', ':pullToRefresh'
+include ':app', ':pullToRefresh', ':xrecyclerview'

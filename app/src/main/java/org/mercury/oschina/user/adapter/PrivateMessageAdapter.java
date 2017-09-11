@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mercury.xrecyclerview.LogUtil;
+
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.tweet.bean.Comment;
@@ -60,6 +62,7 @@ public class PrivateMessageAdapter extends BaseRecyclerAdapter<Comment> {
     @Override
     protected void onBindDefaultViewHolder(RecyclerView.ViewHolder h, Comment data, int position) {
         Comment preComment = position != 0 ? getItem(position - 1) : null;
+        LogUtil.logI("onBind", position + "");
         switch (getItemViewType(position)) {
             case SENDER:
                 SenderViewHolder senderViewHolder = (SenderViewHolder) h;
@@ -70,11 +73,13 @@ public class PrivateMessageAdapter extends BaseRecyclerAdapter<Comment> {
                     senderViewHolder.tvSendText.setFocusable(false);
                     senderViewHolder.tvSendText.setLongClickable(false);
                 }
+                LogUtil.logI("sender");
                 formatTime(preComment, data, senderViewHolder.tvSendTime);
                 break;
             case SENDER_PICTURE:
                 SenderPictureViewHolder senderPictureViewHolder = (SenderPictureViewHolder) h;
                 formatTime(preComment, data, senderPictureViewHolder.tvSendTime);
+                LogUtil.logI("sender_picture");
                 break;
             case RECEIVER:
                 ReceiverViewHolder receiverViewHolder = (ReceiverViewHolder) h;
@@ -86,11 +91,13 @@ public class PrivateMessageAdapter extends BaseRecyclerAdapter<Comment> {
                     receiverViewHolder.tvReceiveText.setLongClickable(false);
                 }
                 formatTime(preComment, data, receiverViewHolder.tvSendTime);
+                LogUtil.logI("receiver");
                 break;
             case RECEIVER_PICTURE:
                 ReceiverPictureViewHolder receiverPictureViewHolder = (ReceiverPictureViewHolder) h;
                 receiverPictureViewHolder.ivReceiverPic.setImageResource(R.mipmap.quick_option_album_nor);
                 formatTime(preComment, data, receiverPictureViewHolder.tvSendTime);
+                LogUtil.logI("receiver_picture");
                 break;
 
             default:

@@ -31,8 +31,7 @@ public class PrivateMessageActivity extends BaseChatViewActivity<CommentResponse
 
     private int userId;
 
-    //Todo 其实聊天列表应该是加载更多的布局反过来的效果,这里用的SwipeRefreshLayout下拉刷新加载更多数据,将列表向上
-    //滑动一点,模拟这样的效果.其实还是要自定义一个RecyclerView控件
+    //自定义一个RecyclerView控件,只有下拉刷新的
 
     @Override
     protected void response(Call<CommentResponse> call, Response<CommentResponse> response) {
@@ -43,8 +42,10 @@ public class PrivateMessageActivity extends BaseChatViewActivity<CommentResponse
                 refresh(body.getCommentList());
             } else {
                 mAdapter.setData(body.getCommentList());
-//                scrollToBottom();
+                mRecyclerView.scrollToPosition(mAdapter.getItemCount());
             }
+        } else {
+            mRecyclerView.refreshComplete();
         }
 
     }
@@ -59,6 +60,7 @@ public class PrivateMessageActivity extends BaseChatViewActivity<CommentResponse
         if (commentList != null) {
             mAdapter.addAllInPos(commentList, 0);
         }
+
     }
 
     @Override
@@ -87,7 +89,7 @@ public class PrivateMessageActivity extends BaseChatViewActivity<CommentResponse
     }
 
     @Override
-    public void refresh() {
+    public void onRefresh() {
         //这里进行加载更多的操作
         isRefreshing = true;
         pageIndex++;
