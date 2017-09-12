@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by Mercury on 2017/8/5.
- * Activity 的基类
+ * 普通Activity 的基类
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements DialogControl{

@@ -1,5 +1,6 @@
 package org.mercury.oschina.user;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,28 +10,27 @@ import android.widget.TextView;
 
 import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.BaseFragment;
+import org.mercury.oschina.base.BasePresenterFragment;
 import org.mercury.oschina.emoji.UiUtil;
-import org.mercury.oschina.http.HttpApi;
-import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.main.activity.UserSingleInfoActivity;
 import org.mercury.oschina.tweet.TweetListFragment;
+import org.mercury.oschina.tweet.activity.ImageGalleryActivity;
 import org.mercury.oschina.tweet.bean.User;
+import org.mercury.oschina.user.contractor.UserContract;
+import org.mercury.oschina.user.contractor.UserPresenter;
 import org.mercury.oschina.utils.AccessTokenHelper;
+import org.mercury.oschina.utils.DialogHelper;
 import org.mercury.oschina.widget.CodeDialog;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by Mercury on 2016-08-14 19:33:46.
  * 个人中心
  */
-public class UserFragment extends BaseFragment implements View.OnClickListener {
+public class UserFragment extends BasePresenterFragment<UserContract.Presenter,User> implements View.OnClickListener,UserContract.View {
 
     @Bind(R.id.iv_setting)
     ImageView       ivSetting;
@@ -63,6 +63,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
     @Bind(R.id.ll_my_event)
     LinearLayout    llMyEvent;
 
+    private String portraitUrl = "";
 
     @Override
     protected int getLayoutId() {
@@ -76,42 +77,9 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
         // 在系统标题栏之内），所以人为代码设置paddinttop，和屏幕顶部拉开距离
         rlUser.setPadding(rlUser.getLeft(), UiUtil.getStatusBarHeight(getActivity()), rlUser
                 .getRight(), rlUser.getBottom());
+        mPresenter = new UserPresenter(this);
     }
 
-    @Override
-    protected void initData() {
-        requestData();
-    }
-
-    private void requestData() {
-        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
-        Call<User> myInfo = retrofitCall.getMyInfo();
-        myInfo.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User body = response.body();
-                if (body != null) {
-                    updateMyInfo(body);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                showToast(getResources().getString(R.string.state_network_error));
-
-            }
-        });
-    }
-
-    private void updateMyInfo(User body) {
-        tvUserName.setText(body.getName());
-        getImgLoader().load(body.getPortrait()).into(ivUserPic);
-        if (body.getGender() == 1) {
-            ivUserGender.setImageResource(R.mipmap.userinfo_icon_male);
-        } else if (body.getGender() == 2) {
-            ivUserGender.setImageResource(R.mipmap.userinfo_icon_female);
-        }
-    }
 
     @OnClick({R.id.iv_setting, R.id.iv_user_qrcode, R.id.iv_user_pic, R.id.tv_user_tweet, R.id
             .tv_user_favorite, R.id.tv_user_like, R.id.tv_user_fans,
@@ -153,7 +121,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
 
             //更换头像或查看大头像
             case R.id.iv_user_pic:
-
+                updateOrViewIcon();
                 break;
             //我的消息
             case R.id.ll_my_msg:
@@ -171,7 +139,40 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
+    private void updateOrViewIcon() {
+        DialogHelper.getSelectDialog(getActivity(), "选择操作",
+                getResources().getStringArray(R.array.icon_operation), "取消",
+                new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    //更换头像
+                    mPresenter.portraitUpdate();
+                } else if (which == 1) {
+                    //查看头像
+                    ImageGalleryActivity.show(getActivity(),new String[]{portraitUrl});
+                }
+            }
+        }).show();
+    }
 
 
+    @Override
+    public void refreshSuccess(User user) {
+        portraitUrl = user.getPortrait();
+        tvUserName.setText(user.getName());
+        getImgLoader().load(user.getPortrait()).into(ivUserPic);
+        if (user.getGender() == 1) {
+            ivUserGender.setImageResource(R.mipmap.userinfo_icon_male);
+        } else if (user.getGender() == 2) {
+            ivUserGender.setImageResource(R.mipmap.userinfo_icon_female);
+        }
+    }
+
+    @Override
+    public void updateIcon() {
+
+    }
 }
 
