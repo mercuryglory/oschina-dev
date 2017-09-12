@@ -16,7 +16,7 @@ import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.AppContext;
 import org.mercury.oschina.tweet.activity.PhotoActivity;
-import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
+import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.tweet.activity.WebActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;

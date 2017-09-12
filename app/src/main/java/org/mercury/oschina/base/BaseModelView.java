@@ -8,4 +8,7 @@ public interface BaseModelView<Presenter extends BasePresenter, Model> extends B
 
     void refreshSuccess(Model model);
 
+    void showError(String msg);
+
+
 }

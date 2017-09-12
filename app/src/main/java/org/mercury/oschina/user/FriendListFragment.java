@@ -7,7 +7,6 @@ import org.mercury.oschina.Constant;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.base.BaseRecyclerViewFragment;
 import org.mercury.oschina.http.HttpApi;
-import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
 import org.mercury.oschina.user.adapter.FriendListAdapter;
 import org.mercury.oschina.user.bean.User;
 import org.mercury.oschina.user.bean.UserResponse;

@@ -4,8 +4,10 @@ package org.mercury.oschina.base;
  * Created by wang.zhonghao on 2017/9/12.
  */
 
-public interface BasePresenter {
+public interface BasePresenter<T extends BaseView> {
 
-    void onRefreshing();
+    void attachView(T view);
+
+    void detachView();
 
 }

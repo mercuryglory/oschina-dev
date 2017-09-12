@@ -45,7 +45,7 @@ import com.qrcode.zxing.utils.InactivityTimer;
 import org.mercury.oschina.AppContext;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
-import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
+import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.utils.DialogHelper;
 import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.utils.UIHelper;

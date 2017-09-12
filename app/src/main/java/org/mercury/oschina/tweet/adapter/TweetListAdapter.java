@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
-import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
+import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.GlideUtils;

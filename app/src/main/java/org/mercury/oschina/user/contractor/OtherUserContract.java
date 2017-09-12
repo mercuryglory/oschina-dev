@@ -8,19 +8,19 @@ import org.mercury.oschina.tweet.bean.User;
  * Created by wang.zhonghao on 2017/9/12.
  */
 
-public interface UserContract {
+public interface OtherUserContract {
 
     interface View extends BaseModelView<Presenter, User> {
 
-        void updateIcon();
+        void updateIcon(int relation);
 
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter extends BasePresenter<View> {
 
-        void onRefreshing();
+        void refreshing(long userId);
 
-        void portraitUpdate();
+        void addRelation(long userId, int relation);
     }
 
 }

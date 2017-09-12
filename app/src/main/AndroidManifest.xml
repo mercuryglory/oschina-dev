@@ -54,7 +54,7 @@
         <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" />
 
         <activity
-            android:name="org.mercury.oschina.tweet.activity.OtherUserHomeActivity"
+            android:name="org.mercury.oschina.user.OtherUserHomeActivity"
             android:launchMode="singleTop"
             android:theme="@style/App.Theme.Main"/>
         <activity

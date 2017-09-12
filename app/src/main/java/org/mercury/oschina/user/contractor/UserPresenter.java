@@ -1,5 +1,6 @@
 package org.mercury.oschina.user.contractor;
 
+import org.mercury.oschina.base.BaseView;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.tweet.bean.User;
@@ -44,6 +45,16 @@ public class UserPresenter implements UserContract.Presenter {
     //更新头像
     @Override
     public void portraitUpdate() {
+
+    }
+
+    @Override
+    public void attachView(BaseView view) {
+
+    }
+
+    @Override
+    public void detachView() {
 
     }
 }

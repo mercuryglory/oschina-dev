@@ -1,6 +1,7 @@
 package org.mercury.oschina.http;
 
 import org.mercury.oschina.bean.AccessToken;
+import org.mercury.oschina.bean.ResultBean;
 import org.mercury.oschina.synthesis.bean.NewsDetail;
 import org.mercury.oschina.synthesis.bean.PostResponse;
 import org.mercury.oschina.synthesis.bean.BlogResponse;
@@ -19,6 +20,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -92,5 +94,14 @@ public interface HttpApi {
 
     @GET("news_detail")
     Call<NewsDetail> getNewsDetail(@Query("id") long id);
+
+    /**
+     *
+     * @param userId    对方用户id
+     * @param relation  0-取消关注，1-加关注
+     * @return
+     */
+    @POST("update_user_relation")
+    Call<ResultBean> addRelation(@Query("friend") long userId, @Query("relation") int relation);
 
 }

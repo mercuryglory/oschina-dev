@@ -1,4 +1,4 @@
-package org.mercury.oschina.tweet.activity;
+package org.mercury.oschina.user;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,27 +18,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.BaseActivity;
-import org.mercury.oschina.http.HttpApi;
-import org.mercury.oschina.http.RequestHelper;
+import org.mercury.oschina.base.BasePresenterActivity;
 import org.mercury.oschina.tweet.TweetListFragment;
 import org.mercury.oschina.tweet.bean.User;
+import org.mercury.oschina.user.contractor.OtherUserContract;
+import org.mercury.oschina.user.contractor.OtherUserPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import de.hdodenhof.circleimageview.CircleImageView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 /**
  * Created by wang.zhonghao on 2017/8/15
  * description:  其它用户的个人中心界面
  */
-public class OtherUserHomeActivity extends BaseActivity {
+public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContract.Presenter,User> implements OtherUserContract.View{
 
     @Bind(R.id.iv_user_portrait)
     CircleImageView ivUserPortrait;
@@ -75,6 +72,9 @@ public class OtherUserHomeActivity extends BaseActivity {
 
     private static boolean needRequest;
     private long userId;
+    MenuItem followItem;
+    private int mRelation;
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -83,7 +83,7 @@ public class OtherUserHomeActivity extends BaseActivity {
                 super.onBackPressed();
                 break;
             case R.id.menu_follow:
-                showToast("follow");
+                mPresenter.addRelation(userId, 1);
             default:
                 break;
 
@@ -93,18 +93,14 @@ public class OtherUserHomeActivity extends BaseActivity {
 
 
     @Override
-    protected void initData() {
+    protected void initWidget() {
+        mPresenter = new OtherUserPresenter(this);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
         setSupportActionBar(toolbar);
 
         layoutAppbar.addOnOffsetChangedListener(new AppbarListener());
 
-        if (needRequest) {
-            requestData();
-        } else {
-            updateInfo(mUser);
-        }
 
         if (mFragments == null) {
             mFragments = new ArrayList<>();
@@ -119,27 +115,18 @@ public class OtherUserHomeActivity extends BaseActivity {
         tablayout.setupWithViewPager(viewPager);
     }
 
-    private void requestData() {
-        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
-        Call<User> otherUserInfo = retrofitCall.getOtherUserInfo(userId);
-        otherUserInfo.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User body = response.body();
-                if (body != null) {
-                    updateInfo(body);
-                }
-            }
+    @Override
+    protected void initData() {
+        if (needRequest) {
+            mPresenter.refreshing(userId);
+        } else {
+            refreshSuccess(mUser);
+        }
 
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                showToast(getResources().getString(R.string.state_network_error));
-
-            }
-        });
     }
 
-    private void updateInfo(User user) {
+    @Override
+    public void refreshSuccess(User user) {
         tvUsername.setText(user.getName());
         tvNameLogo.setText(user.getName());
         getImageLoader().load(user.getPortrait()).error(R.mipmap.widget_dface).into
@@ -151,6 +138,24 @@ public class OtherUserHomeActivity extends BaseActivity {
         } else if (user.getGender() == 2) {
             ivGender.setImageResource(R.mipmap.userinfo_icon_female);
         }
+        //1-已关注（对方未关注我）2-相互关注
+        if (user.getRelation() == 1 || user.getRelation() == 2) {
+            followItem.setIcon(R.drawable.selector_user_following);
+        } else if (user.getRelation() == 3) {
+            followItem.setIcon(R.drawable.selector_user_follow);
+        }
+        mRelation = user.getRelation();
+    }
+
+    @Override
+    public void updateIcon(int relation) {
+        if (relation == 2) {
+            followItem.setIcon(R.drawable.selector_user_following);
+        } else if (relation == 3) {
+            followItem.setIcon(R.drawable.selector_user_follow);
+        }
+        mRelation = (relation == 2 ? 0 : 1);
+
     }
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -222,6 +227,7 @@ public class OtherUserHomeActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_other_user, menu);
+        followItem = menu.findItem(R.id.menu_follow);
         return super.onCreateOptionsMenu(menu);
     }
 

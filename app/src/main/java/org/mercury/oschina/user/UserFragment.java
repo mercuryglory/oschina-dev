@@ -78,6 +78,7 @@ public class UserFragment extends BasePresenterFragment<UserContract.Presenter,U
         rlUser.setPadding(rlUser.getLeft(), UiUtil.getStatusBarHeight(getActivity()), rlUser
                 .getRight(), rlUser.getBottom());
         mPresenter = new UserPresenter(this);
+        mPresenter.onRefreshing();
     }
 
 

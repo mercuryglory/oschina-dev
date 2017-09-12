@@ -6,8 +6,8 @@ import org.mercury.oschina.R;
  * Created by wang.zhonghao on 2017/9/12.
  */
 
-public abstract class BasePresenterFragment<Presenter extends BasePresenter, Model> extends
-        BaseFragment implements BaseModelView<Presenter,Model> {
+public abstract class BasePresenterActivity<Presenter extends BasePresenter, Model> extends
+        BaseActivity implements BaseModelView<Presenter,Model> {
 
     protected Presenter mPresenter;
 
@@ -25,4 +25,5 @@ public abstract class BasePresenterFragment<Presenter extends BasePresenter, Mod
     public void showError(String msg) {
         showToast(msg);
     }
+
 }

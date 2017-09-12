@@ -28,6 +28,7 @@ import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.tweet.widget.TweetTextView;
+import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.utils.TDevice;
 import org.mercury.oschina.widget.TweetPicturesLayout;

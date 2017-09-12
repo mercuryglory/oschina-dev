@@ -8,7 +8,7 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 
-import org.mercury.oschina.tweet.activity.OtherUserHomeActivity;
+import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.utils.UIHelper;
 
 import java.util.regex.Matcher;
