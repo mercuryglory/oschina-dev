@@ -6,39 +6,39 @@
     </string-array >
     <string name="app_name" >开源中国开发版</string >
 
-    <string name="main_tab_name_news">综合</string>
-    <string name="main_tab_name_tweet">动弹</string>
-    <string name="main_tab_name_my">我的</string>
-    <string name="main_tab_name_explore">发现</string>
-    <string name="main_tab_add"></string>
+    <string name="main_tab_name_news" >综合</string >
+    <string name="main_tab_name_tweet" >动弹</string >
+    <string name="main_tab_name_my" >我的</string >
+    <string name="main_tab_name_explore" >发现</string >
+    <string name="main_tab_add" ></string >
 
     <!-- slide menu -->
 
     <!-- qucik option -->
-    <string name="quick_option_text">文字</string>
-    <string name="quick_option_album">相册</string>
-    <string name="quick_option_photo">拍照</string>
-    <string name="quick_option_voice">语音</string>
-    <string name="quick_option_note">便签</string>
-    <string name="quick_option_scan">扫一扫</string>
-    <string name="quick_option_scan2">便签</string>
+    <string name="quick_option_text" >文字</string >
+    <string name="quick_option_album" >相册</string >
+    <string name="quick_option_photo" >拍照</string >
+    <string name="quick_option_voice" >语音</string >
+    <string name="quick_option_note" >便签</string >
+    <string name="quick_option_scan" >扫一扫</string >
+    <string name="quick_option_scan2" >便签</string >
 
     <!-- Error View -->
-    <string name="error_view_no_data">暂无内容</string>
-    <string name="error_view_loading">加载中…</string>
-    <string name="error_view_load_error_click_to_refresh">内容加载失败\r\n点击重新加载</string>
-    <string name="error_view_network_error_click_to_refresh">没有可用的网络</string>
+    <string name="error_view_no_data" >暂无内容</string >
+    <string name="error_view_loading" >加载中…</string >
+    <string name="error_view_load_error_click_to_refresh" >内容加载失败\r\n点击重新加载</string >
+    <string name="error_view_network_error_click_to_refresh" >没有可用的网络</string >
 
     <!-- notification messages -->
 
-    <string name="tweet_hint">今天你动弹了吗？</string>
+    <string name="tweet_hint" >今天你动弹了吗？</string >
 
-    <string name="actionbar_title_search">搜索</string>
+    <string name="actionbar_title_search" >搜索</string >
     <!-- 找人不显示标题 -->
 
     <!-- 博客区 -->
 
-    <string name="qr_scan_tips">将二维码/条码放入框内，即可自动扫描</string>
+    <string name="qr_scan_tips" >将二维码/条码放入框内，即可自动扫描</string >
 
     <!-- software detail -->
 
@@ -46,33 +46,33 @@
     <!-- 反馈 -->
 
     <!-- 选择好友 -->
-    <string name="str_request_camera_message">请求获取相机权限</string>
+    <string name="str_request_camera_message" >请求获取相机权限</string >
 
 
-    <string name="permissions_camera_error">相机无法完成初始化,请正确授权。</string>
+    <string name="permissions_camera_error" >相机无法完成初始化,请正确授权。</string >
 
-    <string name="state_network_error">网络连接异常</string>
+    <string name="state_network_error" >网络连接异常</string >
 
-    <string name="load_error">重新加载</string>
+    <string name="load_error" >重新加载</string >
 
-    <string-array name="tab_names1">
-        <item>软件</item>
-        <item>话题</item>
-        <item>代码</item>
-        <item>博客</item>
-        <item>资讯</item>
-    </string-array>
+    <string-array name="tab_names1" >
+        <item >软件</item >
+        <item >话题</item >
+        <item >代码</item >
+        <item >博客</item >
+        <item >资讯</item >
+    </string-array >
 
-    <string-array name="tab_names2">
-        <item>关注</item>
-        <item>粉丝</item>
+    <string-array name="tab_names2" >
+        <item >关注</item >
+        <item >粉丝</item >
 
-    </string-array>
+    </string-array >
 
-    <string-array name="icon_operation">
-        <item>更换头像</item>
-        <item>查看大头像</item>
-    </string-array>
+    <string-array name="icon_operation" >
+        <item >更换头像</item >
+        <item >查看大头像</item >
+    </string-array >
 
-    <string name="loading">加载中...</string>
-</resources>
+    <string name="loading" >加载中...</string >
+</resources >

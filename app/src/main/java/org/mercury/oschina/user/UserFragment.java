@@ -91,7 +91,7 @@ public class UserFragment extends BasePresenterFragment<UserContract.Presenter,U
         switch (v.getId()) {
             //开启设置
             case R.id.iv_setting:
-
+                SettingActivity.show(getContext());
                 break;
 
             //弹出二维码

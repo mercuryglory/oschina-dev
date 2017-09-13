@@ -48,7 +48,7 @@ import java.util.UUID;
 public class TDevice {
 
     // 手机网络类型
-    public static final int NETTYPE_WIFI = 0x01;
+    public static final int NETTYPE_WIFI  = 0x01;
     public static final int NETTYPE_CMWAP = 0x02;
     public static final int NETTYPE_CMNET = 0x03;
 
@@ -56,12 +56,12 @@ public class TDevice {
     public static boolean GTE_ICS;
     public static boolean PRE_HC;
     private static Boolean _hasBigScreen = null;
-    private static Boolean _hasCamera = null;
-    private static Boolean _isTablet = null;
-    private static Integer _loadFactor = null;
+    private static Boolean _hasCamera    = null;
+    private static Boolean _isTablet     = null;
+    private static Integer _loadFactor   = null;
 
-    private static int _pageSize = -1;
-    public static float displayDensity = 0.0F;
+    private static int   _pageSize      = -1;
+    public static  float displayDensity = 0.0F;
 
     static {
         GTE_ICS = Build.VERSION.SDK_INT >= 14;
@@ -234,7 +234,8 @@ public class TDevice {
 
     public static boolean hasInternet() {
         boolean flag;
-        if (((ConnectivityManager) BaseApplication.context().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null)
+        if (((ConnectivityManager) BaseApplication.context().getSystemService(Context
+                .CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null)
             flag = true;
         else
             flag = false;
@@ -332,16 +333,21 @@ public class TDevice {
             if (focusView.isFocused()) {
                 focusView.clearFocus();
             }
-            InputMethodManager manager = (InputMethodManager) focusView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            manager.hideSoftInputFromWindow(focusView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-            manager.hideSoftInputFromInputMethod(focusView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            InputMethodManager manager = (InputMethodManager) focusView.getContext()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(focusView.getWindowToken(), InputMethodManager
+                    .HIDE_NOT_ALWAYS);
+            manager.hideSoftInputFromInputMethod(focusView.getWindowToken(), InputMethodManager
+                    .HIDE_NOT_ALWAYS);
         }
     }
 
     public static void closeKeyboard(EditText view) {
         view.clearFocus();
-        InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context
+                .INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager
+                .RESULT_UNCHANGED_SHOWN);
     }
 
     public static void showSoftKeyboard(Dialog dialog) {
@@ -363,7 +369,8 @@ public class TDevice {
         if (!view.isFocused()) {
             view.requestFocus();
         }
-        InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) view.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.showSoftInput(view, 0);
         inputMethodManager.showSoftInputFromInputMethod(view.getWindowToken(), 0);
     }
@@ -416,7 +423,7 @@ public class TDevice {
 
     public static void gotoMarket(Context context, String pck) {
         if (!isHaveMarket(context)) {
-           // AppContext.showToast("你手机中没有安装应用市场！");
+            AppContext.showToast("你手机中没有安装应用市场！");
             return;
         }
         Intent intent = new Intent();
@@ -428,31 +435,20 @@ public class TDevice {
     }
 
     public static boolean isHaveMarket(Context context) {
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.MAIN");
-        intent.addCategory("android.intent.category.APP_MARKET");
-        PackageManager pm = context.getPackageManager();
-        List<ResolveInfo> infos = pm.queryIntentActivities(intent, 0);
-        return infos.size() > 0;
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_APP_MARKET);
+        PackageManager packageManager = context.getPackageManager();
+        List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
+        return resolveInfos.size() > 0;
+
     }
 
     public static void openAppInMarket(Context context) {
-        if (context != null) {
-            String pckName = context.getPackageName();
-            try {
-                gotoMarket(context, pckName);
-            } catch (Exception ex) {
-                try {
-                    String otherMarketUri = "http://market.android.com/details?id="
-                            + pckName;
-                    Intent intent = new Intent(Intent.ACTION_VIEW,
-                            Uri.parse(otherMarketUri));
-                    context.startActivity(intent);
-                } catch (Exception e) {
+        if (context == null)
+            return;
+        String pckName = context.getPackageName();
+        gotoMarket(context, pckName);
 
-                }
-            }
-        }
     }
 
     public static void setFullScreen(Activity activity) {
@@ -717,7 +713,8 @@ public class TDevice {
 
     public static boolean hasStatusBar(Activity activity) {
         WindowManager.LayoutParams attrs = activity.getWindow().getAttributes();
-        if ((attrs.flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN) {
+        if ((attrs.flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager
+                .LayoutParams.FLAG_FULLSCREEN) {
             return false;
         } else {
             return true;

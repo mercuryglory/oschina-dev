@@ -15,18 +15,16 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name="org.mercury.oschina.AppContext"
+        android:name=".AppContext"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon" >
-
         <activity
             android:name=".WelcomeActivity"
             android:launchMode="singleTop"
@@ -37,42 +35,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter >
         </activity >
-
-        <activity android:name="org.mercury.oschina.synthesis.ui.NewsDetailActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.SoftwareActivity" />
-        <activity android:name="org.mercury.oschina.main.activity.AppScreenActivity" />
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.ShakeActivity" />
+        <activity android:name=".synthesis.ui.NewsDetailActivity" />
+        <activity android:name=".explorer.ui.activity.SoftwareActivity" />
+        <activity android:name=".main.activity.AppScreenActivity" />
+        <activity android:name=".explorer.ui.activity.ShakeActivity" />
         <activity
-            android:name="org.mercury.oschina.main.activity.PublicTweetActivity"
+            android:name=".main.activity.PublicTweetActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <activity
             android:name="com.qrcode.zxing.activity.CaptureActivity"
             android:label="二维码/条码"
             android:screenOrientation="portrait" />
-
-        <activity android:name="org.mercury.oschina.explorer.ui.activity.FindUserActivity" />
-
+        <activity android:name=".explorer.ui.activity.FindUserActivity" />
         <activity
-            android:name="org.mercury.oschina.user.OtherUserHomeActivity"
+            android:name=".user.OtherUserHomeActivity"
             android:launchMode="singleTop"
-            android:theme="@style/App.Theme.Main"/>
+            android:theme="@style/App.Theme.Main" />
         <activity
-            android:name="org.mercury.oschina.tweet.activity.PhotoActivity"
+            android:name=".tweet.activity.PhotoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Account_Base.App.Theme.NoTitle" />
-        <activity android:name="org.mercury.oschina.tweet.activity.WebActivity" />
-
+        <activity android:name=".tweet.activity.WebActivity" />
         <activity
-            android:name="org.mercury.oschina.tweet.activity.TweetDetailActivity"
+            android:name=".tweet.activity.TweetDetailActivity"
             android:label="动弹详情"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/Base.App.Theme.NoTitle"
             android:windowSoftInputMode="adjustResize" />
-
-        <activity android:name="org.mercury.oschina.main.activity.AppDetailsActivity" />
-
+        <activity android:name=".main.activity.AppDetailsActivity" />
         <activity
             android:name=".main.activity.MainActivity"
             android:label="首页"
@@ -83,29 +74,25 @@
             android:label="登录验证"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".tweet.activity.ImageGalleryActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/App.Theme.Full" />
-
         <activity
             android:name=".main.activity.UserSingleInfoActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".user.PrivateMessageActivity"
             android:label="私信内容"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.BrowserActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+        <activity android:name=".user.SettingActivity" ></activity >
     </application >
 
 </manifest >
