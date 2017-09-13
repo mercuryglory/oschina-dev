@@ -1,6 +1,7 @@
 package org.mercury.oschina.user;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -23,6 +24,7 @@ import org.mercury.oschina.tweet.TweetListFragment;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.user.contractor.OtherUserContract;
 import org.mercury.oschina.user.contractor.OtherUserPresenter;
+import org.mercury.oschina.utils.DialogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by wang.zhonghao on 2017/8/15
  * description:  其它用户的个人中心界面
  */
-public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContract.Presenter,User> implements OtherUserContract.View{
+public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContract.Presenter,
+        User> implements OtherUserContract.View,DialogInterface.OnClickListener{
 
     @Bind(R.id.iv_user_portrait)
     CircleImageView ivUserPortrait;
@@ -56,24 +59,22 @@ public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContra
     @Bind(R.id.tablayout)
     TabLayout       tablayout;
     @Bind(R.id.view_divider)
-    View      viewDivider;
+    View            viewDivider;
     @Bind(R.id.viewPager)
-    ViewPager viewPager;
+    ViewPager       viewPager;
     @Bind(R.id.iv_gender)
-    ImageView ivGender;
+    ImageView       ivGender;
 
     private static final String KEY_AUTHORID = "KEY_AUTHORID";
 
     private static final String KEY_USERID = "KEY_USERID";
 
 
-    private List<Pair<String,Fragment>> mFragments;
-    private User       mUser;
+    private List<Pair<String, Fragment>> mFragments;
 
-    private static boolean needRequest;
     private long userId;
     MenuItem followItem;
-    private int mRelation;
+    private int mRelation;  //1-已关注（对方未关注我）2-相互关注 3-未关注
 
 
     @Override
@@ -83,7 +84,8 @@ public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContra
                 super.onBackPressed();
                 break;
             case R.id.menu_follow:
-                mPresenter.addRelation(userId, 1);
+                DialogHelper.getConfirmDialog(this, "确定取消关注吗?",this).show();
+
             default:
                 break;
 
@@ -117,16 +119,12 @@ public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContra
 
     @Override
     protected void initData() {
-        if (needRequest) {
-            mPresenter.refreshing(userId);
-        } else {
-            refreshSuccess(mUser);
-        }
-
+        mPresenter.refreshing(userId);
     }
 
     @Override
     public void refreshSuccess(User user) {
+        hideWaitDialog();
         tvUsername.setText(user.getName());
         tvNameLogo.setText(user.getName());
         getImageLoader().load(user.getPortrait()).error(R.mipmap.widget_dface).into
@@ -154,8 +152,13 @@ public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContra
         } else if (relation == 3) {
             followItem.setIcon(R.drawable.selector_user_follow);
         }
-        mRelation = (relation == 2 ? 0 : 1);
+        mRelation = relation;
 
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        mPresenter.addRelation(userId, mRelation == 3 ? 1 : 0);
     }
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -183,12 +186,7 @@ public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContra
 
     @Override
     protected void initBundle(Bundle bundle) {
-        mUser = bundle.getParcelable(KEY_AUTHORID);
-        if (mUser == null) {
-            userId = bundle.getLong(KEY_USERID, 0);
-        } else {
-            userId = mUser.getUid();
-        }
+        userId = bundle.getLong(KEY_USERID, 0);
         if (userId == 0) {
             return;
         }
@@ -231,18 +229,9 @@ public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContra
         return super.onCreateOptionsMenu(menu);
     }
 
-    //传递User对象过来
-    public static void show(Context context, User user) {
-        needRequest = false;
-        Intent intent = new Intent(context, OtherUserHomeActivity.class);
-        intent.putExtra(KEY_AUTHORID, user);
-        context.startActivity(intent);
-
-    }
 
     //传递authorId过来
     public static void show(Context context, long id) {
-        needRequest = true;
         Intent intent = new Intent(context, OtherUserHomeActivity.class);
         intent.putExtra(KEY_USERID, id);
         context.startActivity(intent);

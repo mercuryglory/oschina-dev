@@ -12,12 +12,11 @@ import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
-import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
-import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.tweet.widget.TweetTextView;
+import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.widget.TweetPicturesLayout;
 
@@ -51,12 +50,7 @@ public class TweetListAdapter extends BaseRecyclerAdapter<Tweet> {
         holder.ivTweetFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User();
-                user.setUid(data.getAuthorid());
-                user.setName(data.getAuthor());
-                user.setPortrait(data.getPortrait());
-                OtherUserHomeActivity.show(mContext, user);
-
+                OtherUserHomeActivity.show(mContext, data.getAuthorid());
             }
         });
 

@@ -20,7 +20,7 @@ import org.mercury.oschina.R;
 public final class DialogHelper {
 
     public static AlertDialog.Builder getDialog(Context context) {
-        return new AlertDialog.Builder(context, R.style.ThemeOverlay_AppCompat_Dialog_Alert);
+        return new AlertDialog.Builder(context, R.style.App_Theme_Dialog_Alert);
     }
 
     /**

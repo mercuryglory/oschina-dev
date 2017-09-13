@@ -24,7 +24,6 @@ import org.mercury.oschina.tweet.adapter.CommentTweetAdapter;
 import org.mercury.oschina.tweet.bean.Comment;
 import org.mercury.oschina.tweet.bean.CommentResponse;
 import org.mercury.oschina.tweet.bean.Tweet;
-import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.tweet.widget.TweetTextView;
@@ -263,11 +262,7 @@ public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLay
         ivTweetFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User();
-                user.setUid(tweet.getAuthorid());
-                user.setName(tweet.getAuthor());
-                user.setPortrait(tweet.getPortrait());
-                OtherUserHomeActivity.show(TweetDetailActivity.this, user);
+                OtherUserHomeActivity.show(TweetDetailActivity.this, tweet.getAuthorid());
             }
         });
 

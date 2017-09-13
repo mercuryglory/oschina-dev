@@ -14,16 +14,19 @@ public abstract class BasePresenterActivity<Presenter extends BasePresenter, Mod
     @Override
     public void setPresenter(Presenter presenter) {
         mPresenter = presenter;
+        showWaitDialog();
     }
 
     @Override
     public void errorNetWork(Throwable throwable) {
         showToast(getResources().getString(R.string.state_network_error));
+        hideWaitDialog();
     }
 
     @Override
     public void showError(String msg) {
         showToast(msg);
+        hideWaitDialog();
     }
 
 }
