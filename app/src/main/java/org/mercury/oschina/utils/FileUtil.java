@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 /**
  * Created by wang.zhonghao on 2017/8/14.
@@ -98,5 +99,54 @@ public class FileUtil {
             intent.setData(uri);
             context.sendBroadcast(intent);
         }
+    }
+
+
+    /**
+     * 获取目录大小   不仅统计文件大小,空文件夹的大小也包含,一般一个空文件夹本身大概占用4KB
+     * @param dir
+     * @return
+     */
+    public static long getDirSize(File dir) {
+        if (dir == null) {
+            return 0;
+        }
+        if (!dir.isDirectory()) {
+            return 0;
+        }
+        long dirSize = 0;
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    dirSize += file.length();
+                } else if (file.isDirectory()) {
+                    dirSize += file.length();
+                    dirSize += getDirSize(file);
+                }
+            }
+        }
+        return dirSize;
+    }
+
+
+    /**
+     * 将文件的字节大小转换为相应的更直观的单位:KB,MB,G
+     * @param size
+     * @return
+     */
+    public static String formatSize(long size) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formatSize;
+        if (size < 1024) {
+            formatSize = df.format(size) + "B";
+        } else if (size < 1024 * 1024) {
+            formatSize = df.format((double) size / 1024) + "KB";
+        } else if (size < 1024 * 1024 * 1024) {
+            formatSize = df.format((double) size / (1024 * 1024)) + "MB";
+        } else {
+            formatSize = df.format((double) size / (1024 * 1024 * 1024)) + "G";
+        }
+        return formatSize;
     }
 }

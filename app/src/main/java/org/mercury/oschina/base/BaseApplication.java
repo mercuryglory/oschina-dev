@@ -244,8 +244,7 @@ public class BaseApplication extends Application {
                 if (icon != 0) {
                     ((ImageView) view.findViewById(R.id.icon_iv))
                             .setImageResource(icon);
-                    ((ImageView) view.findViewById(R.id.icon_iv))
-                            .setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.icon_iv).setVisibility(View.VISIBLE);
                 }
                 Toast toast = new Toast(context());
                 toast.setView(view);

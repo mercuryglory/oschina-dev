@@ -27,6 +27,7 @@ import org.mercury.oschina.main.activity.BrowserActivity;
 import org.mercury.oschina.synthesis.ui.NewsDetailActivity;
 import org.mercury.oschina.tweet.extra.SimpleBackActivity;
 import org.mercury.oschina.tweet.extra.SimpleBackPage;
+import org.mercury.oschina.tweet.util.ToastUtil;
 
 /**
  * 界面帮助类
@@ -250,19 +251,19 @@ public class UIHelper {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == 1) {
-                    AppContext.showToastShort("缓存清除成功");
+                    ToastUtil.showToast("缓存清除成功");
                 } else {
-                    AppContext.showToastShort("缓存清除失败");
+                    ToastUtil.showToast("缓存清除失败");
                 }
             }
         } : null;
-        // TODO: 2017/9/8 清楚缓存
+        //清除缓存
         AppOperator.runOnThread(new Runnable() {
             @Override
             public void run() {
                 Message msg = new Message();
                 try {
-                    //                    AppContext.getInstance().clearAppCache();
+                    DataCleanManager.clearAppCache(AppContext.getContext());
                     msg.what = 1;
                 } catch (Exception e) {
                     e.printStackTrace();
