@@ -36,9 +36,9 @@
             </intent-filter >
         </activity >
         <activity android:name=".synthesis.ui.NewsDetailActivity" />
-        <activity android:name=".explorer.ui.activity.SoftwareActivity" />
+        <activity android:name=".explorer.ui.ui.SoftwareActivity" />
         <activity android:name=".main.activity.AppScreenActivity" />
-        <activity android:name=".explorer.ui.activity.ShakeActivity" />
+        <activity android:name=".explorer.ui.ui.ShakeActivity" />
         <activity
             android:name=".main.activity.PublicTweetActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -46,7 +46,7 @@
             android:name="com.qrcode.zxing.activity.CaptureActivity"
             android:label="二维码/条码"
             android:screenOrientation="portrait" />
-        <activity android:name=".explorer.ui.activity.FindUserActivity" />
+        <activity android:name=".explorer.ui.ui.FindUserActivity" />
         <activity
             android:name=".user.OtherUserHomeActivity"
             android:launchMode="singleTop"

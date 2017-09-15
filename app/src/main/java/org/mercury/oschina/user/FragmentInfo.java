@@ -1,5 +1,6 @@
 package org.mercury.oschina.user;
 
+import org.mercury.oschina.explorer.ui.SoftwareFragment;
 import org.mercury.oschina.tweet.TweetListFragment;
 
 /**
@@ -13,7 +14,9 @@ public enum FragmentInfo {
     MY_TWEET("动弹列表", TweetListFragment.class),
     MY_MESSAGE("我的消息", MyMessageFragment.class),
     MY_BLOG("我的博客", UserBlogFragment.class),
-    MY_ACTIVE("我的动态", ActiveFragment.class);
+    MY_ACTIVE("我的动态", ActiveFragment.class),
+
+    OPEN_SOFTWARE("开源软件",SoftwareFragment.class);
 
     private String title;
     private Class clazz;

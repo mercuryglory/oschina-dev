@@ -7,9 +7,10 @@ import android.widget.LinearLayout;
 import com.qrcode.zxing.activity.CaptureActivity;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.explorer.ui.activity.ShakeActivity;
-import org.mercury.oschina.explorer.ui.activity.SoftwareActivity;
 import org.mercury.oschina.base.BaseTitleFragment;
+import org.mercury.oschina.explorer.ui.ShakeActivity;
+import org.mercury.oschina.main.activity.UserSingleInfoActivity;
+import org.mercury.oschina.user.FragmentInfo;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -42,7 +43,8 @@ public class ExploreFragment extends BaseTitleFragment implements View.OnClickLi
         switch (v.getId()) {
             //开源软件
             case R.id.ll_software:
-                startActivity(new Intent(getContext(), SoftwareActivity.class));
+                //复用了只将activity当作承载fragment的类
+                UserSingleInfoActivity.show(getContext(), FragmentInfo.OPEN_SOFTWARE, null);
                 break;
             //扫一扫
             case ll_qr_code:

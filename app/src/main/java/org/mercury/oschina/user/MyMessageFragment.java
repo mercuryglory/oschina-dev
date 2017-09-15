@@ -1,14 +1,11 @@
 package org.mercury.oschina.user;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.ViewGroup;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.BaseFragment;
+import org.mercury.oschina.base.BaseViewPagerFragment;
+import org.mercury.oschina.bean.PageInfo;
 
 import butterknife.Bind;
 
@@ -16,7 +13,7 @@ import butterknife.Bind;
  * Created by wang.zhonghao on 2017/8/23.
  */
 
-public class MyMessageFragment extends BaseFragment {
+public class MyMessageFragment extends BaseViewPagerFragment {
 
     @Bind(R.id.tab_nav)
     TabLayout tabNav;
@@ -29,64 +26,14 @@ public class MyMessageFragment extends BaseFragment {
     }
 
     @Override
-    protected void initData() {
+    public PageInfo[] initPageInfos() {
         PageInfo[] infos = new PageInfo[]{
-                new PageInfo("@我", AtMeFragment.class),
-                new PageInfo("评论", CommentFragment.class),
-                new PageInfo("私信", PrivateMsgFragment.class)
+                new PageInfo("@我", AtMeFragment.class, null),
+                new PageInfo("评论", CommentFragment.class, null),
+                new PageInfo("私信", PrivateMsgFragment.class, null)
         };
-        baseViewpager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), infos));
-        tabNav.setupWithViewPager(baseViewpager);
-        baseViewpager.setCurrentItem(0,true);
+        return infos;
 
     }
 
-    private static class PageInfo {
-        private String title;
-        private Class<?> clazz;
-
-        public PageInfo(String title, Class<?> clazz) {
-            this.title = title;
-            this.clazz = clazz;
-        }
-    }
-
-
-    private class ViewPagerAdapter extends FragmentPagerAdapter {
-        private PageInfo[] mPageInfos;
-        private Fragment currentFragment;
-
-        public ViewPagerAdapter(FragmentManager fm,PageInfo[] infos) {
-            super(fm);
-            mPageInfos = infos;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            PageInfo info = mPageInfos[position];
-            return Fragment.instantiate(getContext(), info.clazz.getName(), null);
-        }
-
-        @Override
-        public int getCount() {
-            return mPageInfos.length;
-        }
-
-        @Override
-        public void setPrimaryItem(ViewGroup container, int position, Object object) {
-            super.setPrimaryItem(container, position, object);
-            if (object instanceof Fragment) {
-                currentFragment = (Fragment) object;
-            }
-        }
-
-        public Fragment getCurrentFragment() {
-            return currentFragment;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mPageInfos[position].title;
-        }
-    }
 }

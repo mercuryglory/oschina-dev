@@ -1,4 +1,4 @@
-package org.mercury.oschina.explorer.ui.activity;
+package org.mercury.oschina.explorer.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;

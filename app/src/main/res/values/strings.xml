@@ -74,5 +74,13 @@
         <item >查看大头像</item >
     </string-array >
 
+    <string-array name="software_tag">
+        <item>分类</item>
+        <item>推荐</item>
+        <item>最新</item>
+        <item>热门</item>
+        <item>国产</item>
+    </string-array>
+
     <string name="loading" >加载中...</string >
 </resources >

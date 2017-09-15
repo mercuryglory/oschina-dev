@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
 
 import org.mercury.oschina.R;
-import org.mercury.oschina.base.BaseViewPagerFragment;
+import org.mercury.oschina.base.BaseTitleViewPagerFragment;
 import org.mercury.oschina.bean.PageInfo;
 import org.mercury.oschina.tweet.TweetListFragment;
 import org.mercury.oschina.utils.AccessTokenHelper;
@@ -16,7 +16,7 @@ import org.mercury.oschina.utils.AccessTokenHelper;
  * 动弹 模块
  * 子模块：最新动弹  热门动弹  我的动弹
  */
-public class TweetFragment extends BaseViewPagerFragment {
+public class TweetFragment extends BaseTitleViewPagerFragment {
 
     @Override
     protected  void initData() {

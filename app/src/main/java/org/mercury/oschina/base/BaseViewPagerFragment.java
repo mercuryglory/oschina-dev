@@ -4,9 +4,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.view.ViewGroup;
 
 import org.mercury.oschina.R;
@@ -15,42 +13,50 @@ import org.mercury.oschina.bean.PageInfo;
 import butterknife.Bind;
 
 /**
- * Created by wang.zhonghao on 2017/8/9.
- * 使用viewpager滑动加载子fragment模块的父fragment的基类(带标题栏)
+ * Created by Mercury on 2017/9/15.
  */
 
-public abstract class BaseViewPagerFragment extends BaseTitleFragment {
+public abstract class BaseViewPagerFragment extends BaseFragment {
 
     @Bind(R.id.tab_nav)
-    public TabLayout tabNav;
+    TabLayout tabNav;
     @Bind(R.id.base_viewpager)
-    public ViewPager baseViewpager;
+    ViewPager baseViewpager;
 
     @Override
-    protected int getContentLayoutId() {
+    protected int getLayoutId() {
         return R.layout.fragment_base_viewpager;
     }
 
     @Override
-    protected void initWidget(View root) {
-        super.initWidget(root);
-        BaseViewPagerAdapter adapter = new BaseViewPagerAdapter(getChildFragmentManager(),
-                getPagerInfo());
-        baseViewpager.setAdapter(adapter);
+    protected void initData() {
+        PageInfo[] infos = initPageInfos();
+        baseViewpager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), infos));
         tabNav.setupWithViewPager(baseViewpager);
-        baseViewpager.setCurrentItem(0, true);
+        baseViewpager.setCurrentItem(0,true);
+
     }
 
-    protected abstract PageInfo[] getPagerInfo();
+    public abstract PageInfo[] initPageInfos();
 
-    public class BaseViewPagerAdapter extends FragmentPagerAdapter {
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
+        private PageInfo[] mPageInfos;
+        private Fragment   currentFragment;
 
-        private PageInfo[] mPagerInfo;
-        private Fragment currentFragment;
-
-        public BaseViewPagerAdapter(FragmentManager fm, PageInfo[] pagerInfo) {
+        public ViewPagerAdapter(FragmentManager fm, PageInfo[] infos) {
             super(fm);
-            mPagerInfo = pagerInfo;
+            mPageInfos = infos;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            PageInfo info = mPageInfos[position];
+            return Fragment.instantiate(getContext(), info.clazz.getName(), null);
+        }
+
+        @Override
+        public int getCount() {
+            return mPageInfos.length;
         }
 
         @Override
@@ -66,24 +72,8 @@ public abstract class BaseViewPagerFragment extends BaseTitleFragment {
         }
 
         @Override
-        public Fragment getItem(int position) {
-            PageInfo pagerInfo = mPagerInfo[position];
-            return Fragment.instantiate(getContext(), pagerInfo.clazz.getName(), pagerInfo.args);
-        }
-
-        @Override
-        public int getCount() {
-            return mPagerInfo.length;
-        }
-
-        @Override
         public CharSequence getPageTitle(int position) {
-            return mPagerInfo[position].title;
-        }
-
-        @Override
-        public int getItemPosition(Object object) {
-            return PagerAdapter.POSITION_NONE;
+            return mPageInfos[position].title;
         }
     }
 }
