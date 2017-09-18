@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <net.oschina.app.widget.ScrollLayout
+    <org.mercury.oschina.widget.ScrollLayout
         android:id="@+id/scrolllayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -14,7 +14,7 @@
             android:layout_height="match_parent"
             android:cacheColorHint="#ffffffff"
             android:descendantFocusability="blocksDescendants"
-            android:divider="?attr/lineColor"
+            android:divider="@color/list_divider_color"
             android:dividerHeight="1.0px"
             android:listSelector="@android:color/transparent" />
 
@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:cacheColorHint="#ffffffff"
             android:descendantFocusability="blocksDescendants"
-            android:divider="?attr/lineColor"
+            android:divider="@color/list_divider_color"
             android:dividerHeight="1.0px"
             android:listSelector="@android:color/transparent" />
 
@@ -32,11 +32,11 @@
             android:id="@+id/lv_software"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:divider="?attr/lineColor"
+            android:divider="@color/list_divider_color"
             android:scrollingCache="true" />
-    </net.oschina.app.widget.ScrollLayout>
+    </org.mercury.oschina.widget.ScrollLayout>
 
-    <net.oschina.app.ui.empty.EmptyLayout
+    <org.mercury.oschina.widget.EmptyLayout
         android:id="@+id/error_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

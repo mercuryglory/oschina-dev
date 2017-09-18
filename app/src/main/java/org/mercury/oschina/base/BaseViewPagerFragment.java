@@ -51,7 +51,7 @@ public abstract class BaseViewPagerFragment extends BaseFragment {
         @Override
         public Fragment getItem(int position) {
             PageInfo info = mPageInfos[position];
-            return Fragment.instantiate(getContext(), info.clazz.getName(), null);
+            return Fragment.instantiate(getContext(), info.clazz.getName(), info.args);
         }
 
         @Override

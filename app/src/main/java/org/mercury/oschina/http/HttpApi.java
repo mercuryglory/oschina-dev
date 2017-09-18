@@ -2,6 +2,7 @@ package org.mercury.oschina.http;
 
 import org.mercury.oschina.bean.AccessToken;
 import org.mercury.oschina.bean.ResultBean;
+import org.mercury.oschina.explorer.bean.SoftwareResponse;
 import org.mercury.oschina.synthesis.bean.NewsDetail;
 import org.mercury.oschina.synthesis.bean.PostResponse;
 import org.mercury.oschina.synthesis.bean.BlogResponse;
@@ -96,12 +97,14 @@ public interface HttpApi {
     Call<NewsDetail> getNewsDetail(@Query("id") long id);
 
     /**
-     *
-     * @param userId    对方用户id
-     * @param relation  0-取消关注，1-加关注
+     * @param userId   对方用户id
+     * @param relation 0-取消关注，1-加关注
      * @return
      */
     @POST("update_user_relation")
     Call<ResultBean> addRelation(@Query("friend") long userId, @Query("relation") int relation);
+
+    @GET("project_list")
+    Call<SoftwareResponse> getSoftwareList(@Query("type") String type, @Query("page") int page);
 
 }
