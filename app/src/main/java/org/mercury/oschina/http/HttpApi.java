@@ -2,11 +2,12 @@ package org.mercury.oschina.http;
 
 import org.mercury.oschina.bean.AccessToken;
 import org.mercury.oschina.bean.ResultBean;
+import org.mercury.oschina.explorer.bean.SoftwareCatalogResponse;
 import org.mercury.oschina.explorer.bean.SoftwareResponse;
-import org.mercury.oschina.synthesis.bean.NewsDetail;
-import org.mercury.oschina.synthesis.bean.PostResponse;
 import org.mercury.oschina.synthesis.bean.BlogResponse;
+import org.mercury.oschina.synthesis.bean.NewsDetail;
 import org.mercury.oschina.synthesis.bean.NewsResponse;
+import org.mercury.oschina.synthesis.bean.PostResponse;
 import org.mercury.oschina.tweet.bean.CommentResponse;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.TweetResponse;
@@ -106,5 +107,8 @@ public interface HttpApi {
 
     @GET("project_list")
     Call<SoftwareResponse> getSoftwareList(@Query("type") String type, @Query("page") int page);
+
+    @GET("project_catalog_list")
+    Call<SoftwareCatalogResponse> getSoftwareTypes(@Query("tag") int tag);
 
 }
