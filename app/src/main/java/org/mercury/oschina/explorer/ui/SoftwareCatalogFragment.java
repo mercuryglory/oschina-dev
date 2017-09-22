@@ -1,5 +1,7 @@
 package org.mercury.oschina.explorer.ui;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -7,8 +9,10 @@ import android.widget.ListView;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseFragment;
 import org.mercury.oschina.explorer.adapter.SoftwareCatalogAdapter;
+import org.mercury.oschina.explorer.adapter.SoftwareListAdapter;
 import org.mercury.oschina.explorer.bean.SoftwareCatalog;
 import org.mercury.oschina.explorer.bean.SoftwareCatalogResponse;
+import org.mercury.oschina.explorer.bean.SoftwareResponse;
 import org.mercury.oschina.http.HttpApi;
 import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.widget.EmptyLayout;
@@ -31,7 +35,7 @@ public class SoftwareCatalogFragment extends BaseFragment {
     @Bind(R.id.lv_tag)
     ListView     lvTag;
     @Bind(R.id.lv_software)
-    ListView     lvSoftware;
+    RecyclerView lvSoftware;
     @Bind(R.id.scrolllayout)
     ScrollLayout scrolllayout;
     @Bind(R.id.error_layout)
@@ -44,7 +48,9 @@ public class SoftwareCatalogFragment extends BaseFragment {
     private static int currentScreen = SCREEN_CATALOG;
     private static int currentTag;
 
-    private SoftwareCatalogAdapter mAdapter;
+    private SoftwareCatalogAdapter mAdapter, mSecondAdapter;
+
+    SoftwareListAdapter adapter;
 
     @Override
     protected int getLayoutId() {
@@ -60,8 +66,22 @@ public class SoftwareCatalogFragment extends BaseFragment {
                 currentScreen = SCREEN_TAG;
                 scrolllayout.scrollToScreen(currentScreen);
                 currentTag = item.getTag();
+                refreshTagList();
             }
 
+        }
+    };
+
+    private AdapterView.OnItemClickListener mSecondListener=new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            SoftwareCatalog item = mSecondAdapter.getItem(position);
+            if (item != null && item.getTag() > 0) {
+                currentScreen = SCREEN_SOFTWARE;
+                scrolllayout.scrollToScreen(currentScreen);
+                currentTag = item.getTag();
+                refreshSoftwareList();
+            }
         }
     };
 
@@ -70,13 +90,24 @@ public class SoftwareCatalogFragment extends BaseFragment {
     @Override
     protected void initWidget(View root) {
         lvCatalog.setOnItemClickListener(mCatalogListener);
+        lvTag.setOnItemClickListener(mSecondListener);
         mAdapter = new SoftwareCatalogAdapter(getContext());
+        mSecondAdapter = new SoftwareCatalogAdapter(getContext());
         lvCatalog.setAdapter(mAdapter);
+        lvTag.setAdapter(mSecondAdapter);
+
+        adapter = new SoftwareListAdapter(getContext());
+        lvSoftware.setLayoutManager(new LinearLayoutManager(getContext()));
+        lvSoftware.setAdapter(adapter);
 
     }
 
     @Override
     protected void initData() {
+        refreshTagList();
+    }
+
+    private void refreshTagList() {
         HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
         Call<SoftwareCatalogResponse> softwareTypes = retrofitCall.getSoftwareTypes(currentTag);
         softwareTypes.enqueue(new Callback<SoftwareCatalogResponse>() {
@@ -85,7 +116,11 @@ public class SoftwareCatalogFragment extends BaseFragment {
 
                 SoftwareCatalogResponse body = response.body();
                 if (body != null) {
-                    mAdapter.setData(body.getSoftwareTypes());
+                    if (currentScreen == SCREEN_CATALOG) {
+                        mAdapter.setData(body.getSoftwareTypes());
+                    } else if (currentScreen == SCREEN_TAG) {
+                        mSecondAdapter.setData(body.getSoftwareTypes());
+                    }
                 }
             }
 
@@ -94,5 +129,30 @@ public class SoftwareCatalogFragment extends BaseFragment {
 
             }
         });
+    }
+
+    private void refreshSoftwareList() {
+        HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
+        Call<SoftwareResponse> softwareTypes = retrofitCall.getSoftTagList(currentTag);
+        softwareTypes.enqueue(new Callback<SoftwareResponse>() {
+            @Override
+            public void onResponse(Call<SoftwareResponse> call, Response<SoftwareResponse> response) {
+                SoftwareResponse body = response.body();
+                if (body != null) {
+                    adapter.setData(body.getProjectlist());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SoftwareResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public boolean onBackPressed() {
+
+        return super.onBackPressed();
     }
 }

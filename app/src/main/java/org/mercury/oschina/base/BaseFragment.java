@@ -103,6 +103,10 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
+    public boolean onBackPressed() {
+        return false;
+    }
+
     protected <T extends View> T findView(int viewId) {
         return (T) mRoot.findViewById(viewId);
     }

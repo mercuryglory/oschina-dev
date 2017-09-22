@@ -19,9 +19,9 @@ import butterknife.Bind;
 public abstract class BaseViewPagerFragment extends BaseFragment {
 
     @Bind(R.id.tab_nav)
-    TabLayout tabNav;
+    protected TabLayout tabNav;
     @Bind(R.id.base_viewpager)
-    ViewPager baseViewpager;
+    protected ViewPager baseViewpager;
 
     @Override
     protected int getLayoutId() {
@@ -39,7 +39,7 @@ public abstract class BaseViewPagerFragment extends BaseFragment {
 
     public abstract PageInfo[] initPageInfos();
 
-    private class ViewPagerAdapter extends FragmentPagerAdapter {
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
         private PageInfo[] mPageInfos;
         private Fragment   currentFragment;
 

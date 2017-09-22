@@ -3,6 +3,7 @@ package org.mercury.oschina.explorer.ui;
 import android.os.Bundle;
 
 import org.mercury.oschina.R;
+import org.mercury.oschina.base.BaseFragment;
 import org.mercury.oschina.base.BaseViewPagerFragment;
 import org.mercury.oschina.bean.PageInfo;
 
@@ -33,4 +34,13 @@ public class SoftwareFragment extends BaseViewPagerFragment {
         return bundle;
     }
 
+    @Override
+    public boolean onBackPressed() {
+        ViewPagerAdapter adapter = (ViewPagerAdapter) baseViewpager.getAdapter();
+        BaseFragment fragment = (BaseFragment) adapter.getItem(baseViewpager.getCurrentItem());
+        if (fragment instanceof SoftwareCatalogFragment) {
+            return fragment.onBackPressed();
+        }
+        return super.onBackPressed();
+    }
 }

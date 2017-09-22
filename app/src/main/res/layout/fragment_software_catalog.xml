@@ -28,10 +28,10 @@
             android:dividerHeight="1.0px"
             android:listSelector="@android:color/transparent" />
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/lv_software"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:divider="@color/list_divider_color"
             android:scrollingCache="true" />
     </org.mercury.oschina.widget.ScrollLayout>

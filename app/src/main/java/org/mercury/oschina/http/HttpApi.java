@@ -111,4 +111,7 @@ public interface HttpApi {
     @GET("project_catalog_list")
     Call<SoftwareCatalogResponse> getSoftwareTypes(@Query("tag") int tag);
 
+    @GET("project_tag_list")
+    Call<SoftwareResponse> getSoftTagList(@Query("tag") int tag);
+
 }
