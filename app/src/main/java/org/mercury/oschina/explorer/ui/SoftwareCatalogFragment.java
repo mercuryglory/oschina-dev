@@ -2,6 +2,7 @@ package org.mercury.oschina.explorer.ui;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -75,6 +76,7 @@ public class SoftwareCatalogFragment extends BaseFragment {
     private AdapterView.OnItemClickListener mSecondListener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            //加载三级列表，软件列表
             SoftwareCatalog item = mSecondAdapter.getItem(position);
             if (item != null && item.getTag() > 0) {
                 currentScreen = SCREEN_SOFTWARE;
@@ -89,6 +91,7 @@ public class SoftwareCatalogFragment extends BaseFragment {
 
     @Override
     protected void initWidget(View root) {
+        Log.e("onBackPressed", this.toString());
         lvCatalog.setOnItemClickListener(mCatalogListener);
         lvTag.setOnItemClickListener(mSecondListener);
         mAdapter = new SoftwareCatalogAdapter(getContext());
@@ -104,10 +107,12 @@ public class SoftwareCatalogFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+
         refreshTagList();
     }
 
     private void refreshTagList() {
+        Log.e("onBackPressed", this.toString());
         HttpApi retrofitCall = RequestHelper.getInstance().getRetrofitCall(HttpApi.class);
         Call<SoftwareCatalogResponse> softwareTypes = retrofitCall.getSoftwareTypes(currentTag);
         softwareTypes.enqueue(new Callback<SoftwareCatalogResponse>() {
@@ -152,7 +157,25 @@ public class SoftwareCatalogFragment extends BaseFragment {
 
     @Override
     public boolean onBackPressed() {
+        Log.e("onBackPressed", this.toString());
+        switch (currentScreen) {
+            case SCREEN_CATALOG:
+                currentTag = 0;
+                return true;
+            case SCREEN_TAG:
+                scrolllayout.scrollToScreen(SCREEN_CATALOG);
+                currentScreen = SCREEN_CATALOG;
+                break;
+            case SCREEN_SOFTWARE:
+                scrolllayout.scrollToScreen(SCREEN_TAG);
+                currentScreen = SCREEN_TAG;
+                break;
+            default:
+                break;
 
+        }
         return super.onBackPressed();
     }
+
+
 }

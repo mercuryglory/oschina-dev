@@ -1,6 +1,7 @@
 package org.mercury.oschina.explorer.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseFragment;
@@ -37,7 +38,8 @@ public class SoftwareFragment extends BaseViewPagerFragment {
     @Override
     public boolean onBackPressed() {
         ViewPagerAdapter adapter = (ViewPagerAdapter) baseViewpager.getAdapter();
-        BaseFragment fragment = (BaseFragment) adapter.getItem(baseViewpager.getCurrentItem());
+        BaseFragment fragment = (BaseFragment) adapter.getCurrentFragment();
+        Log.e("onBackPressed", fragment.toString());
         if (fragment instanceof SoftwareCatalogFragment) {
             return fragment.onBackPressed();
         }

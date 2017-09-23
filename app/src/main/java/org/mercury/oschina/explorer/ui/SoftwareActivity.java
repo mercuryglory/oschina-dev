@@ -2,6 +2,7 @@ package org.mercury.oschina.explorer.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
@@ -24,6 +25,12 @@ public class SoftwareActivity extends BaseActivity {
     protected void initWidget() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("开源软件");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         
     }
 
@@ -36,10 +43,11 @@ public class SoftwareActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         if (mFragment != null) {
-            if (mFragment.onBackPressed()) {
-                super.onBackPressed();
+            if (!mFragment.onBackPressed()) {
+                return;
             }
         }
+//        EventBus.getDefault().post("here");
         super.onBackPressed();
     }
 }

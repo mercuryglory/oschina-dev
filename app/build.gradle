@@ -51,6 +51,7 @@ dependencies {
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'pub.devrel:easypermissions:0.3.0'
     compile 'com.mercury.xrecyclerview:xrecyclerview:1.2.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
 //    compile project(':xrecyclerview')
 
     compile "com.android.support:design:$rootProject.ext.supportVersion"
