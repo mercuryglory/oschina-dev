@@ -105,12 +105,28 @@ public interface HttpApi {
     @POST("update_user_relation")
     Call<ResultBean> addRelation(@Query("friend") long userId, @Query("relation") int relation);
 
+    /**
+     *推荐|time-最新|view-热门|cn-国产 软件列表
+     * @param type
+     * @param page
+     * @return
+     */
     @GET("project_list")
     Call<SoftwareResponse> getSoftwareList(@Query("type") String type, @Query("page") int page);
 
+    /**
+     * 获取软件分类列表（2级）
+     * @param tag
+     * @return
+     */
     @GET("project_catalog_list")
     Call<SoftwareCatalogResponse> getSoftwareTypes(@Query("tag") int tag);
 
+    /**
+     * tag下的软件列表
+     * @param tag
+     * @return
+     */
     @GET("project_tag_list")
     Call<SoftwareResponse> getSoftTagList(@Query("tag") int tag);
 

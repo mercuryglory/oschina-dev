@@ -35,8 +35,8 @@ public class SoftwareCatalogFragment extends BaseFragment {
     ListView     lvCatalog;
     @Bind(R.id.lv_tag)
     ListView     lvTag;
-    @Bind(R.id.lv_software)
-    RecyclerView lvSoftware;
+    @Bind(R.id.rv_software)
+    RecyclerView rvSoftware;
     @Bind(R.id.scrolllayout)
     ScrollLayout scrolllayout;
     @Bind(R.id.error_layout)
@@ -100,8 +100,8 @@ public class SoftwareCatalogFragment extends BaseFragment {
         lvTag.setAdapter(mSecondAdapter);
 
         adapter = new SoftwareListAdapter(getContext());
-        lvSoftware.setLayoutManager(new LinearLayoutManager(getContext()));
-        lvSoftware.setAdapter(adapter);
+        rvSoftware.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvSoftware.setAdapter(adapter);
 
     }
 

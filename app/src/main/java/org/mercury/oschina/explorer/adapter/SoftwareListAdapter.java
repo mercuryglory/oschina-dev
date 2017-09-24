@@ -9,12 +9,14 @@ import android.widget.TextView;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.explorer.bean.Project;
+import org.mercury.oschina.utils.UIHelper;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
  * Created by Mercury on 2017/9/18.
+ * 软件列表
  */
 
 public class SoftwareListAdapter extends BaseRecyclerAdapter<Project> {
@@ -24,10 +26,17 @@ public class SoftwareListAdapter extends BaseRecyclerAdapter<Project> {
     }
 
     @Override
-    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder h, Project data, int position) {
+    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder h, final Project data, int position) {
         ViewHolder holder = (ViewHolder) h;
         holder.tvName.setText(data.getName());
         holder.tvDesc.setText(data.getDescription());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showUrlRedirect(mContext, data.getUrl());
+            }
+        });
 
     }
 

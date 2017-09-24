@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.mercury.oschina.explorer.ui.SoftwareDetailActivity;
 import org.mercury.oschina.synthesis.ui.NewsDetailActivity;
 import org.mercury.oschina.tweet.activity.ImageGalleryActivity;
 
@@ -134,7 +135,7 @@ public class URLUtils {
                 matcher = PATTERN_PATH_SOFTWARE.matcher(path);
                 if (matcher.find()) {
                     // https://www.oschina.net/p/parallels-desktop
-//                    SoftwareDetailActivity.show(context, matcher.group(1));
+                    SoftwareDetailActivity.show(context, matcher.group(1));
                     break;
                 }
                 matcher = PATTERN_PATH_TOPIC.matcher(path);

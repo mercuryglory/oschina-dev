@@ -52,9 +52,6 @@ public class ExploreFragment extends BaseTitleFragment implements View.OnClickLi
             case ll_shake:
                 startActivity(new Intent(getContext(), ShakeActivity.class));
                 break;
-//            case R.id.ll_find_user:
-//                startActivity(new Intent(getContext(), FindUserActivity.class));
-//                break;
         }
     }
 

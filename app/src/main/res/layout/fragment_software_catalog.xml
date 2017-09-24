@@ -15,7 +15,7 @@
             android:cacheColorHint="#ffffffff"
             android:descendantFocusability="blocksDescendants"
             android:divider="@color/list_divider_color"
-            android:dividerHeight="1.0px"
+            android:dividerHeight="0.5dp"
             android:listSelector="@android:color/transparent" />
 
         <ListView
@@ -25,15 +25,15 @@
             android:cacheColorHint="#ffffffff"
             android:descendantFocusability="blocksDescendants"
             android:divider="@color/list_divider_color"
-            android:dividerHeight="1.0px"
+            android:dividerHeight="0.5dp"
             android:listSelector="@android:color/transparent" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/lv_software"
+            android:id="@+id/rv_software"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/list_divider_color"
-            android:scrollingCache="true" />
+            android:background="@color/white"
+            />
     </org.mercury.oschina.widget.ScrollLayout>
 
     <org.mercury.oschina.widget.EmptyLayout
