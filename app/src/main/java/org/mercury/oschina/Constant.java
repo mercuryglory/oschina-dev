@@ -25,4 +25,6 @@ public class Constant {
 
     public static final String QRCODE_DIR = "oschina二维码";
 
+    public static final String IDENT = "ident";
+
 }

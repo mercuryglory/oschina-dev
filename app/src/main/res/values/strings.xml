@@ -83,4 +83,14 @@
     </string-array>
 
     <string name="loading" >加载中...</string >
+
+    <string name="soft_detail_doc">软件文档</string>
+    <string name="soft_detail_index">软件官网</string>
+    <string name="soft_detail_author">软件作者:</string>
+    <string name="soft_detail_license">开源协议:</string>
+    <string name="soft_detail_language">开发语言:</string>
+    <string name="soft_detail_platform">操作系统:</string>
+    <string name="soft_detail_pub_time">收录时间:</string>
+    <string name="soft_detail_any_name">匿名</string>
+    <string name="soft_detail_no_license">无</string>
 </resources >

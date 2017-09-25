@@ -1,7 +1,9 @@
 package org.mercury.oschina.explorer.ui;
 
 import android.content.Context;
+import android.content.Intent;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
 
@@ -16,8 +18,10 @@ public class SoftwareDetailActivity extends BaseActivity {
         return R.layout.activity_software_detail;
     }
 
-    public static void show(Context context, String url) {
-
+    public static void show(Context context, String ident) {
+        Intent intent = new Intent(context, SoftwareDetailActivity.class);
+        intent.putExtra(Constant.IDENT, ident);
+        context.startActivity(intent);
     }
 
 }
