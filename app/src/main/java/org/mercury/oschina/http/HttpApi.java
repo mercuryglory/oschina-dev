@@ -4,6 +4,7 @@ import org.mercury.oschina.bean.AccessToken;
 import org.mercury.oschina.bean.ResultBean;
 import org.mercury.oschina.explorer.bean.SoftwareCatalogResponse;
 import org.mercury.oschina.explorer.bean.SoftwareResponse;
+import org.mercury.oschina.explorer.bean.SoftwareDetail;
 import org.mercury.oschina.synthesis.bean.BlogResponse;
 import org.mercury.oschina.synthesis.bean.NewsDetail;
 import org.mercury.oschina.synthesis.bean.NewsResponse;
@@ -129,5 +130,8 @@ public interface HttpApi {
      */
     @GET("project_tag_list")
     Call<SoftwareResponse> getSoftTagList(@Query("tag") int tag);
+
+    @GET("project_detail")
+    Call<SoftwareDetail> getSoftware(@Query("ident") String ident);
 
 }

@@ -5,6 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize" >
+
+    </android.support.v7.widget.Toolbar >
+
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/lay_nsv"
         android:layout_width="match_parent"
@@ -281,10 +289,30 @@
                     tools:text="2015-01-12" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_gray"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/size_8"
+                android:paddingLeft="@dimen/lay_16"
+                android:paddingRight="@dimen/lay_16"
+                android:paddingTop="@dimen/size_8"
+                android:text="相关推荐" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/list_divider_color" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
@@ -297,7 +325,6 @@
         android:id="@+id/lay_option"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_gravity="end|bottom"
         android:background="@color/white"
         android:gravity="center_vertical"

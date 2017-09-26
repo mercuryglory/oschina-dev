@@ -1,6 +1,7 @@
 package org.mercury.oschina.tweet.util;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -28,6 +29,15 @@ public class GlideUtils {
                 .load(url)
                 .error(R.mipmap.widget_dface)
                 .placeholder(R.mipmap.widget_dface)
+                .into(view);
+    }
+
+    public static void loadImage(Context context, String url, ImageView view, @DrawableRes int
+            resourceId) {
+        Glide.with(context)
+                .load(url)
+                .error(resourceId)
+                .placeholder(resourceId)
                 .into(view);
     }
 }
