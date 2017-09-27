@@ -36,5 +36,6 @@ public class Constant {
     public static final int TRANSLATE = 7;
 
 
+    public static final String SPNAME = "SPNAME";
 
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import org.mercury.oschina.Constant;
+
 /**
  * sp的工具类
  * @Description: TODO
@@ -28,14 +30,14 @@ public class SPUtils {
     
     public static void saveInt(Context context,String key,int value)
     {
-        SharedPreferences preferences = context.getSharedPreferences(Fileds.SPNAME, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(Constant.SPNAME, Context.MODE_PRIVATE);
         Editor edit = preferences.edit();
         edit.putInt(key, value);
         edit.commit();
     }
     
     public static int getInt(Context context,String key,int defValue){
-    	SharedPreferences preferences = context.getSharedPreferences(Fileds.SPNAME, Context.MODE_PRIVATE);
+    	SharedPreferences preferences = context.getSharedPreferences(Constant.SPNAME, Context.MODE_PRIVATE);
     	return preferences.getInt(key, defValue);
     };
     
@@ -60,7 +62,7 @@ public class SPUtils {
     //1. 保存String类型数据
     public static void saveString(Context context,String key,String value)
     {
-        SharedPreferences preferences = context.getSharedPreferences(Fileds.SPNAME, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(Constant.SPNAME, Context.MODE_PRIVATE);
         Editor edit = preferences.edit();
         edit.putString(key, value);
         edit.commit();
@@ -69,7 +71,7 @@ public class SPUtils {
     
     //获取String数据
     public static String getString(Context context,String key){
-        SharedPreferences preferences = context.getSharedPreferences(Fileds.SPNAME, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(Constant.SPNAME, Context.MODE_PRIVATE);
         return preferences.getString(key, "");
     }
 }
