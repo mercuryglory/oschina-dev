@@ -47,7 +47,7 @@ public class SoftwareDetail implements Parcelable {
      * download : https://www.oschina.net/action/project/go?id=313&p=download
      * logo : https://www.oschina.net/img/logo/spring.png?t=1451961935000
      * id : 313
-     * favorite : 0
+     * favorite : 0     如果是已登录的用户(0代表未收藏    1代表已收藏)
      * extensionTitle : J2EE框架
      * homepage : https://www.oschina.net/action/project/go?id=313&p=home
      */

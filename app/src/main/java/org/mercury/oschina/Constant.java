@@ -27,4 +27,14 @@ public class Constant {
 
     public static final String IDENT = "ident";
 
+
+    public static final int SOFTWARE = 1;
+    public static final int NOTE = 2;
+    public static final int BLOG = 3;
+    public static final int NEWS = 4;
+    public static final int CODE = 5;
+    public static final int TRANSLATE = 7;
+
+
+
 }

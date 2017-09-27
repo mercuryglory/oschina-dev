@@ -18,10 +18,13 @@ import org.mercury.oschina.base.BasePresenterActivity;
 import org.mercury.oschina.explorer.bean.SoftwareDetail;
 import org.mercury.oschina.explorer.contract.SoftwareDetailContract;
 import org.mercury.oschina.explorer.contract.SoftwarePresenter;
+import org.mercury.oschina.main.activity.BrowserActivity;
 import org.mercury.oschina.tweet.util.GlideUtils;
+import org.mercury.oschina.utils.SpUtils;
 import org.mercury.oschina.widget.OWebView;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * 软件详情页面，承载截取的url尾部的identId，获取详情数据后展示
@@ -45,7 +48,7 @@ public class SoftwareDetailActivity extends BasePresenterActivity<SoftwareDetail
     @Bind(R.id.webView)
     OWebView         webView;
     @Bind(R.id.ll_content)
-    LinearLayout      llContent;
+    LinearLayout     llContent;
     @Bind(R.id.tv_software_author_name)
     TextView         tvSoftwareAuthorName;
     @Bind(R.id.tv_software_protocol)
@@ -74,8 +77,12 @@ public class SoftwareDetailActivity extends BasePresenterActivity<SoftwareDetail
     LinearLayout     llShare;
     @Bind(R.id.lay_option)
     LinearLayout     layOption;
+    @Bind(R.id.textView)
+    TextView         textView;
 
-    private String mIdent;
+    private String         mIdent;
+    private SoftwareDetail mSoftwareDetail;
+    private boolean isFavorite;
 
     @Override
     protected int getContentView() {
@@ -101,7 +108,8 @@ public class SoftwareDetailActivity extends BasePresenterActivity<SoftwareDetail
         super.initData();
         if (!TextUtils.isEmpty(mIdent)) {
             showWaitDialog();
-            mPresenter.refreshData(mIdent);
+            mPresenter.refreshData(mIdent, Long.valueOf(SpUtils.get(this, Constant.USER_ID, "")
+                    .toString()));
         }
 
     }
@@ -122,7 +130,7 @@ public class SoftwareDetailActivity extends BasePresenterActivity<SoftwareDetail
 
     @Override
     public void refreshSuccess(final SoftwareDetail softwareDetail) {
-
+        mSoftwareDetail = softwareDetail;
         webView.loadDataAsync(softwareDetail.getBody(), new OWebView.FinishTask() {
             @Override
             public void finishTask() {
@@ -143,5 +151,61 @@ public class SoftwareDetailActivity extends BasePresenterActivity<SoftwareDetail
         tvSoftwareLanguage.setText(software.getLanguages());
         tvSoftwareSystem.setText(software.getOs());
         tvSoftwareRecordTime.setText(software.getRecordtime());
+        if (software.getFavorite() == 1) {
+            ivFav.setImageResource(R.drawable.ic_faved);
+        }
+        isFavorite = software.getFavorite() == 1;
+    }
+
+
+    @OnClick({R.id.tv_home, R.id.tv_document,R.id.ll_comment, R.id.ll_fav, R.id.ll_share})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            //软件官网
+            case R.id.tv_home:
+                if (mSoftwareDetail != null) {
+                    BrowserActivity.show(this, mSoftwareDetail.getUrl());
+                }
+                break;
+            //软件文档
+            case R.id.tv_document:
+                if (mSoftwareDetail != null) {
+                    BrowserActivity.show(this, mSoftwareDetail.getDocument());
+                }
+                break;
+            //评论
+            case R.id.ll_comment:
+
+                break;
+            //收藏,取消收藏
+            case R.id.ll_fav:
+                if (mSoftwareDetail != null) {
+                    if (isFavorite) {
+                        mPresenter.deFavorite(mSoftwareDetail.getId(), Constant.SOFTWARE);
+                    } else {
+                        mPresenter.addFavorite(mSoftwareDetail.getId(), Constant.SOFTWARE);
+                    }
+                }
+                break;
+            //分享
+            case R.id.ll_share:
+
+                break;
+        }
+    }
+
+
+    @Override
+    public void favoriteSuccess() {
+        showToast("收藏成功");
+        isFavorite = true;
+        ivFav.setImageResource(R.drawable.ic_faved);
+    }
+
+    @Override
+    public void defavoriteSuccess() {
+        showToast("取消收藏成功");
+        isFavorite = false;
+        ivFav.setImageResource(R.drawable.ic_fav);
     }
 }

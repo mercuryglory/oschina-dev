@@ -3,8 +3,8 @@ package org.mercury.oschina.http;
 import org.mercury.oschina.bean.AccessToken;
 import org.mercury.oschina.bean.ResultBean;
 import org.mercury.oschina.explorer.bean.SoftwareCatalogResponse;
-import org.mercury.oschina.explorer.bean.SoftwareResponse;
 import org.mercury.oschina.explorer.bean.SoftwareDetail;
+import org.mercury.oschina.explorer.bean.SoftwareResponse;
 import org.mercury.oschina.synthesis.bean.BlogResponse;
 import org.mercury.oschina.synthesis.bean.NewsDetail;
 import org.mercury.oschina.synthesis.bean.NewsResponse;
@@ -131,7 +131,22 @@ public interface HttpApi {
     @GET("project_tag_list")
     Call<SoftwareResponse> getSoftTagList(@Query("tag") int tag);
 
+    /**
+     * 软件详情
+     *
+     * @param ident 软件特征名称
+     * @param userId 用户名 传已登录的本机用户名会显示该软件是否被收藏
+     * @return
+     */
     @GET("project_detail")
-    Call<SoftwareDetail> getSoftware(@Query("ident") String ident);
+    Call<SoftwareDetail> getSoftware(@Query("ident") String ident, @Query("user") long userId);
+
+    @GET("favorite_add")
+    Call<ResultBean> addFavorite(@Query("id") long id, @Query("type") int type);
+
+    @GET("favorite_remove")
+    Call<ResultBean> cancleFavorite(@Query("id") long id, @Query("type") int type);
+
+
 
 }

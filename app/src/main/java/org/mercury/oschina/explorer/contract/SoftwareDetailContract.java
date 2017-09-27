@@ -12,10 +12,17 @@ public interface SoftwareDetailContract {
 
     interface View extends BaseModelView<Presenter, SoftwareDetail> {
 
+        void favoriteSuccess();
+
+        void defavoriteSuccess();
     }
 
     interface Presenter extends BasePresenter<View> {
-        void refreshData(String ident);
+        void refreshData(String ident, long userId);
+
+        void addFavorite(int id, int type);
+
+        void deFavorite(int id, int type);
     }
 
 }
