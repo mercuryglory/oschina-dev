@@ -60,8 +60,6 @@ public class AuthActivity extends AppCompatActivity {
                 try {
                     String code = Uri.parse(redirectUrl).getQueryParameter("code");
                     requestToken(code);
-                    startActivity(new Intent(AuthActivity.this, MainActivity.class));
-                    finish();
                 } catch (Exception e) {
                     ToastUtil.showToast("获取授权码失败");
                 }
@@ -120,6 +118,10 @@ public class AuthActivity extends AppCompatActivity {
                     //将access_token 转换为sha-1存入sp中
                     AccessTokenHelper.saveAccessToken(String.valueOf(bean.getUid()), bean
                             .getAccess_token());
+
+                    //将跳转首页放到回调里进行,否则会由于异步的原因导致token还没有存储在本地,首页导致获取数据失败
+                    startActivity(new Intent(AuthActivity.this, MainActivity.class));
+                    finish();
                 }
 
             }

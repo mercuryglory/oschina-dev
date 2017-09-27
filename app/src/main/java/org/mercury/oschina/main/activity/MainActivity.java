@@ -5,6 +5,7 @@ import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,11 +13,14 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.main.MainTab;
+import org.mercury.oschina.utils.AccessTokenHelper;
 import org.mercury.oschina.utils.Constants;
 import org.mercury.oschina.utils.Notice;
+import org.mercury.oschina.utils.SpUtils;
 import org.mercury.oschina.widget.BadgeView;
 import org.mercury.oschina.widget.OnTabReselectListener;
 
@@ -55,6 +59,8 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     protected void initWidget() {
+        Log.e(TAG, "access_token:" + AccessTokenHelper.getAccessToken(SpUtils.get(this,
+                Constant.USER_ID, "").toString()));
         mTitle = getResources().getString(R.string.main_tab_name_news);
         mTitles = getResources().getStringArray(R.array.main_titles_arrays);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);

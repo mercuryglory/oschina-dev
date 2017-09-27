@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,8 +44,8 @@ public class SoftwareDetailActivity extends BasePresenterActivity<SoftwareDetail
     TextView         tvDocument;
     @Bind(R.id.webView)
     OWebView         webView;
-    @Bind(R.id.lay_webview)
-    FrameLayout      layWebview;
+    @Bind(R.id.ll_content)
+    LinearLayout      llContent;
     @Bind(R.id.tv_software_author_name)
     TextView         tvSoftwareAuthorName;
     @Bind(R.id.tv_software_protocol)
@@ -122,22 +121,27 @@ public class SoftwareDetailActivity extends BasePresenterActivity<SoftwareDetail
 
 
     @Override
-    public void refreshSuccess(SoftwareDetail software) {
-        hideWaitDialog();
+    public void refreshSuccess(final SoftwareDetail softwareDetail) {
+
+        webView.loadDataAsync(softwareDetail.getBody(), new OWebView.FinishTask() {
+            @Override
+            public void finishTask() {
+                hideWaitDialog();
+                updateView(softwareDetail);
+            }
+        });
+
+    }
+
+    private void updateView(SoftwareDetail software) {
+        llContent.setVisibility(View.VISIBLE);
         GlideUtils.loadImage(this, software.getLogo(), ivSoftwareIcon, R.drawable
                 .bg_send_error);
         tvSoftwareName.setText(software.getExtensionTitle());
-        webView.loadDataAsync(software.getBody(), new OWebView.FinishTask() {
-            @Override
-            public void finishTask() {
-
-            }
-        });
         tvSoftwareAuthorName.setText(software.getTitle());
         tvSoftwareProtocol.setText(software.getLicense());
         tvSoftwareLanguage.setText(software.getLanguages());
         tvSoftwareSystem.setText(software.getOs());
         tvSoftwareRecordTime.setText(software.getRecordtime());
-
     }
 }
