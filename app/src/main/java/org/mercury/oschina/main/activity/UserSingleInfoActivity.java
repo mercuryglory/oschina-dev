@@ -8,11 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import org.mercury.oschina.user.FragmentInfo;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
+import org.mercury.oschina.user.FragmentInfo;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by wang.zhonghao on 2017/8/18.
@@ -21,9 +21,9 @@ import butterknife.Bind;
 
 public class UserSingleInfoActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar     toolbar;
-    @Bind(R.id.fl_container)
+    @BindView(R.id.fl_container)
     FrameLayout flContainer;
 
     public static final String FRAGMENT_KEY = "FRAGMENT_KEY";

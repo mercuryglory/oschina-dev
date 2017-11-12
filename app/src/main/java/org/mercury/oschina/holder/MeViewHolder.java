@@ -15,14 +15,14 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.mercury.oschina.R;
 import org.mercury.oschina.AppContext;
+import org.mercury.oschina.R;
 import org.mercury.oschina.bean.Active;
 import org.mercury.oschina.utils.DisplayRules;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * @创建者 Administrator
@@ -33,15 +33,15 @@ import butterknife.Bind;
  * @更新描述 ${TODU}
  */
 public class MeViewHolder extends BasicHolder<Active> {
-    @Bind(R.id.iv_me1_pic)
+    @BindView(R.id.iv_me1_pic)
     ImageView mIvMe1Pic;
-    @Bind(R.id.tv_me1_name)
+    @BindView(R.id.tv_me1_name)
     TextView  mTvMe1Name;
-    @Bind(R.id.tv_comment)
+    @BindView(R.id.tv_comment)
     TextView  mTvComment;
-    @Bind(R.id.tv_me1_content)
+    @BindView(R.id.tv_me1_content)
     TextView  mTvMe1Content;
-    @Bind(R.id.tv_me1_time)
+    @BindView(R.id.tv_me1_time)
     TextView  mTvMe1Time;
     private Context mContext;
 

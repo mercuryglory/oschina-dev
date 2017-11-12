@@ -4,13 +4,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.mercury.oschina.R;
 import org.mercury.oschina.AppContext;
+import org.mercury.oschina.R;
 import org.mercury.oschina.explorer.adapter.BasicHolder;
 import org.mercury.oschina.explorer.bean.Event;
 import org.mercury.oschina.explorer.util.Utils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * @创建者 Mercury
@@ -18,13 +18,13 @@ import butterknife.Bind;
  * @描述 ${TODO}
  */
 public class MyActivityHolder extends BasicHolder<Event> {
-    @Bind(R.id.iv_my_icon)
+    @BindView(R.id.iv_my_icon)
     ImageView mIvMyIcon;
-    @Bind(R.id.tv_my_title)
+    @BindView(R.id.tv_my_title)
     TextView mTvMyTitle;
-    @Bind(R.id.tv_my_time)
+    @BindView(R.id.tv_my_time)
     TextView mTvMyTime;
-    @Bind(R.id.tv_my_content)
+    @BindView(R.id.tv_my_content)
     TextView mTvMyContent;
 
     @Override

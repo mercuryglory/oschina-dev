@@ -10,7 +10,7 @@ import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.user.bean.Favorite;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -61,9 +61,9 @@ public class FavoriteListAdapter extends BaseRecyclerAdapter<Favorite> {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.tv_type)
+        @BindView(R.id.tv_type)
         TextView tvType;
-        @Bind(R.id.tv_title)
+        @BindView(R.id.tv_title)
         TextView  tvTitle;
         
         ViewHolder(View view) {

@@ -20,7 +20,7 @@ import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.widget.TweetPicturesLayout;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -85,19 +85,19 @@ public class TweetListAdapter extends BaseRecyclerAdapter<Tweet> {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.iv_tweet_face)
+        @BindView(R.id.iv_tweet_face)
         ImageView           ivTweetFace;
-        @Bind(R.id.tv_tweet_name)
+        @BindView(R.id.tv_tweet_name)
         TextView            tvTweetName;
-        @Bind(R.id.tv_tweet_body)
+        @BindView(R.id.tv_tweet_body)
         TweetTextView       tvTweetBody;
-        @Bind(R.id.layout_tweet_picture)
+        @BindView(R.id.layout_tweet_picture)
         TweetPicturesLayout layoutTweetImage;
-        @Bind(R.id.tv_tweet_time)
+        @BindView(R.id.tv_tweet_time)
         TextView            tvTweetTime;
-        @Bind(R.id.tv_tweet_comment_count)
+        @BindView(R.id.tv_tweet_comment_count)
         TextView            tvTweetCommentCount;
-        @Bind(R.id.rl_info)
+        @BindView(R.id.rl_info)
         RelativeLayout      rlInfo;
 
         ViewHolder(View view) {

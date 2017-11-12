@@ -14,7 +14,7 @@ import org.mercury.oschina.R;
 import org.mercury.oschina.bean.PageInfo;
 import org.mercury.oschina.base.BaseTitleFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by mercury on 2016-08-14 19:33:46.
@@ -23,13 +23,13 @@ import butterknife.Bind;
  */
 public class SynthesisFragment extends BaseTitleFragment {
 
-    @Bind(R.id.tab_nav)
+    @BindView(R.id.tab_nav)
     TabLayout    tabNav;
-    @Bind(R.id.iv_arrow)
+    @BindView(R.id.iv_arrow)
     ImageView    ivArrow;
-    @Bind(R.id.viewpager)
+    @BindView(R.id.viewpager)
     ViewPager    viewpager;
-    @Bind(R.id.ll_content)
+    @BindView(R.id.ll_content)
     LinearLayout llContent;
 
     private PageInfo[] mPageInfos;

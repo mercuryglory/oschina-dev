@@ -12,24 +12,24 @@ import org.mercury.oschina.R;
 import org.mercury.oschina.explorer.adapter.BasicHolder;
 import org.mercury.oschina.explorer.bean.FindUserBean;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by Mercury on 2016-08-19 12:59:24.
  */
 public class FindUserHolder extends BasicHolder<FindUserBean.ObjListBean> {
 
-    @Bind(R.id.iv_avatar)
+    @BindView(R.id.iv_avatar)
     ImageView mIvAvatar;
-    @Bind(R.id.tv_name)
+    @BindView(R.id.tv_name)
     TextView mTvName;
-    @Bind(R.id.iv_gender)
+    @BindView(R.id.iv_gender)
     ImageView mIvGender;
-    @Bind(R.id.top)
+    @BindView(R.id.top)
     LinearLayout mTop;
-    @Bind(R.id.tv_from)
+    @BindView(R.id.tv_from)
     TextView mTvFrom;
-    @Bind(R.id.tv_desc)
+    @BindView(R.id.tv_desc)
     TextView mTvDesc;
 
 

@@ -14,7 +14,7 @@ import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.user.bean.User;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -56,11 +56,11 @@ public class FriendListAdapter extends BaseRecyclerAdapter<User> {
 
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.iv_user_face)
+        @BindView(R.id.iv_user_face)
         ImageView      ivUserFace;
-        @Bind(R.id.tv_author)
+        @BindView(R.id.tv_author)
         TextView       tvAuthor;
-        @Bind(R.id.tv_expertise)
+        @BindView(R.id.tv_expertise)
         TextView       tvExpertise;
 
         ViewHolder(View view) {

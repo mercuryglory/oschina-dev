@@ -39,7 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity implements  OnClick
     protected void onDestroy() {
         super.onDestroy();
         TDevice.hideSoftKeyboard(getCurrentFocus());
-        ButterKnife.unbind(this);
     }
 
     @Override

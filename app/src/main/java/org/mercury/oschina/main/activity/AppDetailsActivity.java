@@ -8,7 +8,7 @@ import android.webkit.WebView;
 
 import org.mercury.oschina.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
  */
 public class AppDetailsActivity extends AppCompatActivity {
 
-    @Bind(R.id.wv_webview)
+    @BindView(R.id.wv_webview)
     WebView mWvWebview;
 
     @Override

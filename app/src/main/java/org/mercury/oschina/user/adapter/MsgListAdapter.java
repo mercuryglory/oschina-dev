@@ -14,7 +14,7 @@ import org.mercury.oschina.tweet.util.TweetParser;
 import org.mercury.oschina.user.bean.Message;
 import org.mercury.oschina.utils.StringUtils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -49,13 +49,13 @@ public class MsgListAdapter extends BaseRecyclerAdapter<Message> {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.iv_portrait)
+        @BindView(R.id.iv_portrait)
         ImageView ivPortrait;
-        @Bind(R.id.tv_friend)
+        @BindView(R.id.tv_friend)
         TextView  tvFriend;
-        @Bind(R.id.tv_content)
+        @BindView(R.id.tv_content)
         TextView  tvContent;
-        @Bind(R.id.tv_time)
+        @BindView(R.id.tv_time)
         TextView  tvTime;
 
         ViewHolder(View view) {

@@ -17,7 +17,7 @@ import org.mercury.oschina.synthesis.bean.News;
 import org.mercury.oschina.utils.GeneralUtils;
 import org.mercury.oschina.utils.StringUtils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -64,13 +64,13 @@ public class NewsListAdapter extends BaseRecyclerAdapter<News> {
 
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.tv_blog_title)
+        @BindView(R.id.tv_blog_title)
         TextView tvBlogTitle;
-        @Bind(R.id.tv_blog_author)
+        @BindView(R.id.tv_blog_author)
         TextView tvBlogAuthor;
-        @Bind(R.id.tv_blog_time)
+        @BindView(R.id.tv_blog_time)
         TextView tvBlogTime;
-        @Bind(R.id.tv_comment_count)
+        @BindView(R.id.tv_comment_count)
         TextView tvCommentCount;
 
         ViewHolder(View view) {

@@ -24,8 +24,7 @@ import org.mercury.oschina.utils.SpUtils;
 import org.mercury.oschina.widget.BadgeView;
 import org.mercury.oschina.widget.OnTabReselectListener;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 
 public class MainActivity extends BaseActivity implements
         TabHost.OnTabChangeListener, View.OnClickListener,
@@ -36,9 +35,9 @@ public class MainActivity extends BaseActivity implements
 
     private long preTime;
 
-    @Bind(android.R.id.tabhost)
+    @BindView(android.R.id.tabhost)
     FragmentTabHost mTabHost;
-    @Bind(R.id.quick_option_iv)
+    @BindView(R.id.quick_option_iv)
     View mAddBt;
 
     private BadgeView mBvNotice;
@@ -81,7 +80,6 @@ public class MainActivity extends BaseActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
     }
 
 

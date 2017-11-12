@@ -23,7 +23,7 @@ import com.orhanobut.dialogplus.SimpleAnimationListener;
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -33,21 +33,21 @@ import butterknife.OnClick;
 
 public class BrowserActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar      toolbar;
-    @Bind(R.id.webview)
+    @BindView(R.id.webview)
     WebView      webview;
-    @Bind(R.id.browser_back)
+    @BindView(R.id.browser_back)
     ImageView    browserBack;
-    @Bind(R.id.browser_forward)
+    @BindView(R.id.browser_forward)
     ImageView    browserForward;
-    @Bind(R.id.browser_refresh)
+    @BindView(R.id.browser_refresh)
     ImageView    browserRefresh;
-    @Bind(R.id.browser_system_browser)
+    @BindView(R.id.browser_system_browser)
     ImageView    browserSystemBrowser;
-    @Bind(R.id.ll_browser)
+    @BindView(R.id.ll_browser)
     LinearLayout llBrowser;
-    @Bind(R.id.pb_loading)
+    @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
 
     public static final String DEFAULT = "http://www.oschina.net/";

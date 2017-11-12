@@ -36,7 +36,7 @@ import org.mercury.oschina.widget.recyclerload.OnLoadMoreListener;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,31 +48,31 @@ import retrofit2.Response;
 public class TweetDetailActivity extends BaseActivity implements SwipeRefreshLayout
         .OnRefreshListener, OnLoadMoreListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar             toolbar;
-    @Bind(R.id.et_content)
+    @BindView(R.id.et_content)
     EditText            etContent;
-    @Bind(R.id.iv_tweet_emoji)
+    @BindView(R.id.iv_tweet_emoji)
     ImageView           ivTweetEmoji;
-    @Bind(R.id.emoji_keyboard_view)
+    @BindView(R.id.emoji_keyboard_view)
     FrameLayout         emojiKeyboardView;
-    @Bind(R.id.iv_tweet_face)
+    @BindView(R.id.iv_tweet_face)
     ImageView           ivTweetFace;
-    @Bind(R.id.tv_tweet_name)
+    @BindView(R.id.tv_tweet_name)
     TextView            tvTweetName;
-    @Bind(R.id.tv_tweet_body)
+    @BindView(R.id.tv_tweet_body)
     TweetTextView       tvTweetBody;
-    @Bind(R.id.tv_tweet_time)
+    @BindView(R.id.tv_tweet_time)
     TextView            tvTweetTime;
-    @Bind(R.id.tv_tweet_comment_count)
+    @BindView(R.id.tv_tweet_comment_count)
     TextView            tvTweetCommentCount;
-    @Bind(R.id.recyclerview)
+    @BindView(R.id.recyclerview)
     HaoRecyclerView     recyclerview;
-    @Bind(R.id.layout_tweet_picture)
+    @BindView(R.id.layout_tweet_picture)
     TweetPicturesLayout layoutTweetPicture;
-    @Bind(R.id.layout_appbar)
+    @BindView(R.id.layout_appbar)
     AppBarLayout        layoutAppbar;
-    @Bind(R.id.refresh_layout)
+    @BindView(R.id.refresh_layout)
     SwipeRefreshLayout  refreshLayout;
 
     private CommentTweetAdapter mAdapter;

@@ -12,18 +12,18 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.mercury.oschina.AppContext;
 import org.mercury.oschina.Constant;
 import org.mercury.oschina.R;
-import org.mercury.oschina.AppContext;
 import org.mercury.oschina.tweet.activity.PhotoActivity;
-import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.tweet.activity.WebActivity;
 import org.mercury.oschina.tweet.bean.Tweet;
 import org.mercury.oschina.tweet.bean.User;
 import org.mercury.oschina.tweet.util.GlideUtils;
+import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.utils.StringUtils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * 创建者:    Mercury
@@ -31,17 +31,17 @@ import butterknife.Bind;
  * 描述:      ${TODO}
  */
 public class TweetHeadHolder extends BasicHolder<Tweet> {
-    @Bind(R.id.iv_tweet_face)
+    @BindView(R.id.iv_tweet_face)
     ImageView     mIvTweetFace;
-    @Bind(R.id.tv_tweet_name)
+    @BindView(R.id.tv_tweet_name)
     TextView      mTvTweetName;
-    @Bind(R.id.tv_tweet_time)
+    @BindView(R.id.tv_tweet_time)
     TextView      mTvTweetTime;
-    @Bind(R.id.wv)
+    @BindView(R.id.wv)
     WebView       mWv;
-    @Bind(R.id.iv_tweet_image)
+    @BindView(R.id.iv_tweet_image)
     ImageView     mIvTweetImage;
-    @Bind(R.id.tv_tweet_comment_count)
+    @BindView(R.id.tv_tweet_comment_count)
     TextView      mTvTweetCommentCount;
 
     @Override

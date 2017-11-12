@@ -11,7 +11,7 @@ import org.mercury.oschina.base.BaseTitleFragment;
 import org.mercury.oschina.explorer.ui.ShakeActivity;
 import org.mercury.oschina.explorer.ui.SoftwareActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 import static org.mercury.oschina.R.id.ll_qr_code;
@@ -25,9 +25,9 @@ import static org.mercury.oschina.R.id.ll_shake;
  */
 public class ExploreFragment extends BaseTitleFragment implements View.OnClickListener {
 
-    @Bind(ll_qr_code)
+    @BindView(ll_qr_code)
     LinearLayout llQrCode;
-    @Bind(ll_shake)
+    @BindView(ll_shake)
     LinearLayout llShake;
 
     @Override

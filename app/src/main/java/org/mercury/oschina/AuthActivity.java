@@ -21,7 +21,7 @@ import org.mercury.oschina.utils.SpUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,9 +35,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class AuthActivity extends AppCompatActivity {
 
-    @Bind(R.id.pb_loading)
+    @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
-    @Bind(R.id.webview)
+    @BindView(R.id.webview)
     WebView     webview;
 
     String redirectUrl = "";

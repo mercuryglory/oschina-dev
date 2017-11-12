@@ -19,7 +19,7 @@ import org.mercury.oschina.http.RequestHelper;
 import org.mercury.oschina.widget.EmptyLayout;
 import org.mercury.oschina.widget.ScrollLayout;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,15 +31,15 @@ import retrofit2.Response;
 
 public class SoftwareCatalogFragment extends BaseFragment {
 
-    @Bind(R.id.lv_catalog)
+    @BindView(R.id.lv_catalog)
     ListView     lvCatalog;
-    @Bind(R.id.lv_tag)
+    @BindView(R.id.lv_tag)
     ListView     lvTag;
-    @Bind(R.id.rv_software)
+    @BindView(R.id.rv_software)
     RecyclerView rvSoftware;
-    @Bind(R.id.scrolllayout)
+    @BindView(R.id.scrolllayout)
     ScrollLayout scrolllayout;
-    @Bind(R.id.error_layout)
+    @BindView(R.id.error_layout)
     EmptyLayout  errorLayout;
 
     public static final int SCREEN_CATALOG = 0;

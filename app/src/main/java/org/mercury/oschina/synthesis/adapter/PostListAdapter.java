@@ -15,7 +15,7 @@ import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.utils.GeneralUtils;
 import org.mercury.oschina.utils.StringUtils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -55,21 +55,21 @@ public class PostListAdapter extends BaseRecyclerAdapter<Post> {
 
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.iv_portrait)
+        @BindView(R.id.iv_portrait)
         ImageView ivPortrait;
-        @Bind(R.id.tv_blog_title)
+        @BindView(R.id.tv_blog_title)
         TextView  tvBlogTitle;
-        @Bind(R.id.tv_blog_author)
+        @BindView(R.id.tv_blog_author)
         TextView  tvBlogAuthor;
-        @Bind(R.id.tv_blog_time)
+        @BindView(R.id.tv_blog_time)
         TextView  tvBlogTime;
-        @Bind(R.id.iv_info_view)
+        @BindView(R.id.iv_info_view)
         ImageView ivInfoView;
-        @Bind(R.id.tv_info_view)
+        @BindView(R.id.tv_info_view)
         TextView  tvInfoView;
-        @Bind(R.id.iv_info_comment)
+        @BindView(R.id.iv_info_comment)
         ImageView ivInfoComment;
-        @Bind(R.id.tv_info_comment)
+        @BindView(R.id.tv_info_comment)
         TextView  tvInfoComment;
 
         ViewHolder(View view) {

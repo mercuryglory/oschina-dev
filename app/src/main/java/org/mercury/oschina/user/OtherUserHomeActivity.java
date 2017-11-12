@@ -29,7 +29,7 @@ import org.mercury.oschina.utils.DialogHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -40,29 +40,29 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class OtherUserHomeActivity extends BasePresenterActivity<OtherUserContract.Presenter,
         User> implements OtherUserContract.View,DialogInterface.OnClickListener{
 
-    @Bind(R.id.iv_user_portrait)
+    @BindView(R.id.iv_user_portrait)
     CircleImageView ivUserPortrait;
-    @Bind(R.id.tv_username)
+    @BindView(R.id.tv_username)
     TextView        tvUsername;
-    @Bind(R.id.tv_user_jointime)
+    @BindView(R.id.tv_user_jointime)
     TextView        tvUserJointime;
-    @Bind(R.id.tv_user_lastlogin)
+    @BindView(R.id.tv_user_lastlogin)
     TextView        tvUserLastlogin;
-    @Bind(R.id.iv_portrait_logo)
+    @BindView(R.id.iv_portrait_logo)
     CircleImageView ivPortraitLogo;
-    @Bind(R.id.tv_name_logo)
+    @BindView(R.id.tv_name_logo)
     TextView        tvNameLogo;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar         toolbar;
-    @Bind(R.id.layout_appbar)
+    @BindView(R.id.layout_appbar)
     AppBarLayout    layoutAppbar;
-    @Bind(R.id.tablayout)
+    @BindView(R.id.tablayout)
     TabLayout       tablayout;
-    @Bind(R.id.view_divider)
+    @BindView(R.id.view_divider)
     View            viewDivider;
-    @Bind(R.id.viewPager)
+    @BindView(R.id.viewPager)
     ViewPager       viewPager;
-    @Bind(R.id.iv_gender)
+    @BindView(R.id.iv_gender)
     ImageView       ivGender;
 
     private static final String KEY_AUTHORID = "KEY_AUTHORID";

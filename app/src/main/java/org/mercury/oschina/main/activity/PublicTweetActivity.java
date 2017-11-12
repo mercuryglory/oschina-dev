@@ -18,7 +18,7 @@ import org.mercury.oschina.base.BaseActivity;
 import org.mercury.oschina.emoji.EmojiView;
 import org.mercury.oschina.utils.TDevice;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -28,35 +28,35 @@ import butterknife.OnClick;
 public class PublicTweetActivity extends BaseActivity implements View.OnClickListener {
 
 
-    @Bind(R.id.iv_back)
+    @BindView(R.id.iv_back)
     ImageView mIvBack;
-    @Bind(R.id.tv_send)
+    @BindView(R.id.tv_send)
     TextView mTvSend;
-    @Bind(R.id.search_bar)
+    @BindView(R.id.search_bar)
     RelativeLayout mSearchBar;
-    @Bind(R.id.et_content)
+    @BindView(R.id.et_content)
     EditText mEtContent;
-    @Bind(R.id.iv_img)
+    @BindView(R.id.iv_img)
     ImageView mIvImg;
-    @Bind(R.id.iv_clear_img)
+    @BindView(R.id.iv_clear_img)
     ImageView mIvClearImg;
-    @Bind(R.id.rl_img)
+    @BindView(R.id.rl_img)
     RelativeLayout mRlImg;
-    @Bind(R.id.tv_clear)
+    @BindView(R.id.tv_clear)
     TextView mTvClear;
-    @Bind(R.id.bottom)
+    @BindView(R.id.bottom)
     RelativeLayout mBottom;
-    @Bind(R.id.ib_picture)
+    @BindView(R.id.ib_picture)
     ImageButton mIbPicture;
-    @Bind(R.id.ib_mention)
+    @BindView(R.id.ib_mention)
     ImageButton mIbMention;
-    @Bind(R.id.ib_trend_software)
+    @BindView(R.id.ib_trend_software)
     ImageButton mIbTrendSoftware;
-    @Bind(R.id.ib_emoji_keyboard)
+    @BindView(R.id.ib_emoji_keyboard)
     ImageButton mIbEmojiKeyboard;
-    @Bind(R.id.iv_show)
+    @BindView(R.id.iv_show)
     ImageView mIvShow;
-    @Bind(R.id.fl_emoji)
+    @BindView(R.id.fl_emoji)
     FrameLayout flEmoji;
 
     private EditText mEt_album;

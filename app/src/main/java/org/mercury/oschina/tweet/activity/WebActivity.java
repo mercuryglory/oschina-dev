@@ -9,15 +9,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import org.mercury.oschina.R;
 import org.mercury.oschina.Constant;
+import org.mercury.oschina.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WebActivity extends AppCompatActivity {
 
-    @Bind(R.id.wv)
+    @BindView(R.id.wv)
     WebView mWv;
 
     @Override

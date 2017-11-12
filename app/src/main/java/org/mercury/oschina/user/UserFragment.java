@@ -22,7 +22,7 @@ import org.mercury.oschina.utils.AccessTokenHelper;
 import org.mercury.oschina.utils.DialogHelper;
 import org.mercury.oschina.widget.CodeDialog;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -32,35 +32,35 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class UserFragment extends BasePresenterFragment<UserContract.Presenter,User> implements View.OnClickListener,UserContract.View {
 
-    @Bind(R.id.iv_setting)
+    @BindView(R.id.iv_setting)
     ImageView       ivSetting;
-    @Bind(R.id.iv_user_qrcode)
+    @BindView(R.id.iv_user_qrcode)
     ImageView       ivUserQrcode;
-    @Bind(R.id.rl_top)
+    @BindView(R.id.rl_top)
     RelativeLayout  rlTop;
-    @Bind(R.id.iv_user_pic)
+    @BindView(R.id.iv_user_pic)
     CircleImageView ivUserPic;
-    @Bind(R.id.iv_user_gender)
+    @BindView(R.id.iv_user_gender)
     ImageView       ivUserGender;
-    @Bind(R.id.rl_user_avatar)
+    @BindView(R.id.rl_user_avatar)
     RelativeLayout  rlUserAvatar;
-    @Bind(R.id.tv_user_name)
+    @BindView(R.id.tv_user_name)
     TextView        tvUserName;
-    @Bind(R.id.rl_user)
+    @BindView(R.id.rl_user)
     RelativeLayout  rlUser;
-    @Bind(R.id.tv_user_tweet)
+    @BindView(R.id.tv_user_tweet)
     TextView        tvUserTweet;
-    @Bind(R.id.tv_user_favorite)
+    @BindView(R.id.tv_user_favorite)
     TextView        tvUserFavorite;
-    @Bind(R.id.tv_user_like)
+    @BindView(R.id.tv_user_like)
     TextView        tvUserLike;
-    @Bind(R.id.tv_user_fans)
+    @BindView(R.id.tv_user_fans)
     TextView        tvUserFans;
-    @Bind(R.id.ll_my_msg)
+    @BindView(R.id.ll_my_msg)
     LinearLayout    llMyMsg;
-    @Bind(R.id.ll_my_blog)
+    @BindView(R.id.ll_my_blog)
     LinearLayout    llMyBlog;
-    @Bind(R.id.ll_my_event)
+    @BindView(R.id.ll_my_event)
     LinearLayout    llMyEvent;
 
     private String portraitUrl = "";

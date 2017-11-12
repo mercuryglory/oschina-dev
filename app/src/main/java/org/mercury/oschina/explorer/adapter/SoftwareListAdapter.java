@@ -11,7 +11,7 @@ import org.mercury.oschina.base.BaseRecyclerAdapter;
 import org.mercury.oschina.explorer.bean.Project;
 import org.mercury.oschina.utils.UIHelper;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -46,9 +46,9 @@ public class SoftwareListAdapter extends BaseRecyclerAdapter<Project> {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.tv_name)
+        @BindView(R.id.tv_name)
         TextView tvName;
-        @Bind(R.id.tv_desc)
+        @BindView(R.id.tv_desc)
         TextView tvDesc;
 
         ViewHolder(View view) {

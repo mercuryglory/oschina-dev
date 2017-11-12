@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import org.mercury.oschina.R;
 import org.mercury.oschina.bean.PageInfo;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by Mercury on 2017/9/15.
@@ -18,9 +18,9 @@ import butterknife.Bind;
 
 public abstract class BaseViewPagerFragment extends BaseFragment {
 
-    @Bind(R.id.tab_nav)
+    @BindView(R.id.tab_nav)
     protected TabLayout tabNav;
-    @Bind(R.id.base_viewpager)
+    @BindView(R.id.base_viewpager)
     protected ViewPager baseViewpager;
 
     @Override

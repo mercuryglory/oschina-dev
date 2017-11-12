@@ -6,11 +6,11 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.mercury.oschina.R;
 import org.mercury.oschina.AppContext;
+import org.mercury.oschina.R;
 import org.mercury.oschina.bean.TweetLike;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * @创建者 Administrator
@@ -21,17 +21,17 @@ import butterknife.Bind;
  * @更新描述 ${TODU}
  */
 public class PraiseViewHolder extends BasicHolder<TweetLike> {
-    @Bind(R.id.iv_praise_pic)
+    @BindView(R.id.iv_praise_pic)
     ImageView mIvPraisePic;
-    @Bind(R.id.tv_praise_name)
+    @BindView(R.id.tv_praise_name)
     TextView  mTvPraiseName;
-    @Bind(R.id.tv_praise_content)
+    @BindView(R.id.tv_praise_content)
     TextView  mTvPraiseContent;
-    @Bind(R.id.tv_praise_time)
+    @BindView(R.id.tv_praise_time)
     TextView  mTvPraiseTime;
-    @Bind(R.id.tv_praise_author)
+    @BindView(R.id.tv_praise_author)
     TextView  mTvPraiseAuthor;
-    @Bind(R.id.tv_praise_desc)
+    @BindView(R.id.tv_praise_desc)
     TextView  mTvPraiseDesc;
 
     @Override

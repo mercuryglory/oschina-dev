@@ -23,7 +23,7 @@ import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.utils.SpUtils;
 import org.mercury.oschina.widget.OWebView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -33,51 +33,51 @@ public class SoftwareDetailActivity extends BasePresenterActivity<SoftwareDetail
         .Presenter, SoftwareDetail> implements SoftwareDetailContract.View {
 
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar          toolbar;
-    @Bind(R.id.iv_label_recommend)
+    @BindView(R.id.iv_label_recommend)
     ImageView        ivLabelRecommend;
-    @Bind(R.id.iv_software_icon)
+    @BindView(R.id.iv_software_icon)
     ImageView        ivSoftwareIcon;
-    @Bind(R.id.tv_software_name)
+    @BindView(R.id.tv_software_name)
     TextView         tvSoftwareName;
-    @Bind(R.id.tv_home)
+    @BindView(R.id.tv_home)
     TextView         tvHome;
-    @Bind(R.id.tv_document)
+    @BindView(R.id.tv_document)
     TextView         tvDocument;
-    @Bind(R.id.webView)
+    @BindView(R.id.webView)
     OWebView         webView;
-    @Bind(R.id.ll_content)
+    @BindView(R.id.ll_content)
     LinearLayout     llContent;
-    @Bind(R.id.tv_software_author_name)
+    @BindView(R.id.tv_software_author_name)
     TextView         tvSoftwareAuthorName;
-    @Bind(R.id.tv_software_protocol)
+    @BindView(R.id.tv_software_protocol)
     TextView         tvSoftwareProtocol;
-    @Bind(R.id.tv_software_language)
+    @BindView(R.id.tv_software_language)
     TextView         tvSoftwareLanguage;
-    @Bind(R.id.tv_software_system)
+    @BindView(R.id.tv_software_system)
     TextView         tvSoftwareSystem;
-    @Bind(R.id.tv_software_record_time)
+    @BindView(R.id.tv_software_record_time)
     TextView         tvSoftwareRecordTime;
-    @Bind(R.id.rv_recommend)
+    @BindView(R.id.rv_recommend)
     RecyclerView     rvRecommend;
-    @Bind(R.id.lay_nsv)
+    @BindView(R.id.lay_nsv)
     NestedScrollView layNsv;
-    @Bind(R.id.tv_comment_count)
+    @BindView(R.id.tv_comment_count)
     TextView         tvCommentCount;
-    @Bind(R.id.ll_comment)
+    @BindView(R.id.ll_comment)
     LinearLayout     llComment;
-    @Bind(R.id.iv_fav)
+    @BindView(R.id.iv_fav)
     ImageView        ivFav;
-    @Bind(R.id.tv_fav_count)
+    @BindView(R.id.tv_fav_count)
     TextView         tvFavCount;
-    @Bind(R.id.ll_fav)
+    @BindView(R.id.ll_fav)
     LinearLayout     llFav;
-    @Bind(R.id.ll_share)
+    @BindView(R.id.ll_share)
     LinearLayout     llShare;
-    @Bind(R.id.lay_option)
+    @BindView(R.id.lay_option)
     LinearLayout     layOption;
-    @Bind(R.id.textView)
+    @BindView(R.id.textView)
     TextView         textView;
 
     private String         mIdent;

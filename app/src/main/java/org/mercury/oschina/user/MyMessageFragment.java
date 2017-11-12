@@ -7,7 +7,7 @@ import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseViewPagerFragment;
 import org.mercury.oschina.bean.PageInfo;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by wang.zhonghao on 2017/8/23.
@@ -15,9 +15,9 @@ import butterknife.Bind;
 
 public class MyMessageFragment extends BaseViewPagerFragment {
 
-    @Bind(R.id.tab_nav)
+    @BindView(R.id.tab_nav)
     TabLayout tabNav;
-    @Bind(R.id.base_viewpager)
+    @BindView(R.id.base_viewpager)
     ViewPager baseViewpager;
 
     @Override

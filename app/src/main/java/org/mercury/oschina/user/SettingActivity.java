@@ -19,19 +19,19 @@ import org.mercury.oschina.utils.UIHelper;
 
 import java.io.File;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class SettingActivity extends BaseActivity {
 
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar        toolbar;
-    @Bind(R.id.tv_cache_size)
+    @BindView(R.id.tv_cache_size)
     TextView       tvCacheSize;
-    @Bind(R.id.rl_clear_cache)
+    @BindView(R.id.rl_clear_cache)
     RelativeLayout rlClearCache;
-    @Bind(R.id.tv_goto_market)
+    @BindView(R.id.tv_goto_market)
     TextView       tvGotoMarket;
 
     @Override

@@ -23,7 +23,7 @@ import org.mercury.oschina.synthesis.bean.NewsDetail;
 import org.mercury.oschina.utils.StringUtils;
 import org.mercury.oschina.widget.OWebView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,21 +34,21 @@ import retrofit2.Response;
  */
 public class NewsDetailActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar          toolbar;
-    @Bind(R.id.tv_title)
+    @BindView(R.id.tv_title)
     TextView         tvTitle;
-    @Bind(R.id.tv_author)
+    @BindView(R.id.tv_author)
     TextView         tvAuthor;
-    @Bind(R.id.tv_time)
+    @BindView(R.id.tv_time)
     TextView         tvTime;
-    @Bind(R.id.webview)
+    @BindView(R.id.webview)
     OWebView         webview;
-    @Bind(R.id.nsv_container)
+    @BindView(R.id.nsv_container)
     NestedScrollView nsvContainer;
-    @Bind(R.id.rv_recommend)
+    @BindView(R.id.rv_recommend)
     RecyclerView     rvRecommend;
-    @Bind(R.id.ll_content)
+    @BindView(R.id.ll_content)
     LinearLayout     llContent;
 
     public static final String KEY_ID = "key_id";

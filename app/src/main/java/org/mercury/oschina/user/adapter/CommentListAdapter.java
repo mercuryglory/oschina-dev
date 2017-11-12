@@ -12,13 +12,13 @@ import android.widget.TextView;
 
 import org.mercury.oschina.R;
 import org.mercury.oschina.base.BaseRecyclerAdapter;
-import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.tweet.util.GlideUtils;
 import org.mercury.oschina.tweet.util.TweetParser;
+import org.mercury.oschina.user.OtherUserHomeActivity;
 import org.mercury.oschina.user.bean.Active;
 import org.mercury.oschina.utils.StringUtils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -97,21 +97,21 @@ public class CommentListAdapter extends BaseRecyclerAdapter<Active> {
 
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.iv_user_face)
+        @BindView(R.id.iv_user_face)
         ImageView      ivUserFace;
-        @Bind(R.id.tv_author)
+        @BindView(R.id.tv_author)
         TextView       tvAuthor;
-        @Bind(R.id.tv_message)
+        @BindView(R.id.tv_message)
         TextView       tvMessage;
-        @Bind(R.id.tv_body)
+        @BindView(R.id.tv_body)
         TextView       tvBody;
-        @Bind(R.id.tv_pub_time)
+        @BindView(R.id.tv_pub_time)
         TextView       tvPubTime;
-        @Bind(R.id.tv_pub_platform)
+        @BindView(R.id.tv_pub_platform)
         TextView       tvPubPlatform;
-        @Bind(R.id.tv_comment_count)
+        @BindView(R.id.tv_comment_count)
         TextView       tvCommentCount;
-        @Bind(R.id.rl_info)
+        @BindView(R.id.rl_info)
         RelativeLayout rlInfo;
 
         ViewHolder(View view) {

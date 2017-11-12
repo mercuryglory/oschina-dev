@@ -31,7 +31,7 @@ import org.mercury.oschina.utils.StringUtils;
 
 import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,17 +44,17 @@ import retrofit2.Response;
  */
 public class ShakeActivity extends BaseActivity implements SensorEventListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar      toolbar;
-    @Bind(R.id.iv_shake)
+    @BindView(R.id.iv_shake)
     ImageView    ivShake;
-    @Bind(R.id.loading)
+    @BindView(R.id.loading)
     Loading      loading;
-    @Bind(R.id.tv_state)
+    @BindView(R.id.tv_state)
     TextView     tvState;
-    @Bind(R.id.cv_shake)
+    @BindView(R.id.cv_shake)
     CardView     cvShake;
-    @Bind(R.id.layoutRoot)
+    @BindView(R.id.layoutRoot)
     LinearLayout layoutRoot;
 
     private SensorManager mSensorManager;

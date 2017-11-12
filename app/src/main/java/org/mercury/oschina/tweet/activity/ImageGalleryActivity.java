@@ -33,7 +33,7 @@ import java.io.File;
 import java.util.List;
 import java.util.concurrent.Future;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -49,11 +49,11 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class ImageGalleryActivity extends BaseActivity implements ViewPager.OnPageChangeListener,
         EasyPermissions.PermissionCallbacks {
 
-    @Bind(R.id.vp_image)
+    @BindView(R.id.vp_image)
     ViewPager vpImage;
-    @Bind(R.id.tv_index)
+    @BindView(R.id.tv_index)
     TextView  tvIndex;
-    @Bind(R.id.iv_download)
+    @BindView(R.id.iv_download)
     ImageView ivDownload;
 
     public static final String KEY_IMAGE    = "image";
